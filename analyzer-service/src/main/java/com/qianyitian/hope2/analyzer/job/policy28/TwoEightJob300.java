@@ -8,6 +8,7 @@ import com.qianyitian.hope2.analyzer.util.BusinessException;
  */
 public class TwoEightJob300 extends BaseTwoEightJob{
 
+    @Override
     protected void operate(KLineInfo current300, double week4Range300, KLineInfo current500, double week4Range500) throws BusinessException {
         if(is300Position()) {
             return;

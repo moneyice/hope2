@@ -9,14 +9,13 @@ import com.qianyitian.hope2.analyzer.job.policy28.BaseTwoEightJob;
 import com.qianyitian.hope2.analyzer.model.AccountSummary;
 import com.qianyitian.hope2.analyzer.model.Stock;
 import com.qianyitian.hope2.analyzer.model.ValueLog;
-import com.qianyitian.hope2.analyzer.service.StockService;
+import com.qianyitian.hope2.analyzer.service.DefaultStockService;
 import com.qianyitian.hope2.analyzer.util.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
 import java.net.URL;
@@ -36,7 +35,7 @@ public class TweEightController {
     static String currentURL = "http://api.money.126.net/data/feed/#{symbol},money.api";
 
     @Autowired
-    private StockService stockService;
+    private DefaultStockService stockService;
 
     @RequestMapping("/28")
     public String analyze28(

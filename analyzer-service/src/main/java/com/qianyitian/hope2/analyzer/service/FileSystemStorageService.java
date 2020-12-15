@@ -1,10 +1,5 @@
 package com.qianyitian.hope2.analyzer.service;
 
-import com.alibaba.fastjson.JSON;
-import com.aliyun.oss.ClientException;
-import com.aliyun.oss.OSSClient;
-import com.aliyun.oss.common.utils.IOUtils;
-import com.aliyun.oss.model.OSSObject;
 import com.google.common.io.Files;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,7 +13,7 @@ import java.nio.charset.Charset;
  * Aliyun OSS using the OSS SDK for Java.
  */
 @Service("fileSystemStorageService")
-public class FileSystemStorageService implements IReportService {
+public class FileSystemStorageService implements IReportStorageService {
     private Logger logger = LoggerFactory.getLogger(getClass());
 
     public FileSystemStorageService() {

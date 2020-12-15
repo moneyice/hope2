@@ -2,7 +2,7 @@ package com.qianyitian.hope2.stock.util;
 
 
 
-import com.qianyitian.hope2.stock.dao.IStockDAO;
+import com.qianyitian.hope2.stock.config.Constant;
 import com.qianyitian.hope2.stock.model.KLineInfo;
 import com.qianyitian.hope2.stock.model.Macd;
 import com.qianyitian.hope2.stock.model.Stock;
@@ -45,7 +45,7 @@ public class KUtils {
         newStock.setMarket(stock.getMarket());
         newStock.setName(stock.getName());
         newStock.setkLineInfos(weeklyInfos);
-        newStock.setkLineType(IStockDAO.TYPE_WEEKLY);
+        newStock.setkLineType(Constant.TYPE_WEEKLY);
         return newStock;
     }
 
@@ -106,7 +106,7 @@ public class KUtils {
         newStock.setMarket(stock.getMarket());
         newStock.setName(stock.getName());
         newStock.setkLineInfos(monthlyInfos);
-        newStock.setkLineType(IStockDAO.TYPE_MONTHLY);
+        newStock.setkLineType(Constant.TYPE_MONTHLY);
         return newStock;
     }
 

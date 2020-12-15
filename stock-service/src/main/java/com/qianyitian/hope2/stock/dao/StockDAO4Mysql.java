@@ -100,6 +100,7 @@ public class StockDAO4Mysql implements IStockDAO {
     }
 
 
+    @Override
     public List<Stock> getAllSymbols() {
         File rootFolder = new File(getRootPath());
         if (!rootFolder.exists()) {
@@ -120,6 +121,11 @@ public class StockDAO4Mysql implements IStockDAO {
         return null;
     }
 
+    @Override
+    public List<Stock> getFavoriteSymbols() {
+        return null;
+    }
+
     public Date getStockUpdateTime(String code) {
         File file = new File(getRootPath(), code);
         long time = file.lastModified();
@@ -127,6 +133,7 @@ public class StockDAO4Mysql implements IStockDAO {
         return lastDate;
     }
 
+    @Override
     public Date getAllSymbolsUpdateTime() {
         File file = new File(getRootPath(), "allSymbols");
         long time = file.lastModified();

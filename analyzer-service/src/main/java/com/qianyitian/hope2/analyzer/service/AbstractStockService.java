@@ -11,19 +11,20 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 @Service
-public class StockService {
+public abstract class AbstractStockService implements IStockService{
     private Logger logger = LoggerFactory.getLogger(getClass());
     @Autowired
     PropertyConfig propertyConfig;
 
+
+
     @Autowired
     private RestTemplate restTemplate;
 
-    public SymbolList getAllSymbols() {
-        SymbolList symbolList = restTemplate.getForObject(propertyConfig.getStockService() + "/stockList", SymbolList.class);
-        return symbolList;
-    }
+    @Override
+    public abstract SymbolList getAllSymbols();
 
+    @Override
     public Stock getStock(String symbol, String klineType) {
         //"timerCache is above the warning threshold of 1000 with size XXX"
         //https://my.oschina.net/u/2408085/blog/733900
@@ -48,6 +49,7 @@ public class StockService {
         return null;
     }
 
+    @Override
     public Stock getStockDaily(String symbol) {
         try {
             Stock stock = restTemplate.getForObject(propertyConfig.getStockService() + "/data/kline/daily/" + symbol, Stock.class);
@@ -59,6 +61,7 @@ public class StockService {
         return null;
     }
 
+    @Override
     public Stock getStockWeekly(String symbol) {
         try {
             Stock stock = restTemplate.getForObject(propertyConfig.getStockService() + "/data/kline/weekly/" + symbol, Stock.class);
@@ -69,6 +72,12 @@ public class StockService {
         }
         return null;
     }
+    public PropertyConfig getPropertyConfig() {
+        return propertyConfig;
+    }
 
+    public RestTemplate getRestTemplate() {
+        return restTemplate;
+    }
 
 }

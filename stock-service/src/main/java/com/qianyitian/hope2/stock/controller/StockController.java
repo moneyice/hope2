@@ -58,8 +58,10 @@ public class StockController {
 
     @PostMapping(value = "/data/kline/")
     public Stock getStock(@RequestBody Stock input) {
-        if (input.getkLineType().equals("dailylite") || input.getkLineType().equals("daily")) {
+        if (input.getkLineType().equals("dailylite") ) {
             return stockDAO.getStockLite(input.getCode());
+        }else if (input.getkLineType().equals("daily")) {
+            return stockDAO.getStock(input.getCode());
         } else if (input.getkLineType().equals("weekly")) {
             return stockDAO.getStockWeeklyInfo(input.getCode());
         } else if (input.getkLineType().equals("monthly")) {
@@ -105,6 +107,14 @@ public class StockController {
         }
         SymbolList symbolList = new SymbolList();
         symbolList.setSymbols(result);
+        return symbolList;
+    }
+
+    @GetMapping(value = "/favoriteList")
+    public SymbolList favoriteList() {
+        List<Stock> list = stockDAO.getFavoriteSymbols();
+        SymbolList symbolList = new SymbolList();
+        symbolList.setSymbols(list);
         return symbolList;
     }
 

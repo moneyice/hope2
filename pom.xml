@@ -15,8 +15,8 @@
     <packaging>pom</packaging>
     <version>1.0</version>
     <modules>
-        <module>com.qianyitian.hope2.stock-service</module>
-        <module>com.qianyitian.spider-service</module>
+        <module>stock-service</module>
+        <module>spider-service</module>
         <module>analyzer-service</module>
     </modules>
 

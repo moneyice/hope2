@@ -2,6 +2,7 @@ package com.qianyitian.hope2.stock.dao;
 
 import com.alibaba.fastjson.JSON;
 import com.google.common.io.Files;
+import com.qianyitian.hope2.stock.config.Constant;
 import com.qianyitian.hope2.stock.model.KLineInfo;
 import com.qianyitian.hope2.stock.model.Stock;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,7 +60,7 @@ public class StockDAO4Redis implements IStockDAO {
 
     @Override
     public void storeStockLite(Stock stock) {
-        stock.setkLineType(IStockDAO.TYPE_DAILY_LITE);
+        stock.setkLineType(Constant.TYPE_DAILY_LITE);
         List<KLineInfo> oldArray = stock.getkLineInfos();
 
         if (oldArray.size() > LITE_LEAST_DAY_NUMBER) {
@@ -67,7 +68,7 @@ public class StockDAO4Redis implements IStockDAO {
             List<KLineInfo> subList = oldArray.subList(oldArray.size() - LITE_LEAST_DAY_NUMBER, oldArray.size());
             stock.setkLineInfos(subList);
         }
-        String key = stock.getCode() + IStockDAO.TYPE_DAILY_LITE;
+        String key = stock.getCode() + Constant.TYPE_DAILY_LITE;
         String jsonStock = JSON.toJSONString(stock);
         stringRedisTemplate.opsForValue().set(key, jsonStock);
     }
@@ -75,20 +76,20 @@ public class StockDAO4Redis implements IStockDAO {
     @Override
     public void storeStockWeeklyInfo(Stock stock) {
         String jsonStock = JSON.toJSONString(stock);
-        String key = stock.getCode() + IStockDAO.TYPE_WEEKLY;
+        String key = stock.getCode() + Constant.TYPE_WEEKLY;
         stringRedisTemplate.opsForValue().set(key, jsonStock);
     }
 
     @Override
     public void storeStockMonthlyInfo(Stock stock) {
         String jsonStock = JSON.toJSONString(stock);
-        String key = stock.getCode() + IStockDAO.TYPE_MONTHLY;
+        String key = stock.getCode() + Constant.TYPE_MONTHLY;
         stringRedisTemplate.opsForValue().set(key, jsonStock);
     }
 
     @Override
     public Stock getStock(String code) {
-        String key = code + IStockDAO.TYPE_DAILY;
+        String key = code + Constant.TYPE_DAILY;
         String rs = stringRedisTemplate.opsForValue().get(key);
         Stock stock = JSON.parseObject(rs, Stock.class);
         return stock;
@@ -96,7 +97,7 @@ public class StockDAO4Redis implements IStockDAO {
 
     @Override
     public Stock getStockLite(String code) {
-        String key = code + IStockDAO.TYPE_DAILY_LITE;
+        String key = code + Constant.TYPE_DAILY_LITE;
         String rs = stringRedisTemplate.opsForValue().get(key);
         Stock stock = JSON.parseObject(rs, Stock.class);
         return stock;
@@ -104,7 +105,7 @@ public class StockDAO4Redis implements IStockDAO {
 
     @Override
     public Stock getStockWeeklyInfo(String code) {
-        String key = code + IStockDAO.TYPE_WEEKLY;
+        String key = code + Constant.TYPE_WEEKLY;
         String rs = stringRedisTemplate.opsForValue().get(key);
         Stock stock = JSON.parseObject(rs, Stock.class);
         return stock;
@@ -112,7 +113,7 @@ public class StockDAO4Redis implements IStockDAO {
 
     @Override
     public Stock getStockMonthlyInfo(String code) {
-        String key = code + IStockDAO.TYPE_MONTHLY;
+        String key = code + Constant.TYPE_MONTHLY;
         String rs = stringRedisTemplate.opsForValue().get(key);
         Stock stock = JSON.parseObject(rs, Stock.class);
         return stock;
@@ -136,6 +137,11 @@ public class StockDAO4Redis implements IStockDAO {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return null;
+    }
+
+    @Override
+    public List<Stock> getFavoriteSymbols() {
         return null;
     }
 

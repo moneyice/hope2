@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/analyzer-service/analyzer-service.iml" filepath="$PROJECT_DIR$/analyzer-service/analyzer-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hope2.iml" filepath="$PROJECT_DIR$/hope2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spider-service/spider-service.iml" filepath="$PROJECT_DIR$/spider-service/spider-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/stock-service/stock-service.iml" filepath="$PROJECT_DIR$/stock-service/stock-service.iml" />
+    </modules>
+  </component>
+</project>

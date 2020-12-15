@@ -17,7 +17,7 @@ import java.io.InputStream;
  * Aliyun OSS using the OSS SDK for Java.
  */
 @Service("aliyunOSSStorageService")
-public class AliyunOSSStorageService implements IReportService{
+public class AliyunOSSStorageService implements IReportStorageService {
     private Logger logger = LoggerFactory.getLogger(getClass());
 
     private static String endpoint = "oss-cn-zhangjiakou.aliyuncs.com";

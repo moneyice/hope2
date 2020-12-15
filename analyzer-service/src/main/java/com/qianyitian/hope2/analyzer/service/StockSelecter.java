@@ -1,15 +1,11 @@
 package com.qianyitian.hope2.analyzer.service;
 
-import com.alibaba.fastjson.JSON;
 import com.qianyitian.hope2.analyzer.analyzer.IStockAnalyzer;
 import com.qianyitian.hope2.analyzer.model.*;
 import com.qianyitian.hope2.analyzer.util.Utils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -19,16 +15,15 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Service
-public class StockSelectService {
+public class StockSelecter {
     private Logger logger = LoggerFactory.getLogger(getClass());
     List<IStockAnalyzer> analyzers = new ArrayList<IStockAnalyzer>();
     List<ResultInfo> selectResultList = null;
     ExecutorService es = Executors.newFixedThreadPool(15);
 
-    StockService stockService;
+    IStockService stockService;
 
-    public StockSelectService(StockService stockService) {
+    public StockSelecter(IStockService stockService) {
         this.stockService = stockService;
     }
 

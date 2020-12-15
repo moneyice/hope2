@@ -14,7 +14,7 @@ import java.util.List;
 //2、Buy-Countdown：每当某个收盘价低于先前第2个T的最低价时计数增加1，计数可以不连续，当计数增加到13个交易日意味着卖盘动能已经耗尽，往往是下跌趋势的反转点。
 //（注：这里的限定条件是累计13个T，不要求是“连续”的，期间可以中断）
 public class DemarkAnalyzer extends AbstractStockAnalyzer {
-    int daysToNow = 60;
+    int daysToNow = 300;
     // 连续9T或以上
     int buySetupDays = 9;
     // 收盘价低于先前第X个T的收盘价
@@ -110,7 +110,7 @@ public class DemarkAnalyzer extends AbstractStockAnalyzer {
                 demarkSelect.setCountDownNumber(number);
                 // use to field to store the count down point info
                 demarkSelect.setCountDownPoint(countDownPoint);
-
+                break;
             }
             if (infos.get(i).getClose() < infos.get(i - 2).getLow()) {
                 number++;

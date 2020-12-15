@@ -4,11 +4,13 @@ import com.alibaba.fastjson.JSON;
 import com.qianyitian.hope2.analyzer.analyzer.EStockAnalyzer;
 import com.qianyitian.hope2.analyzer.analyzer.IStockAnalyzer;
 import com.qianyitian.hope2.analyzer.analyzer.StockAnalyzerFacotry;
+import com.qianyitian.hope2.analyzer.config.Constant;
 import com.qianyitian.hope2.analyzer.dao.ReportDAO4Redis;
 import com.qianyitian.hope2.analyzer.model.AnalyzeResult;
-import com.qianyitian.hope2.analyzer.service.IReportService;
-import com.qianyitian.hope2.analyzer.service.StockSelectService;
-import com.qianyitian.hope2.analyzer.service.StockService;
+import com.qianyitian.hope2.analyzer.service.IReportStorageService;
+import com.qianyitian.hope2.analyzer.service.MyFavoriteStockService;
+import com.qianyitian.hope2.analyzer.service.StockSelecter;
+import com.qianyitian.hope2.analyzer.service.DefaultStockService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +19,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.RestTemplate;
 
 import javax.annotation.Resource;
 import java.time.LocalDate;
@@ -27,14 +28,19 @@ public class AnalysisController {
     private Logger logger = LoggerFactory.getLogger(getClass());
 
     @Autowired
-    private StockService stockService;
+    private DefaultStockService stockService;
+
+    @Autowired
+    private MyFavoriteStockService favoriteStockService;
 
     @Autowired
     private ReportDAO4Redis reportDAO4Redis;
 
     @Resource(name = "fileSystemStorageService")
-    private IReportService reportService;
+    private IReportStorageService reportService;
 
+    @Autowired
+    StockAnalyzerFacotry stockAnalyzerFacotry;
 
     public AnalysisController() {
     }
@@ -43,15 +49,15 @@ public class AnalysisController {
     @RequestMapping(value = "/startAnalyze", method = RequestMethod.GET)
     public void startAnalyzeInBackgroud() {
         for (EStockAnalyzer enumAnalyzer : EStockAnalyzer.values()) {
-            analyze(enumAnalyzer, "dailylite", "daily");
+            analyze(enumAnalyzer, Constant.TYPE_DAILY_LITE, Constant.TYPE_DAILY);
         }
         {
-            analyze(EStockAnalyzer.MACD, "weekly");
-            analyze(EStockAnalyzer.MACD, "monthly");
+            analyze(EStockAnalyzer.MACD, Constant.TYPE_WEEKLY);
+            analyze(EStockAnalyzer.MACD, Constant.TYPE_MONTHLY);
         }
         {
-            analyze(EStockAnalyzer.MACDAdvance, "weekly");
-            analyze(EStockAnalyzer.MACDAdvance, "monthly");
+            analyze(EStockAnalyzer.MACDAdvance, Constant.TYPE_WEEKLY);
+            analyze(EStockAnalyzer.MACDAdvance, Constant.TYPE_MONTHLY);
         }
     }
 
@@ -60,8 +66,8 @@ public class AnalysisController {
     }
 
     private void analyze(EStockAnalyzer macd, String retreivalKLineType, String storageKlineType) {
-        IStockAnalyzer analyzer = StockAnalyzerFacotry.createStockAnalyzer(macd);
-        StockSelectService hs = new StockSelectService(stockService);
+        IStockAnalyzer analyzer = stockAnalyzerFacotry.getStockAnalyzer(macd);
+        StockSelecter hs = new StockSelecter(stockService);
         hs.addAnalyzer(analyzer);
         hs.startAnalyze(retreivalKLineType);
         AnalyzeResult result = hs.getAnalyzeResult();
@@ -109,4 +115,16 @@ public class AnalysisController {
         return lazyLoadReport(filename);
     }
 
+
+
+    @RequestMapping("/demark")
+    public String demark() {
+        IStockAnalyzer stockAnalyzer = stockAnalyzerFacotry.getStockAnalyzer(EStockAnalyzer.Demark);
+        StockSelecter hs = new StockSelecter(favoriteStockService);
+        hs.addAnalyzer(stockAnalyzer);
+        hs.startAnalyze(Constant.TYPE_DAILY);
+        AnalyzeResult result = hs.getAnalyzeResult();
+        String content = JSON.toJSONString(result);
+        return content;
+    }
 }

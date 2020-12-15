@@ -9,11 +9,6 @@ import java.util.List;
 
 public interface IStockDAO {
 
-    String TYPE_DAILY="daily";
-    String TYPE_DAILY_LITE="lite";
-    String TYPE_WEEKLY="weekly";
-    String TYPE_MONTHLY="monthly";
-
     void storeAllSymbols(List<Stock> list);
 
     Date getStockUpdateTime(String code);
@@ -33,7 +28,10 @@ public interface IStockDAO {
 
     List<Stock> getAllSymbols();
 
+    List<Stock> getFavoriteSymbols();
+
     Date getAllSymbolsUpdateTime();
+
 
 
 }
