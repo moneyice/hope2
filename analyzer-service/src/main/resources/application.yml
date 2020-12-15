@@ -1,0 +1,27 @@
+server:
+  port: 8003
+spring:
+  application:
+    name: analyzer-service    # 项目名称尽量用小写
+#  boot:
+#    admin:
+#      url: http://localhost:8090
+  redis:
+    database: 0
+    host: 127.0.0.1
+    port: 6379
+    timeout: 5000
+    jedis:
+      pool:
+        max-wait: 100000
+        max-idle: 10
+        max-active: 100
+logging:
+      file: analyzer.log
+      level:
+        root: INFO
+hope2:
+  service:
+    spider: http://127.0.0.1:8001
+    stock: http://127.0.0.1:8002
+    analyzer: http://127.0.0.1:8003

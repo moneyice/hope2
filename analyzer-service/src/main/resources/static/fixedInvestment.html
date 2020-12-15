@@ -1,0 +1,84 @@
+<!DOCTYPE html><html><head>
+	<meta charset="utf-8">
+	<!--<link rel="icon" href="https://static.jianshukeji.com/highcharts/images/favicon.ico">-->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="">
+	<title>买入策略回溯</title>
+	<script src="https://img.hcharts.cn/jquery/jquery-1.8.3.min.js"></script>
+	<script src="https://img.hcharts.cn/highcharts/highcharts.js"></script>
+	<script src="https://img.hcharts.cn/highcharts/modules/exporting.js"></script>
+	<script src="https://img.hcharts.cn/highcharts/modules/data.js"></script>
+	<script src="https://img.hcharts.cn/highcharts-plugins/highcharts-zh_CN.js"></script>
+</head>
+<body>
+
+<div class="message">
+ 股票代码:   <input id="code" type="text" name="code" value="i000300">
+</div>
+<div class="message">
+	开始日期:   <input id="startDate" type="text" name="startDate" value="2005-02-04">
+</div>
+<div class="message">
+	结束日期:   <input id="endDate" type="text" name="endDate" value="2">
+
+</div>
+<button onclick="post()"> 提交 </button>
+
+<div id="container" style="min-width:400px;height:400px"></div>
+<div class="message">
+	初始资金100万。</div>
+<div class="message">
+	r1版本：如果MACD大于0，并且价格大于30天均线，买入或者持有。如果MACD<0 或者 价格小于30天均线，卖出或者空仓。</div>
+
+<div class="message">
+	r2版本：第一个交易日买入，并一直持有。</div>
+
+<script>
+	var options = {
+            chart: {
+                renderTo: 'container',
+                type: 'spline'
+            },
+            title: {
+                text: '买入策略回溯',
+            },
+            xAxis: {
+                categories: []
+            },
+            series: [
+                {
+                    name:'r1'
+                },
+                {
+                    name:'r2'
+                }
+                ]
+    };
+
+	function post(){
+		var code=$("#code").val();
+		var startDate=$("#startDate").val();
+		var endDate=$("#endDate").val();
+        $.getJSON('fixInvestment/'+code+'?type=month&days=1,17&startDate='+startDate+'&endDate='+endDate, function(data) {
+            options.xAxis.categories=data.category;
+            options.series[0].data = data.r1;
+            options.series[1].data = data.r2;
+            var chart = new Highcharts.Chart(options);
+        });
+	}
+
+    $(document).ready(function() {
+		var code=$("#code").val();
+		var startDate=$("#startDate").val();
+		var endDate=$("#endDate").val();
+        $.getJSON('fixInvestment/'+code+'?type=month&days=1,17&startDate='+startDate+'&endDate='+endDate, function(data) {
+            options.xAxis.categories=data.category;
+            options.series[0].data = data.r1;
+            options.series[1].data = data.r2;
+            var chart = new Highcharts.Chart(options);
+        });
+    });
+</script>
+
+</body>
+</html>

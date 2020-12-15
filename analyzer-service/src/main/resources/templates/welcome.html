@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Spring Boot Thymeleaf Hello World Example</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<link rel="stylesheet" type="text/css"
+	href="webjars/bootstrap/3.3.7/css/bootstrap.min.css" />
+
+<link rel="stylesheet" th:href="@{/css/main.css}"
+	href="../../css/main.css" />
+
+</head>
+<body>
+
+	<nav class="navbar navbar-inverse">
+		<div class="container">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#">Hope</a>
+			</div>
+			<div id="navbar" class="collapse navbar-collapse">
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="#">Home</a></li>
+					<li><a href="#about">About</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<div class="container">
+
+		<div class="starter-template">
+			<h1>Analysis Result List</h1>
+			<div>
+				<li class="active"><a href="analysis/Demark/daily">Demark</a></li>
+				<li><a href="analysis/SuddentHighVolume/daily">短期放量</a></li>
+				<li><a href="analysis/SuddentHighVolumeLite/daily">短期放量简化版</a></li>
+				<li><a href="analysis/SuddentIncrease/daily">短期涨</a></li>
+				<li><a href="analysis/SuddentLowVolume/daily">短期缩量</a></li>
+				<li><a href="analysis/YesterdayOnceMore/daily">昨日重现</a></li>
+				<li><a href="analysis/IPO/daily">新股</a></li>
+				<li><a href="analysis/MACD/daily">日线MACD上穿</a></li>
+				<li><a href="analysis/MACDAdvance/daily">日线MACD上穿高级版</a></li>
+				<li><a href="analysis/MACD/weekly">周线MACD上穿</a></li>
+				<li><a href="analysis/MACD/monthly">月线MACD上穿</a></li>
+			</div>
+			<div>
+				<li class="active"><a href="28-policy-compare.html">28策略比较</a></li>
+				<li><a href="backtracking.html">算法收益回溯</a></li>
+
+			</div>
+		</div>
+
+	</div>
+	<!-- /.container -->
+
+	<script type="text/javascript"
+		src="webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</body>
+</html>

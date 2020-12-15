@@ -1,0 +1,80 @@
+<!DOCTYPE html><html><head>
+	<meta charset="utf-8">
+	<!--<link rel="icon" href="https://static.jianshukeji.com/highcharts/images/favicon.ico">-->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="">
+	<title>28模型策略收益比较</title>
+	<script src="https://img.hcharts.cn/jquery/jquery-1.8.3.min.js"></script>
+	<script src="https://img.hcharts.cn/highcharts/highcharts.js"></script>
+	<script src="https://img.hcharts.cn/highcharts/modules/exporting.js"></script>
+	<script src="https://img.hcharts.cn/highcharts/modules/data.js"></script>
+	<script src="https://img.hcharts.cn/highcharts-plugins/highcharts-zh_CN.js"></script>
+</head>
+<body>
+
+<div id="container" style="min-width:400px;height:400px"></div>
+<div class="message">
+	r1版本：每周五(或者本周的最后一个交易日)临近收盘时，查看沪深300指数和中证500指数周线，查看两者过去四周的累计涨幅。买入涨幅较大的指数并持有一周，直至下一次切换。</div>
+
+<div class="message">
+	r2版本：每周五(或者本周的最后一个交易日)临近收盘时，查看沪深300指数和中证500指数周线，查看两者过去四周的累计涨幅。涨幅大的那个指数在四周中能够获得正回报，那么在收盘前买入对应的指数持有一周，直至下一次的切换；如果过去四周涨幅大的那个指数在四周中依然是亏损的，那么就选择空仓，直至下一次切换。</div>
+<div class="message">
+	base300版本：基于r2版本，但是只关注沪深300指数</div>
+<div class="message">
+	base500版本：基于r2版本，但是只关注中证500指数</div>
+<div class="message">
+	300版本：一直持有沪深300指数</div>
+<div class="message">
+	500版本：一直持有中证500指数</div>
+
+<script>
+    $(document).ready(function() {
+
+        var options = {
+            chart: {
+                renderTo: 'container',
+                type: 'spline'
+            },
+            title: {
+                text: '28模型策略收益比较',
+            },
+            xAxis: {
+                categories: []
+            },
+            series: [
+                {
+                    name:'r1'
+                },
+                {
+                    name:'r2'
+                },
+                {
+                    name:'base300'
+                },
+                {
+                    name:'base500'
+                },
+                {
+                    name:'index300'
+                },
+                {
+                    name:'index500'
+                }
+                ]
+        };
+
+        $.getJSON('28/compare?startDate=2005-02-04', function(data) {
+            options.xAxis.categories=data.category;
+            options.series[0].data = data.r1;
+            options.series[1].data = data.r2;
+            options.series[2].data = data.base300;
+            options.series[3].data = data.base500;
+            options.series[4].data = data.index300;
+            options.series[5].data = data.index500;
+            var chart = new Highcharts.Chart(options);
+        });
+    });
+</script>
+
+</body>
+</html>

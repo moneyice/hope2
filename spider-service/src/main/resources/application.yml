@@ -1,0 +1,18 @@
+server:
+  port: 8001
+spring:
+  application:
+    name: spider-service    # 项目名称尽量用小写
+#  boot:
+#    admin:
+#      url: http://localhost:8090
+logging:
+  file: spider.log
+  level:
+    root: INFO
+
+hope2:
+  service:
+    spider: http://127.0.0.1:8001
+    stock: http://127.0.0.1:8002
+    analyzer: http://127.0.0.1:8003
