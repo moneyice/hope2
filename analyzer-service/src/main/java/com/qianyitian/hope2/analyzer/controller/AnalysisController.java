@@ -1,6 +1,7 @@
 package com.qianyitian.hope2.analyzer.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.qianyitian.hope2.analyzer.analyzer.DemarkAnalyzer;
 import com.qianyitian.hope2.analyzer.analyzer.EStockAnalyzer;
 import com.qianyitian.hope2.analyzer.analyzer.IStockAnalyzer;
 import com.qianyitian.hope2.analyzer.analyzer.StockAnalyzerFacotry;
@@ -15,10 +16,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.time.LocalDate;
@@ -116,10 +114,12 @@ public class AnalysisController {
     }
 
 
-
     @RequestMapping("/demark")
-    public String demark() {
-        IStockAnalyzer stockAnalyzer = stockAnalyzerFacotry.getStockAnalyzer(EStockAnalyzer.Demark);
+    public String demark(@RequestParam(value = "days2Now", required = false) Integer days2Now) {
+        DemarkAnalyzer stockAnalyzer = (DemarkAnalyzer) stockAnalyzerFacotry.getStockAnalyzer(EStockAnalyzer.Demark);
+        if (days2Now != null) {
+            stockAnalyzer.setDaysToNow(days2Now);
+        }
         StockSelecter hs = new StockSelecter(favoriteStockService);
         hs.addAnalyzer(stockAnalyzer);
         hs.startAnalyze(Constant.TYPE_DAILY);
