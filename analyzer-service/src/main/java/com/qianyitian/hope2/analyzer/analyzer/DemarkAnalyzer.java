@@ -141,25 +141,22 @@ public class DemarkAnalyzer extends AbstractStockAnalyzer {
         }
 
         StringBuilder sb = new StringBuilder();
-        sb.append(stock.getCode()).append("  ").append(stock.getName())
-                .append("\n");
         // 000001 平安银行
         // 2012-2-12 (9) --- 2012-3-30 (13)
         // 2013-1-12 (9) --- 2013-2-28 (13)
         for (int i = 0; i < selectList.size(); i++) {
-            sb.append(selectList.get(i).getSetupPoint().getDate().toString())
+            sb.append(" ").append(selectList.get(i).getSetupPoint().getDate().toString())
                     .append("(").append(selectList.get(i).getSetupNumber())
-                    .append(")  --- ");
+                    .append(",SETUP)->");
             if (selectList.get(i).getCountDownPoint() != null) {
                 sb.append(
                         selectList.get(i).getCountDownPoint()
                                 .getDate().toString()).append("(")
                         .append(selectList.get(i).getCountDownNumber())
-                        .append(") ");
+                        .append(",BUY) #");
             }
-            sb.append(" \n");
         }
-        sb.append("\n");
+        sb.deleteCharAt(sb.length()-1);
         return sb.toString();
     }
 
