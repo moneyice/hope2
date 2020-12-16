@@ -62,8 +62,6 @@ public class YesterdayOnceMoreAnalyzer extends AbstractStockAnalyzer {
 
     public String format(Stock stock, KLineInfo from, KLineInfo end) {
         StringBuilder sb = new StringBuilder();
-        sb.append(stock.getCode()).append("  ").append(stock.getName())
-                .append("\n");
         sb.append(from.getDate()).append("  ")
                 .append(from.getClose()).append("  --->   ");
         sb.append(end.getDate()).append("  ")

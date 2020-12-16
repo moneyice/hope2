@@ -46,8 +46,6 @@ public class IPOAnalyzer extends AbstractStockAnalyzer {
 
     private String format(Stock stock, KLineInfo check, double currentPrice) {
         StringBuilder sb = new StringBuilder();
-        sb.append(stock.getCode()).append("  ").append(stock.getName())
-                .append("\n");
         return (sb.toString());
     }
 

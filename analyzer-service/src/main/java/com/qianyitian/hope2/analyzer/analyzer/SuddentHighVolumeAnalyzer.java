@@ -60,8 +60,6 @@ public class SuddentHighVolumeAnalyzer extends AbstractStockAnalyzer {
 
     private String format(Stock stock, KLineInfo check, double times) {
         StringBuilder sb = new StringBuilder();
-        sb.append(stock.getCode()).append("  ").append(stock.getName())
-                .append("\n");
 //		sb.append("时间：").append(check.getTime()).append("\n");
 //		sb.append("成交量放大倍数：" + times).append("\n");
 //		sb.append("现价: ").append(getCurrentPrice(stock)).append("\n\r");

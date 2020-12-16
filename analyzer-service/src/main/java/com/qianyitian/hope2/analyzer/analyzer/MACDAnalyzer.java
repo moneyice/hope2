@@ -51,8 +51,6 @@ public class MACDAnalyzer extends AbstractStockAnalyzer {
 
     public String format(Stock stock) {
         StringBuilder sb = new StringBuilder();
-        sb.append(stock.getCode()).append("  ").append(stock.getName())
-                .append("\n");
         return (sb.toString());
     }
 

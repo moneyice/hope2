@@ -51,8 +51,6 @@ public class SuddentLowVolumeAnalyzer extends AbstractStockAnalyzer {
 
     public String format(Stock stock, KLineInfo check) {
         StringBuilder sb = new StringBuilder();
-        sb.append(stock.getCode()).append("  ").append(stock.getName())
-                .append("\n");
         sb.append("时间：").append(check.getDate()).append("\n");
         sb.append(
                 "跌幅：" + (check.getClose() - check.getOpen()) / check.getOpen()
