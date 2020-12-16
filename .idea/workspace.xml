@@ -5,15 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dcf88ab8-24f8-4e63-84a9-94a270993007" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/analyzer-service/src/main/java/com/qianyitian/hope2/analyzer/analyzer/IPOAnalyzer.java" beforeDir="false" afterPath="$PROJECT_DIR$/analyzer-service/src/main/java/com/qianyitian/hope2/analyzer/analyzer/IPOAnalyzer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/analyzer-service/src/main/java/com/qianyitian/hope2/analyzer/analyzer/MACDAnalyzer.java" beforeDir="false" afterPath="$PROJECT_DIR$/analyzer-service/src/main/java/com/qianyitian/hope2/analyzer/analyzer/MACDAnalyzer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/analyzer-service/src/main/java/com/qianyitian/hope2/analyzer/analyzer/SuddentHighVolumeAnalyzer.java" beforeDir="false" afterPath="$PROJECT_DIR$/analyzer-service/src/main/java/com/qianyitian/hope2/analyzer/analyzer/SuddentHighVolumeAnalyzer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/analyzer-service/src/main/java/com/qianyitian/hope2/analyzer/analyzer/SuddentHighVolumeLiteAnalyzer.java" beforeDir="false" afterPath="$PROJECT_DIR$/analyzer-service/src/main/java/com/qianyitian/hope2/analyzer/analyzer/SuddentHighVolumeLiteAnalyzer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/analyzer-service/src/main/java/com/qianyitian/hope2/analyzer/analyzer/SuddentIncreaseAnalyzer.java" beforeDir="false" afterPath="$PROJECT_DIR$/analyzer-service/src/main/java/com/qianyitian/hope2/analyzer/analyzer/SuddentIncreaseAnalyzer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/analyzer-service/src/main/java/com/qianyitian/hope2/analyzer/analyzer/SuddentLowVolumeAnalyzer.java" beforeDir="false" afterPath="$PROJECT_DIR$/analyzer-service/src/main/java/com/qianyitian/hope2/analyzer/analyzer/SuddentLowVolumeAnalyzer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/analyzer-service/src/main/java/com/qianyitian/hope2/analyzer/analyzer/YesterdayOnceMoreAnalyzer.java" beforeDir="false" afterPath="$PROJECT_DIR$/analyzer-service/src/main/java/com/qianyitian/hope2/analyzer/analyzer/YesterdayOnceMoreAnalyzer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analyzer-service/src/main/resources/templates/welcome.html" beforeDir="false" afterPath="$PROJECT_DIR$/analyzer-service/src/main/resources/templates/welcome.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,6 +31,9 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="dummy://restClient/response7.json" root0="SKIP_INSPECTION" />
   </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
@@ -100,6 +95,32 @@
       <recent name="C:\Users\bing.a.qian\IdeaProjects\hope2\spider-service\src\main\resources" />
       <recent name="C:\Users\bing.a.qian\IdeaProjects\hope2\spider-service\src\main\java" />
     </key>
+  </component>
+  <component name="RestClientSettings">
+    <option name="REQUEST_HISTORY">
+      <list>
+        <RestClientRequest>
+          <option name="httpMethod" value="GET" />
+          <option name="urlBase" value="http://127.0.0.1:8003" />
+          <option name="urlPath" value="/demark" />
+          <option name="headers">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="Accept" />
+                <option name="value" value="*/*" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="Cache-Control" />
+                <option name="value" value="no-cache" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="parametersEnabled" value="true" />
+          <option name="textToSend" value="" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
+      </list>
+    </option>
   </component>
   <component name="RunManager" selected="Spring Boot.StockApplication">
     <configuration name="SpiderApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -183,7 +204,7 @@
       <updated>1607772605476</updated>
       <workItem from="1607772606655" duration="2186000" />
       <workItem from="1607839149657" duration="28642000" />
-      <workItem from="1608014334463" duration="29421000" />
+      <workItem from="1608014334463" duration="29712000" />
     </task>
     <task id="LOCAL-00001" summary="first submit">
       <created>1608026900577</created>
@@ -234,7 +255,14 @@
       <option name="project" value="LOCAL" />
       <updated>1608085094053</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="refactoring report format">
+      <created>1608089884464</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1608089884464</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -243,7 +271,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="first submit" />
     <MESSAGE value="refactoring" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactoring" />
+    <MESSAGE value="refactoring report format" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactoring report format" />
   </component>
   <component name="WindowStateProjectService">
     <state x="250" y="0" key="#Project_Structure" timestamp="1607998300391">
@@ -278,10 +307,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="525" y="116" key="#xdebugger.evaluate/0.0.1536.824@0.0.1536.824" timestamp="1607877128035" />
-    <state x="393" y="0" key="CommitChangelistDialog2" timestamp="1608085087357">
+    <state x="393" y="0" key="CommitChangelistDialog2" timestamp="1608089876862">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="393" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1608085087357" />
+    <state x="393" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1608089876862" />
     <state x="550" y="122" key="FileChooserDialogImpl" timestamp="1607843841751">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
