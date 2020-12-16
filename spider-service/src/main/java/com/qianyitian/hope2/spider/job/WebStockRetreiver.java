@@ -25,18 +25,20 @@ public abstract class WebStockRetreiver implements IStockRetreiver {
     @Override
     public List<Stock> getAllStockSymbols() throws IOException {
         List<Stock> list = new ArrayList<Stock>();
+        loadSZStockSymbols(list);
+        loadSHStockSymbols(list);
+        return list;
+    }
 
-        File f=new File(".");
-        System.out.println(f.getAbsoluteFile());
-
+    private void loadSZStockSymbols(List<Stock> list) throws IOException {
         List<String> lines = Files.readLines(new File("spider-service/data/SZ.stock.list.csv"), Charset.forName("UTF-8"));
         for (int i = 1; i < lines.size(); i++) {
             String line = lines.get(i);
             String[] array = line.split(",");
 
             String market = "SZ";
-            String symbol = array[2];
-            String name = array[3];
+            String symbol = array[2].trim();
+            String name = array[3].trim();
             logger.info(market + "  " + symbol + "  " + name);
             Stock stock = new Stock();
             stock.setName(name);
@@ -44,27 +46,22 @@ public abstract class WebStockRetreiver implements IStockRetreiver {
             stock.setMarket(market);
             list.add(stock);
         }
-        return list;
+    }
+    private void loadSHStockSymbols(List<Stock> list) throws IOException {
+        List<String> lines = Files.readLines(new File("spider-service/data/SH.stock.list.csv"), Charset.forName("UTF-8"));
+        for (int i = 1; i < lines.size(); i++) {
+            String line = lines.get(i);
+            String[] array = line.split(",");
 
-
-//        Document doc = Jsoup.connect(codeListHTML).get();
-//        Elements codeList = doc.select("#quotesearch ul li a");
-//        StockFilter sf = new StockFilter();
-//        for (Element element : codeList) {
-//            String text = element.text();
-//            String linkHref = element.attr("href"); // http://quote.eastmoney.com/sz300409.html
-//            String market = linkHref.substring(27, 29).toUpperCase();
-//            String symbol = linkHref.substring(29, 35);
-//            String name = text.substring(0, text.length() - 8);
-//            logger.info(market + "  " + symbol + "  " + name);
-//            if (sf.select(symbol)) {
-//                Stock stock = new Stock();
-//                stock.setName(name);
-//                stock.setCode(symbol);
-//                stock.setMarket(market);
-//                list.add(stock);
-//            }
-//        }
-//        return list;
+            String market = "SH";
+            String symbol = array[0].trim();
+            String name = array[1].trim();
+            logger.info(market + "  " + symbol + "  " + name);
+            Stock stock = new Stock();
+            stock.setName(name);
+            stock.setCode(symbol);
+            stock.setMarket(market);
+            list.add(stock);
+        }
     }
 }

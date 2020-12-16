@@ -160,7 +160,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass>com.qianyitian.hope2.spider.SpiderApplication</mainClass>
+                    <mainClass>com.qianyitian.hope2.analyzer.AnalyzerApplication</mainClass>
                 </configuration>
             </plugin>
             <plugin>

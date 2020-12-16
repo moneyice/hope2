@@ -1,23 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AnalysisUIOptions">
+    <option name="GROUP_BY_SEVERITY" value="true" />
+  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dcf88ab8-24f8-4e63-84a9-94a270993007" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_belerweb_pinyin4j_2_5_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stock-service/src/main/java/com/qianyitian/hope2/stock/config/ChineseCharToEn.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stock-service/src/main/java/com/qianyitian/hope2/stock/config/MyApplicationRunner.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stock-service/src/main/java/com/qianyitian/hope2/stock/controller/SearchController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stock-service/src/main/java/com/qianyitian/hope2/stock/search/AbstractPrefixMatcher.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stock-service/src/main/java/com/qianyitian/hope2/stock/search/EffectiveWordMatcher.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stock-service/src/main/java/com/qianyitian/hope2/stock/search/PrefixMatcher.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stock-service/src/main/java/com/qianyitian/hope2/stock/search/SearchItem.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stock-service/src/main/java/com/qianyitian/hope2/stock/search/SearchStockItem.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/toolkit_smartfox_info.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/spider-service/data/SH.stock.list.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stock-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/stock-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stock-service/stock-service.iml" beforeDir="false" afterPath="$PROJECT_DIR$/stock-service/stock-service.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analyzer-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/analyzer-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spider-service/src/main/java/com/qianyitian/hope2/spider/job/WebStockRetreiver.java" beforeDir="false" afterPath="$PROJECT_DIR$/spider-service/src/main/java/com/qianyitian/hope2/spider/job/WebStockRetreiver.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,7 +69,8 @@
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
     <property name="extract.method.default.visibility" value="private" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/stock-service/src/main/java/com/qianyitian/hope2/stock/search" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/stock-service/target/stock-service-1.0.jar" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -101,10 +98,10 @@
       <recent name="" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\bing.a.qian\IdeaProjects\hope2\spider-service\data" />
       <recent name="C:\Users\bing.a.qian\IdeaProjects\hope2\stock-service\src\main\java\com\qianyitian\hope2\stock\search" />
       <recent name="C:\Users\bing.a.qian\IdeaProjects\hope2\analyzer-service\src\main\java" />
       <recent name="C:\Users\bing.a.qian\IdeaProjects\hope2\analyzer-service\src\main\resources" />
-      <recent name="C:\Users\bing.a.qian\IdeaProjects\hope2\spider-service\data" />
       <recent name="C:\Users\bing.a.qian\IdeaProjects\hope2\spider-service\src\main\resources" />
     </key>
   </component>
@@ -134,7 +131,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.ChineseCharToEn">
+  <component name="RunManager" selected="ECS on Alibaba Cloud.ECS on Alibaba Cloud">
     <configuration name="ChineseCharToEn" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.qianyitian.hope2.stock.config.ChineseCharToEn" />
       <module name="stock-service" />
@@ -200,6 +197,100 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Deploy to Host" type="DEPLOY_HOST_RUN_CONFIGURATION" factoryName="Deploy to Host">
+      <option name="accountModel" />
+      <option name="accountModels" />
+      <option name="address" />
+      <option name="afterCommand" value="" />
+      <option name="alreadyReset" value="true" />
+      <option name="autoOpen" value="false" />
+      <option name="beforeCommand" value="" />
+      <option name="defaultTabIdx" value="0" />
+      <option name="ecsInstance">
+        <EcsInstance>
+          <option name="OSType" />
+          <option name="instanceId" />
+          <option name="instanceName" />
+          <option name="netType" />
+          <option name="privateIps" />
+          <option name="publicIps" />
+          <option name="regionId" />
+          <option name="tags" />
+        </EcsInstance>
+      </option>
+      <option name="ecsInstances" />
+      <option name="hostIds">
+        <list>
+          <option value="1" />
+        </list>
+      </option>
+      <option name="hostTagId" value="0" />
+      <option name="location" value="/root" />
+      <option name="pathOrUrl" value="C:\Users\bing.a.qian\IdeaProjects\hope2\target\com.qianyitian.hope2-1.0.pom" />
+      <option name="tagId" value="0" />
+      <option name="terminalCommand" />
+      <option name="type" value="HOST" />
+      <option name="uploadType" value="MAVEN" />
+      <method v="2">
+        <option name="Maven.BeforeRunTask" enabled="true" file="$PROJECT_DIR$/../hope2\pom.xml" goal="clean install" />
+      </method>
+    </configuration>
+    <configuration name="ECS on Alibaba Cloud" type="ECS_RUN_CONFIGRATION" factoryName="Ecs configuration factory">
+      <option name="accountModel" />
+      <option name="accountModels">
+        <list>
+          <AccountModel>
+            <option name="ak" value="LTAI4GDYAz9brYYVZTHToxyP" />
+            <option name="profileName" value="Default" />
+            <option name="secret" value="N4k3q0tCIbuUmOegY14NntJRZaMPeV" />
+            <option name="show" value="false" />
+          </AccountModel>
+        </list>
+      </option>
+      <option name="address" />
+      <option name="afterCommand" value="" />
+      <option name="alreadyReset" value="true" />
+      <option name="autoOpen" value="false" />
+      <option name="beforeCommand" value="" />
+      <option name="defaultTabIdx" value="0" />
+      <option name="ecsInstance">
+        <EcsInstance>
+          <option name="OSType" />
+          <option name="instanceId" />
+          <option name="instanceName" />
+          <option name="netType" />
+          <option name="privateIps" />
+          <option name="publicIps" />
+          <option name="regionId" />
+          <option name="tags" />
+        </EcsInstance>
+      </option>
+      <option name="ecsInstances">
+        <list>
+          <EcsInstance>
+            <option name="OSType" value="linux" />
+            <option name="instanceId" value="i-m5e1qpjpeuqc9eoswfy7" />
+            <option name="instanceName" value="iZm5e1qpjpeuqc9eoswfy7Z" />
+            <option name="netType" value="vpc" />
+            <option name="privateIps" value="172.31.194.172" />
+            <option name="publicIps" value="47.104.206.27" />
+            <option name="regionId" value="cn-qingdao" />
+            <option name="tags">
+              <list />
+            </option>
+          </EcsInstance>
+        </list>
+      </option>
+      <option name="hostIds" />
+      <option name="hostTagId" value="0" />
+      <option name="location" value="/root" />
+      <option name="pathOrUrl" value="C:\Users\bing.a.qian\IdeaProjects\hope2\stock-service\target\stock-service-1.0.jar" />
+      <option name="tagId" value="0" />
+      <option name="terminalCommand" />
+      <option name="type" value="ECS" />
+      <option name="uploadType" value="FILE" />
+      <method v="2" />
+    </configuration>
     <configuration name="WebStockRetreiverTest.getAllStockSymbols" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="spider-service" />
       <extension name="coverage">
@@ -261,7 +352,7 @@
       <workItem from="1607772606655" duration="2186000" />
       <workItem from="1607839149657" duration="28642000" />
       <workItem from="1608014334463" duration="30460000" />
-      <workItem from="1608101685763" duration="10759000" />
+      <workItem from="1608101685763" duration="16575000" />
     </task>
     <task id="LOCAL-00001" summary="first submit">
       <created>1608026900577</created>
@@ -326,7 +417,14 @@
       <option name="project" value="LOCAL" />
       <updated>1608090143533</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="demark url parameter">
+      <created>1608126151371</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1608126151371</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -372,14 +470,14 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="542" y="65" width="713" height="593" key="#xdebugger.evaluate/0.0.1536.824@0.0.1536.824" timestamp="1608105333634" />
-    <state x="393" y="0" key="CommitChangelistDialog2" timestamp="1608090135288">
+    <state x="393" y="0" key="CommitChangelistDialog2" timestamp="1608126144129">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="393" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1608090135288" />
-    <state x="550" y="122" key="FileChooserDialogImpl" timestamp="1607843841751">
+    <state x="393" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1608126144129" />
+    <state x="550" y="122" key="FileChooserDialogImpl" timestamp="1608131688043">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="550" y="122" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1607843841751" />
+    <state x="550" y="122" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1608131688043" />
     <state x="593" y="333" key="Github.CreateGistDialog" timestamp="1608025979082">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -388,54 +486,54 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="641" y="311" width="496" height="203" key="Github.ShareDialog/0.0.1536.824@0.0.1536.824" timestamp="1608029042261" />
-    <state width="1493" height="289" key="GridCell.Tab.0.bottom" timestamp="1608114293975">
+    <state width="1493" height="365" key="GridCell.Tab.0.bottom" timestamp="1608131690084">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="289" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1608114293975" />
-    <state width="1493" height="289" key="GridCell.Tab.0.center" timestamp="1608114293974">
+    <state width="1493" height="365" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1608131690084" />
+    <state width="1493" height="365" key="GridCell.Tab.0.center" timestamp="1608131690084">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="289" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1608114293974" />
-    <state width="1493" height="289" key="GridCell.Tab.0.left" timestamp="1608114293974">
+    <state width="1493" height="365" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1608131690084" />
+    <state width="1493" height="365" key="GridCell.Tab.0.left" timestamp="1608131690084">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="289" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1608114293974" />
-    <state width="1493" height="289" key="GridCell.Tab.0.right" timestamp="1608114293974">
+    <state width="1493" height="365" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1608131690084" />
+    <state width="1493" height="365" key="GridCell.Tab.0.right" timestamp="1608131690084">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="289" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1608114293974" />
-    <state width="1493" height="289" key="GridCell.Tab.1.bottom" timestamp="1608114293975">
+    <state width="1493" height="365" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1608131690084" />
+    <state width="1493" height="304" key="GridCell.Tab.1.bottom" timestamp="1608131614607">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="289" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1608114293975" />
-    <state width="1493" height="289" key="GridCell.Tab.1.center" timestamp="1608114293975">
+    <state width="1493" height="304" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1608131614607" />
+    <state width="1493" height="304" key="GridCell.Tab.1.center" timestamp="1608131614606">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="289" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1608114293975" />
-    <state width="1493" height="289" key="GridCell.Tab.1.left" timestamp="1608114293975">
+    <state width="1493" height="304" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1608131614606" />
+    <state width="1493" height="304" key="GridCell.Tab.1.left" timestamp="1608131614606">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="289" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1608114293975" />
-    <state width="1493" height="289" key="GridCell.Tab.1.right" timestamp="1608114293975">
+    <state width="1493" height="304" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1608131614606" />
+    <state width="1493" height="304" key="GridCell.Tab.1.right" timestamp="1608131614606">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="289" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1608114293975" />
-    <state width="1493" height="147" key="GridCell.Tab.2.bottom" timestamp="1608113872967">
+    <state width="1493" height="304" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1608131614606" />
+    <state width="1493" height="304" key="GridCell.Tab.2.bottom" timestamp="1608131614607">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="147" key="GridCell.Tab.2.bottom/0.0.1536.824@0.0.1536.824" timestamp="1608113872967" />
-    <state width="1493" height="147" key="GridCell.Tab.2.center" timestamp="1608113872966">
+    <state width="1493" height="304" key="GridCell.Tab.2.bottom/0.0.1536.824@0.0.1536.824" timestamp="1608131614607" />
+    <state width="1493" height="304" key="GridCell.Tab.2.center" timestamp="1608131614607">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="147" key="GridCell.Tab.2.center/0.0.1536.824@0.0.1536.824" timestamp="1608113872966" />
-    <state width="1493" height="147" key="GridCell.Tab.2.left" timestamp="1608113872966">
+    <state width="1493" height="304" key="GridCell.Tab.2.center/0.0.1536.824@0.0.1536.824" timestamp="1608131614607" />
+    <state width="1493" height="304" key="GridCell.Tab.2.left" timestamp="1608131614607">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="147" key="GridCell.Tab.2.left/0.0.1536.824@0.0.1536.824" timestamp="1608113872966" />
-    <state width="1493" height="147" key="GridCell.Tab.2.right" timestamp="1608113872967">
+    <state width="1493" height="304" key="GridCell.Tab.2.left/0.0.1536.824@0.0.1536.824" timestamp="1608131614607" />
+    <state width="1493" height="304" key="GridCell.Tab.2.right" timestamp="1608131614607">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="147" key="GridCell.Tab.2.right/0.0.1536.824@0.0.1536.824" timestamp="1608113872967" />
+    <state width="1493" height="304" key="GridCell.Tab.2.right/0.0.1536.824@0.0.1536.824" timestamp="1608131614607" />
     <state x="300" y="68" key="Maven.ArtifactSearchDialog" timestamp="1607840965842">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -448,30 +546,30 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="485" y="115" key="RollbackChangesDialog/0.0.1536.824@0.0.1536.824" timestamp="1608083244034" />
-    <state x="250" y="0" key="SettingsEditor" timestamp="1608114279857">
+    <state x="250" y="0" key="SettingsEditor" timestamp="1608131267312">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="250" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1608114279857" />
-    <state x="362" y="146" key="Vcs.Push.Dialog.v2" timestamp="1608097912548">
+    <state x="250" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1608131267312" />
+    <state x="362" y="146" key="Vcs.Push.Dialog.v2" timestamp="1608130068236">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="362" y="146" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1608097912548" />
+    <state x="362" y="146" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1608130068236" />
     <state x="539" y="235" key="com.intellij.testIntegration.createTest.CreateTestDialog" timestamp="1608103922313">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="539" y="235" key="com.intellij.testIntegration.createTest.CreateTestDialog/0.0.1536.824@0.0.1536.824" timestamp="1608103922313" />
-    <state x="500" y="171" key="extract.method.dialog" timestamp="1608106058591">
+    <state x="500" y="171" key="extract.method.dialog" timestamp="1608130576889">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="500" y="171" key="extract.method.dialog/0.0.1536.824@0.0.1536.824" timestamp="1608106058591" />
+    <state x="500" y="171" key="extract.method.dialog/0.0.1536.824@0.0.1536.824" timestamp="1608130576889" />
     <state x="252" y="104" width="970" height="622" key="find.popup" timestamp="1608089174130">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="252" y="104" width="970" height="622" key="find.popup/0.0.1536.824@0.0.1536.824" timestamp="1608089174130" />
-    <state x="572" y="319" key="git4idea.remote.GitConfigureRemotesDialog" timestamp="1608028879857">
+    <state x="572" y="319" key="git4idea.remote.GitConfigureRemotesDialog" timestamp="1608127078451">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="572" y="319" key="git4idea.remote.GitConfigureRemotesDialog/0.0.1536.824@0.0.1536.824" timestamp="1608028879857" />
+    <state x="572" y="319" key="git4idea.remote.GitConfigureRemotesDialog/0.0.1536.824@0.0.1536.824" timestamp="1608127078451" />
     <state x="203" y="74" key="new project wizard" timestamp="1607772689362">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
