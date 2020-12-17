@@ -14,16 +14,14 @@ public interface IStockDAO {
 
     void storeStock(Stock stock);
     void storeStockLite(Stock stock);
-    void storeStockWeeklyInfo(Stock stock);
-
-    void storeStockMonthlyInfo(Stock stock);
-
+    void storeStockWeekly(Stock stock);
+    void storeStockMonthly(Stock stock);
     Stock getStock(String code);
     Stock getStockLite(String code);
 
-    Stock getStockWeeklyInfo(String code);
+    Stock getStockWeekly(String code);
 
-    Stock getStockMonthlyInfo(String code);
+    Stock getStockMonthly(String code);
 
     List<Stock> getAllSymbols();
 

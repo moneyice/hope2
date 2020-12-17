@@ -1,8 +1,8 @@
 package com.qianyitian.hope2.stock.util;
 
 
-
 import com.qianyitian.hope2.stock.config.Constant;
+import com.qianyitian.hope2.stock.config.EStockKlineType;
 import com.qianyitian.hope2.stock.model.KLineInfo;
 import com.qianyitian.hope2.stock.model.Macd;
 import com.qianyitian.hope2.stock.model.Stock;
@@ -37,7 +37,7 @@ public class KUtils {
                 weeklyInfos.add(weeklyInfo);
                 weekInYearIndex = currentWeekInYear;
             }
-            addDailyInfoToWeeklyInfo(weeklyInfo,dailyInfo);
+            addDailyInfoToWeeklyInfo(weeklyInfo, dailyInfo);
 
         }
         Stock newStock = new Stock();
@@ -45,11 +45,11 @@ public class KUtils {
         newStock.setMarket(stock.getMarket());
         newStock.setName(stock.getName());
         newStock.setkLineInfos(weeklyInfos);
-        newStock.setkLineType(Constant.TYPE_WEEKLY);
+        newStock.setkLineType(EStockKlineType.WEEKLY.getName());
         return newStock;
     }
 
-    private static void addDailyInfoToWeeklyInfo(KLineInfo weeklyInfo, KLineInfo dailyInfo){
+    private static void addDailyInfoToWeeklyInfo(KLineInfo weeklyInfo, KLineInfo dailyInfo) {
         if (weeklyInfo.getOpen() <= 0.0d) {
             weeklyInfo.setOpen(dailyInfo.getOpen());
         }
@@ -65,7 +65,7 @@ public class KUtils {
         }
 
         //weeklyInfo.setVolume(weeklyInfo.getVolume() + dailyInfo.getVolume());
-        weeklyInfo.setTurnoverRate(weeklyInfo.getTurnoverRate()+dailyInfo.getTurnoverRate());
+        weeklyInfo.setTurnoverRate(weeklyInfo.getTurnoverRate() + dailyInfo.getTurnoverRate());
         weeklyInfo.setClose(dailyInfo.getClose());
         weeklyInfo.setDate(dailyInfo.getDate());
     }
@@ -85,18 +85,18 @@ public class KUtils {
             if (monthIndex != currentMonth) {
                 if (i > 0) {
                     //TODO to many useless setting here
-                    setKLineInfoLastDay(monthlyInfo,dailyInfoList.get(i - 1));
+                    setKLineInfoLastDay(monthlyInfo, dailyInfoList.get(i - 1));
                     monthlyInfos.add(monthlyInfo);
                 }
                 monthlyInfo = new KLineInfo();
                 monthlyInfo.setOpen(dailyInfo.getOpen());
                 monthIndex = currentMonth;
             }
-            monthlyInfo.setTurnoverRate(monthlyInfo.getTurnoverRate()+dailyInfo.getTurnoverRate());
+            monthlyInfo.setTurnoverRate(monthlyInfo.getTurnoverRate() + dailyInfo.getTurnoverRate());
         }
         if (!dailyInfoList.isEmpty()) {
             //for the last day
-            setKLineInfoLastDay(monthlyInfo,dailyInfoList.get(dailyInfoList.size() - 1));
+            setKLineInfoLastDay(monthlyInfo, dailyInfoList.get(dailyInfoList.size() - 1));
             monthlyInfos.add(monthlyInfo);
         }
 
@@ -106,17 +106,17 @@ public class KUtils {
         newStock.setMarket(stock.getMarket());
         newStock.setName(stock.getName());
         newStock.setkLineInfos(monthlyInfos);
-        newStock.setkLineType(Constant.TYPE_MONTHLY);
+        newStock.setkLineType(EStockKlineType.MONTHLY.getName());
         return newStock;
     }
 
-    private static void setKLineInfoLastDay(KLineInfo monthlyInfo, KLineInfo lastDay){
+    private static void setKLineInfoLastDay(KLineInfo monthlyInfo, KLineInfo lastDay) {
         monthlyInfo.setClose(lastDay.getClose());
         monthlyInfo.setDate(lastDay.getDate());
     }
 
     public static void appendMacdInfo(List<KLineInfo> kLineInfos) {
-        if(kLineInfos.isEmpty()){
+        if (kLineInfos.isEmpty()) {
             return;
         }
         Macd previous = null;

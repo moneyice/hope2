@@ -16,6 +16,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Component
@@ -93,21 +94,12 @@ public class PostStartupDataLoader implements ApplicationRunner {
         if (!file.exists()) {
             file.mkdirs();
         }
-        file = new File(getRootPath(), Constant.TYPE_WEEKLY);
-        if (!file.exists()) {
-            file.mkdirs();
-        }
-        file = new File(getRootPath(), Constant.TYPE_MONTHLY);
-        if (!file.exists()) {
-            file.mkdirs();
-        }
-        file = new File(getRootPath(), Constant.TYPE_DAILY_LITE);
-        if (!file.exists()) {
-            file.mkdirs();
-        }
-        file = new File(getRootPath(), Constant.TYPE_DAILY);
-        if (!file.exists()) {
-            file.mkdirs();
-        }
+
+        Arrays.stream(EStockKlineType.values()).forEach(eStockKlineType -> {
+            File folder = new File(getRootPath(), eStockKlineType.folderName);
+            if (!folder.exists()) {
+                folder.mkdirs();
+            }
+        });
     }
 }

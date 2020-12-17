@@ -63,9 +63,9 @@ public class StockController {
         } else if (input.getkLineType().equals("daily")) {
             return stockDAO.getStock(input.getCode());
         } else if (input.getkLineType().equals("weekly")) {
-            return stockDAO.getStockWeeklyInfo(input.getCode());
+            return stockDAO.getStockWeekly(input.getCode());
         } else if (input.getkLineType().equals("monthly")) {
-            return stockDAO.getStockMonthlyInfo(input.getCode());
+            return stockDAO.getStockMonthly(input.getCode());
         }
         return input;
     }
@@ -84,13 +84,13 @@ public class StockController {
 
     @GetMapping(value = "/data/kline/weekly/{code}")
     public Stock getStockWeeklyInfo(@PathVariable String code) {
-        Stock stock = stockDAO.getStockWeeklyInfo(code);
+        Stock stock = stockDAO.getStockWeekly(code);
         return stock;
     }
 
     @GetMapping(value = "/data/kline/monthly/{code}")
     public Stock getStockYearlyInfo(@PathVariable String code) {
-        Stock stock = stockDAO.getStockMonthlyInfo(code);
+        Stock stock = stockDAO.getStockMonthly(code);
         return stock;
     }
 
@@ -128,13 +128,13 @@ public class StockController {
             {
                 Stock stockWeekly = KUtils.daily2Weekly(stock);
                 KUtils.appendMacdInfo(stockWeekly.getkLineInfos());
-                stockDAO.storeStockWeeklyInfo(stockWeekly);
+                stockDAO.storeStockWeekly(stockWeekly);
                 stockWeekly = null;
             }
             {
                 Stock stockMonthly = KUtils.daily2Monthly(stock);
                 KUtils.appendMacdInfo(stockMonthly.getkLineInfos());
-                stockDAO.storeStockMonthlyInfo(stockMonthly);
+                stockDAO.storeStockMonthly(stockMonthly);
                 stockMonthly = null;
             }
 
