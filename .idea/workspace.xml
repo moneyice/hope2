@@ -9,11 +9,7 @@
   <component name="ChangeListManager">
     <list default="true" id="dcf88ab8-24f8-4e63-84a9-94a270993007" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/analyzer-service/analyzer-service.iml" beforeDir="false" afterPath="$PROJECT_DIR$/analyzer-service/analyzer-service.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/analyzer-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/analyzer-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/analyzer-service/src/main/java/com/qianyitian/hope2/analyzer/controller/AnalysisController.java" beforeDir="false" afterPath="$PROJECT_DIR$/analyzer-service/src/main/java/com/qianyitian/hope2/analyzer/controller/AnalysisController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/analyzer-service/src/main/java/com/qianyitian/hope2/analyzer/dao/ReportDAO4Redis.java" beforeDir="false" afterPath="$PROJECT_DIR$/analyzer-service/src/main/java/com/qianyitian/hope2/analyzer/dao/ReportDAO4Redis.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/analyzer-service/src/main/java/com/qianyitian/hope2/analyzer/job/JobFacotry.java" beforeDir="false" afterPath="$PROJECT_DIR$/analyzer-service/src/main/java/com/qianyitian/hope2/analyzer/job/JobFacotry.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/favoriteSymbols" beforeDir="false" afterPath="$PROJECT_DIR$/data/favoriteSymbols" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/spider-service/data/SH.stock.list.csv" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/spider-service/data/SZ.stock.list.csv" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/analyzer-service-1.0.jar" beforeDir="false" />
@@ -361,7 +357,7 @@
       <workItem from="1607772606655" duration="2186000" />
       <workItem from="1607839149657" duration="28642000" />
       <workItem from="1608014334463" duration="30460000" />
-      <workItem from="1608101685763" duration="39577000" />
+      <workItem from="1608101685763" duration="41082000" />
     </task>
     <task id="LOCAL-00001" summary="first submit">
       <created>1608026900577</created>
@@ -468,7 +464,14 @@
       <option name="project" value="LOCAL" />
       <updated>1608194603946</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="类型做成枚举">
+      <created>1608213654176</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1608213654176</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -530,10 +533,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="542" y="65" width="713" height="593" key="#xdebugger.evaluate/0.0.1536.824@0.0.1536.824" timestamp="1608174520332" />
-    <state x="393" y="0" key="CommitChangelistDialog2" timestamp="1608194592716">
+    <state x="393" y="0" key="CommitChangelistDialog2" timestamp="1608213640742">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="393" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1608194592716" />
+    <state x="393" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1608213640742" />
     <state x="94" y="94" width="1349" height="637" key="DiffContextDialog" timestamp="1608174853168">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -614,10 +617,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="250" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1608193685177" />
-    <state x="362" y="146" key="Vcs.Push.Dialog.v2" timestamp="1608211150052">
+    <state x="362" y="146" key="Vcs.Push.Dialog.v2" timestamp="1608213655723">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="362" y="146" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1608211150052" />
+    <state x="362" y="146" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1608213655723" />
     <state x="539" y="235" key="com.intellij.testIntegration.createTest.CreateTestDialog" timestamp="1608103922313">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
