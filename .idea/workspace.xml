@@ -9,7 +9,19 @@
   <component name="ChangeListManager">
     <list default="true" id="dcf88ab8-24f8-4e63-84a9-94a270993007" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analyzer-service/analyzer-service.iml" beforeDir="false" afterPath="$PROJECT_DIR$/analyzer-service/analyzer-service.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analyzer-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/analyzer-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analyzer-service/src/main/java/com/qianyitian/hope2/analyzer/controller/AnalysisController.java" beforeDir="false" afterPath="$PROJECT_DIR$/analyzer-service/src/main/java/com/qianyitian/hope2/analyzer/controller/AnalysisController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analyzer-service/src/main/java/com/qianyitian/hope2/analyzer/dao/ReportDAO4Redis.java" beforeDir="false" afterPath="$PROJECT_DIR$/analyzer-service/src/main/java/com/qianyitian/hope2/analyzer/dao/ReportDAO4Redis.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analyzer-service/src/main/java/com/qianyitian/hope2/analyzer/job/JobFacotry.java" beforeDir="false" afterPath="$PROJECT_DIR$/analyzer-service/src/main/java/com/qianyitian/hope2/analyzer/job/JobFacotry.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spider-service/data/SH.stock.list.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/spider-service/data/SZ.stock.list.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/analyzer-service-1.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/analyzer.log" beforeDir="false" afterPath="$PROJECT_DIR$/target/analyzer.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/spider-service-1.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/spider.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/stock-service-1.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/stock.log" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,6 +35,7 @@
         <option value="Interface" />
         <option value="Class" />
         <option value="FxmlFile" />
+        <option value="Enum" />
       </list>
     </option>
   </component>
@@ -65,7 +78,7 @@
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
     <property name="extract.method.default.visibility" value="private" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/data" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/target/stock-service-1.0.jar" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
@@ -84,11 +97,11 @@
       <recent name="com.qianyitian.hope2.stock.config.Constant" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.qianyitian.hope2.stock.dao" />
       <recent name="com.qianyitian.hope2.spider.model" />
       <recent name="com.qianyitian.hope2.analyzer.config" />
       <recent name="com.qianyitian.hope2.stock.config" />
       <recent name="com.qianyitian.hope2.stock.controller" />
-      <recent name="com.qianyitian.hope2.analyzer.service" />
     </key>
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
@@ -127,7 +140,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.SpiderApplication">
+  <component name="RunManager" selected="Application.PostStartupDataLoader">
     <configuration name="ChineseCharToEn" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.qianyitian.hope2.stock.config.ChineseCharToEn" />
       <module name="stock-service" />
@@ -154,12 +167,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="SimpleWordMatcher" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="autocomplete.SimpleWordMatcher" />
-      <module name="analyzer-service" />
+    <configuration name="PostStartupDataLoader" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.qianyitian.hope2.stock.config.PostStartupDataLoader" />
+      <module name="stock-service" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="autocomplete.*" />
+          <option name="PATTERN" value="com.qianyitian.hope2.stock.config.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -167,12 +180,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="SpiderApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.qianyitian.hope2.spider.SpiderApplication" />
-      <module name="spider-service" />
+    <configuration name="SimpleWordMatcher" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="autocomplete.SimpleWordMatcher" />
+      <module name="analyzer-service" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.qianyitian.hope2.spider.*" />
+          <option name="PATTERN" value="autocomplete.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -279,8 +292,8 @@
       </option>
       <option name="hostIds" />
       <option name="hostTagId" value="0" />
-      <option name="location" value="/root" />
-      <option name="pathOrUrl" value="C:\Users\bing.a.qian\IdeaProjects\hope2\analyzer-service\target\analyzer-service-1.0.jar" />
+      <option name="location" value="/root/hope2" />
+      <option name="pathOrUrl" value="C:\Users\bing.a.qian\IdeaProjects\hope2\target\stock-service-1.0.jar" />
       <option name="tagId" value="0" />
       <option name="terminalCommand" />
       <option name="type" value="ECS" />
@@ -326,11 +339,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.PostStartupDataLoader" />
         <item itemvalue="Application.ChineseCharToEn" />
         <item itemvalue="Application.SimpleWordMatcher" />
         <item itemvalue="Application.EffectiveWordMatcher" />
         <item itemvalue="JUnit.WebStockRetreiverTest.getAllStockSymbols" />
-        <item itemvalue="Application.SpiderApplication" />
       </list>
     </recent_temporary>
   </component>
@@ -348,7 +361,7 @@
       <workItem from="1607772606655" duration="2186000" />
       <workItem from="1607839149657" duration="28642000" />
       <workItem from="1608014334463" duration="30460000" />
-      <workItem from="1608101685763" duration="25230000" />
+      <workItem from="1608101685763" duration="39577000" />
     </task>
     <task id="LOCAL-00001" summary="first submit">
       <created>1608026900577</created>
@@ -441,7 +454,21 @@
       <option name="project" value="LOCAL" />
       <updated>1608175620659</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="调整data目录">
+      <created>1608175923666</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1608175923666</updated>
+    </task>
+    <task id="LOCAL-00015" summary="类型做成枚举">
+      <created>1608194603946</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1608194603946</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -463,17 +490,18 @@
     <MESSAGE value="refactoring report format" />
     <MESSAGE value="demark url parameter" />
     <MESSAGE value="调整data目录" />
-    <option name="LAST_COMMIT_MESSAGE" value="调整data目录" />
+    <MESSAGE value="类型做成枚举" />
+    <option name="LAST_COMMIT_MESSAGE" value="类型做成枚举" />
   </component>
   <component name="WindowStateProjectService">
     <state x="250" y="0" key="#Project_Structure" timestamp="1608174227600">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="250" y="0" key="#Project_Structure/0.0.1536.824@0.0.1536.824" timestamp="1608174227600" />
-    <state x="575" y="119" key="#com.intellij.ide.util.MemberChooser" timestamp="1608173101433">
+    <state x="575" y="119" key="#com.intellij.ide.util.MemberChooser" timestamp="1608193737039">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="575" y="119" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1608173101433" />
+    <state x="575" y="119" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1608193737039" />
     <state x="499" y="203" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1608038679230">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -482,10 +510,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="404" y="337" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1536.824@0.0.1536.824" timestamp="1608104827117" />
-    <state x="553" y="282" width="430" height="267" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1608169343859">
+    <state x="553" y="282" width="430" height="267" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1608193289609">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="553" y="282" width="430" height="267" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1536.824@0.0.1536.824" timestamp="1608169343859" />
+    <state x="553" y="282" width="430" height="267" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1536.824@0.0.1536.824" timestamp="1608193289609" />
     <state x="487" y="220" key="#com.intellij.refactoring.move.moveMembers.MoveMembersDialog" timestamp="1608038686452">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -502,18 +530,18 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="542" y="65" width="713" height="593" key="#xdebugger.evaluate/0.0.1536.824@0.0.1536.824" timestamp="1608174520332" />
-    <state x="393" y="0" key="CommitChangelistDialog2" timestamp="1608175612981">
+    <state x="393" y="0" key="CommitChangelistDialog2" timestamp="1608194592716">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="393" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1608175612981" />
+    <state x="393" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1608194592716" />
     <state x="94" y="94" width="1349" height="637" key="DiffContextDialog" timestamp="1608174853168">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="94" y="94" width="1349" height="637" key="DiffContextDialog/0.0.1536.824@0.0.1536.824" timestamp="1608174853168" />
-    <state x="550" y="122" key="FileChooserDialogImpl" timestamp="1608132665488">
+    <state x="550" y="122" key="FileChooserDialogImpl" timestamp="1608176866119">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="550" y="122" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1608132665488" />
+    <state x="550" y="122" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1608176866119" />
     <state x="593" y="333" key="Github.CreateGistDialog" timestamp="1608025979082">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -522,22 +550,22 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="641" y="311" width="496" height="203" key="Github.ShareDialog/0.0.1536.824@0.0.1536.824" timestamp="1608029042261" />
-    <state width="1493" height="255" key="GridCell.Tab.0.bottom" timestamp="1608174876664">
+    <state width="1493" height="157" key="GridCell.Tab.0.bottom" timestamp="1608211357275">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="255" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1608174876664" />
-    <state width="1493" height="255" key="GridCell.Tab.0.center" timestamp="1608174876664">
+    <state width="1493" height="157" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1608211357275" />
+    <state width="1493" height="157" key="GridCell.Tab.0.center" timestamp="1608211357275">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="255" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1608174876664" />
-    <state width="1493" height="255" key="GridCell.Tab.0.left" timestamp="1608174876664">
+    <state width="1493" height="157" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1608211357275" />
+    <state width="1493" height="157" key="GridCell.Tab.0.left" timestamp="1608211357275">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="255" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1608174876664" />
-    <state width="1493" height="255" key="GridCell.Tab.0.right" timestamp="1608174876664">
+    <state width="1493" height="157" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1608211357275" />
+    <state width="1493" height="157" key="GridCell.Tab.0.right" timestamp="1608211357275">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="255" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1608174876664" />
+    <state width="1493" height="157" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1608211357275" />
     <state width="1493" height="184" key="GridCell.Tab.1.bottom" timestamp="1608174785781">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -582,14 +610,14 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="485" y="115" key="RollbackChangesDialog/0.0.1536.824@0.0.1536.824" timestamp="1608083244034" />
-    <state x="250" y="0" key="SettingsEditor" timestamp="1608131267312">
+    <state x="250" y="0" key="SettingsEditor" timestamp="1608193685177">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="250" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1608131267312" />
-    <state x="362" y="146" key="Vcs.Push.Dialog.v2" timestamp="1608175630499">
+    <state x="250" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1608193685177" />
+    <state x="362" y="146" key="Vcs.Push.Dialog.v2" timestamp="1608211150052">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="362" y="146" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1608175630499" />
+    <state x="362" y="146" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1608211150052" />
     <state x="539" y="235" key="com.intellij.testIntegration.createTest.CreateTestDialog" timestamp="1608103922313">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -614,6 +642,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="471" y="170" key="refactoring.ChangeSignatureDialog/0.0.1536.824@0.0.1536.824" timestamp="1608110119464" />
+    <state x="426" y="188" width="672" height="677" key="run.anything.popup" timestamp="1608194190945">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="426" y="188" width="672" height="677" key="run.anything.popup/0.0.1536.824@0.0.1536.824" timestamp="1608194190945" />
     <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1608046173055">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

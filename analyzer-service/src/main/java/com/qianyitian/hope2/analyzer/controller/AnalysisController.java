@@ -31,8 +31,8 @@ public class AnalysisController {
     @Autowired
     private MyFavoriteStockService favoriteStockService;
 
-    @Autowired
-    private ReportDAO4Redis reportDAO4Redis;
+//    @Autowired
+//    private ReportDAO4Redis reportDAO4Redis;
 
     @Resource(name = "fileSystemStorageService")
     private IReportStorageService reportService;
@@ -41,6 +41,21 @@ public class AnalysisController {
     StockAnalyzerFacotry stockAnalyzerFacotry;
 
     public AnalysisController() {
+    }
+
+    @RequestMapping(value = "/status", method = RequestMethod.GET)
+    public void status() {
+        for (EStockAnalyzer enumAnalyzer : EStockAnalyzer.values()) {
+            analyze(enumAnalyzer, Constant.TYPE_DAILY_LITE, Constant.TYPE_DAILY);
+        }
+        {
+            analyze(EStockAnalyzer.MACD, Constant.TYPE_WEEKLY);
+            analyze(EStockAnalyzer.MACD, Constant.TYPE_MONTHLY);
+        }
+        {
+            analyze(EStockAnalyzer.MACDAdvance, Constant.TYPE_WEEKLY);
+            analyze(EStockAnalyzer.MACDAdvance, Constant.TYPE_MONTHLY);
+        }
     }
 
     @Async
@@ -83,7 +98,7 @@ public class AnalysisController {
         logger.info("aliyunOSS storage successful " + fullFilename);
 
         //clear cache
-        reportDAO4Redis.clearReport(filename);
+//        reportDAO4Redis.clearReport(filename);
     }
 
     @RequestMapping(value = "/analysis/{analyzerName}/daily", method = RequestMethod.GET)
@@ -93,12 +108,12 @@ public class AnalysisController {
     }
 
     private String lazyLoadReport(String filename) {
-        String report = reportDAO4Redis.getReport(filename);
-        if (report == null) {
-            report = reportService.get(filename);
-            reportDAO4Redis.storeReport(filename, report);
-        }
-        return report;
+//        String report = reportDAO4Redis.getReport(filename);
+//        if (report == null) {
+//            report = reportService.get(filename);
+//            reportDAO4Redis.storeReport(filename, report);
+//        }
+        return reportService.get(filename);
     }
 
     @RequestMapping(value = "/analysis/{analyzerName}/weekly", method = RequestMethod.GET)
