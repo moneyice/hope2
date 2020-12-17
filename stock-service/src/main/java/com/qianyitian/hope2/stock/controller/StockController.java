@@ -29,7 +29,7 @@ import java.util.stream.Collectors;
 @RestController
 public class StockController {
     private Logger logger = LoggerFactory.getLogger(getClass());
-    ExecutorService threadPool = Executors.newFixedThreadPool(2);
+    ExecutorService threadPool = Executors.newFixedThreadPool(4);
     @Resource(name = "stockDAO4FileSystem")
     private IStockDAO stockDAO;
 
@@ -58,9 +58,9 @@ public class StockController {
 
     @PostMapping(value = "/data/kline/")
     public Stock getStock(@RequestBody Stock input) {
-        if (input.getkLineType().equals("dailylite") ) {
+        if (input.getkLineType().equals("dailylite")) {
             return stockDAO.getStockLite(input.getCode());
-        }else if (input.getkLineType().equals("daily")) {
+        } else if (input.getkLineType().equals("daily")) {
             return stockDAO.getStock(input.getCode());
         } else if (input.getkLineType().equals("weekly")) {
             return stockDAO.getStockWeeklyInfo(input.getCode());
@@ -96,17 +96,9 @@ public class StockController {
 
     @GetMapping(value = "/stockList")
     public SymbolList getStockList() {
-        StockFilter filter = new StockFilter();
         List<Stock> list = stockDAO.getAllSymbols();
-
-        List<Stock> result = new LinkedList<>();
-        for (Stock stock : list) {
-            if (filter.select(stock.getCode())) {
-                result.add(stock);
-            }
-        }
         SymbolList symbolList = new SymbolList();
-        symbolList.setSymbols(result);
+        symbolList.setSymbols(list);
         return symbolList;
     }
 

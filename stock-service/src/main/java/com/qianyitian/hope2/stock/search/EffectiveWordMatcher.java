@@ -3,6 +3,8 @@ package com.qianyitian.hope2.stock.search;
 import com.qianyitian.hope2.stock.config.ChineseCharToEn;
 import com.qianyitian.hope2.stock.dao.IStockDAO;
 import com.qianyitian.hope2.stock.model.Stock;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
@@ -11,6 +13,7 @@ import java.util.stream.Collectors;
 
 @Component
 public class EffectiveWordMatcher extends AbstractPrefixMatcher {
+    private Logger logger = LoggerFactory.getLogger(getClass());
     @Resource(name = "stockDAO4FileSystem")
     private IStockDAO stockDAO;
 
@@ -19,6 +22,10 @@ public class EffectiveWordMatcher extends AbstractPrefixMatcher {
 
     public void init() {
         List<Stock> allStocks = stockDAO.getAllSymbols();
+        if (allStocks == null) {
+            logger.error("all stock info has not loaded.");
+            return;
+        }
         List<SearchItem> list = allStocks.parallelStream().map(stock -> {
             SearchStockItem item = new SearchStockItem(stock);
             item.setAlias(ChineseCharToEn.getAllFirstLetter(stock.getName()));

@@ -5,12 +5,14 @@ package com.qianyitian.hope2.spider.job;
 import com.qianyitian.hope2.spider.model.Stock;
 
 import java.io.IOException;
+import java.util.List;
 
 public class XueqiuWebStockRetreiver extends WebStockRetreiver {
     String codeListHTML = "http://quote.eastmoney.com/stocklist.html";
 
     @Override
     public Stock getStockInfo(Stock stock) throws IOException {
+//雪球封IP, 不好用
 //        String symbol = stock.getMarket() + stock.getCode();
 //        String url = "http://xueqiu.com/S/#{symbol}/historical.csv";
 //        url = url.replace("#{symbol}", symbol);

@@ -23,7 +23,6 @@ public class StockInfoSpider {
     @Autowired
     private RestTemplate restTemplate;
 
-
     @Autowired
     PropertyConfig propertyConfig;
 
@@ -61,7 +60,6 @@ public class StockInfoSpider {
 
 
             List<Stock> stockSymbols = stockRetreiver.getAllStockSymbols();
-            storeAllSymbols(stockSymbols);
 
             logger.info("==============================需要更新 " + new Date());
             syncStockData(stockSymbols);
@@ -120,9 +118,9 @@ public class StockInfoSpider {
     }
 
 
-    private void storeAllSymbols(List<Stock> stockSymbols) {
-        restTemplate.postForObject(propertyConfig.getStockService() + "/stockList", stockSymbols, List.class);
-    }
+//    private void storeAllSymbols(List<Stock> stockSymbols) {
+//        restTemplate.postForObject(propertyConfig.getStockService() + "/stockList", stockSymbols, List.class);
+//    }
 
     private boolean isAllSymbosOutOfDate(Date lastUpdateTime) {
         if (!isCheckOutOfDate()) {

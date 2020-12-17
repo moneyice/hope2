@@ -25,3 +25,5 @@ hope2:
     spider: http://127.0.0.1:8001
     stock: http://127.0.0.1:8002
     analyzer: http://127.0.0.1:8003
+  data:
+    path: ./data

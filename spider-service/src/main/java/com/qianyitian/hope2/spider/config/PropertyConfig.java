@@ -12,6 +12,16 @@ public class PropertyConfig {
     private String stockService;
     @Value(value = "${hope2.service.analyzer}")
     private String analyzerService;
+    @Value(value = "${hope2.data.path}")
+    private String dataPath;
+
+    public String getDataPath() {
+        return dataPath;
+    }
+
+    public void setDataPath(String dataPath) {
+        this.dataPath = dataPath;
+    }
 
     public String getSpiderService() {
         return spiderService;

@@ -32,6 +32,8 @@ public class NeteaseWebStockRetreiver extends WebStockRetreiver {
 
     String URL = "http://quotes.money.163.com/service/chddata.html?code=#{symbol}&fields=TOPEN;HIGH;LOW;TCLOSE;VOTURNOVER;TURNOVER;PCHG";
 
+
+
     @Override
     public Stock getStockInfo(Stock stock) throws IOException {
         String symbol = null;

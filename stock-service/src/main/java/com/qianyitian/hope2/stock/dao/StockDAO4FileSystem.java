@@ -3,8 +3,10 @@ package com.qianyitian.hope2.stock.dao;
 import com.alibaba.fastjson.JSON;
 import com.google.common.io.Files;
 import com.qianyitian.hope2.stock.config.Constant;
+import com.qianyitian.hope2.stock.config.PropertyConfig;
 import com.qianyitian.hope2.stock.model.KLineInfo;
 import com.qianyitian.hope2.stock.model.Stock;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.io.File;
@@ -22,31 +24,16 @@ public class StockDAO4FileSystem implements IStockDAO {
     public static final String MONTHLY_FILE_SUFFIX = "." + Constant.TYPE_MONTHLY;
     public static final int LITE_LEAST_DAY_NUMBER = 12 * 22;// about one year
 
+    @Autowired
+    PropertyConfig propertyConfig;
+
     public StockDAO4FileSystem() {
-        File file = new File(getRootPath());
-        if (!file.exists()) {
-            file.mkdirs();
-        }
-        file = new File(getRootPath() + Constant.TYPE_WEEKLY);
-        if (!file.exists()) {
-            file.mkdirs();
-        }
-        file = new File(getRootPath() + Constant.TYPE_MONTHLY);
-        if (!file.exists()) {
-            file.mkdirs();
-        }
-        file = new File(getRootPath() + Constant.TYPE_DAILY_LITE);
-        if (!file.exists()) {
-            file.mkdirs();
-        }
-        file = new File(getRootPath() + Constant.TYPE_DAILY);
-        if (!file.exists()) {
-            file.mkdirs();
-        }
     }
 
+
+
     private String getRootPath() {
-        return "./data/";
+        return propertyConfig.getDataPath();
     }
 
     @Override

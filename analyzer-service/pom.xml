@@ -13,6 +13,10 @@
     <packaging>jar</packaging>
     <name>analyzer-service</name>
 
+    <properties>
+        <!-- Environment Settings -->
+        <main.class>com.qianyitian.hope2.analyzer.AnalyzerApplication</main.class>
+    </properties>
 
     <dependencies>
         <!-- Spring Boot Begin -->
@@ -154,23 +158,5 @@
         </dependency>
     </dependencies>
 
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration>
-                    <mainClass>com.qianyitian.hope2.analyzer.AnalyzerApplication</mainClass>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>8</source>
-                    <target>8</target>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
+
 </project>

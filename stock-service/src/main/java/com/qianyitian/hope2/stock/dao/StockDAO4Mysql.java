@@ -30,6 +30,7 @@ public class StockDAO4Mysql implements IStockDAO {
         return "/home/working/temp/stocks/";
     }
 
+    @Override
     public void storeAllSymbols(List<Stock> list) {
         File rootFolder = new File(getRootPath());
         if (!rootFolder.exists()) {

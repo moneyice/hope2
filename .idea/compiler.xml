@@ -13,7 +13,7 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="analyzer-service" target="8" />
-      <module name="hope2" target="1.8" />
+      <module name="hope2" target="8" />
       <module name="spider-service" target="8" />
       <module name="stock-service" target="8" />
     </bytecodeTargetLevel>

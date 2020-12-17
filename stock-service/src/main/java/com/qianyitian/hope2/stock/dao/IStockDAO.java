@@ -8,7 +8,6 @@ import java.util.Date;
 import java.util.List;
 
 public interface IStockDAO {
-
     void storeAllSymbols(List<Stock> list);
 
     Date getStockUpdateTime(String code);
