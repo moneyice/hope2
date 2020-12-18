@@ -1,17 +1,13 @@
 package com.qianyitian.hope2.stock.controller;
 
 import com.alibaba.fastjson.JSON;
-
 import com.qianyitian.hope2.stock.dao.IStockDAO;
-import com.qianyitian.hope2.stock.filter.StockFilter;
 import com.qianyitian.hope2.stock.model.*;
 import com.qianyitian.hope2.stock.statistics.RangePercentageStatistics;
 import com.qianyitian.hope2.stock.util.KUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.ReactiveRedisOperations;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.web.bind.annotation.*;
@@ -236,11 +232,13 @@ public class StockController {
         List<ChartItem> chartItemList = rangePercentageStatistics.getResult();
         Map map = new HashMap();
         map.put("chart", chartItemList);
+        map.put("newStock",rangePercentageStatistics.getNewStockCount());
 
         Arrays.stream(EIndex.values()).forEach(eIndex -> {
             Stock stock = stockDAO.getStock("i" + eIndex.getCode());
-            KLineInfo base = stock.getkLineInfos().get(RangePercentageStatistics.days2Now - 1);
-            KLineInfo now = stock.getkLineInfos().get(0);
+            KLineInfo now = KUtils.findKLine(stock.getkLineInfos(), 0);
+            KLineInfo base = KUtils.findKLine(stock.getkLineInfos(), RangePercentageStatistics.days2Now);
+
             double range = KUtils.calcIncreaseRange(base.getClose(), now.getClose()) * 100;
             map.put(eIndex.getName(), range + "%");
         });

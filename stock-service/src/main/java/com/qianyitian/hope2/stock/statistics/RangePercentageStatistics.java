@@ -18,6 +18,11 @@ import java.util.stream.Collectors;
 public class RangePercentageStatistics {
     public static int days2Now = 250;
 
+    public int getNewStockCount() {
+        return newStockCount.get();
+    }
+
+    AtomicInteger newStockCount;
     private Logger logger = LoggerFactory.getLogger(getClass());
     Map<ERangePercentage, AtomicInteger> map = new ConcurrentHashMap<>(ERangePercentage.values().length);
 
@@ -25,7 +30,9 @@ public class RangePercentageStatistics {
 
     public void init() {
         map = new ConcurrentHashMap<>(ERangePercentage.values().length);
+        newStockCount = new AtomicInteger(0);
     }
+
 
     public void makeStatistics(Stock stock) {
         if (stock == null || stock.getkLineInfos() == null) {
@@ -36,10 +43,12 @@ public class RangePercentageStatistics {
             return;
         }
 
-        days2Now = Math.min(stock.getkLineInfos().size(), days2Now);
 
-        KLineInfo base = stock.getkLineInfos().get(days2Now - 1);
-        KLineInfo now = stock.getkLineInfos().get(0);
+        if (days2Now >= stock.getkLineInfos().size()) {
+            newStockCount.getAndIncrement();
+        }
+        KLineInfo now = KUtils.findKLine(stock.getkLineInfos(), 0);
+        KLineInfo base = KUtils.findKLine(stock.getkLineInfos(), RangePercentageStatistics.days2Now);
 
         double range = KUtils.calcIncreaseRange(base.getClose(), now.getClose());
 

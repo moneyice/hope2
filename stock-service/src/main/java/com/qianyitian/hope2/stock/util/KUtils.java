@@ -176,6 +176,13 @@ public class KUtils {
         return macd;
     }
 
+    public static KLineInfo findKLine(List<KLineInfo> kLineList, int days2Now) {
+        if (days2Now >= kLineList.size()) {
+            days2Now = kLineList.size() - 1;
+        }
+        KLineInfo find = kLineList.get(kLineList.size() - 1 - days2Now);
+        return find;
+    }
 
     public static double calcIncreaseRange(double base, double now) {
         double r = now / base - 1;
