@@ -6,7 +6,6 @@ import com.qianyitian.hope2.analyzer.analyzer.EStockAnalyzer;
 import com.qianyitian.hope2.analyzer.analyzer.IStockAnalyzer;
 import com.qianyitian.hope2.analyzer.analyzer.StockAnalyzerFacotry;
 import com.qianyitian.hope2.analyzer.config.Constant;
-import com.qianyitian.hope2.analyzer.dao.ReportDAO4Redis;
 import com.qianyitian.hope2.analyzer.model.AnalyzeResult;
 import com.qianyitian.hope2.analyzer.service.IReportStorageService;
 import com.qianyitian.hope2.analyzer.service.MyFavoriteStockService;
@@ -80,11 +79,11 @@ public class AnalysisController {
     private void storeAnalysisResult(AnalyzeResult result, EStockAnalyzer enumAnalyzer, String type) {
         String filename = enumAnalyzer.name() + "-" + type;
         String content = JSON.toJSONString(result);
-        reportService.put(filename, content);
+        reportService.storeAnalysis(filename, content);
         logger.info("aliyunOSS storage successful " + filename);
 
         String fullFilename = LocalDate.now().toString() + "-" + filename;
-        reportService.put(fullFilename, content);
+        reportService.storeAnalysis(fullFilename, content);
         logger.info("aliyunOSS storage successful " + fullFilename);
 
         //clear cache
@@ -103,7 +102,7 @@ public class AnalysisController {
 //            report = reportService.get(filename);
 //            reportDAO4Redis.storeReport(filename, report);
 //        }
-        return reportService.get(filename);
+        return reportService.getAnalysis(filename);
     }
 
     @RequestMapping(value = "/analysis/{analyzerName}/weekly", method = RequestMethod.GET)
@@ -133,11 +132,9 @@ public class AnalysisController {
         return content;
     }
 
-
-
-
-
-
-
-
+    @RequestMapping(value = "/statistics/increaseRangeStatistics", method = RequestMethod.GET)
+    public String increaseRangeStatistics() {
+        String filename = "increaseRangeStatistics";
+        return reportService.getStatistics(filename);
+    }
 }

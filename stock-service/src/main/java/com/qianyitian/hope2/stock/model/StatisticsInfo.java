@@ -25,8 +25,10 @@ public class StatisticsInfo {
     public StatisticsInfo(LocalDate date) {
         this.date = date;
     }
+
     public StatisticsInfo() {
     }
+
     public LocalDate getDate() {
         return date;
     }

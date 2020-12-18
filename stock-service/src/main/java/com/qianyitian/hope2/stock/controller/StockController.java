@@ -4,10 +4,7 @@ import com.alibaba.fastjson.JSON;
 
 import com.qianyitian.hope2.stock.dao.IStockDAO;
 import com.qianyitian.hope2.stock.filter.StockFilter;
-import com.qianyitian.hope2.stock.model.KLineInfo;
-import com.qianyitian.hope2.stock.model.StatisticsInfo;
-import com.qianyitian.hope2.stock.model.Stock;
-import com.qianyitian.hope2.stock.model.SymbolList;
+import com.qianyitian.hope2.stock.model.*;
 import com.qianyitian.hope2.stock.statistics.RangePercentageStatistics;
 import com.qianyitian.hope2.stock.util.KUtils;
 import org.slf4j.Logger;
@@ -172,9 +169,7 @@ public class StockController {
     @GetMapping(value = "/makeStatistics")
     @Async
     public void makeStatistics() {
-
         Map<LocalDate, StatisticsInfo> totalStockInfo = new HashMap<>();
-
         SymbolList stockList = getStockList();
         logger.info("total number is {}", stockList.getSymbols().size());
         stockList.getSymbols().parallelStream().forEach(item -> {
@@ -226,8 +221,8 @@ public class StockController {
 
     }
 
-    @GetMapping(value = "/makeStatistics2")
-    public List makeStatistics2() {
+    @GetMapping(value = "/increaseRangeStatistics")
+    public String makeStatistics2() {
         SymbolList stockList = getStockList();
 
         RangePercentageStatistics rangePercentageStatistics = new RangePercentageStatistics();
@@ -238,8 +233,20 @@ public class StockController {
             Stock stock = getStock(item.getCode());
             rangePercentageStatistics.makeStatistics(stock);
         });
+        List<ChartItem> chartItemList = rangePercentageStatistics.getResult();
+        Map map = new HashMap();
+        map.put("chart", chartItemList);
 
-        return rangePercentageStatistics.getResult();
+        Arrays.stream(EIndex.values()).forEach(eIndex -> {
+            Stock stock = stockDAO.getStock("i" + eIndex.getCode());
+            KLineInfo base = stock.getkLineInfos().get(RangePercentageStatistics.days2Now - 1);
+            KLineInfo now = stock.getkLineInfos().get(0);
+            double range = KUtils.calcIncreaseRange(base.getClose(), now.getClose()) * 100;
+            map.put(eIndex.getName(), range + "%");
+        });
+        String s = JSON.toJSONString(map);
+        stockDAO.storeStatistics("increaseRangeStatistics", s);
+        return s;
     }
 
     private boolean isLimitDown(double changePercent) {

@@ -25,7 +25,7 @@ public class AliyunOSSStorageService implements IReportStorageService {
     private static String accessKeySecret = "Ub25yu6ymY0CJ0LQ7J0c09ZtuYoI1o";
     private static String bucketName = "hhope";
     private static String key = "samplekey";
-    private  OSSClient ossClient;
+    private OSSClient ossClient;
     private InputStream inputStream;
 
     public AliyunOSSStorageService() {
@@ -33,20 +33,20 @@ public class AliyunOSSStorageService implements IReportStorageService {
     }
 
     @Override
-    public void put(String fileName, String content){
+    public void storeAnalysis(String fileName, String content) {
         try {
             ossClient = new OSSClient(endpoint, accessKeyId, accessKeySecret);
             ossClient.putObject(bucketName, fileName, new ByteArrayInputStream(content.getBytes()));
         } catch (ClientException ce) {
-            logger.error("store to aliyun OSS error " + fileName,ce);
+            logger.error("store to aliyun OSS error " + fileName, ce);
         } finally {
             ossClient.shutdown();
         }
     }
 
     @Override
-    public String get(String fileName){
-        InputStream inputStream=null;
+    public String getAnalysis(String fileName) {
+        InputStream inputStream = null;
         try {
             ossClient = new OSSClient(endpoint, accessKeyId, accessKeySecret);
             OSSObject object = ossClient.getObject(bucketName, fileName);
@@ -55,7 +55,7 @@ public class AliyunOSSStorageService implements IReportStorageService {
             String result = toString(inputStream);
             return result;
         } catch (Exception ce) {
-            logger.error("store to OSS error",ce);
+            logger.error("store to OSS error", ce);
         } finally {
             IOUtils.safeClose(inputStream);
             ossClient.shutdown();
@@ -63,10 +63,19 @@ public class AliyunOSSStorageService implements IReportStorageService {
         return null;
     }
 
+    @Override
+    public void storeStatistics(String fileName, String content) {
+        throw new RuntimeException("not supported");
+    }
+
+    @Override
+    public String getStatistics(String fileName) {
+        throw new RuntimeException("not supported");
+    }
 
 
-    private String toString(InputStream inputStream)  {
-        ByteArrayOutputStream result=null;
+    private String toString(InputStream inputStream) {
+        ByteArrayOutputStream result = null;
         try {
             result = new ByteArrayOutputStream();
             byte[] buffer = new byte[1024];
@@ -76,9 +85,9 @@ public class AliyunOSSStorageService implements IReportStorageService {
             }
             String s = result.toString("UTF-8");
             return s;
-        }catch (Exception e){
-            logger.error("toString error",e);
-        }finally {
+        } catch (Exception e) {
+            logger.error("toString error", e);
+        } finally {
             IOUtils.safeClose(inputStream);
             IOUtils.safeClose(result);
         }

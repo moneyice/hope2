@@ -73,4 +73,14 @@ public class StockDAO4Redis extends AbstractStockDAO {
     public Date getAllSymbolsUpdateTime() {
         throw new RuntimeException("not supported");
     }
+
+    @Override
+    public void storeStatistics(String filename, String content) {
+        throw new RuntimeException("not supported");
+    }
+
+    @Override
+    public String getStatistics(String filename) {
+        throw new RuntimeException("not supported");
+    }
 }

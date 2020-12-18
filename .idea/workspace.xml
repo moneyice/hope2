@@ -8,8 +8,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dcf88ab8-24f8-4e63-84a9-94a270993007" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/stock-service/src/main/java/com/qianyitian/hope2/stock/model/ChartItem.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/stock-service/src/main/java/com/qianyitian/hope2/stock/model/EIndex.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analyzer-service/src/main/java/com/qianyitian/hope2/analyzer/config/Constant.java" beforeDir="false" afterPath="$PROJECT_DIR$/analyzer-service/src/main/java/com/qianyitian/hope2/analyzer/config/Constant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analyzer-service/src/main/java/com/qianyitian/hope2/analyzer/controller/AnalysisController.java" beforeDir="false" afterPath="$PROJECT_DIR$/analyzer-service/src/main/java/com/qianyitian/hope2/analyzer/controller/AnalysisController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analyzer-service/src/main/java/com/qianyitian/hope2/analyzer/service/AliyunOSSStorageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/analyzer-service/src/main/java/com/qianyitian/hope2/analyzer/service/AliyunOSSStorageService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analyzer-service/src/main/java/com/qianyitian/hope2/analyzer/service/FileSystemStorageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/analyzer-service/src/main/java/com/qianyitian/hope2/analyzer/service/FileSystemStorageService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analyzer-service/src/main/java/com/qianyitian/hope2/analyzer/service/IReportStorageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/analyzer-service/src/main/java/com/qianyitian/hope2/analyzer/service/IReportStorageService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spider-service/src/main/java/com/qianyitian/hope2/spider/model/EIndex.java" beforeDir="false" afterPath="$PROJECT_DIR$/spider-service/src/main/java/com/qianyitian/hope2/spider/model/EIndex.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-service/src/main/java/com/qianyitian/hope2/stock/config/Constant.java" beforeDir="false" afterPath="$PROJECT_DIR$/stock-service/src/main/java/com/qianyitian/hope2/stock/config/Constant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-service/src/main/java/com/qianyitian/hope2/stock/config/PostStartupDataLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/stock-service/src/main/java/com/qianyitian/hope2/stock/config/PostStartupDataLoader.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/stock-service/src/main/java/com/qianyitian/hope2/stock/controller/StockController.java" beforeDir="false" afterPath="$PROJECT_DIR$/stock-service/src/main/java/com/qianyitian/hope2/stock/controller/StockController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-service/src/main/java/com/qianyitian/hope2/stock/dao/IStockDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/stock-service/src/main/java/com/qianyitian/hope2/stock/dao/IStockDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-service/src/main/java/com/qianyitian/hope2/stock/dao/StockDAO4FileSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/stock-service/src/main/java/com/qianyitian/hope2/stock/dao/StockDAO4FileSystem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-service/src/main/java/com/qianyitian/hope2/stock/dao/StockDAO4Mysql.java" beforeDir="false" afterPath="$PROJECT_DIR$/stock-service/src/main/java/com/qianyitian/hope2/stock/dao/StockDAO4Mysql.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-service/src/main/java/com/qianyitian/hope2/stock/dao/StockDAO4Redis.java" beforeDir="false" afterPath="$PROJECT_DIR$/stock-service/src/main/java/com/qianyitian/hope2/stock/dao/StockDAO4Redis.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-service/src/main/java/com/qianyitian/hope2/stock/model/StatisticsInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/stock-service/src/main/java/com/qianyitian/hope2/stock/model/StatisticsInfo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/stock-service/src/main/java/com/qianyitian/hope2/stock/statistics/RangePercentageStatistics.java" beforeDir="false" afterPath="$PROJECT_DIR$/stock-service/src/main/java/com/qianyitian/hope2/stock/statistics/RangePercentageStatistics.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -89,11 +104,11 @@
       <recent name="" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.qianyitian.hope2.stock.model" />
       <recent name="com.qianyitian.hope2.analyzer.analyzer" />
       <recent name="com.qianyitian.hope2.stock.dao" />
       <recent name="com.qianyitian.hope2.spider.model" />
       <recent name="com.qianyitian.hope2.analyzer.config" />
-      <recent name="com.qianyitian.hope2.stock.config" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\bing.a.qian\IdeaProjects\hope2\data" />
@@ -485,7 +500,14 @@
       <option name="project" value="LOCAL" />
       <updated>1608283122095</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="NPE">
+      <created>1608285573876</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1608285573876</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -509,17 +531,18 @@
     <MESSAGE value="调整data目录" />
     <MESSAGE value="类型做成枚举" />
     <MESSAGE value="favorite symbols change format" />
-    <option name="LAST_COMMIT_MESSAGE" value="favorite symbols change format" />
+    <MESSAGE value="NPE" />
+    <option name="LAST_COMMIT_MESSAGE" value="NPE" />
   </component>
   <component name="WindowStateProjectService">
     <state x="250" y="0" key="#Project_Structure" timestamp="1608174227600">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="250" y="0" key="#Project_Structure/0.0.1536.824@0.0.1536.824" timestamp="1608174227600" />
-    <state x="575" y="119" key="#com.intellij.ide.util.MemberChooser" timestamp="1608193737039">
+    <state x="575" y="119" key="#com.intellij.ide.util.MemberChooser" timestamp="1608296412099">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="575" y="119" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1608193737039" />
+    <state x="575" y="119" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1608296412099" />
     <state x="499" y="203" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1608038679230">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -548,10 +571,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="542" y="65" width="713" height="593" key="#xdebugger.evaluate/0.0.1536.824@0.0.1536.824" timestamp="1608174520332" />
-    <state x="393" y="0" key="CommitChangelistDialog2" timestamp="1608283114494">
+    <state x="393" y="0" key="CommitChangelistDialog2" timestamp="1608285566225">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="393" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1608283114494" />
+    <state x="393" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1608285566225" />
     <state x="94" y="94" width="1349" height="637" key="DiffContextDialog" timestamp="1608283101510">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -568,22 +591,22 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="641" y="311" width="496" height="203" key="Github.ShareDialog/0.0.1536.824@0.0.1536.824" timestamp="1608029042261" />
-    <state width="1493" height="152" key="GridCell.Tab.0.bottom" timestamp="1608285011435">
+    <state width="1493" height="180" key="GridCell.Tab.0.bottom" timestamp="1608298323272">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="152" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1608285011435" />
-    <state width="1493" height="152" key="GridCell.Tab.0.center" timestamp="1608285011434">
+    <state width="1493" height="180" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1608298323272" />
+    <state width="1493" height="180" key="GridCell.Tab.0.center" timestamp="1608298323272">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="152" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1608285011434" />
-    <state width="1493" height="152" key="GridCell.Tab.0.left" timestamp="1608285011434">
+    <state width="1493" height="180" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1608298323272" />
+    <state width="1493" height="180" key="GridCell.Tab.0.left" timestamp="1608298323272">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="152" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1608285011434" />
-    <state width="1493" height="152" key="GridCell.Tab.0.right" timestamp="1608285011434">
+    <state width="1493" height="180" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1608298323272" />
+    <state width="1493" height="180" key="GridCell.Tab.0.right" timestamp="1608298323272">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="152" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1608285011434" />
+    <state width="1493" height="180" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1608298323272" />
     <state width="1493" height="283" key="GridCell.Tab.1.bottom" timestamp="1608283126120">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -628,14 +651,14 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="485" y="115" key="RollbackChangesDialog/0.0.1536.824@0.0.1536.824" timestamp="1608083244034" />
-    <state x="250" y="0" key="SettingsEditor" timestamp="1608282883254">
+    <state x="250" y="0" key="SettingsEditor" timestamp="1608294171150">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="250" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1608282883254" />
-    <state x="362" y="146" key="Vcs.Push.Dialog.v2" timestamp="1608283123520">
+    <state x="250" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1608294171150" />
+    <state x="362" y="146" key="Vcs.Push.Dialog.v2" timestamp="1608285575836">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="362" y="146" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1608283123520" />
+    <state x="362" y="146" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1608285575836" />
     <state x="539" y="235" key="com.intellij.testIntegration.createTest.CreateTestDialog" timestamp="1608103922313">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -644,10 +667,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="500" y="171" key="extract.method.dialog/0.0.1536.824@0.0.1536.824" timestamp="1608280405956" />
-    <state x="252" y="104" width="970" height="622" key="find.popup" timestamp="1608171758509">
+    <state x="252" y="104" width="970" height="622" key="find.popup" timestamp="1608292338144">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="252" y="104" width="970" height="622" key="find.popup/0.0.1536.824@0.0.1536.824" timestamp="1608171758509" />
+    <state x="252" y="104" width="970" height="622" key="find.popup/0.0.1536.824@0.0.1536.824" timestamp="1608292338144" />
     <state x="572" y="319" key="git4idea.remote.GitConfigureRemotesDialog" timestamp="1608127078451">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

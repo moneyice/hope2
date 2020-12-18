@@ -1,8 +1,11 @@
 package com.qianyitian.hope2.analyzer.service;
 
 import com.google.common.io.Files;
+import com.qianyitian.hope2.analyzer.config.Constant;
+import com.qianyitian.hope2.analyzer.config.PropertyConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.*;
@@ -16,20 +19,23 @@ import java.nio.charset.Charset;
 public class FileSystemStorageService implements IReportStorageService {
     private Logger logger = LoggerFactory.getLogger(getClass());
 
+    @Autowired
+    PropertyConfig propertyConfig;
+
     public FileSystemStorageService() {
-        File to = new File(getRootPath());
-        if(!to.exists()){
-            to.mkdirs();
-        }
     }
 
-    private String getRootPath() {
-        return "./data/report/";
+    private File getAnalysisRootPath() {
+        return new File(propertyConfig.getDataPath(), Constant.REPORT);
     }
 
-    @Override
-    public void put(String fileName, String content) {
-        File to = new File(getRootPath() + "/", fileName);
+    private File getStatisticsRootPath() {
+        return new File(propertyConfig.getDataPath(), Constant.STATISTICS);
+    }
+
+
+    private void storeFile(File folder, String fileName, String content) {
+        File to = new File(folder, fileName);
         try {
             Files.asCharSink(to, Charset.forName("UTF-8")).write(content);
         } catch (IOException e) {
@@ -37,16 +43,34 @@ public class FileSystemStorageService implements IReportStorageService {
         }
     }
 
-    @Override
-    public String get(String fileName) {
-        File from = new File(getRootPath() + "/", fileName);
-        String rs;
+    private String getFile(File folder, String fileName) {
+        File from = new File(folder, fileName);
+        String rs = null;
         try {
             rs = Files.asCharSource(from, Charset.forName("UTF-8")).readFirstLine();
-            return rs;
         } catch (IOException e) {
             logger.error("store to aliyun OSS error " + fileName, e);
         }
-        return null;
+        return rs;
+    }
+
+    @Override
+    public void storeAnalysis(String fileName, String content) {
+        storeFile(getAnalysisRootPath(), fileName, content);
+    }
+
+    @Override
+    public String getAnalysis(String fileName) {
+        return getFile(getAnalysisRootPath(), fileName);
+    }
+
+    @Override
+    public void storeStatistics(String fileName, String content) {
+        storeFile(getStatisticsRootPath(), fileName, content);
+    }
+
+    @Override
+    public String getStatistics(String fileName) {
+        return getFile(getStatisticsRootPath(), fileName);
     }
 }

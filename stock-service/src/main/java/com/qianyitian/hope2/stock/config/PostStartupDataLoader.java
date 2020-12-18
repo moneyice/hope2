@@ -101,5 +101,14 @@ public class PostStartupDataLoader implements ApplicationRunner {
                 folder.mkdirs();
             }
         });
+
+        File folder = new File(getRootPath(), Constant.STATISTICS);
+        if (!folder.exists()) {
+            folder.mkdirs();
+        }
+        folder = new File(getRootPath(), Constant.REPORT);
+        if (!folder.exists()) {
+            folder.mkdirs();
+        }
     }
 }

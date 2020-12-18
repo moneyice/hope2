@@ -6,7 +6,6 @@ import com.google.common.io.Files;
 import com.qianyitian.hope2.stock.config.Constant;
 import com.qianyitian.hope2.stock.config.EStockKlineType;
 import com.qianyitian.hope2.stock.config.PropertyConfig;
-import com.qianyitian.hope2.stock.model.KLineInfo;
 import com.qianyitian.hope2.stock.model.Stock;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,8 +18,6 @@ import java.nio.charset.Charset;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
-
-import static com.qianyitian.hope2.stock.config.Constant.LITE_LEAST_DAY_NUMBER;
 
 
 @Repository("stockDAO4FileSystem")
@@ -50,7 +47,7 @@ public class StockDAO4FileSystem extends AbstractStockDAO {
         try {
             Files.asCharSink(to, Charset.forName("UTF-8")).write(allSymbols);
         } catch (IOException e) {
-            logger.error(e.toString(),e);
+            logger.error(e.toString(), e);
         }
     }
 
@@ -99,7 +96,7 @@ public class StockDAO4FileSystem extends AbstractStockDAO {
             List<Stock> stocks = JSON.parseArray(rs.toString(), Stock.class);
             return stocks;
         } catch (IOException e) {
-            logger.error(e.toString(),e);
+            logger.error(e.toString(), e);
         }
         return null;
     }
@@ -114,7 +111,6 @@ public class StockDAO4FileSystem extends AbstractStockDAO {
         if (!from.exists()) {
             return null;
         }
-        String rs;
         try {
             ImmutableList<String> strings = Files.asCharSource(from, Charset.forName("UTF-8")).readLines();
             List<Stock> stocks = strings.parallelStream().map(line -> {
@@ -127,7 +123,7 @@ public class StockDAO4FileSystem extends AbstractStockDAO {
             }).collect(Collectors.toList());
             return stocks;
         } catch (IOException e) {
-            logger.error(e.toString(),e);
+            logger.error(e.toString(), e);
         }
         return null;
     }
@@ -147,5 +143,29 @@ public class StockDAO4FileSystem extends AbstractStockDAO {
         long time = file.lastModified();
         Date lastDate = new Date(time);
         return lastDate;
+    }
+
+    @Override
+    public void storeStatistics(String filename, String content) {
+        File to = new File(getRootPath(), Constant.STATISTICS);
+        to = new File(to, filename);
+        try {
+            Files.asCharSink(to, Charset.forName("UTF-8")).write(content);
+        } catch (IOException e) {
+            logger.error("store Statistics error on " + filename, e);
+        }
+    }
+
+    @Override
+    public String getStatistics(String filename) {
+        File from = new File(getRootPath(), Constant.STATISTICS);
+        from = new File(from, filename);
+        String rs = null;
+        try {
+            rs = Files.asCharSource(from, Charset.forName("UTF-8")).readFirstLine();
+        } catch (IOException e) {
+            logger.error("get Statistics error on " + filename, e);
+        }
+        return rs;
     }
 }

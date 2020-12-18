@@ -1,7 +1,6 @@
 package com.qianyitian.hope2.stock.dao;
 
 
-
 import com.qianyitian.hope2.stock.model.Stock;
 
 import java.util.Date;
@@ -13,10 +12,15 @@ public interface IStockDAO {
     Date getStockUpdateTime(String code);
 
     void storeStock(Stock stock);
+
     void storeStockLite(Stock stock);
+
     void storeStockWeekly(Stock stock);
+
     void storeStockMonthly(Stock stock);
+
     Stock getStock(String code);
+
     Stock getStockLite(String code);
 
     Stock getStockWeekly(String code);
@@ -29,6 +33,9 @@ public interface IStockDAO {
 
     Date getAllSymbolsUpdateTime();
 
+    void storeStatistics(String filename, String content);
+
+    String getStatistics(String filename);
 
 
 }

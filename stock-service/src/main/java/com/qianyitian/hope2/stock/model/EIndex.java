@@ -1,4 +1,4 @@
-package com.qianyitian.hope2.spider.model;
+package com.qianyitian.hope2.stock.model;
 
 /**
  * Created by bing.a.qian on 2/6/2017.

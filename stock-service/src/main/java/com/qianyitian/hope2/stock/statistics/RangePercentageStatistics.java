@@ -1,10 +1,7 @@
 package com.qianyitian.hope2.stock.statistics;
 
 import com.alibaba.fastjson.JSON;
-import com.qianyitian.hope2.stock.model.KLineInfo;
-import com.qianyitian.hope2.stock.model.StatisticsInfo;
-import com.qianyitian.hope2.stock.model.Stock;
-import com.qianyitian.hope2.stock.model.SymbolList;
+import com.qianyitian.hope2.stock.model.*;
 import com.qianyitian.hope2.stock.util.KUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,9 +16,9 @@ import java.util.concurrent.locks.ReentrantLock;
 import java.util.stream.Collectors;
 
 public class RangePercentageStatistics {
-    private Logger logger = LoggerFactory.getLogger(getClass());
+    public static int days2Now = 250;
 
-    private int days2Now = 250;
+    private Logger logger = LoggerFactory.getLogger(getClass());
     Map<ERangePercentage, AtomicInteger> map = new ConcurrentHashMap<>(ERangePercentage.values().length);
 
     private final ReentrantLock lock = new ReentrantLock();
@@ -72,26 +69,20 @@ public class RangePercentageStatistics {
                 findFirst();
     }
 
-    public List<Lable> getResult() {
-        List<Lable> list = Arrays.stream(ERangePercentage.values()).map(eRangePercentage -> {
-            Lable label = new Lable();
-            label.label = eRangePercentage.label;
+    public List<ChartItem> getResult() {
+        List<ChartItem> list = Arrays.stream(ERangePercentage.values()).map(eRangePercentage -> {
+            ChartItem chartItem = new ChartItem();
+            chartItem.setLabel(eRangePercentage.label);
             AtomicInteger count = map.get(eRangePercentage);
             if (count == null) {
-                label.count = 0;
+                chartItem.setCount(0);
             } else {
-                label.count = count.get();
+                chartItem.setCount(count.get());
             }
-            return label;
+            return chartItem;
         }).collect(Collectors.toList());
         return list;
     }
-
-    class Lable {
-        String label;
-        Integer count;
-    }
-
 
     enum ERangePercentage {
         R1("涨幅 < 0%", -1, 0), R2("0<= 涨幅 <20%", 0, 0.2f), R3("20% <= 涨幅 <50%", 0.2f, 0.5f), R4("50% <= 涨幅 <100%", 0.5f, 1), R5("100% <= 涨幅", 1, Float.MAX_VALUE);
