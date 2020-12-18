@@ -186,7 +186,6 @@ public class KUtils {
 
     public static double calcIncreaseRange(double base, double now) {
         double r = now / base - 1;
-        BigDecimal bg = new BigDecimal(r);
-        return bg.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+        return  r;
     }
 }

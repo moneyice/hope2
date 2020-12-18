@@ -13,6 +13,7 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.*;
 import java.util.concurrent.ExecutorService;
@@ -232,7 +233,7 @@ public class StockController {
         List<ChartItem> chartItemList = rangePercentageStatistics.getResult();
         Map map = new HashMap();
         map.put("chart", chartItemList);
-        map.put("newStock",rangePercentageStatistics.getNewStockCount());
+        map.put("newStock", rangePercentageStatistics.getNewStockCount());
 
         Arrays.stream(EIndex.values()).forEach(eIndex -> {
             Stock stock = stockDAO.getStock("i" + eIndex.getCode());
@@ -240,7 +241,9 @@ public class StockController {
             KLineInfo base = KUtils.findKLine(stock.getkLineInfos(), RangePercentageStatistics.days2Now);
 
             double range = KUtils.calcIncreaseRange(base.getClose(), now.getClose()) * 100;
-            map.put(eIndex.getName(), range + "%");
+            BigDecimal bg = new BigDecimal(range);
+            String s = bg.setScale(2, BigDecimal.ROUND_HALF_UP).toString();
+            map.put(eIndex.getName(), s + "%");
         });
         String s = JSON.toJSONString(map);
         stockDAO.storeStatistics("increaseRangeStatistics", s);
