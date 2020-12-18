@@ -8,6 +8,7 @@ import com.qianyitian.hope2.stock.model.KLineInfo;
 import com.qianyitian.hope2.stock.model.StatisticsInfo;
 import com.qianyitian.hope2.stock.model.Stock;
 import com.qianyitian.hope2.stock.model.SymbolList;
+import com.qianyitian.hope2.stock.statistics.RangePercentageStatistics;
 import com.qianyitian.hope2.stock.util.KUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -223,6 +224,23 @@ public class StockController {
         }
         stringRedisTemplate.opsForValue().set("statistics", JSON.toJSONString(result));
 
+    }
+
+    @GetMapping(value = "/makeStatistics2")
+    @Async
+    public List makeStatistics2() {
+        SymbolList stockList = getStockList();
+
+        RangePercentageStatistics rangePercentageStatistics = new RangePercentageStatistics();
+        rangePercentageStatistics.init();
+
+
+        stockList.getSymbols().parallelStream().forEach(item -> {
+            Stock stock = getStock(item.getCode());
+            rangePercentageStatistics.makeStatistics(stock);
+        });
+
+        return rangePercentageStatistics.getResult();
     }
 
     private boolean isLimitDown(double changePercent) {

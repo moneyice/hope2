@@ -7,6 +7,9 @@ import com.qianyitian.hope2.stock.model.KLineInfo;
 import com.qianyitian.hope2.stock.model.Macd;
 import com.qianyitian.hope2.stock.model.Stock;
 
+import java.math.BigDecimal;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.time.LocalDate;
 import java.time.temporal.WeekFields;
 import java.util.LinkedList;
@@ -170,11 +173,13 @@ public class KUtils {
         macd.setDiff(diff);
         macd.setDea(dea);
         macd.setBar(macdValue);
-
         return macd;
-
-
     }
 
 
+    public static double calcIncreaseRange(double base, double now) {
+        double r = now / base - 1;
+        BigDecimal bg = new BigDecimal(r);
+        return bg.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+    }
 }
