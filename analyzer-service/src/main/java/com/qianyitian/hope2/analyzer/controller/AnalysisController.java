@@ -45,17 +45,7 @@ public class AnalysisController {
 
     @RequestMapping(value = "/status", method = RequestMethod.GET)
     public void status() {
-        for (EStockAnalyzer enumAnalyzer : EStockAnalyzer.values()) {
-            analyze(enumAnalyzer, Constant.TYPE_DAILY_LITE, Constant.TYPE_DAILY);
-        }
-        {
-            analyze(EStockAnalyzer.MACD, Constant.TYPE_WEEKLY);
-            analyze(EStockAnalyzer.MACD, Constant.TYPE_MONTHLY);
-        }
-        {
-            analyze(EStockAnalyzer.MACDAdvance, Constant.TYPE_WEEKLY);
-            analyze(EStockAnalyzer.MACDAdvance, Constant.TYPE_MONTHLY);
-        }
+
     }
 
     @Async

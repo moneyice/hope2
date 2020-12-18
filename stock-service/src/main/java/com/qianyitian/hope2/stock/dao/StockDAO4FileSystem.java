@@ -1,6 +1,7 @@
 package com.qianyitian.hope2.stock.dao;
 
 import com.alibaba.fastjson.JSON;
+import com.google.common.collect.ImmutableList;
 import com.google.common.io.Files;
 import com.qianyitian.hope2.stock.config.Constant;
 import com.qianyitian.hope2.stock.config.EStockKlineType;
@@ -17,6 +18,7 @@ import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static com.qianyitian.hope2.stock.config.Constant.LITE_LEAST_DAY_NUMBER;
 
@@ -48,7 +50,7 @@ public class StockDAO4FileSystem extends AbstractStockDAO {
         try {
             Files.asCharSink(to, Charset.forName("UTF-8")).write(allSymbols);
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error(e.toString(),e);
         }
     }
 
@@ -97,7 +99,7 @@ public class StockDAO4FileSystem extends AbstractStockDAO {
             List<Stock> stocks = JSON.parseArray(rs.toString(), Stock.class);
             return stocks;
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error(e.toString(),e);
         }
         return null;
     }
@@ -114,11 +116,18 @@ public class StockDAO4FileSystem extends AbstractStockDAO {
         }
         String rs;
         try {
-            rs = Files.asCharSource(from, Charset.forName("UTF-8")).readFirstLine();
-            List<Stock> stocks = JSON.parseArray(rs.toString(), Stock.class);
+            ImmutableList<String> strings = Files.asCharSource(from, Charset.forName("UTF-8")).readLines();
+            List<Stock> stocks = strings.parallelStream().map(line -> {
+                String[] array = line.split(",");
+                Stock stock = new Stock();
+                stock.setCode(array[0]);
+                stock.setName((array[1]));
+                stock.setMarket(array[0].startsWith("6") ? "SH" : "SZ");
+                return stock;
+            }).collect(Collectors.toList());
             return stocks;
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error(e.toString(),e);
         }
         return null;
     }
