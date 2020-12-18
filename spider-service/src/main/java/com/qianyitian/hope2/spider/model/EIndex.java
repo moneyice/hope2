@@ -6,7 +6,7 @@ package com.qianyitian.hope2.spider.model;
 public enum EIndex {
     ShanghaiIndex("上证指数", "000001", "SH"),
     ShenzhenIndex("深证成指", "399001", "SZ"),
-    SZ50("上证50指数", "000001", "SH"),
+    SZ50("上证50指数", "000016", "SH"),
     HS300("沪深300", "000300", "SH"),
     ZZ500("中证500", "000905", "SH"),
     CYB("创业板指数", "399006", "SZ");
