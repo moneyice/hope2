@@ -15,7 +15,7 @@ import java.util.List;
 //（注：这里的限定条件是累计13个T，不要求是“连续”的，期间可以中断）
 public class DemarkAnalyzer extends AbstractStockAnalyzer {
     //计算距今多少天的日K线
-    int daysToNow = 300;
+    int daysToNow = 150;
     // 连续9T或以上
     int buySetupDays = 9;
     // 收盘价低于先前第X个T的收盘价
@@ -127,12 +127,12 @@ public class DemarkAnalyzer extends AbstractStockAnalyzer {
 
     @Override
     public String getDescription() {
-        String des="1、Buy-Setup：买入结构的条件是连续9T或以上的收盘价低于先前第4个T的收盘价，视为一个完整的买入结构。（注：这里的限定条件是“连续”9T或以上，期间不能中断）"+
-                    "2、Buy-Countdown：每当某个收盘价低于先前第2个T的最低价时计数增加1，计数可以不连续，当计数增加到13个交易日意味着卖盘动能已经耗尽，往往是下跌趋势的反转点。" +
-                        "（注：这里的限定条件是累计13个T，不要求是“连续”的，期间可以中断）";
+        String des = "1、Buy-Setup：买入结构的条件是连续9T或以上的收盘价低于先前第4个T的收盘价，视为一个完整的买入结构。（注：这里的限定条件是“连续”9T或以上，期间不能中断）" +
+                "2、Buy-Countdown：每当某个收盘价低于先前第2个T的最低价时计数增加1，计数可以不连续，当计数增加到13个交易日意味着卖盘动能已经耗尽，往往是下跌趋势的反转点。" +
+                "（注：这里的限定条件是累计13个T，不要求是“连续”的，期间可以中断）";
 
 
-        return "Demark 指标\n"+des;
+        return "Demark 指标\n" + des;
     }
 
     public String format(List<DemarkSelect> selectList, Stock stock) {
@@ -156,7 +156,7 @@ public class DemarkAnalyzer extends AbstractStockAnalyzer {
                         .append(",BUY) #");
             }
         }
-        sb.deleteCharAt(sb.length()-1);
+        sb.deleteCharAt(sb.length() - 1);
         return sb.toString();
     }
 

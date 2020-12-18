@@ -9,7 +9,7 @@
   <component name="ChangeListManager">
     <list default="true" id="dcf88ab8-24f8-4e63-84a9-94a270993007" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analyzer-service/src/main/java/com/qianyitian/hope2/analyzer/analyzer/DemarkAnalyzer.java" beforeDir="false" afterPath="$PROJECT_DIR$/analyzer-service/src/main/java/com/qianyitian/hope2/analyzer/analyzer/DemarkAnalyzer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -498,7 +498,14 @@
       <option name="project" value="LOCAL" />
       <updated>1608298736361</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="readme">
+      <created>1608299728987</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1608299728987</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -523,7 +530,8 @@
     <MESSAGE value="类型做成枚举" />
     <MESSAGE value="favorite symbols change format" />
     <MESSAGE value="NPE" />
-    <option name="LAST_COMMIT_MESSAGE" value="NPE" />
+    <MESSAGE value="readme" />
+    <option name="LAST_COMMIT_MESSAGE" value="readme" />
   </component>
   <component name="WindowStateProjectService">
     <state x="250" y="0" key="#Project_Structure" timestamp="1608174227600">
@@ -562,10 +570,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="542" y="65" width="713" height="593" key="#xdebugger.evaluate/0.0.1536.824@0.0.1536.824" timestamp="1608174520332" />
-    <state x="393" y="0" key="CommitChangelistDialog2" timestamp="1608298728017">
+    <state x="393" y="0" key="CommitChangelistDialog2" timestamp="1608299720989">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="393" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1608298728017" />
+    <state x="393" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1608299720989" />
     <state x="94" y="94" width="1349" height="637" key="DiffContextDialog" timestamp="1608298710296">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -646,10 +654,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="250" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1608294171150" />
-    <state x="362" y="146" key="Vcs.Push.Dialog.v2" timestamp="1608299091201">
+    <state x="362" y="146" key="Vcs.Push.Dialog.v2" timestamp="1608299730506">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="362" y="146" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1608299091201" />
+    <state x="362" y="146" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1608299730506" />
     <state x="539" y="235" key="com.intellij.testIntegration.createTest.CreateTestDialog" timestamp="1608103922313">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
