@@ -31,6 +31,9 @@ public class RangePercentageStatistics {
     }
 
     public void makeStatistics(Stock stock) {
+        if (stock == null || stock.getkLineInfos() == null) {
+            return;
+        }
         if (stock.getkLineInfos().isEmpty()) {
             logger.info("{} {} kline is empty", stock.getName(), stock.getCode());
             return;
@@ -53,7 +56,8 @@ public class RangePercentageStatistics {
             try {
                 AtomicInteger atomicInteger = map.get(first.get());
                 if (atomicInteger == null) {
-                    map.put(first.get(), new AtomicInteger(0));
+                    atomicInteger = new AtomicInteger(0);
+                    map.put(first.get(), atomicInteger);
                 }
                 atomicInteger.getAndIncrement();
             } finally {

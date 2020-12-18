@@ -227,7 +227,6 @@ public class StockController {
     }
 
     @GetMapping(value = "/makeStatistics2")
-    @Async
     public List makeStatistics2() {
         SymbolList stockList = getStockList();
 
