@@ -6,7 +6,7 @@ public class SearchStockItem implements SearchItem<Stock> {
 
     private Stock stock;
 
-    SearchStockItem(Stock stock) {
+    public SearchStockItem(Stock stock) {
         this.stock = stock;
     }
 

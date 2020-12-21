@@ -69,7 +69,7 @@ public class EffectiveWordMatcher extends AbstractPrefixMatcher {
      *     [<"a","ab">, <"ab", "ab">, <"a", "ac">, <"ac", "ac">]
      */
     private List<Pair> strarr2pairs(List<SearchItem> list) {
-        List<Pair> pairs = new ArrayList<Pair>();
+        List<Pair> pairs = new LinkedList<>();
         for (SearchItem searchItem : list) {
             processOneItem(pairs, searchItem);
         }
@@ -83,12 +83,12 @@ public class EffectiveWordMatcher extends AbstractPrefixMatcher {
         }
     }
 
-    private void processOneWord(String keyword, List<Pair> pairs, SearchItem searchItem) {
+    protected void processOneWord(String keyword, List<Pair> pairs, SearchItem searchItem) {
         if (keyword == null) {
             return;
         }
         int keyWordLength = keyword.length();
-        for (int i = 1; i < keyWordLength; i++) {
+        for (int i = 1; i <= keyWordLength; i++) {
             String prefix = keyword.substring(0, i);
             Pair pair = new Pair(prefix, searchItem);
             pairs.add(pair);
@@ -145,15 +145,4 @@ public class EffectiveWordMatcher extends AbstractPrefixMatcher {
         }
         return dest;
     }
-
-    public static void main(String[] args) {
-        EffectiveWordMatcher wordMatcher = new EffectiveWordMatcher();
-        System.out.println(wordMatcher.obtainPrefixMatchers());
-        String[] prefixes = new String[]{"a", "b", "c", "d", "e", "f", "g", "i",
-                "l", "n", "p", "r", "s", "t", "v", "w", "do", "finally"};
-        for (String prefix : prefixes) {
-            System.out.println(wordMatcher.obtainMatchedWords(prefix));
-        }
-    }
-
 }

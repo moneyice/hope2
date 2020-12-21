@@ -7,10 +7,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dcf88ab8-24f8-4e63-84a9-94a270993007" name="Default Changelist" comment="double format">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="dcf88ab8-24f8-4e63-84a9-94a270993007" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/stock-service/src/test/java/com/qianyitian/hope2/stock/search/EffectiveWordMatcherTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/favoriteSymbols" beforeDir="false" afterPath="$PROJECT_DIR$/data/favoriteSymbols" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-service/src/main/java/com/qianyitian/hope2/stock/search/EffectiveWordMatcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/stock-service/src/main/java/com/qianyitian/hope2/stock/search/EffectiveWordMatcher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-service/src/main/java/com/qianyitian/hope2/stock/search/SearchStockItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/stock-service/src/main/java/com/qianyitian/hope2/stock/search/SearchStockItem.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,11 +21,11 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="JUnit5 Test Class" />
         <option value="Interface" />
         <option value="FxmlFile" />
         <option value="Enum" />
         <option value="Class" />
+        <option value="JUnit5 Test Class" />
       </list>
     </option>
   </component>
@@ -79,14 +80,12 @@
   </component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.RecentsKey">
+      <recent name="com.qianyitian.hope2.stock.search" />
       <recent name="autocomplete" />
       <recent name="com.qianyitian.hope2.spider.job" />
     </key>
     <key name="MoveMembersDialog.RECENTS_KEY">
       <recent name="com.qianyitian.hope2.stock.config.Constant" />
-    </key>
-    <key name="CreateTestDialog.Recents.Supers">
-      <recent name="" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.qianyitian.hope2.stock.model" />
@@ -94,6 +93,9 @@
       <recent name="com.qianyitian.hope2.stock.dao" />
       <recent name="com.qianyitian.hope2.spider.model" />
       <recent name="com.qianyitian.hope2.analyzer.config" />
+    </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\bing.a.qian\IdeaProjects\hope2\data" />
@@ -129,7 +131,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.SpiderApplication">
+  <component name="RunManager" selected="JUnit.EffectiveWordMatcherTest.processOneWord">
     <configuration name="ChineseCharToEn" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.qianyitian.hope2.stock.config.ChineseCharToEn" />
       <module name="stock-service" />
@@ -143,12 +145,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="EffectiveWordMatcher" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="autocomplete.EffectiveWordMatcher" />
-      <module name="analyzer-service" />
+    <configuration name="EffectiveWordMatcher (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.qianyitian.hope2.stock.search.EffectiveWordMatcher" />
+      <module name="stock-service" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="autocomplete.*" />
+          <option name="PATTERN" value="com.qianyitian.hope2.stock.search.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -182,15 +184,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -289,17 +289,17 @@
       <option name="uploadType" value="FILE" />
       <method v="2" />
     </configuration>
-    <configuration name="WebStockRetreiverTest.getAllStockSymbols" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="spider-service" />
+    <configuration name="EffectiveWordMatcherTest.processOneWord" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="stock-service" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.qianyitian.hope2.spider.job.*" />
+          <option name="PATTERN" value="com.qianyitian.hope2.stock.search.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.qianyitian.hope2.spider.job" />
-      <option name="MAIN_CLASS_NAME" value="com.qianyitian.hope2.spider.job.WebStockRetreiverTest" />
-      <option name="METHOD_NAME" value="getAllStockSymbols" />
+      <option name="PACKAGE_NAME" value="com.qianyitian.hope2.stock.search" />
+      <option name="MAIN_CLASS_NAME" value="com.qianyitian.hope2.stock.search.EffectiveWordMatcherTest" />
+      <option name="METHOD_NAME" value="processOneWord" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -328,11 +328,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.EffectiveWordMatcherTest.processOneWord" />
+        <item itemvalue="Application.EffectiveWordMatcher (1)" />
         <item itemvalue="Application.PostStartupDataLoader" />
         <item itemvalue="Application.ChineseCharToEn" />
         <item itemvalue="Application.SimpleWordMatcher" />
-        <item itemvalue="Application.EffectiveWordMatcher" />
-        <item itemvalue="JUnit.WebStockRetreiverTest.getAllStockSymbols" />
       </list>
     </recent_temporary>
   </component>
@@ -351,6 +351,7 @@
       <workItem from="1607839149657" duration="28642000" />
       <workItem from="1608014334463" duration="30460000" />
       <workItem from="1608101685763" duration="41082000" />
+      <workItem from="1608519165557" duration="2763000" />
     </task>
     <task id="LOCAL-00001" summary="first submit">
       <created>1608026900577</created>
@@ -534,7 +535,14 @@
       <option name="project" value="LOCAL" />
       <updated>1608309293979</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="double format">
+      <created>1608359299591</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1608359299591</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -600,10 +608,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="542" y="65" width="713" height="593" key="#xdebugger.evaluate/0.0.1536.824@0.0.1536.824" timestamp="1608308954215" />
-    <state x="393" y="0" key="CommitChangelistDialog2" timestamp="1608346050624">
+    <state x="393" y="0" key="CommitChangelistDialog2" timestamp="1608359292884">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="393" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1608346050624" />
+    <state x="393" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1608359292884" />
     <state x="94" y="94" width="1349" height="637" key="DiffContextDialog" timestamp="1608346038675">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -620,22 +628,22 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="641" y="311" width="496" height="203" key="Github.ShareDialog/0.0.1536.824@0.0.1536.824" timestamp="1608029042261" />
-    <state width="1493" height="131" key="GridCell.Tab.0.bottom" timestamp="1608309295473">
+    <state width="1493" height="250" key="GridCell.Tab.0.bottom" timestamp="1608540420420">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="131" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1608309295473" />
-    <state width="1493" height="131" key="GridCell.Tab.0.center" timestamp="1608309295472">
+    <state width="1493" height="250" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1608540420420" />
+    <state width="1493" height="250" key="GridCell.Tab.0.center" timestamp="1608540420420">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="131" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1608309295472" />
-    <state width="1493" height="131" key="GridCell.Tab.0.left" timestamp="1608309295472">
+    <state width="1493" height="250" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1608540420420" />
+    <state width="1493" height="250" key="GridCell.Tab.0.left" timestamp="1608540420420">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="131" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1608309295472" />
-    <state width="1493" height="131" key="GridCell.Tab.0.right" timestamp="1608309295473">
+    <state width="1493" height="250" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1608540420420" />
+    <state width="1493" height="250" key="GridCell.Tab.0.right" timestamp="1608540420420">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="131" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1608309295473" />
+    <state width="1493" height="250" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1608540420420" />
     <state width="1493" height="131" key="GridCell.Tab.1.bottom" timestamp="1608309295473">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -684,14 +692,14 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="250" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1608294171150" />
-    <state x="362" y="146" key="Vcs.Push.Dialog.v2" timestamp="1608309295435">
+    <state x="362" y="146" key="Vcs.Push.Dialog.v2" timestamp="1608359300927">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="362" y="146" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1608309295435" />
-    <state x="539" y="235" key="com.intellij.testIntegration.createTest.CreateTestDialog" timestamp="1608103922313">
+    <state x="362" y="146" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1608359300927" />
+    <state x="539" y="235" key="com.intellij.testIntegration.createTest.CreateTestDialog" timestamp="1608539789804">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="539" y="235" key="com.intellij.testIntegration.createTest.CreateTestDialog/0.0.1536.824@0.0.1536.824" timestamp="1608103922313" />
+    <state x="539" y="235" key="com.intellij.testIntegration.createTest.CreateTestDialog/0.0.1536.824@0.0.1536.824" timestamp="1608539789804" />
     <state x="500" y="171" key="extract.method.dialog" timestamp="1608280405956">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
