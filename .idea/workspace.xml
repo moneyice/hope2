@@ -8,10 +8,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dcf88ab8-24f8-4e63-84a9-94a270993007" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/stock-service/src/test/java/com/qianyitian/hope2/stock/search/EffectiveWordMatcherTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stock-service/src/main/java/com/qianyitian/hope2/stock/search/EffectiveWordMatcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/stock-service/src/main/java/com/qianyitian/hope2/stock/search/EffectiveWordMatcher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stock-service/src/main/java/com/qianyitian/hope2/stock/search/SearchStockItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/stock-service/src/main/java/com/qianyitian/hope2/stock/search/SearchStockItem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analyzer-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/analyzer-service/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analyzer-service/src/main/resources/static/increase-statistics.html" beforeDir="false" afterPath="$PROJECT_DIR$/analyzer-service/src/main/resources/static/increase-statistics.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-service/src/main/java/com/qianyitian/hope2/stock/controller/StockController.java" beforeDir="false" afterPath="$PROJECT_DIR$/stock-service/src/main/java/com/qianyitian/hope2/stock/controller/StockController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-service/src/main/java/com/qianyitian/hope2/stock/model/ChartItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/stock-service/src/main/java/com/qianyitian/hope2/stock/model/ChartItem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-service/src/main/java/com/qianyitian/hope2/stock/model/EIndex.java" beforeDir="false" afterPath="$PROJECT_DIR$/stock-service/src/main/java/com/qianyitian/hope2/stock/model/EIndex.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-service/src/main/java/com/qianyitian/hope2/stock/statistics/RangePercentageStatistics.java" beforeDir="false" afterPath="$PROJECT_DIR$/stock-service/src/main/java/com/qianyitian/hope2/stock/statistics/RangePercentageStatistics.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/stock-service/src/main/resources/application.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,7 +72,7 @@
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
     <property name="extract.method.default.visibility" value="private" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/target/stock-service-1.0.jar" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/analyzer-service/src/main/resources" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
@@ -98,11 +102,11 @@
       <recent name="" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\bing.a.qian\IdeaProjects\hope2\analyzer-service\src\main\resources" />
       <recent name="C:\Users\bing.a.qian\IdeaProjects\hope2\data" />
       <recent name="C:\Users\bing.a.qian\IdeaProjects\hope2\spider-service\data" />
       <recent name="C:\Users\bing.a.qian\IdeaProjects\hope2\stock-service\src\main\java\com\qianyitian\hope2\stock\search" />
       <recent name="C:\Users\bing.a.qian\IdeaProjects\hope2\analyzer-service\src\main\java" />
-      <recent name="C:\Users\bing.a.qian\IdeaProjects\hope2\analyzer-service\src\main\resources" />
     </key>
   </component>
   <component name="RestClientSettings">
@@ -131,7 +135,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.EffectiveWordMatcherTest.processOneWord">
+  <component name="RunManager" selected="Spring Boot.AnalyzerApplication">
     <configuration name="ChineseCharToEn" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.qianyitian.hope2.stock.config.ChineseCharToEn" />
       <module name="stock-service" />
@@ -351,7 +355,7 @@
       <workItem from="1607839149657" duration="28642000" />
       <workItem from="1608014334463" duration="30460000" />
       <workItem from="1608101685763" duration="41082000" />
-      <workItem from="1608519165557" duration="2763000" />
+      <workItem from="1608519165557" duration="15367000" />
     </task>
     <task id="LOCAL-00001" summary="first submit">
       <created>1608026900577</created>
@@ -542,7 +546,21 @@
       <option name="project" value="LOCAL" />
       <updated>1608359299591</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="double format">
+      <created>1608540482648</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1608540482648</updated>
+    </task>
+    <task id="LOCAL-00029" summary="add pie chart">
+      <created>1608609849308</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1608609849308</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -569,17 +587,18 @@
     <MESSAGE value="NPE" />
     <MESSAGE value="readme" />
     <MESSAGE value="double format" />
-    <option name="LAST_COMMIT_MESSAGE" value="double format" />
+    <MESSAGE value="add pie chart" />
+    <option name="LAST_COMMIT_MESSAGE" value="add pie chart" />
   </component>
   <component name="WindowStateProjectService">
     <state x="250" y="0" key="#Project_Structure" timestamp="1608174227600">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="250" y="0" key="#Project_Structure/0.0.1536.824@0.0.1536.824" timestamp="1608174227600" />
-    <state x="575" y="119" key="#com.intellij.ide.util.MemberChooser" timestamp="1608303100193">
+    <state x="575" y="119" key="#com.intellij.ide.util.MemberChooser" timestamp="1608621440329">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="575" y="119" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1608303100193" />
+    <state x="575" y="119" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1608621440329" />
     <state x="499" y="203" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1608038679230">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -600,22 +619,22 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="332" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1536.824@0.0.1536.824" timestamp="1608039756359" />
-    <state x="500" y="160" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1607847246923">
+    <state x="500" y="160" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1608621459429">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="500" y="160" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824@0.0.1536.824" timestamp="1607847246923" />
+    <state x="500" y="160" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824@0.0.1536.824" timestamp="1608621459429" />
     <state x="542" y="65" width="713" height="593" key="#xdebugger.evaluate" timestamp="1608308954215">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="542" y="65" width="713" height="593" key="#xdebugger.evaluate/0.0.1536.824@0.0.1536.824" timestamp="1608308954215" />
-    <state x="393" y="0" key="CommitChangelistDialog2" timestamp="1608359292884">
+    <state x="393" y="0" key="CommitChangelistDialog2" timestamp="1608609846214">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="393" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1608359292884" />
-    <state x="94" y="94" width="1349" height="637" key="DiffContextDialog" timestamp="1608346038675">
+    <state x="393" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1608609846214" />
+    <state x="94" y="94" width="1349" height="637" key="DiffContextDialog" timestamp="1608609026513">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="94" y="94" width="1349" height="637" key="DiffContextDialog/0.0.1536.824@0.0.1536.824" timestamp="1608346038675" />
+    <state x="94" y="94" width="1349" height="637" key="DiffContextDialog/0.0.1536.824@0.0.1536.824" timestamp="1608609026513" />
     <state x="550" y="122" key="FileChooserDialogImpl" timestamp="1608176866119">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -628,54 +647,54 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="641" y="311" width="496" height="203" key="Github.ShareDialog/0.0.1536.824@0.0.1536.824" timestamp="1608029042261" />
-    <state width="1493" height="250" key="GridCell.Tab.0.bottom" timestamp="1608540420420">
+    <state width="1493" height="156" key="GridCell.Tab.0.bottom" timestamp="1608623411148">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="250" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1608540420420" />
-    <state width="1493" height="250" key="GridCell.Tab.0.center" timestamp="1608540420420">
+    <state width="1493" height="156" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1608623411148" />
+    <state width="1493" height="156" key="GridCell.Tab.0.center" timestamp="1608623411148">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="250" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1608540420420" />
-    <state width="1493" height="250" key="GridCell.Tab.0.left" timestamp="1608540420420">
+    <state width="1493" height="156" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1608623411148" />
+    <state width="1493" height="156" key="GridCell.Tab.0.left" timestamp="1608623411147">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="250" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1608540420420" />
-    <state width="1493" height="250" key="GridCell.Tab.0.right" timestamp="1608540420420">
+    <state width="1493" height="156" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1608623411147" />
+    <state width="1493" height="156" key="GridCell.Tab.0.right" timestamp="1608623411148">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="250" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1608540420420" />
-    <state width="1493" height="131" key="GridCell.Tab.1.bottom" timestamp="1608309295473">
+    <state width="1493" height="156" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1608623411148" />
+    <state width="1493" height="156" key="GridCell.Tab.1.bottom" timestamp="1608623410988">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="131" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1608309295473" />
-    <state width="1493" height="131" key="GridCell.Tab.1.center" timestamp="1608309295473">
+    <state width="1493" height="156" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1608623410988" />
+    <state width="1493" height="156" key="GridCell.Tab.1.center" timestamp="1608623410987">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="131" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1608309295473" />
-    <state width="1493" height="131" key="GridCell.Tab.1.left" timestamp="1608309295473">
+    <state width="1493" height="156" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1608623410987" />
+    <state width="1493" height="156" key="GridCell.Tab.1.left" timestamp="1608623410987">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="131" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1608309295473" />
-    <state width="1493" height="131" key="GridCell.Tab.1.right" timestamp="1608309295473">
+    <state width="1493" height="156" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1608623410987" />
+    <state width="1493" height="156" key="GridCell.Tab.1.right" timestamp="1608623410987">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="131" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1608309295473" />
-    <state width="1493" height="131" key="GridCell.Tab.2.bottom" timestamp="1608309295473">
+    <state width="1493" height="156" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1608623410987" />
+    <state width="1493" height="156" key="GridCell.Tab.2.bottom" timestamp="1608623410988">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="131" key="GridCell.Tab.2.bottom/0.0.1536.824@0.0.1536.824" timestamp="1608309295473" />
-    <state width="1493" height="131" key="GridCell.Tab.2.center" timestamp="1608309295473">
+    <state width="1493" height="156" key="GridCell.Tab.2.bottom/0.0.1536.824@0.0.1536.824" timestamp="1608623410988" />
+    <state width="1493" height="156" key="GridCell.Tab.2.center" timestamp="1608623410988">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="131" key="GridCell.Tab.2.center/0.0.1536.824@0.0.1536.824" timestamp="1608309295473" />
-    <state width="1493" height="131" key="GridCell.Tab.2.left" timestamp="1608309295473">
+    <state width="1493" height="156" key="GridCell.Tab.2.center/0.0.1536.824@0.0.1536.824" timestamp="1608623410988" />
+    <state width="1493" height="156" key="GridCell.Tab.2.left" timestamp="1608623410988">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="131" key="GridCell.Tab.2.left/0.0.1536.824@0.0.1536.824" timestamp="1608309295473" />
-    <state width="1493" height="131" key="GridCell.Tab.2.right" timestamp="1608309295473">
+    <state width="1493" height="156" key="GridCell.Tab.2.left/0.0.1536.824@0.0.1536.824" timestamp="1608623410988" />
+    <state width="1493" height="156" key="GridCell.Tab.2.right" timestamp="1608623410988">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="131" key="GridCell.Tab.2.right/0.0.1536.824@0.0.1536.824" timestamp="1608309295473" />
+    <state width="1493" height="156" key="GridCell.Tab.2.right/0.0.1536.824@0.0.1536.824" timestamp="1608623410988" />
     <state x="300" y="68" key="Maven.ArtifactSearchDialog" timestamp="1607840965842">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -688,14 +707,18 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="485" y="115" key="RollbackChangesDialog/0.0.1536.824@0.0.1536.824" timestamp="1608083244034" />
-    <state x="250" y="0" key="SettingsEditor" timestamp="1608294171150">
+    <state x="250" y="0" key="SettingsEditor" timestamp="1608621341087">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="250" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1608294171150" />
-    <state x="362" y="146" key="Vcs.Push.Dialog.v2" timestamp="1608359300927">
+    <state x="250" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1608621341087" />
+    <state x="362" y="146" key="Vcs.Push.Dialog.v2" timestamp="1608609850651">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="362" y="146" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1608359300927" />
+    <state x="362" y="146" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1608609850651" />
+    <state x="94" y="94" width="1349" height="637" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog" timestamp="1608609026513">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="94" y="94" width="1349" height="637" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog/0.0.1536.824@0.0.1536.824" timestamp="1608609026513" />
     <state x="539" y="235" key="com.intellij.testIntegration.createTest.CreateTestDialog" timestamp="1608539789804">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

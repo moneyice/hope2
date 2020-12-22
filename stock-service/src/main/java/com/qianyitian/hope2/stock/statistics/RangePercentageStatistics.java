@@ -80,7 +80,7 @@ public class RangePercentageStatistics {
 
     public List<ChartItem> getResult() {
         List<ChartItem> list = Arrays.stream(ERangePercentage.values()).map(eRangePercentage -> {
-            ChartItem chartItem = new ChartItem();
+            ChartItem<Integer> chartItem = new ChartItem();
             chartItem.setName(eRangePercentage.label);
             AtomicInteger count = map.get(eRangePercentage);
             if (count == null) {

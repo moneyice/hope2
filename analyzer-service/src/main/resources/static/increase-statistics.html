@@ -1,4 +1,6 @@
-<!DOCTYPE html><html><head>
+<!DOCTYPE html>
+<html>
+<head>
     <meta charset="utf-8">
     <!--<link rel="icon" href="https://static.jianshukeji.com/highcharts/images/favicon.ico">-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -12,18 +14,25 @@
 </head>
 <body>
 
-<div id="container" style="min-width:400px;height:400px"></div>
+<div id="columnContainer" style="max-width:450px;height:400px"></div>
+
+<br/><br/>
+<br/><br/>
+
+<div id="pieContainer" style="max-width:600px;height:600px"></div>
+
 <div class="message">
-    说明。</div>
+
+</div>
 <script>
-    $(document).ready(function() {
-        var options = {
+    $(document).ready(function () {
+        var optionsPie = {
             chart: {
-                renderTo: 'container',
+                renderTo: 'pieContainer',
                 type: 'pie'
             },
             title: {
-                text: '涨幅情况汇总',
+                text: '个股涨幅情况汇总',
             },
             tooltip: {
                 pointFormat: '{point.y}个，占比 {point.percentage:.1f} %'
@@ -45,14 +54,68 @@
             },
             series: [
                 {
-                    name:'涨幅区间',
+                    name: '涨幅区间',
                     colorByPoint: true
                 }]
         };
 
-        $.getJSON('statistics/increaseRangeStatistics', function(data) {
-            options.series[0].data = data.chart;
-            var chart = new Highcharts.Chart(options);
+        var optionsColumn = {
+            chart: {
+                renderTo: 'columnContainer',
+                type: 'column'
+            },
+            title: {
+                text: '主要指数最近一年涨幅'
+            },
+            subtitle: {
+                text: ''
+            },
+            xAxis: {
+                type: 'category',
+                labels: {
+                    rotation: 0,
+                    style: {
+                        fontSize: '13px',
+                        fontFamily: 'Verdana, sans-serif'
+                    }
+                }
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: '涨幅'
+                }
+            },
+            legend: {
+                enabled: false
+            },
+            tooltip: {
+                pointFormat: '涨幅 <b>{point.y:.1f}%</b>'
+            },
+            series: [{
+                name: 'indexIncrease',
+                dataLabels: {
+                    enabled: true,
+                    rotation: -90,
+                    color: '#FFFFFF',
+                    align: 'right',
+                    format: '{point.y:.1f} %', // one decimal
+                    y: 10, // 10 pixels down from the top
+                    style: {
+                        fontSize: '13px',
+                        fontFamily: 'Verdana, sans-serif'
+                    }
+                }
+            }]
+        };
+
+
+        $.getJSON('statistics/increaseRangeStatistics', function (data) {
+            optionsColumn.series[0].data = data.indexChart;
+            optionsPie.series[0].data = data.stockChart;
+            var chart1 = new Highcharts.Chart(optionsColumn);
+            var chart2 = new Highcharts.Chart(optionsPie);
+
         });
     });
 </script>

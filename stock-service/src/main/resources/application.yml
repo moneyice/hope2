@@ -46,4 +46,4 @@ hope2:
     stock: http://127.0.0.1:8002
     analyzer: http://127.0.0.1:8003
   data:
-    path: ./data
+    path: ./target/data

@@ -19,6 +19,7 @@ import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 @RestController
@@ -234,10 +235,14 @@ public class StockController {
             rangePercentageStatistics.makeStatistics(stock);
         });
         List<ChartItem> chartItemList = rangePercentageStatistics.getResult();
+
+
         Map map = new HashMap();
-        map.put("chart", chartItemList);
+        map.put("stockChart", chartItemList);
         map.put("newStock", rangePercentageStatistics.getNewStockCount());
 
+
+        List<ChartItem> indexChartList = new LinkedList<>();
         Arrays.stream(EIndex.values()).forEach(eIndex -> {
             Stock stock = stockDAO.getStock("i" + eIndex.getCode());
             if (stock == null) {
@@ -248,9 +253,12 @@ public class StockController {
 
             double range = KUtils.calcIncreaseRange(base.getClose(), now.getClose()) * 100;
             BigDecimal bg = new BigDecimal(range);
-            String s = bg.setScale(2, BigDecimal.ROUND_HALF_UP).toString();
-            map.put(eIndex.getName(), s + "%");
+            ChartItem<Double> ct = new ChartItem();
+            ct.setName(eIndex.getName());
+            ct.setY(bg.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue());
+            indexChartList.add(ct);
         });
+        map.put("indexChart", indexChartList);
         String s = JSON.toJSONString(map);
         stockDAO.storeStatistics("increaseRangeStatistics", s);
         return s;

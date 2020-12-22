@@ -1,8 +1,8 @@
 package com.qianyitian.hope2.stock.model;
 
-public class ChartItem {
+public class ChartItem<T> {
     String name;
-    Integer y;
+    T y;
 
     public String getName() {
         return name;
@@ -12,11 +12,11 @@ public class ChartItem {
         this.name = name;
     }
 
-    public Integer getY() {
+    public T getY() {
         return y;
     }
 
-    public void setY(Integer y) {
+    public void setY(T y) {
         this.y = y;
     }
 }
