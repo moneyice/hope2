@@ -1,0 +1,90 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Highstock Example</title>
+
+		<style type="text/css">
+
+		</style>
+	</head>
+	<body>
+
+<script src="https://img.hcharts.cn/jquery/jquery-1.8.3.min.js"></script>
+<script src="https://code.highcharts.com.cn/highstock/8.2.2/highstock.js"></script>
+<script src="https://code.highcharts.com.cn/highstock/8.2.2/modules/exporting.js"></script>
+<script src="https://code.highcharts.com.cn/highstock/8.2.2/modules/data.js"></script>
+
+<div id="container" style="height: 400px"></div>
+		<script type="text/javascript">
+
+		//https://cdn.jsdelivr.net/gh/highcharts/highcharts@v7.0.0/samples/data/usdeur.json
+
+Highcharts.getJSON('http://127.0.0.1:8003/data/kline/date/000333', function (data) {
+    var year = new Date(data[data.length - 1][0]).getFullYear(); // Get year of last data point
+
+    // Create the chart
+    Highcharts.stockChart('container', {
+        rangeSelector: {
+            selected: 4
+        },
+        title: {
+            text: 'Stock info'
+        },
+        yAxis: {
+            title: {
+                text: 'Price'
+            }
+        },
+
+        series: [{
+            name: '收盘价',
+            data: data,
+            id: 'dataseries',
+            tooltip: {
+                valueDecimals: 2
+            }
+        }, {
+            type: 'flags',
+            data: [{
+                x: 1588262400000,
+                title: 'B',
+                text: 'Shape: "circlepin"'
+            }, {
+                x: 1591027200000,
+                title: 'B',
+                text: 'Shape: "circlepin"'
+            }],
+			onSeries: 'dataseries',
+            shape: 'circlepin',
+            width: 16
+        }, {
+            type: 'flags',
+            data: [{
+                x: Date.UTC(year, 2, 10),
+                title: 'C',
+                text: 'Shape: "flag"'
+            }, {
+                x: Date.UTC(year, 3, 11),
+                title: 'C',
+                text: 'Shape: "flag"'
+            }],
+            color: Highcharts.getOptions().colors[0], // same as onSeries
+            fillColor: Highcharts.getOptions().colors[0],
+            onSeries: 'dataseries',
+            width: 26,
+            style: { // text style
+                color: 'white'
+            },
+            states: {
+                hover: {
+                    fillColor: '#395c84' // darker
+                }
+            }
+        }]
+    });
+});
+		</script>
+	</body>
+</html>

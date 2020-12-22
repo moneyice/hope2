@@ -7,6 +7,8 @@ import com.qianyitian.hope2.analyzer.analyzer.IStockAnalyzer;
 import com.qianyitian.hope2.analyzer.analyzer.StockAnalyzerFacotry;
 import com.qianyitian.hope2.analyzer.config.Constant;
 import com.qianyitian.hope2.analyzer.model.AnalyzeResult;
+import com.qianyitian.hope2.analyzer.model.KLineInfo;
+import com.qianyitian.hope2.analyzer.model.Stock;
 import com.qianyitian.hope2.analyzer.service.IReportStorageService;
 import com.qianyitian.hope2.analyzer.service.MyFavoriteStockService;
 import com.qianyitian.hope2.analyzer.service.StockSelecter;
@@ -19,6 +21,9 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 @RestController
 public class AnalysisController {
@@ -137,4 +142,22 @@ public class AnalysisController {
         String filename = "increaseRangeStatistics";
         return reportService.getStatistics(filename);
     }
+
+
+    @RequestMapping(value = "/data/kline/date/{code}", method = RequestMethod.GET)
+    public String increaseRangeStatistics(@PathVariable String code) {
+        Stock stockDaily = stockService.getStockDaily(code);
+        List<KLineInfo> kLineInfos = stockDaily.getkLineInfos();
+
+        List<Number[]> data = new LinkedList<>();
+        for (KLineInfo kLineInfo : kLineInfos) {
+            long dateMilliSeconds = Constant.ONE_DAY_MILLISECONDS * kLineInfo.getDate().toEpochDay();
+            double close = kLineInfo.getClose();
+            Number[] row = new Number[]{dateMilliSeconds, close};
+            data.add(row);
+        }
+        String s = JSON.toJSONString(data);
+        return s;
+    }
+
 }
