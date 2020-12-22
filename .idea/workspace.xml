@@ -7,7 +7,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dcf88ab8-24f8-4e63-84a9-94a270993007" name="Default Changelist" comment="" />
+    <list default="true" id="dcf88ab8-24f8-4e63-84a9-94a270993007" name="Default Changelist" comment="add pie chart">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analyzer-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/analyzer-service/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/stock-service/src/main/resources/application.yml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -346,7 +350,7 @@
       <workItem from="1607839149657" duration="28642000" />
       <workItem from="1608014334463" duration="30460000" />
       <workItem from="1608101685763" duration="41082000" />
-      <workItem from="1608519165557" duration="15683000" />
+      <workItem from="1608519165557" duration="17736000" />
     </task>
     <task id="LOCAL-00001" summary="first submit">
       <created>1608026900577</created>
@@ -558,7 +562,14 @@
       <option name="project" value="LOCAL" />
       <updated>1608623633941</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="add pie chart">
+      <created>1608623862308</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1608623862308</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -625,10 +636,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="542" y="65" width="713" height="593" key="#xdebugger.evaluate/0.0.1536.824@0.0.1536.824" timestamp="1608308954215" />
-    <state x="393" y="0" key="CommitChangelistDialog2" timestamp="1608623627073">
+    <state x="393" y="0" key="CommitChangelistDialog2" timestamp="1608640862889">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="393" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1608623627073" />
+    <state x="393" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1608640862889" />
     <state x="94" y="94" width="1349" height="637" key="DiffContextDialog" timestamp="1608609026513">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -709,10 +720,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="250" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1608621341087" />
-    <state x="362" y="146" key="Vcs.Push.Dialog.v2" timestamp="1608623635741">
+    <state x="362" y="146" key="Vcs.Push.Dialog.v2" timestamp="1608640713051">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="362" y="146" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1608623635741" />
+    <state x="362" y="146" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1608640713051" />
     <state x="94" y="94" width="1349" height="637" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog" timestamp="1608609026513">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
