@@ -7,7 +7,9 @@ import com.qianyitian.hope2.analyzer.model.Stock;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 //1、Buy-Setup：买入结构的条件是连续9T或以上的收盘价低于先前第4个T的收盘价，视为一个完整的买入结构。
 //（注：这里的限定条件是“连续”9T或以上，期间不能中断）
@@ -38,7 +40,7 @@ public class DemarkAnalyzer extends AbstractStockAnalyzer {
     public boolean analyze(ResultInfo resultInfo, Stock stock) {
         boolean ok = false;
         setupReady = false;
-        selectList = new ArrayList<DemarkSelect>();
+        selectList = new LinkedList<>();
         setStock(stock);
 
         List<KLineInfo> infos = stock.getkLineInfos();
@@ -77,11 +79,15 @@ public class DemarkAnalyzer extends AbstractStockAnalyzer {
         }
 
         filter(selectList);
-        String msg = format(selectList, getStock());
+        String msg = format(selectList);
         if (msg != null) {
             resultInfo.appendMessage(msg);
             ok = true;
         }
+        List<String> collect = selectList.parallelStream().map(select -> {
+            return select.getCountDownPoint().getDate().toString();
+        }).collect(Collectors.toList());
+        resultInfo.setBuyPositions(collect);
         return ok;
     }
 
@@ -135,7 +141,7 @@ public class DemarkAnalyzer extends AbstractStockAnalyzer {
         return "Demark 指标\n" + des;
     }
 
-    public String format(List<DemarkSelect> selectList, Stock stock) {
+    public String format(List<DemarkSelect> selectList) {
         if (selectList.isEmpty()) {
             return null;
         }

@@ -228,6 +228,9 @@ public class StockController {
 
         stockList.getSymbols().parallelStream().forEach(item -> {
             Stock stock = getStock(item.getCode());
+            if (stock == null) {
+                return;
+            }
             rangePercentageStatistics.makeStatistics(stock);
         });
         List<ChartItem> chartItemList = rangePercentageStatistics.getResult();
@@ -237,6 +240,9 @@ public class StockController {
 
         Arrays.stream(EIndex.values()).forEach(eIndex -> {
             Stock stock = stockDAO.getStock("i" + eIndex.getCode());
+            if (stock == null) {
+                return;
+            }
             KLineInfo now = KUtils.findKLine(stock.getkLineInfos(), 0);
             KLineInfo base = KUtils.findKLine(stock.getkLineInfos(), RangePercentageStatistics.days2Now);
 

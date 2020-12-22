@@ -1,22 +1,22 @@
 package com.qianyitian.hope2.stock.model;
 
 public class ChartItem {
-    String label;
-    Integer count;
+    String name;
+    Integer y;
 
-    public String getLabel() {
-        return label;
+    public String getName() {
+        return name;
     }
 
-    public void setLabel(String label) {
-        this.label = label;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public Integer getCount() {
-        return count;
+    public Integer getY() {
+        return y;
     }
 
-    public void setCount(Integer count) {
-        this.count = count;
+    public void setY(Integer y) {
+        this.y = y;
     }
 }

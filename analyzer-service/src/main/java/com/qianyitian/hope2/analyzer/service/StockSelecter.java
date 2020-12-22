@@ -86,7 +86,8 @@ public class StockSelecter {
 
     private ResultInfo analyze(Stock stock) {
         ResultInfo resultInfo = new ResultInfo();
-        resultInfo.appendMessage(stock.getCode() + " " + stock.getName());
+        resultInfo.setCode(stock.getCode());
+        resultInfo.setName(stock.getName());
         for (IStockAnalyzer analyzer : analyzers) {
             try {
                 if (!analyzer.analyze(resultInfo, stock)) {
