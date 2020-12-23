@@ -105,6 +105,25 @@ public class StockSelecter {
         return resultInfo;
     }
 
+    public ResultInfo analyze(IStockAnalyzer analyzer, Stock stock) {
+        ResultInfo resultInfo = new ResultInfo();
+        resultInfo.setCode(stock.getCode());
+        resultInfo.setName(stock.getName());
+
+        try {
+            if (!analyzer.analyze(resultInfo, stock)) {
+                resultInfo = null;
+                return resultInfo;
+            }
+        } catch (Exception e) {
+            logger.error("analyzer " + analyzer.getClass().getName() + " stock " + stock.getCode(), e);
+        }
+
+        //get stock url
+        //http://quotes.money.163.com/0601899.html
+        resultInfo.setUrl(Utils.convert163StockURL(stock.getCode()));
+        return resultInfo;
+    }
 
 
     private SymbolList getAllSymbols() {

@@ -2,6 +2,7 @@ package com.qianyitian.hope2.analyzer.model;
 
 import org.springframework.util.StringUtils;
 
+import java.time.LocalDate;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,16 +12,25 @@ public class ResultInfo {
     String name;
     String msg = "";
     String url;
-    List<String> buyPositions = null;
+    List<LocalDate> buyPositions = null;
 
-    public List<String> getBuyPositions() {
+    public String getComments() {
+        return comments;
+    }
+
+    public void setComments(String comments) {
+        this.comments = comments;
+    }
+
+    String comments=null;
+
+    public List<LocalDate> getBuyPositions() {
         return buyPositions;
     }
 
-    public void setBuyPositions(List<String> buyPositions) {
+    public void setBuyPositions(List<LocalDate> buyPositions) {
         this.buyPositions = buyPositions;
     }
-
 
 
     public void setMsg(String msg) {
@@ -54,7 +64,6 @@ public class ResultInfo {
     public String getMsg() {
         return msg;
     }
-
 
 
     public void appendMessage(String msg) {

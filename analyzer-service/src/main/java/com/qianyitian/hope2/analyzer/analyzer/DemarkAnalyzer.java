@@ -5,6 +5,7 @@ import com.qianyitian.hope2.analyzer.model.KLineInfo;
 import com.qianyitian.hope2.analyzer.model.ResultInfo;
 import com.qianyitian.hope2.analyzer.model.Stock;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -84,10 +85,11 @@ public class DemarkAnalyzer extends AbstractStockAnalyzer {
             resultInfo.appendMessage(msg);
             ok = true;
         }
-        List<String> collect = selectList.parallelStream().map(select -> {
-            return select.getCountDownPoint().getDate().toString();
+        List<LocalDate> collect = selectList.parallelStream().map(select -> {
+            return select.getCountDownPoint().getDate();
         }).collect(Collectors.toList());
         resultInfo.setBuyPositions(collect);
+        resultInfo.setComments("http://hope2.qianyitian.com:8003/demark-flag.html?code=" + stock.getCode());
         return ok;
     }
 

@@ -8,6 +8,7 @@ import com.qianyitian.hope2.analyzer.analyzer.StockAnalyzerFacotry;
 import com.qianyitian.hope2.analyzer.config.Constant;
 import com.qianyitian.hope2.analyzer.model.AnalyzeResult;
 import com.qianyitian.hope2.analyzer.model.KLineInfo;
+import com.qianyitian.hope2.analyzer.model.ResultInfo;
 import com.qianyitian.hope2.analyzer.model.Stock;
 import com.qianyitian.hope2.analyzer.service.IReportStorageService;
 import com.qianyitian.hope2.analyzer.service.MyFavoriteStockService;
@@ -21,9 +22,8 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @RestController
 public class AnalysisController {
@@ -134,6 +134,52 @@ public class AnalysisController {
         hs.startAnalyze(Constant.TYPE_DAILY);
         AnalyzeResult result = hs.getAnalyzeResult();
         String content = JSON.toJSONString(result);
+        return content;
+    }
+
+    @RequestMapping("/demark-backtrack/{code}")
+    public String demarkBacktrack(@PathVariable String code, @RequestParam(value = "days2Now", required = false) Integer days2Now) {
+        DemarkAnalyzer stockAnalyzer = (DemarkAnalyzer) stockAnalyzerFacotry.getStockAnalyzer(EStockAnalyzer.Demark);
+        if (days2Now != null) {
+            stockAnalyzer.setDaysToNow(days2Now);
+        }else{
+            stockAnalyzer.setDaysToNow(300);
+        }
+        Stock stock = stockService.getStockDaily(code);
+        StockSelecter hs = new StockSelecter(null);
+        ResultInfo resultInfo = hs.analyze(stockAnalyzer, stock);
+
+        Map<String, List> map = new HashMap<>();
+        {
+            //制作K线数据
+            List<KLineInfo> kLineInfos = stock.getkLineInfos();
+            List<Number[]> kData = new LinkedList<>();
+            for (KLineInfo kLineInfo : kLineInfos) {
+                long dateMilliSeconds = Constant.ONE_DAY_MILLISECONDS * kLineInfo.getDate().toEpochDay();
+                double close = kLineInfo.getClose();
+                Number[] row = new Number[]{dateMilliSeconds, close};
+                kData.add(row);
+            }
+            map.put("k", kData);
+        }
+        {
+            //制作flag
+            List<LocalDate> buyPositions = resultInfo.getBuyPositions();
+            List<Long> buyList = buyPositions.parallelStream().map(date -> {
+                long dateMilliSeconds = Constant.ONE_DAY_MILLISECONDS * date.toEpochDay();
+                return dateMilliSeconds;
+            }).collect(Collectors.toList());
+            map.put("flag", buyList);
+        }
+        {
+            //备份 flag
+            List<LocalDate> buyPositions = resultInfo.getBuyPositions();
+            List<String> buyList = buyPositions.parallelStream().map(date -> {
+                return date.toString();
+            }).collect(Collectors.toList());
+            map.put("flagDateString", buyList);
+        }
+        String content = JSON.toJSONString(map);
         return content;
     }
 
