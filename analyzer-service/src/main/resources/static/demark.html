@@ -2,75 +2,86 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <!--<link rel="icon" href="https://static.jianshukeji.com/highcharts/images/favicon.ico">-->
+    <link rel="icon" href="https://static.jianshukeji.com/highcharts/images/favicon.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <title>DeMark策略结果列表</title>
-    <link rel="shortcut icon" type="image/png" href="/media/images/favicon.png">
     <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="http://www.datatables.net/rss.xml">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css">
-    <script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
-</head>
-<body>
-<script type="text/javascript">
-    $(document).ready(function () {
-        $.getJSON('/demark?days2Now=500', function (data) {
-            $('#stockTable').DataTable({
-                data: data.resultList,
-                columns: [
-                    {
-                        data: 'code',
-                        render: function(data, type, row, meta) {
-                            return type === 'display' ?
-                                '<a href="' + row.url + '">'+data+'</href>' :
-                                data;
-                        }
-                    },
-                    {data: 'name'},
-                    {
-                        data: 'buyPositions',
-                        render: function(data, type, row, meta) {
-                            return data[data.length-1];
-                        }
+    <script type="text/javascript" language="javascript"
+            src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" language="javascript"
+            src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $.getJSON('/demark?days2Now=500', function (data) {
+                $("#description").html(data.description);
+                $('#stockTable').DataTable({
+                    data: data.resultList,
+                    columns: [
+                        {
+                            data: 'code',
+                            render: function (data, type, row, meta) {
+                                return type === 'display' ?
+                                    `<a href="${row.url}" target="_blank">${data}</a>` :
+                                    // '<a href="' + row.url + '">'+data+'</a>' :
+                                    data;
+                            }
+                        },
+                        {data: 'name'},
+                        {
+                            data: 'buyPositions',
+                            render: function (data, type, row, meta) {
+                                return data[data.length - 1];
+                            }
 
-                    },
-                    {
-                        data: 'code',
-                        render: function(data, type, row, meta) {
-                            return type === 'display' ?
-                                '<a href="/demark-flag.html?code='+ row.code + '">开始回溯</href>' :
-                                data;
+                        },
+                        {
+                            data: 'code',
+                            render: function (data, type, row, meta) {
+                                var code = row.code;
+                                return type === 'display' ?
+                                    `<a href="/demark-flag.html?code=${code}" target="_blank">图形版</a>` + '&nbsp;&nbsp;&nbsp;&nbsp;    ' +
+                                    `<a href="/demark-backtrack/${code}" target="_blank">数据版</a>` :
+                                    data;
+                            }
                         }
-                    }
-                ]
+                    ]
+                });
             });
         });
-    });
-</script>
-
-<h1>关注列表</h1>
-
+    </script>
+</head>
+<body>
 <div class="content" style="max-width:800px;height:400px">
-    <table id="stockTable" class="display compact" style="width:100%">
-        <thead>
-        <tr>
-            <th>代码</th>
-            <th>名称</th>
-            <th>最近的买点</th>
-            <th></th>
-        </tr>
-        </thead>
+    <h1 class="page_title">DeMark指标</h1>
+    <div class="info">
+        <p id="description"></p>
+    </div>
+    <p ></p>
+    <p ></p>
+    <p ></p>
+    <div>
+        <table id="stockTable" class="display compact" style="width:100%">
+            <thead>
+            <tr>
+                <th>代码</th>
+                <th>名称</th>
+                <th>最近的买点</th>
+                <th>历史回溯</th>
+            </tr>
+            </thead>
 
-        <tfoot>
-        <tr>
-            <th>代码</th>
-            <th>名称</th>
-            <th>最近的买点</th>
-            <th></th>
-        </tr>
-        </tfoot>
-    </table>
+            <tfoot>
+            <tr>
+                <th>代码</th>
+                <th>名称</th>
+                <th>最近的买点</th>
+                <th>历史回溯</th>
+            </tr>
+            </tfoot>
+        </table>
+    </div>
 </div>
 </body>
 </html>
