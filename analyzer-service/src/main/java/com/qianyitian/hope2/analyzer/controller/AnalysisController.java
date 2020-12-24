@@ -124,6 +124,7 @@ public class AnalysisController {
 
 
     @RequestMapping("/demark")
+    @CrossOrigin
     public String demark(@RequestParam(value = "days2Now", required = false) Integer days2Now) {
         DemarkAnalyzer stockAnalyzer = (DemarkAnalyzer) stockAnalyzerFacotry.getStockAnalyzer(EStockAnalyzer.Demark);
         if (days2Now != null) {
@@ -142,14 +143,16 @@ public class AnalysisController {
         DemarkAnalyzer stockAnalyzer = (DemarkAnalyzer) stockAnalyzerFacotry.getStockAnalyzer(EStockAnalyzer.Demark);
         if (days2Now != null) {
             stockAnalyzer.setDaysToNow(days2Now);
-        }else{
+        } else {
             stockAnalyzer.setDaysToNow(300);
         }
         Stock stock = stockService.getStockDaily(code);
         StockSelecter hs = new StockSelecter(null);
         ResultInfo resultInfo = hs.analyze(stockAnalyzer, stock);
 
-        Map<String, List> map = new HashMap<>();
+        Map<String, Object> map = new HashMap<>();
+        map.put("code", stock.getCode());
+        map.put("name", stock.getName());
         {
             //制作K线数据
             List<KLineInfo> kLineInfos = stock.getkLineInfos();
