@@ -80,8 +80,9 @@ public class StockSelecter {
         if (list.isEmpty()) {
             return true;
         }
-        KLineInfo lastOne = stock.getkLineInfos().get(list.size() - 1);
-        return lastOne.getDate().plusDays(5).isBefore(LocalDate.now());
+        return false;
+//        KLineInfo lastOne = stock.getkLineInfos().get(list.size() - 1);
+//        return lastOne.getDate().plusDays(5).isBefore(LocalDate.now());
     }
 
     private ResultInfo analyze(Stock stock) {
