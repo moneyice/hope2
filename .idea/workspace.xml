@@ -7,12 +7,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dcf88ab8-24f8-4e63-84a9-94a270993007" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/sh/check.sh" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sh/deploy.sh" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sh/start.sh" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sh/stop.sh" afterDir="false" />
+    <list default="true" id="dcf88ab8-24f8-4e63-84a9-94a270993007" name="Default Changelist" comment="sh">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spider-service/src/main/java/com/qianyitian/hope2/spider/controller/ScheduledController.java" beforeDir="false" afterPath="$PROJECT_DIR$/spider-service/src/main/java/com/qianyitian/hope2/spider/controller/ScheduledController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -352,7 +349,7 @@
       <workItem from="1607839149657" duration="28642000" />
       <workItem from="1608014334463" duration="30460000" />
       <workItem from="1608101685763" duration="41082000" />
-      <workItem from="1608519165557" duration="63405000" />
+      <workItem from="1608519165557" duration="65731000" />
     </task>
     <task id="LOCAL-00001" summary="first submit">
       <created>1608026900577</created>
@@ -627,7 +624,14 @@
       <option name="project" value="LOCAL" />
       <updated>1608868552430</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="sh">
+      <created>1608873430692</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1608873430692</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -657,7 +661,8 @@
     <MESSAGE value="add pie chart" />
     <MESSAGE value="delete stock out of date" />
     <MESSAGE value="stock list table" />
-    <option name="LAST_COMMIT_MESSAGE" value="stock list table" />
+    <MESSAGE value="sh" />
+    <option name="LAST_COMMIT_MESSAGE" value="sh" />
   </component>
   <component name="WindowStateProjectService">
     <state x="250" y="0" key="#Project_Structure" timestamp="1608174227600">
@@ -696,10 +701,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="542" y="65" width="713" height="593" key="#xdebugger.evaluate/0.0.1536.824@0.0.1536.824" timestamp="1608308954215" />
-    <state x="393" y="0" key="CommitChangelistDialog2" timestamp="1608868545088">
+    <state x="393" y="0" key="CommitChangelistDialog2" timestamp="1608874291967">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="393" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1608868545088" />
+    <state x="393" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1608874291967" />
     <state x="94" y="94" width="1349" height="637" key="DiffContextDialog" timestamp="1608816664518">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -780,10 +785,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="250" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1608694539298" />
-    <state x="362" y="146" key="Vcs.Push.Dialog.v2" timestamp="1608868687648">
+    <state x="362" y="146" key="Vcs.Push.Dialog.v2" timestamp="1608873433363">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="362" y="146" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1608868687648" />
+    <state x="362" y="146" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1608873433363" />
     <state x="94" y="94" width="1349" height="637" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog" timestamp="1608609026513">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
