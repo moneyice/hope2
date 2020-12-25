@@ -5,7 +5,7 @@
     <link rel="icon" href="https://static.jianshukeji.com/highcharts/images/favicon.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
-    <title>DeMark策略结果列表</title>
+    <title>策略结果列表</title>
     <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="http://www.datatables.net/rss.xml">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css">
     <script type="text/javascript" language="javascript"
@@ -13,10 +13,21 @@
     <script type="text/javascript" language="javascript"
             src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript">
-        $(document).ready(function () {
-            $.getJSON('/demark?days2Now=500', function (data) {
-                $("#description").html(data.description);
+        function getQueryString(name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+            var r = window.location.search.substr(1).match(reg);
+            if (r != null) return unescape(r[2]);
+            return null;
+        }
 
+        $(document).ready(function () {
+            var name = getQueryString("name");
+            var type = getQueryString("type");
+            var url = `/analysis/${name}/${type}`;
+            $("#jsonReport").attr("href",url);
+            $.getJSON(url, function (data) {
+                $("#description").html(data.description);
+                $("#genTime").html(data.generateTime);
                 $('#stockTable').DataTable({
                     data: data.resultList,
                     columns: [
@@ -30,23 +41,6 @@
                             }
                         },
                         {data: 'name'},
-                        {
-                            data: 'buyPositions',
-                            render: function (data, type, row, meta) {
-                                return data[data.length - 1];
-                            }
-
-                        },
-                        {
-                            data: 'code',
-                            render: function (data, type, row, meta) {
-                                var code = row.code;
-                                return type === 'display' ?
-                                    `<a href="/demark-flag.html?code=${code}" target="_blank">图形版</a>` + '&nbsp;&nbsp;&nbsp;&nbsp;    ' +
-                                    `<a href="/demark-backtrack/${code}" target="_blank">数据版</a>` :
-                                    data;
-                            }
-                        }
                     ]
                 });
             });
@@ -55,7 +49,7 @@
 </head>
 <body>
 <div class="content" style="max-width:800px;height:400px">
-    <h1 class="page_title" id="title">DeMark指标</h1>
+    <h1 class="page_title" id="title"></h1>
     <div class="info">
         <p>
             解释：<label id="description"></label>
@@ -68,9 +62,11 @@
     </div>
     <div class="info">
         <p>
-            数据版：<a id="jsonReport" href="/demark?days2Now=500" target="_blank">报表</a>
+            数据版：<a id="jsonReport" href="#" target="_blank">报表</a>
         </p>
     </div>
+
+
     <p></p>
     <p></p>
     <p></p>
@@ -80,8 +76,6 @@
             <tr>
                 <th>代码</th>
                 <th>名称</th>
-                <th>最近的买点</th>
-                <th>历史回溯</th>
             </tr>
             </thead>
 
@@ -89,8 +83,6 @@
             <tr>
                 <th>代码</th>
                 <th>名称</th>
-                <th>最近的买点</th>
-                <th>历史回溯</th>
             </tr>
             </tfoot>
         </table>
