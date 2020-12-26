@@ -34,10 +34,10 @@ public class SearchController {
     EffectiveWordMatcher wordMatcher;
 
     public SearchController() {
-        System.out.println();
     }
 
     @GetMapping(value = "/search")
+    @CrossOrigin
     public SymbolList getStock(@RequestParam(value = "word", required = true) String word) {
         word = word.toLowerCase();
         Set<SearchItem> searchItems = wordMatcher.obtainMatchedWords(word);
