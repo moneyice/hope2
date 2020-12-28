@@ -85,11 +85,11 @@ public class AnalysisController {
         String filename = enumAnalyzer.name() + "-" + type;
         String content = JSON.toJSONString(result);
         reportService.storeAnalysis(filename, content);
-        logger.info("aliyunOSS storage successful " + filename);
+        logger.info("Store report successful " + filename +" result size is "+result.getResultList().size());
 
         String fullFilename = LocalDate.now().toString() + "-" + filename;
         reportService.storeAnalysis(fullFilename, content);
-        logger.info("aliyunOSS storage successful " + fullFilename);
+        logger.info("Store report successful " + fullFilename +" result size is "+result.getResultList().size());
 
         //clear cache
 //        reportDAO4Redis.clearReport(filename);

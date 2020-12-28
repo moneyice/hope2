@@ -32,17 +32,35 @@
                         },
                         {data: 'name'},
                         {
-                            data: 'buyPositions',
+                            data: 'setup',
                             render: function (data, type, row, meta) {
                                 var flags=row.data.flag;
                                 if(flags==null || flags.length==0){
                                     return '';
                                 }else{
-                                    return flags[flags.length - 1].countdownDate;
+                                    return flags[flags.length - 1].setupDate;
                                 }
-
                             }
-
+                        },
+                        {
+                            data: 'countdown',
+                            render: function (data, type, row, meta) {
+                                var flags=row.data.flag;
+                                if(flags==null || flags.length==0){
+                                    return '';
+                                }else{
+                                    if(flags[flags.length - 1].countdownDate!=null){
+                                        return flags[flags.length - 1].countdownDate;
+                                    }else{
+                                        for (let i = flags.length - 2; i >=0 ; i--) {
+                                            if(flags[i].countdownDate!=null){
+                                                return flags[i].countdownDate;
+                                            }
+                                        }
+                                        return "";
+                                    }
+                                }
+                            }
                         },
                         {
                             data: 'code',
