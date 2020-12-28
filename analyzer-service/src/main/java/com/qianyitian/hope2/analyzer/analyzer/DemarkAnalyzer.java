@@ -6,6 +6,7 @@ import com.qianyitian.hope2.analyzer.model.DemarkFlag;
 import com.qianyitian.hope2.analyzer.model.KLineInfo;
 import com.qianyitian.hope2.analyzer.model.ResultInfo;
 import com.qianyitian.hope2.analyzer.model.Stock;
+import org.apache.commons.lang3.StringUtils;
 
 import java.time.LocalDate;
 import java.util.*;
@@ -74,17 +75,25 @@ public class DemarkAnalyzer extends AbstractStockAnalyzer {
         }
 
         prepareCountDownData();
+        //如果需要setup的结果的话，就不需要过滤countdown 不存在的情况了
+//        filter(selectList);
+
         if (selectList.isEmpty()) {
             return ok;
         }
-
-        filter(selectList);
         String msg = format(selectList);
-        if (msg != null) {
-            resultInfo.appendMessage(msg);
-            ok = true;
-        }
+        resultInfo.appendMessage(msg);
+        ok = true;
 
+        Map map = getFlags();
+
+        resultInfo.setData(map);
+
+        resultInfo.setComments("http://hope2.qianyitian.com:8003/demark-flag.html?code=" + stock.getCode());
+        return ok;
+    }
+
+    protected Map getFlags() {
         Map map = new HashMap<>();
 
         List<DemarkFlag> list = new LinkedList();
@@ -92,21 +101,8 @@ public class DemarkAnalyzer extends AbstractStockAnalyzer {
             DemarkFlag demarkFlag = convert(selectList.get(i));
             list.add(demarkFlag);
         }
-
-        List<LocalDate> SetupList = selectList.parallelStream().map(select -> {
-            return select.getSetupPoint().getDate();
-        }).collect(Collectors.toList());
-
-        List<LocalDate> countDownList = selectList.parallelStream().map(select -> {
-            return select.getCountDownPoint().getDate();
-        }).collect(Collectors.toList());
-
         map.put("flag", list);
-
-        resultInfo.setData(map);
-
-        resultInfo.setComments("http://hope2.qianyitian.com:8003/demark-flag.html?code=" + stock.getCode());
-        return ok;
+        return map;
     }
 
     private DemarkFlag convert(DemarkSelect demarkSelect) {
@@ -116,9 +112,11 @@ public class DemarkAnalyzer extends AbstractStockAnalyzer {
         df.setSetupDate(demarkSelect.getSetupPoint().getDate().toString());
         df.setSetupNumber(demarkSelect.getSetupNumber());
 
-        df.setCountdown(Constant.ONE_DAY_MILLISECONDS * demarkSelect.getCountDownPoint().getDate().toEpochDay());
-        df.setCountdownDate(demarkSelect.getCountDownPoint().getDate().toString());
-        df.setCountdownNumber(demarkSelect.getCountDownNumber());
+        if (demarkSelect.getCountDownPoint() != null) {
+            df.setCountdown(Constant.ONE_DAY_MILLISECONDS * demarkSelect.getCountDownPoint().getDate().toEpochDay());
+            df.setCountdownDate(demarkSelect.getCountDownPoint().getDate().toString());
+            df.setCountdownNumber(demarkSelect.getCountDownNumber());
+        }
         return df;
     }
 
@@ -173,10 +171,6 @@ public class DemarkAnalyzer extends AbstractStockAnalyzer {
     }
 
     public String format(List<DemarkSelect> selectList) {
-        if (selectList.isEmpty()) {
-            return null;
-        }
-
         StringBuilder sb = new StringBuilder();
         // 000001 平安银行
         // 2012-2-12 (9) --- 2012-3-30 (13)

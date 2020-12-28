@@ -148,6 +148,9 @@ public class AnalysisController {
             stockAnalyzer.setDaysToNow(300);
         }
         Stock stock = stockService.getStockDaily(code);
+        if(stock==null){
+            return "stock not exists "+ code;
+        }
         StockSelecter hs = new StockSelecter(null);
         ResultInfo resultInfo = hs.analyze(stockAnalyzer, stock);
 
