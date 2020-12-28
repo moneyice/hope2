@@ -10,22 +10,28 @@
     <script src="https://code.highcharts.com.cn/highstock/8.2.2/modules/data.js"></script>
 </head>
 <body>
-<div id="container" ></div>
+<div id="container"></div>
 <script type="text/javascript">
     var path = window.document.location.href;
     var code = path.split('?')[1].split('=')[1];
-    //https://cdn.jsdelivr.net/gh/highcharts/highcharts@v7.0.0/samples/data/usdeur.json
-    Highcharts.getJSON('/demark-backtrack/' + code, function (data) {
+    var link='/demark-backtrack/' + code;
+    Highcharts.getJSON(link, function (data) {
         var kData = data.k;
-        // var year = new Date(kData[kData.length - 1][0]).getFullYear(); // Get year of last data point
-        var flagData = [];
-
+        var setupFlag = [];
+        var countdownFlag = [];
         for (var i = 0; i < data.flag.length; i++) {
-            var obj = {};
-            obj.x = data.flag[i];
-            obj.title = 'B';
-            obj.text = '(13T,BUY)';
-            flagData.push(obj)
+            //准备setup 数据
+            var setupObj = {};
+            setupObj.x = data.flag[i].setup;
+            setupObj.title = 'BS';
+            setupObj.text = '(' + data.flag[i].setupNumber + 'T,Setup) ' + data.flag[i].setupDate;
+            setupFlag.push(setupObj);
+            //准备countdown 数据
+            var countdownObj = {};
+            countdownObj.x = data.flag[i].countdown;
+            countdownObj.title = 'BC';
+            countdownObj.text = '(' + data.flag[i].countdownNumber + 'T,Countdown) ' + data.flag[i].countdownDate;
+            countdownFlag.push(countdownObj);
         }
         // Create the chart
         Highcharts.stockChart('container', {
@@ -33,7 +39,7 @@
                 selected: 4
             },
             title: {
-                text: data.name + ' ' +data.code
+                text: data.name + ' ' + data.code
             },
             yAxis: {
                 title: {
@@ -43,22 +49,29 @@
 
             series: [{
                 name: '收盘价',
-                data: data.k,
+                data: kData,
                 id: 'dataseries',
                 tooltip: {
                     valueDecimals: 2
                 }
             }, {
                 type: 'flags',
-                data: flagData,
+                data: setupFlag,
+                onSeries: 'dataseries',
+                shape: 'squarepin',
+                width: 16,
+                color: Highcharts.getOptions().colors[0], // same as onSeries
+                fillColor: Highcharts.getOptions().colors[0],
+            }, {
+                type: 'flags',
+                data: countdownFlag,
                 onSeries: 'dataseries',
                 shape: 'circlepin',
                 width: 16
-            },]
+            }]
         });
     });
 </script>
-
 
 
 </body>

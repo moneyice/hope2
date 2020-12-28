@@ -138,6 +138,7 @@ public class AnalysisController {
         return content;
     }
 
+    @CrossOrigin
     @RequestMapping("/demark-backtrack/{code}")
     public String demarkBacktrack(@PathVariable String code, @RequestParam(value = "days2Now", required = false) Integer days2Now) {
         DemarkAnalyzer stockAnalyzer = (DemarkAnalyzer) stockAnalyzerFacotry.getStockAnalyzer(EStockAnalyzer.Demark);
@@ -166,21 +167,7 @@ public class AnalysisController {
             map.put("k", kData);
         }
         {
-            //制作flag
-            List<LocalDate> buyPositions = resultInfo.getBuyPositions();
-            List<Long> buyList = buyPositions.parallelStream().map(date -> {
-                long dateMilliSeconds = Constant.ONE_DAY_MILLISECONDS * date.toEpochDay();
-                return dateMilliSeconds;
-            }).collect(Collectors.toList());
-            map.put("flag", buyList);
-        }
-        {
-            //备份 flag
-            List<LocalDate> buyPositions = resultInfo.getBuyPositions();
-            List<String> buyList = buyPositions.parallelStream().map(date -> {
-                return date.toString();
-            }).collect(Collectors.toList());
-            map.put("flagDateString", buyList);
+            map.put("flag", resultInfo.getData().get("flag"));
         }
         String content = JSON.toJSONString(map);
         return content;

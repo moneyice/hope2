@@ -1,15 +1,14 @@
 package com.qianyitian.hope2.analyzer.analyzer;
 
 
+import com.qianyitian.hope2.analyzer.config.Constant;
+import com.qianyitian.hope2.analyzer.model.DemarkFlag;
 import com.qianyitian.hope2.analyzer.model.KLineInfo;
 import com.qianyitian.hope2.analyzer.model.ResultInfo;
 import com.qianyitian.hope2.analyzer.model.Stock;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 //1、Buy-Setup：买入结构的条件是连续9T或以上的收盘价低于先前第4个T的收盘价，视为一个完整的买入结构。
@@ -85,12 +84,42 @@ public class DemarkAnalyzer extends AbstractStockAnalyzer {
             resultInfo.appendMessage(msg);
             ok = true;
         }
-        List<LocalDate> collect = selectList.parallelStream().map(select -> {
+
+        Map map = new HashMap<>();
+
+        List<DemarkFlag> list = new LinkedList();
+        for (int i = 0; i < selectList.size(); i++) {
+            DemarkFlag demarkFlag = convert(selectList.get(i));
+            list.add(demarkFlag);
+        }
+
+        List<LocalDate> SetupList = selectList.parallelStream().map(select -> {
+            return select.getSetupPoint().getDate();
+        }).collect(Collectors.toList());
+
+        List<LocalDate> countDownList = selectList.parallelStream().map(select -> {
             return select.getCountDownPoint().getDate();
         }).collect(Collectors.toList());
-        resultInfo.setBuyPositions(collect);
+
+        map.put("flag", list);
+
+        resultInfo.setData(map);
+
         resultInfo.setComments("http://hope2.qianyitian.com:8003/demark-flag.html?code=" + stock.getCode());
         return ok;
+    }
+
+    private DemarkFlag convert(DemarkSelect demarkSelect) {
+        DemarkFlag df = new DemarkFlag();
+
+        df.setSetup(Constant.ONE_DAY_MILLISECONDS * demarkSelect.getSetupPoint().getDate().toEpochDay());
+        df.setSetupDate(demarkSelect.getSetupPoint().getDate().toString());
+        df.setSetupNumber(demarkSelect.getSetupNumber());
+
+        df.setCountdown(Constant.ONE_DAY_MILLISECONDS * demarkSelect.getCountDownPoint().getDate().toEpochDay());
+        df.setCountdownDate(demarkSelect.getCountDownPoint().getDate().toString());
+        df.setCountdownNumber(demarkSelect.getCountDownNumber());
+        return df;
     }
 
     private void filter(List<DemarkSelect> selectList2) {

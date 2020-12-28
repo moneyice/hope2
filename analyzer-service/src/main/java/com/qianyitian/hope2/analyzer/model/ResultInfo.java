@@ -12,7 +12,15 @@ public class ResultInfo {
     String name;
     String msg = "";
     String url;
-    List<LocalDate> buyPositions = null;
+    Map data = null;
+
+    public Map getData() {
+        return data;
+    }
+
+    public void setData(Map data) {
+        this.data = data;
+    }
 
     public String getComments() {
         return comments;
@@ -22,16 +30,7 @@ public class ResultInfo {
         this.comments = comments;
     }
 
-    String comments=null;
-
-    public List<LocalDate> getBuyPositions() {
-        return buyPositions;
-    }
-
-    public void setBuyPositions(List<LocalDate> buyPositions) {
-        this.buyPositions = buyPositions;
-    }
-
+    String comments = null;
 
     public void setMsg(String msg) {
         this.msg = msg;
