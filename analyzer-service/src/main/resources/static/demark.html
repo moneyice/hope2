@@ -14,7 +14,8 @@
             src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
-            $.getJSON('/demark?days2Now=500', function (data) {
+            var link="/demark?days2Now=500";
+            $.getJSON(link, function (data) {
                 $("#description").html(data.description);
 
                 $('#stockTable').DataTable({
@@ -33,7 +34,13 @@
                         {
                             data: 'buyPositions',
                             render: function (data, type, row, meta) {
-                                return data[data.length - 1];
+                                var flags=row.data.flag;
+                                if(flags==null || flags.length==0){
+                                    return '';
+                                }else{
+                                    return flags[flags.length - 1].countdownDate;
+                                }
+
                             }
 
                         },
