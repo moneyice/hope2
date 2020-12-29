@@ -14,7 +14,7 @@
             src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
-            var link="/demark?days2Now=200";
+            var link="/analysis/Demark/daily";
             $.getJSON(link, function (data) {
                 $("#description").html(data.description);
 
@@ -93,7 +93,7 @@
     </div>
     <div class="info">
         <p>
-            数据版：<a id="jsonReport" href="/demark?days2Now=300" target="_blank">报表</a>
+            数据版：<a id="jsonReport" href="/analysis/Demark/daily" target="_blank">报表</a>
         </p>
     </div>
     <p></p>

@@ -85,11 +85,11 @@ public class AnalysisController {
         String filename = enumAnalyzer.name() + "-" + type;
         String content = JSON.toJSONString(result);
         reportService.storeAnalysis(filename, content);
-        logger.info("Store report successful " + filename +" result size is "+result.getResultList().size());
+        logger.info("Store report successful " + filename + " result size is " + result.getResultList().size());
 
         String fullFilename = LocalDate.now().toString() + "-" + filename;
         reportService.storeAnalysis(fullFilename, content);
-        logger.info("Store report successful " + fullFilename +" result size is "+result.getResultList().size());
+        logger.info("Store report successful " + fullFilename + " result size is " + result.getResultList().size());
 
         //clear cache
 //        reportDAO4Redis.clearReport(filename);
@@ -122,60 +122,6 @@ public class AnalysisController {
         return lazyLoadReport(filename);
     }
 
-
-    @RequestMapping("/demark")
-    @CrossOrigin
-    public String demark(@RequestParam(value = "days2Now", required = false) Integer days2Now) {
-        DemarkAnalyzer stockAnalyzer = (DemarkAnalyzer) stockAnalyzerFacotry.getStockAnalyzer(EStockAnalyzer.Demark);
-        if (days2Now != null) {
-            stockAnalyzer.setDaysToNow(days2Now);
-        }
-        StockSelecter hs = new StockSelecter(favoriteStockService);
-        hs.addAnalyzer(stockAnalyzer);
-        hs.startAnalyze(Constant.TYPE_DAILY);
-        AnalyzeResult result = hs.getAnalyzeResult();
-        String content = JSON.toJSONString(result);
-        return content;
-    }
-
-    @CrossOrigin
-    @RequestMapping("/demark-backtrack/{code}")
-    public String demarkBacktrack(@PathVariable String code, @RequestParam(value = "days2Now", required = false) Integer days2Now) {
-        DemarkAnalyzer stockAnalyzer = (DemarkAnalyzer) stockAnalyzerFacotry.getStockAnalyzer(EStockAnalyzer.Demark);
-        if (days2Now != null) {
-            stockAnalyzer.setDaysToNow(days2Now);
-        } else {
-            stockAnalyzer.setDaysToNow(300);
-        }
-        Stock stock = stockService.getStockDaily(code);
-        if(stock==null){
-            return "stock not exists "+ code;
-        }
-        StockSelecter hs = new StockSelecter(null);
-        ResultInfo resultInfo = hs.analyze(stockAnalyzer, stock);
-
-        Map<String, Object> map = new HashMap<>();
-        map.put("code", stock.getCode());
-        map.put("name", stock.getName());
-        {
-            //制作K线数据
-            List<KLineInfo> kLineInfos = stock.getkLineInfos();
-            List<Number[]> kData = new LinkedList<>();
-            for (KLineInfo kLineInfo : kLineInfos) {
-                long dateMilliSeconds = Constant.ONE_DAY_MILLISECONDS * kLineInfo.getDate().toEpochDay();
-                double close = kLineInfo.getClose();
-                Number[] row = new Number[]{dateMilliSeconds, close};
-                kData.add(row);
-            }
-            map.put("k", kData);
-        }
-        {
-            map.put("flag", resultInfo.getData().get("flag"));
-        }
-        String content = JSON.toJSONString(map);
-        return content;
-    }
-
     @RequestMapping(value = "/statistics/increaseRangeStatistics", method = RequestMethod.GET)
     public String increaseRangeStatistics() {
         String filename = "increaseRangeStatistics";
@@ -183,20 +129,19 @@ public class AnalysisController {
     }
 
 
-    @RequestMapping(value = "/data/kline/date/{code}", method = RequestMethod.GET)
-    public String increaseRangeStatistics(@PathVariable String code) {
-        Stock stockDaily = stockService.getStockDaily(code);
-        List<KLineInfo> kLineInfos = stockDaily.getkLineInfos();
-
-        List<Number[]> data = new LinkedList<>();
-        for (KLineInfo kLineInfo : kLineInfos) {
-            long dateMilliSeconds = Constant.ONE_DAY_MILLISECONDS * kLineInfo.getDate().toEpochDay();
-            double close = kLineInfo.getClose();
-            Number[] row = new Number[]{dateMilliSeconds, close};
-            data.add(row);
-        }
-        String s = JSON.toJSONString(data);
-        return s;
-    }
+//    @RequestMapping(value = "/data/kline/date/{code}", method = RequestMethod.GET)
+//    public String increaseRangeStatistics(@PathVariable String code) {
+//        Stock stockDaily = stockService.getStockDaily(code);
+//        List<KLineInfo> kLineInfos = stockDaily.getkLineInfos();
+//        List<Number[]> data = new LinkedList<>();
+//        for (KLineInfo kLineInfo : kLineInfos) {
+//            long dateMilliSeconds = Constant.ONE_DAY_MILLISECONDS * kLineInfo.getDate().toEpochDay();
+//            double close = kLineInfo.getClose();
+//            Number[] row = new Number[]{dateMilliSeconds, close};
+//            data.add(row);
+//        }
+//        String s = JSON.toJSONString(data);
+//        return s;
+//    }
 
 }
