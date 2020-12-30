@@ -7,7 +7,7 @@ spring:
 #    admin:
 #      url: http://localhost:8090
 logging:
-  file: spider.log
+  file: ./log/analyzer.log
   level:
     root: INFO
 

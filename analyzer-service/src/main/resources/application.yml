@@ -17,7 +17,7 @@ spring:
         max-idle: 10
         max-active: 100
 logging:
-      file: analyzer.log
+      file: ./log/analyzer.log
       level:
         root: INFO
 hope2:

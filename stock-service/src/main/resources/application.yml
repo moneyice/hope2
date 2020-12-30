@@ -37,7 +37,7 @@ mybatis:
   type-aliases-package: com.qianyitian.hope2.stock.model
 
 logging:
-  file: stock.log
+  file: ./log/analyzer.log
   level:
     root: INFO
 hope2:

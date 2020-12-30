@@ -17,7 +17,7 @@
             var link="/demark?days2Now=200";
             $.getJSON(link, function (data) {
                 $("#description").html(data.description);
-
+                $("#genTime").html(data.generateTime);
                 $('#stockTable').DataTable({
                     data: data.resultList,
                     columns: [
