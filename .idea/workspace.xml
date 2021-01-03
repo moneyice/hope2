@@ -7,8 +7,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dcf88ab8-24f8-4e63-84a9-94a270993007" name="Default Changelist" comment="">
+    <list default="true" id="dcf88ab8-24f8-4e63-84a9-94a270993007" name="Default Changelist" comment="input suggest">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analyzer-service/src/main/java/com/qianyitian/hope2/analyzer/controller/AnalysisController.java" beforeDir="false" afterPath="$PROJECT_DIR$/analyzer-service/src/main/java/com/qianyitian/hope2/analyzer/controller/AnalysisController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analyzer-service/src/main/java/com/qianyitian/hope2/analyzer/controller/BacktrackingController.java" beforeDir="false" afterPath="$PROJECT_DIR$/analyzer-service/src/main/java/com/qianyitian/hope2/analyzer/controller/BacktrackingController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,8 +24,8 @@
         <option value="Interface" />
         <option value="FxmlFile" />
         <option value="Enum" />
-        <option value="Class" />
         <option value="JUnit5 Test Class" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -30,6 +33,12 @@
     <option name="BRANCH" value="master" />
   </component>
   <component name="Git.Settings">
+    <option name="PUSH_TAGS">
+      <GitPushTagMode>
+        <option name="argument" value="--tags" />
+        <option name="title" value="All" />
+      </GitPushTagMode>
+    </option>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
         <entry key="$PROJECT_DIR$" value="master" />
@@ -64,8 +73,9 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
-    <property name="extract.method.default.visibility" value="private" />
+    <property name="extract.method.default.visibility" value="protected" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/analyzer-service/src/main/resources/static" />
+    <property name="nodejs.jest.jest_package" value="" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
@@ -84,15 +94,15 @@
     <key name="MoveMembersDialog.RECENTS_KEY">
       <recent name="com.qianyitian.hope2.stock.config.Constant" />
     </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.qianyitian.hope2.analyzer.controller" />
       <recent name="com.qianyitian.hope2.stock.model" />
       <recent name="com.qianyitian.hope2.analyzer.analyzer" />
       <recent name="com.qianyitian.hope2.stock.dao" />
       <recent name="com.qianyitian.hope2.spider.model" />
-      <recent name="com.qianyitian.hope2.analyzer.config" />
-    </key>
-    <key name="CreateTestDialog.Recents.Supers">
-      <recent name="" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\bing.a.qian\IdeaProjects\hope2\analyzer-service\src\main\resources\static" />
@@ -128,20 +138,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.SpiderApplication">
-    <configuration name="ChineseCharToEn" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.qianyitian.hope2.stock.config.ChineseCharToEn" />
-      <module name="stock-service" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.qianyitian.hope2.stock.config.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="Spring Boot.StockApplication">
     <configuration name="EffectiveWordMatcher (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.qianyitian.hope2.stock.search.EffectiveWordMatcher" />
       <module name="stock-service" />
@@ -302,6 +299,46 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="SimpleWordMatcherTest.buildPrefixMatchers" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="analyzer-service" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="autocomplete.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="autocomplete" />
+      <option name="MAIN_CLASS_NAME" value="autocomplete.SimpleWordMatcherTest" />
+      <option name="METHOD_NAME" value="buildPrefixMatchers" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="Remote">
+      <module name="analyzer-service" />
+      <option name="USE_SOCKET_TRANSPORT" value="true" />
+      <option name="SERVER_MODE" value="false" />
+      <option name="SHMEM_ADDRESS" />
+      <option name="HOST" value="hope2.qianyitian.com" />
+      <option name="PORT" value="8004" />
+      <option name="AUTO_RESTART" value="false" />
+      <method v="2" />
+    </configuration>
+    <configuration name="remote-analyzer" type="Remote">
+      <module name="analyzer-service" />
+      <option name="USE_SOCKET_TRANSPORT" value="true" />
+      <option name="SERVER_MODE" value="false" />
+      <option name="SHMEM_ADDRESS" />
+      <option name="HOST" value="hope2.qianyitian.com" />
+      <option name="PORT" value="8004" />
+      <option name="AUTO_RESTART" value="false" />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="8004" />
+        <option name="LOCAL" value="false" />
+      </RunnerSettings>
+      <method v="2" />
+    </configuration>
     <configuration name="AnalyzerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="analyzer-service" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.qianyitian.hope2.analyzer.AnalyzerApplication" />
@@ -323,13 +360,26 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Application.EffectiveWordMatcher (1)" />
+      <item itemvalue="Application.PostStartupDataLoader" />
+      <item itemvalue="Application.SpiderApplication" />
+      <item itemvalue="Deploy to Host.Deploy to Host" />
+      <item itemvalue="ECS on Alibaba Cloud.ECS on Alibaba Cloud" />
+      <item itemvalue="JUnit.SimpleWordMatcherTest.buildPrefixMatchers" />
+      <item itemvalue="JUnit.EffectiveWordMatcherTest.processOneWord" />
+      <item itemvalue="Remote.remote-analyzer" />
+      <item itemvalue="Spring Boot.AnalyzerApplication" />
+      <item itemvalue="Spring Boot.SpiderApplication" />
+      <item itemvalue="Spring Boot.StockApplication" />
+    </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.SimpleWordMatcherTest.buildPrefixMatchers" />
         <item itemvalue="Application.SpiderApplication" />
         <item itemvalue="JUnit.EffectiveWordMatcherTest.processOneWord" />
         <item itemvalue="Application.EffectiveWordMatcher (1)" />
         <item itemvalue="Application.PostStartupDataLoader" />
-        <item itemvalue="Application.ChineseCharToEn" />
       </list>
     </recent_temporary>
   </component>
@@ -348,63 +398,9 @@
       <workItem from="1607839149657" duration="28642000" />
       <workItem from="1608014334463" duration="30460000" />
       <workItem from="1608101685763" duration="41082000" />
-      <workItem from="1608519165557" duration="85946000" />
-    </task>
-    <task id="LOCAL-00001" summary="first submit">
-      <created>1608026900577</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1608026900577</updated>
-    </task>
-    <task id="LOCAL-00002" summary="first submit">
-      <created>1608028595142</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1608028595142</updated>
-    </task>
-    <task id="LOCAL-00003" summary="first submit">
-      <created>1608033859007</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1608033859007</updated>
-    </task>
-    <task id="LOCAL-00004" summary="first submit">
-      <created>1608034547946</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1608034547946</updated>
-    </task>
-    <task id="LOCAL-00005" summary="refactoring">
-      <created>1608046288593</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1608046288593</updated>
-    </task>
-    <task id="LOCAL-00006" summary="refactoring">
-      <created>1608083755822</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1608083755822</updated>
-    </task>
-    <task id="LOCAL-00007" summary="refactoring">
-      <created>1608085094053</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1608085094053</updated>
-    </task>
-    <task id="LOCAL-00008" summary="refactoring report format">
-      <created>1608089884464</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1608089884464</updated>
+      <workItem from="1608519165557" duration="111272000" />
+      <workItem from="1609338169484" duration="7132000" />
+      <workItem from="1609677753561" duration="6964000" />
     </task>
     <task id="LOCAL-00009" summary="demark url parameter">
       <created>1608090143533</created>
@@ -665,7 +661,91 @@
       <option name="project" value="LOCAL" />
       <updated>1608973472095</updated>
     </task>
-    <option name="localTasksCounter" value="46" />
+    <task id="LOCAL-00046" summary="input suggest">
+      <created>1608979483440</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1608979483440</updated>
+    </task>
+    <task id="LOCAL-00047" summary="add setup 9T">
+      <created>1609124066375</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1609124066375</updated>
+    </task>
+    <task id="LOCAL-00048" summary="jquery 3.5">
+      <created>1609124190568</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1609124190568</updated>
+    </task>
+    <task id="LOCAL-00049" summary="fix js bug">
+      <created>1609127099187</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1609127099187</updated>
+    </task>
+    <task id="LOCAL-00050" summary="refactoring methods">
+      <created>1609167176925</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1609167176926</updated>
+    </task>
+    <task id="LOCAL-00051" summary="default 250 T">
+      <created>1609169029351</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1609169029351</updated>
+    </task>
+    <task id="LOCAL-00052" summary="input suggest">
+      <created>1609172282288</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1609172282288</updated>
+    </task>
+    <task id="LOCAL-00053" summary="input suggest">
+      <created>1609172350868</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1609172350868</updated>
+    </task>
+    <task id="LOCAL-00054" summary="demark all">
+      <created>1609247288098</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1609247288098</updated>
+    </task>
+    <task id="LOCAL-00055" summary="log path">
+      <created>1609340081811</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1609340081811</updated>
+    </task>
+    <task id="LOCAL-00056" summary="add .ico">
+      <created>1609403635414</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1609403635414</updated>
+    </task>
+    <task id="LOCAL-00057" summary="ico">
+      <created>1609422626575</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1609422626575</updated>
+    </task>
+    <option name="localTasksCounter" value="58" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -696,18 +776,31 @@
     <MESSAGE value="delete stock out of date" />
     <MESSAGE value="stock list table" />
     <MESSAGE value="sh" />
+    <MESSAGE value="add setup 9T" />
+    <MESSAGE value="jquery 3.5" />
+    <MESSAGE value="fix js bug" />
+    <MESSAGE value="refactoring methods" />
+    <MESSAGE value="default 250 T" />
     <MESSAGE value="input suggest" />
-    <option name="LAST_COMMIT_MESSAGE" value="input suggest" />
+    <MESSAGE value="demark all" />
+    <MESSAGE value="log path" />
+    <MESSAGE value="add .ico" />
+    <MESSAGE value="ico" />
+    <option name="LAST_COMMIT_MESSAGE" value="ico" />
   </component>
   <component name="WindowStateProjectService">
     <state x="250" y="0" key="#Project_Structure" timestamp="1608174227600">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="250" y="0" key="#Project_Structure/0.0.1536.824@0.0.1536.824" timestamp="1608174227600" />
-    <state x="575" y="119" key="#com.intellij.ide.util.MemberChooser" timestamp="1608723017743">
+    <state x="274" y="52" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1609170103481">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="575" y="119" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1608723017743" />
+    <state x="274" y="52" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1609170103481" />
+    <state x="575" y="119" key="#com.intellij.ide.util.MemberChooser" timestamp="1609120788986">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="575" y="119" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1609120788986" />
     <state x="499" y="203" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1608038679230">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -724,10 +817,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="487" y="220" key="#com.intellij.refactoring.move.moveMembers.MoveMembersDialog/0.0.1536.824@0.0.1536.824" timestamp="1608038686452" />
-    <state x="332" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1608039756359">
+    <state x="332" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1609121731331">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="332" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1536.824@0.0.1536.824" timestamp="1608039756359" />
+    <state x="332" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1536.824@0.0.1536.824" timestamp="1609121731331" />
     <state x="500" y="160" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1608959435615">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -736,14 +829,14 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="542" y="65" width="713" height="593" key="#xdebugger.evaluate/0.0.1536.824@0.0.1536.824" timestamp="1608308954215" />
-    <state x="393" y="0" key="CommitChangelistDialog2" timestamp="1608973465029">
+    <state x="393" y="0" key="CommitChangelistDialog2" timestamp="1609422619002">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="393" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1608973465029" />
-    <state x="94" y="94" width="1349" height="637" key="DiffContextDialog" timestamp="1608907874655">
+    <state x="393" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1609422619002" />
+    <state x="94" y="94" width="1349" height="637" key="DiffContextDialog" timestamp="1609678462439">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="94" y="94" width="1349" height="637" key="DiffContextDialog/0.0.1536.824@0.0.1536.824" timestamp="1608907874655" />
+    <state x="94" y="94" width="1349" height="637" key="DiffContextDialog/0.0.1536.824@0.0.1536.824" timestamp="1609678462439" />
     <state x="550" y="122" key="FileChooserDialogImpl" timestamp="1608176866119">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -756,54 +849,54 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="641" y="311" width="496" height="203" key="Github.ShareDialog/0.0.1536.824@0.0.1536.824" timestamp="1608029042261" />
-    <state width="1493" height="287" key="GridCell.Tab.0.bottom" timestamp="1608974636744">
+    <state width="1493" height="241" key="GridCell.Tab.0.bottom" timestamp="1609685788820">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="287" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1608974636744" />
-    <state width="1493" height="287" key="GridCell.Tab.0.center" timestamp="1608974636744">
+    <state width="1493" height="241" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1609685788820" />
+    <state width="1493" height="241" key="GridCell.Tab.0.center" timestamp="1609685788820">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="287" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1608974636744" />
-    <state width="1493" height="287" key="GridCell.Tab.0.left" timestamp="1608974636744">
+    <state width="1493" height="241" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1609685788820" />
+    <state width="1493" height="241" key="GridCell.Tab.0.left" timestamp="1609685788820">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="287" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1608974636744" />
-    <state width="1493" height="287" key="GridCell.Tab.0.right" timestamp="1608974636744">
+    <state width="1493" height="241" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1609685788820" />
+    <state width="1493" height="241" key="GridCell.Tab.0.right" timestamp="1609685788820">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="287" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1608974636744" />
-    <state width="1493" height="287" key="GridCell.Tab.1.bottom" timestamp="1608974636427">
+    <state width="1493" height="241" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1609685788820" />
+    <state width="1493" height="241" key="GridCell.Tab.1.bottom" timestamp="1609685788644">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="287" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1608974636427" />
-    <state width="1493" height="287" key="GridCell.Tab.1.center" timestamp="1608974636427">
+    <state width="1493" height="241" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1609685788644" />
+    <state width="1493" height="241" key="GridCell.Tab.1.center" timestamp="1609685788644">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="287" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1608974636427" />
-    <state width="1493" height="287" key="GridCell.Tab.1.left" timestamp="1608974636427">
+    <state width="1493" height="241" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1609685788644" />
+    <state width="1493" height="241" key="GridCell.Tab.1.left" timestamp="1609685788643">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="287" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1608974636427" />
-    <state width="1493" height="287" key="GridCell.Tab.1.right" timestamp="1608974636427">
+    <state width="1493" height="241" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1609685788643" />
+    <state width="1493" height="241" key="GridCell.Tab.1.right" timestamp="1609685788644">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="287" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1608974636427" />
-    <state width="1493" height="287" key="GridCell.Tab.2.bottom" timestamp="1608974636427">
+    <state width="1493" height="241" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1609685788644" />
+    <state width="1493" height="241" key="GridCell.Tab.2.bottom" timestamp="1609685788644">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="287" key="GridCell.Tab.2.bottom/0.0.1536.824@0.0.1536.824" timestamp="1608974636427" />
-    <state width="1493" height="287" key="GridCell.Tab.2.center" timestamp="1608974636427">
+    <state width="1493" height="241" key="GridCell.Tab.2.bottom/0.0.1536.824@0.0.1536.824" timestamp="1609685788644" />
+    <state width="1493" height="241" key="GridCell.Tab.2.center" timestamp="1609685788644">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="287" key="GridCell.Tab.2.center/0.0.1536.824@0.0.1536.824" timestamp="1608974636427" />
-    <state width="1493" height="287" key="GridCell.Tab.2.left" timestamp="1608974636427">
+    <state width="1493" height="241" key="GridCell.Tab.2.center/0.0.1536.824@0.0.1536.824" timestamp="1609685788644" />
+    <state width="1493" height="241" key="GridCell.Tab.2.left" timestamp="1609685788644">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="287" key="GridCell.Tab.2.left/0.0.1536.824@0.0.1536.824" timestamp="1608974636427" />
-    <state width="1493" height="287" key="GridCell.Tab.2.right" timestamp="1608974636427">
+    <state width="1493" height="241" key="GridCell.Tab.2.left/0.0.1536.824@0.0.1536.824" timestamp="1609685788644" />
+    <state width="1493" height="241" key="GridCell.Tab.2.right" timestamp="1609685788644">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="287" key="GridCell.Tab.2.right/0.0.1536.824@0.0.1536.824" timestamp="1608974636427" />
+    <state width="1493" height="241" key="GridCell.Tab.2.right/0.0.1536.824@0.0.1536.824" timestamp="1609685788644" />
     <state x="300" y="68" key="Maven.ArtifactSearchDialog" timestamp="1607840965842">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -812,18 +905,22 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="441" y="117" key="NewModule_or_Project.wizard/0.0.1536.824@0.0.1536.824" timestamp="1607772786061" />
-    <state x="485" y="115" key="RollbackChangesDialog" timestamp="1608945774137">
+    <state x="485" y="115" key="RollbackChangesDialog" timestamp="1609150399737">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="485" y="115" key="RollbackChangesDialog/0.0.1536.824@0.0.1536.824" timestamp="1608945774137" />
-    <state x="250" y="0" key="SettingsEditor" timestamp="1608694539298">
+    <state x="485" y="115" key="RollbackChangesDialog/0.0.1536.824@0.0.1536.824" timestamp="1609150399737" />
+    <state x="250" y="0" key="SettingsEditor" timestamp="1609683978891">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="250" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1608694539298" />
-    <state x="362" y="146" key="Vcs.Push.Dialog.v2" timestamp="1608973871800">
+    <state x="250" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1609683978891" />
+    <state x="618" y="326" key="VCS.ChangelistChooser" timestamp="1608985395420">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="362" y="146" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1608973871800" />
+    <state x="618" y="326" key="VCS.ChangelistChooser/0.0.1536.824@0.0.1536.824" timestamp="1608985395420" />
+    <state x="362" y="146" key="Vcs.Push.Dialog.v2" timestamp="1609422628174">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="362" y="146" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1609422628174" />
     <state x="94" y="94" width="1349" height="637" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog" timestamp="1608609026513">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -832,14 +929,14 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="539" y="235" key="com.intellij.testIntegration.createTest.CreateTestDialog/0.0.1536.824@0.0.1536.824" timestamp="1608539789804" />
-    <state x="500" y="171" key="extract.method.dialog" timestamp="1608280405956">
+    <state x="806" y="324" key="extract.method.dialog" timestamp="1609151579838">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="500" y="171" key="extract.method.dialog/0.0.1536.824@0.0.1536.824" timestamp="1608280405956" />
-    <state x="566" y="172" width="970" height="622" key="find.popup" timestamp="1608907326823">
+    <state x="806" y="324" key="extract.method.dialog/0.0.1536.824@0.0.1536.824" timestamp="1609151579838" />
+    <state x="459" y="10" width="1077" height="784" key="find.popup" timestamp="1609678419978">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="566" y="172" width="970" height="622" key="find.popup/0.0.1536.824@0.0.1536.824" timestamp="1608907326823" />
+    <state x="459" y="10" width="1077" height="784" key="find.popup/0.0.1536.824@0.0.1536.824" timestamp="1609678419978" />
     <state x="572" y="319" key="git4idea.remote.GitConfigureRemotesDialog" timestamp="1608127078451">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -856,10 +953,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="426" y="188" width="672" height="677" key="run.anything.popup/0.0.1536.824@0.0.1536.824" timestamp="1608194190945" />
-    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1608687224196">
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1609681753297">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1608687224196" />
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1609681753297" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -874,19 +971,17 @@
           <line>48</line>
           <option name="timeStamp" value="8" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/analyzer-service/src/main/resources/static/demark-flag.html</url>
-          <line>17</line>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="16" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/analyzer-service/src/main/resources/static/demark.html</url>
-          <line>44</line>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="17" />
-        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+    <watches-manager>
+      <configuration name="Remote">
+        <watch expression="msg" />
+        <watch expression="result.resultList" />
+      </configuration>
+      <configuration name="SpringBootApplicationConfigurationType">
+        <watch expression="from" />
+        <watch expression="from" language="JAVA" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>

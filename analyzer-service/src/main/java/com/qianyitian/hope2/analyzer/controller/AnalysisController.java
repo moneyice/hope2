@@ -68,6 +68,12 @@ public class AnalysisController {
         }
     }
 
+    @Async
+    @RequestMapping(value = "/startDemarkAnalyze", method = RequestMethod.GET)
+    public void startDemarkAnalyze() {
+        analyze(EStockAnalyzer.Demark, Constant.TYPE_DAILY_LITE, Constant.TYPE_DAILY);
+    }
+
     private void analyze(EStockAnalyzer macd, String kLineType) {
         analyze(macd, kLineType, kLineType);
     }
