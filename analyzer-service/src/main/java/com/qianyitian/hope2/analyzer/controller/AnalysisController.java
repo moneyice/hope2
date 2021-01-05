@@ -14,6 +14,7 @@ import com.qianyitian.hope2.analyzer.service.IReportStorageService;
 import com.qianyitian.hope2.analyzer.service.MyFavoriteStockService;
 import com.qianyitian.hope2.analyzer.service.StockSelecter;
 import com.qianyitian.hope2.analyzer.service.DefaultStockService;
+import org.apache.tomcat.jni.Local;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -48,8 +50,8 @@ public class AnalysisController {
     }
 
     @RequestMapping(value = "/status", method = RequestMethod.GET)
-    public void status() {
-
+    public String status() {
+        return LocalDateTime.now().toString();
     }
 
     @Async
