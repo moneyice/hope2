@@ -11,104 +11,122 @@
     <script src="https://code.highcharts.com.cn/highstock/8.2.2/modules/data.js"></script>
 </head>
 <body>
+
+<div class="message">
+    计算最近多少天:   <input id="days" type="text" name="days" value="300">
+</div>
+
+<button onclick="post()"> 提交 </button>
+
 <div id="container"></div>
 <script type="text/javascript">
     var path = window.document.location.href;
     var code = path.split('?')[1].split('=')[1];
     var link='/demark-backtrack/' + code;
-    Highcharts.getJSON(link, function (data) {
-        var kData = data.k;
-        var setupFlag = [];
-        var countdownFlag = [];
-        if(data.flag!=null){
-            for (var i = 0; i < data.flag.length; i++) {
-                //准备setup 数据
-                var setupObj = {};
-                setupObj.x = data.flag[i].setup;
-                setupObj.title = 'BS';
-                setupObj.text = '(' + data.flag[i].setupNumber + 'T,Setup) ' + data.flag[i].setupDate;
-                setupFlag.push(setupObj);
-                //准备countdown 数据
-                var countdownObj = {};
-                countdownObj.x = data.flag[i].countdown;
-                countdownObj.title = 'BC';
-                countdownObj.text = '(' + data.flag[i].countdownNumber + 'T,Countdown) ' + data.flag[i].countdownDate;
-                countdownFlag.push(countdownObj);
+    renderCharts(link);
+
+    function renderCharts(link){
+        Highcharts.getJSON(link, function (data) {
+            var kData = data.k;
+            var setupFlag = [];
+            var countdownFlag = [];
+            if(data.flag!=null){
+                for (var i = 0; i < data.flag.length; i++) {
+                    //准备setup 数据
+                    var setupObj = {};
+                    setupObj.x = data.flag[i].setup;
+                    setupObj.title = 'BS';
+                    setupObj.text = '(' + data.flag[i].setupNumber + 'T,Setup) ' + data.flag[i].setupDate;
+                    setupFlag.push(setupObj);
+                    //准备countdown 数据
+                    var countdownObj = {};
+                    countdownObj.x = data.flag[i].countdown;
+                    countdownObj.title = 'BC';
+                    countdownObj.text = '(' + data.flag[i].countdownNumber + 'T,Countdown) ' + data.flag[i].countdownDate;
+                    countdownFlag.push(countdownObj);
+                }
             }
-        }
 
 
-        var sellSetupFlag = [];
-        var sellCountdownFlag = [];
-        if(data.flagSell!=null){
-            for (var i = 0; i < data.flagSell.length; i++) {
-                //准备setup 数据
-                var setupObj = {};
-                setupObj.x = data.flagSell[i].setup;
-                setupObj.title = 'SS';
-                setupObj.text = '(' + data.flagSell[i].setupNumber + 'T,Setup) ' + data.flagSell[i].setupDate;
-                sellSetupFlag.push(setupObj);
-                //准备countdown 数据
-                var countdownObj = {};
-                countdownObj.x = data.flagSell[i].countdown;
-                countdownObj.title = 'SC';
-                countdownObj.text = '(' + data.flagSell[i].countdownNumber + 'T,Countdown) ' + data.flagSell[i].countdownDate;
-                sellCountdownFlag.push(countdownObj);
+            var sellSetupFlag = [];
+            var sellCountdownFlag = [];
+            if(data.flagSell!=null){
+                for (var i = 0; i < data.flagSell.length; i++) {
+                    //准备setup 数据
+                    var setupObj = {};
+                    setupObj.x = data.flagSell[i].setup;
+                    setupObj.title = 'SS';
+                    setupObj.text = '(' + data.flagSell[i].setupNumber + 'T,Setup) ' + data.flagSell[i].setupDate;
+                    sellSetupFlag.push(setupObj);
+                    //准备countdown 数据
+                    var countdownObj = {};
+                    countdownObj.x = data.flagSell[i].countdown;
+                    countdownObj.title = 'SC';
+                    countdownObj.text = '(' + data.flagSell[i].countdownNumber + 'T,Countdown) ' + data.flagSell[i].countdownDate;
+                    sellCountdownFlag.push(countdownObj);
+                }
             }
-        }
 
-        // Create the chart
-        Highcharts.stockChart('container', {
-            rangeSelector: {
-                selected: 4
-            },
-            title: {
-                text: data.name + ' ' + data.code
-            },
-            yAxis: {
+            // Create the chart
+            Highcharts.stockChart('container', {
+                rangeSelector: {
+                    selected: 4
+                },
                 title: {
-                    text: 'Price'
-                }
-            },
+                    text: data.name + ' ' + data.code
+                },
+                yAxis: {
+                    title: {
+                        text: 'Price'
+                    }
+                },
 
-            series: [{
-                name: '收盘价',
-                data: kData,
-                id: 'dataseries',
-                tooltip: {
-                    valueDecimals: 2
-                }
-            }, {
-                type: 'flags',
-                data: setupFlag,
-                onSeries: 'dataseries',
-                shape: 'squarepin',
-                width: 16,
-                color: Highcharts.getOptions().colors[0], // same as onSeries
-                fillColor: Highcharts.getOptions().colors[0],
-            }, {
-                type: 'flags',
-                data: countdownFlag,
-                onSeries: 'dataseries',
-                shape: 'circlepin',
-                width: 16
-            },{
-                type: 'flags',
-                data: sellSetupFlag,
-                onSeries: 'dataseries',
-                shape: 'squarepin',
-                width: 16,
-                color: Highcharts.getOptions().colors[0], // same as onSeries
-                fillColor: Highcharts.getOptions().colors[0],
-            }, {
-                type: 'flags',
-                data: sellCountdownFlag,
-                onSeries: 'dataseries',
-                shape: 'circlepin',
-                width: 16
-            }]
+                series: [{
+                    name: '收盘价',
+                    data: kData,
+                    id: 'dataseries',
+                    tooltip: {
+                        valueDecimals: 2
+                    }
+                }, {
+                    type: 'flags',
+                    data: setupFlag,
+                    onSeries: 'dataseries',
+                    shape: 'squarepin',
+                    width: 16,
+                    color: Highcharts.getOptions().colors[0], // same as onSeries
+                    fillColor: Highcharts.getOptions().colors[0],
+                }, {
+                    type: 'flags',
+                    data: countdownFlag,
+                    onSeries: 'dataseries',
+                    shape: 'circlepin',
+                    width: 16
+                },{
+                    type: 'flags',
+                    data: sellSetupFlag,
+                    onSeries: 'dataseries',
+                    shape: 'squarepin',
+                    width: 16,
+                    color: Highcharts.getOptions().colors[0], // same as onSeries
+                    fillColor: Highcharts.getOptions().colors[0],
+                }, {
+                    type: 'flags',
+                    data: sellCountdownFlag,
+                    onSeries: 'dataseries',
+                    shape: 'circlepin',
+                    width: 16
+                }]
+            });
         });
-    });
+    }
+
+
+    function post(){
+        var days=$("#days").val();
+        var linkNew=link+'?days2Now='+days;
+        renderCharts(linkNew);
+    }
 </script>
 
 
