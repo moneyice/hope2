@@ -2,6 +2,10 @@ package autocomplete;
 
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class SimpleWordMatcherTest {
@@ -12,14 +16,21 @@ class SimpleWordMatcherTest {
 
     @Test
     void dynamicAddNew() {
+        LocalDate today = LocalDate.now();
+        DateTimeFormatter formatters = DateTimeFormatter.ofPattern("MMM dd, yyyy").withLocale(Locale.ENGLISH);//Oct 11, 2019
+        String text = today.format(formatters);
 
-//        String inputText = req.getParameter("inputText");
-//        Set<String> matchers = wordMatcher.obtainMatchedWords(inputText);
-//        StringBuilder sb = new StringBuilder();
-//        for (String m: matchers) {
-//            sb.append(m);
-//            sb.append(' ');
-//        }
-//        sb.deleteCharAt(sb.length()-1);
+        LocalDate date = LocalDate.parse("Oct 11, 2019", formatters);
+
+
+//
+
+        {
+            formatters = DateTimeFormatter.ofPattern("yyyy年M月d日").withLocale(Locale.SIMPLIFIED_CHINESE);//Oct 11, 2019
+
+            date = LocalDate.parse("2020年1月3日", formatters);
+            System.out.println(date);
+        }
+
     }
 }

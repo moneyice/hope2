@@ -6,11 +6,8 @@ import com.qianyitian.hope2.analyzer.model.DemarkFlag;
 import com.qianyitian.hope2.analyzer.model.KLineInfo;
 import com.qianyitian.hope2.analyzer.model.ResultInfo;
 import com.qianyitian.hope2.analyzer.model.Stock;
-import org.apache.commons.lang3.StringUtils;
 
-import java.time.LocalDate;
 import java.util.*;
-import java.util.stream.Collectors;
 
 //1、Buy-Setup：买入结构的条件是连续9T或以上的收盘价低于先前第4个T的收盘价，视为一个完整的买入结构。
 //（注：这里的限定条件是“连续”9T或以上，期间不能中断）
@@ -25,7 +22,7 @@ import java.util.stream.Collectors;
 //（注：这里的限定条件是累计13个T，不要求是“连续”的，期间可以中断）
 
 
-public class DemarkAnalyzer extends AbstractStockAnalyzer {
+public class UnDemarkAnalyzer extends AbstractStockAnalyzer {
     public static int DEFAULT_DAYS2NOW = 200;
     //计算距今多少天的日K线
     int daysToNow = DEFAULT_DAYS2NOW;
@@ -40,7 +37,7 @@ public class DemarkAnalyzer extends AbstractStockAnalyzer {
 
     private List<DemarkSelect> selectList = null;
 
-    public DemarkAnalyzer() {
+    public UnDemarkAnalyzer() {
     }
 
     public void setDaysToNow(int daysToNow) {
@@ -63,7 +60,7 @@ public class DemarkAnalyzer extends AbstractStockAnalyzer {
         int setupTimes = 0;
 
         for (int i = infos.size() - daysToNow - 1; i < infos.size(); i++) {
-            if (infos.get(i).getClose() < infos.get(i - buySetupBeforeDay)
+            if (infos.get(i).getClose() > infos.get(i - buySetupBeforeDay)
                     .getClose()) {
                 setupTimes++;
             } else {
@@ -162,7 +159,7 @@ public class DemarkAnalyzer extends AbstractStockAnalyzer {
                 demarkSelect.setCountDownPoint(countDownPoint);
                 break;
             }
-            if (infos.get(i).getClose() < infos.get(i - 2).getLow()) {
+            if (infos.get(i).getClose() > infos.get(i - 2).getHigh()) {
                 number++;
                 countDownPoint = infos.get(i);
             }

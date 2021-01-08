@@ -20,20 +20,43 @@
         var kData = data.k;
         var setupFlag = [];
         var countdownFlag = [];
-        for (var i = 0; i < data.flag.length; i++) {
-            //准备setup 数据
-            var setupObj = {};
-            setupObj.x = data.flag[i].setup;
-            setupObj.title = 'BS';
-            setupObj.text = '(' + data.flag[i].setupNumber + 'T,Setup) ' + data.flag[i].setupDate;
-            setupFlag.push(setupObj);
-            //准备countdown 数据
-            var countdownObj = {};
-            countdownObj.x = data.flag[i].countdown;
-            countdownObj.title = 'BC';
-            countdownObj.text = '(' + data.flag[i].countdownNumber + 'T,Countdown) ' + data.flag[i].countdownDate;
-            countdownFlag.push(countdownObj);
+        if(data.flag!=null){
+            for (var i = 0; i < data.flag.length; i++) {
+                //准备setup 数据
+                var setupObj = {};
+                setupObj.x = data.flag[i].setup;
+                setupObj.title = 'BS';
+                setupObj.text = '(' + data.flag[i].setupNumber + 'T,Setup) ' + data.flag[i].setupDate;
+                setupFlag.push(setupObj);
+                //准备countdown 数据
+                var countdownObj = {};
+                countdownObj.x = data.flag[i].countdown;
+                countdownObj.title = 'BC';
+                countdownObj.text = '(' + data.flag[i].countdownNumber + 'T,Countdown) ' + data.flag[i].countdownDate;
+                countdownFlag.push(countdownObj);
+            }
         }
+
+
+        var sellSetupFlag = [];
+        var sellCountdownFlag = [];
+        if(data.flagSell!=null){
+            for (var i = 0; i < data.flagSell.length; i++) {
+                //准备setup 数据
+                var setupObj = {};
+                setupObj.x = data.flagSell[i].setup;
+                setupObj.title = 'SS';
+                setupObj.text = '(' + data.flagSell[i].setupNumber + 'T,Setup) ' + data.flagSell[i].setupDate;
+                sellSetupFlag.push(setupObj);
+                //准备countdown 数据
+                var countdownObj = {};
+                countdownObj.x = data.flagSell[i].countdown;
+                countdownObj.title = 'SC';
+                countdownObj.text = '(' + data.flagSell[i].countdownNumber + 'T,Countdown) ' + data.flagSell[i].countdownDate;
+                sellCountdownFlag.push(countdownObj);
+            }
+        }
+
         // Create the chart
         Highcharts.stockChart('container', {
             rangeSelector: {
@@ -66,6 +89,20 @@
             }, {
                 type: 'flags',
                 data: countdownFlag,
+                onSeries: 'dataseries',
+                shape: 'circlepin',
+                width: 16
+            },{
+                type: 'flags',
+                data: sellSetupFlag,
+                onSeries: 'dataseries',
+                shape: 'squarepin',
+                width: 16,
+                color: Highcharts.getOptions().colors[0], // same as onSeries
+                fillColor: Highcharts.getOptions().colors[0],
+            }, {
+                type: 'flags',
+                data: sellCountdownFlag,
                 onSeries: 'dataseries',
                 shape: 'circlepin',
                 width: 16

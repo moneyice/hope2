@@ -5,7 +5,7 @@ package com.qianyitian.hope2.analyzer.analyzer;
  */
 public enum EStockAnalyzer {
     Demark, SuddentHighVolume, SuddentHighVolumeLite,
-    SuddentIncrease, SuddentLowVolume, IPO,YesterdayOnceMore, MACD,MACDAdvance;
+    SuddentIncrease, SuddentLowVolume, IPO,YesterdayOnceMore, MACD,MACDAdvance,UnDemark;
 
     public static String ANALYZER_PACKAGE_NAME = "com.qianyitian.hope2.analyzer.analyzer.";
     public static String ANALYZER_SUFFIX_NAME = "Analyzer";

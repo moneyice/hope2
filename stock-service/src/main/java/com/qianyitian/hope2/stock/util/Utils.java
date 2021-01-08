@@ -43,6 +43,7 @@ public class Utils {
     }
 
     public static double handleDouble(String x) {
+        x = x.replaceAll(",", "");
         Double y;
         if (Pattern.matches("N/A", x)) {
             y = 0.00;

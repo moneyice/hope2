@@ -1,10 +1,7 @@
 package com.qianyitian.hope2.analyzer.controller;
 
 import com.alibaba.fastjson.JSON;
-import com.qianyitian.hope2.analyzer.analyzer.DemarkAnalyzer;
-import com.qianyitian.hope2.analyzer.analyzer.EStockAnalyzer;
-import com.qianyitian.hope2.analyzer.analyzer.IStockAnalyzer;
-import com.qianyitian.hope2.analyzer.analyzer.StockAnalyzerFacotry;
+import com.qianyitian.hope2.analyzer.analyzer.*;
 import com.qianyitian.hope2.analyzer.config.Constant;
 import com.qianyitian.hope2.analyzer.model.AnalyzeResult;
 import com.qianyitian.hope2.analyzer.model.KLineInfo;
@@ -48,6 +45,7 @@ public class DemarkController {
 
     public DemarkController() {
     }
+
     @RequestMapping("/demark")
     @CrossOrigin
     public String demark(@RequestParam(value = "days2Now", required = false) Integer days2Now) {
@@ -73,8 +71,8 @@ public class DemarkController {
             stockAnalyzer.setDaysToNow(300);
         }
         Stock stock = stockService.getStockDaily(code);
-        if(stock==null){
-            return "stock not exists "+ code;
+        if (stock == null) {
+            return "stock not exists " + code;
         }
         StockSelecter hs = new StockSelecter(null);
         ResultInfo resultInfo = hs.analyze(stockAnalyzer, stock);
@@ -95,8 +93,19 @@ public class DemarkController {
             map.put("k", kData);
         }
         {
-            map.put("flag", resultInfo.getData().get("flag"));
+            if(resultInfo!=null){
+                map.put("flag", resultInfo.getData().get("flag"));
+            }
         }
+
+//        {
+//            UnDemarkAnalyzer unStockAnalyzer = (UnDemarkAnalyzer) stockAnalyzerFacotry.getStockAnalyzer(EStockAnalyzer.UnDemark);
+//            ResultInfo unResultInfo = hs.analyze(unStockAnalyzer, stock);
+//            map.put("flagSell", unResultInfo.getData().get("flag"));
+//
+//        }
+
+
         String content = JSON.toJSONString(map);
         return content;
     }
