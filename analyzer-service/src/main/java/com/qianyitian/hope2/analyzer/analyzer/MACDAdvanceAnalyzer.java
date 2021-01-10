@@ -48,7 +48,7 @@ public class MACDAdvanceAnalyzer extends AbstractStockAnalyzer {
     }
 
     public String format(double base, double close) {
-        return Utils.calcRange(base,close);
+        return Utils.calcRangeLabel(base,close);
     }
 
     @Override

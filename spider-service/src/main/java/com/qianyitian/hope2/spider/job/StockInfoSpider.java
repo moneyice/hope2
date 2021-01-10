@@ -3,6 +3,7 @@ package com.qianyitian.hope2.spider.job;
 
 import com.qianyitian.hope2.spider.config.PropertyConfig;
 import com.qianyitian.hope2.spider.model.EIndex;
+import com.qianyitian.hope2.spider.model.ETF;
 import com.qianyitian.hope2.spider.model.Stock;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,6 +29,10 @@ public class StockInfoSpider {
 
     @Resource(name = "neteaseWebStockRetreiver")
     private IStockRetreiver stockRetreiver;
+
+    @Resource(name = "sohuWebStockRetreiver")
+    private IStockRetreiver etfStockRetreiver;
+
     private Date lastUpdateTime = null;
     // if it's needed to check the stock info is out of date
     // if true, check
@@ -62,9 +67,9 @@ public class StockInfoSpider {
             List<Stock> stockSymbols = stockRetreiver.getAllStockSymbols();
 
             logger.info("==============================需要更新 " + new Date());
-            syncStockData(stockSymbols);
-            syncIndexData();
-
+//            syncStockData(stockSymbols);
+//            syncIndexData();
+            syncETFData();
             lastUpdateTime = new Date();
             startAnalyze();
         } catch (Exception e) {
@@ -83,6 +88,22 @@ public class StockInfoSpider {
             try {
                 Stock info = stockRetreiver.getStockInfo(stock);
                 storeIndex(info);
+            } catch (IOException e) {
+                logger.error(e.getMessage(), e);
+            }
+        }
+    }
+
+    private void syncETFData() {
+        for (ETF etf : ETF.values()) {
+            Stock stock = new Stock();
+            stock.setCode(etf.getCode());
+            stock.setName(etf.getName());
+            stock.setMarket(etf.getMarket());
+
+            try {
+                Stock info = etfStockRetreiver.getStockInfo(stock);
+                storeStock(info);
             } catch (IOException e) {
                 logger.error(e.getMessage(), e);
             }

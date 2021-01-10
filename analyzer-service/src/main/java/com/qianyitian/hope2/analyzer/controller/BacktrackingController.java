@@ -104,9 +104,9 @@ public class BacktrackingController {
 
                 Double endPrice = getPrice(end, priceMap);
 
-                String range=Utils.calcRange(fromPrice,endPrice);
+                String range = Utils.calcRangeLabel(fromPrice, endPrice);
 
-                String s = fromPrice + " ------> " + endPrice+ " 涨幅 "+range +"  "+ i +"年 ";
+                String s = fromPrice + " ------> " + endPrice + " 涨幅 " + range + "  " + i + "年 ";
                 list.add(s);
             }
         } catch (Exception e) {

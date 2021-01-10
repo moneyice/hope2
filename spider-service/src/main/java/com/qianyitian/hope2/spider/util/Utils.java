@@ -39,7 +39,7 @@ public class Utils {
         return SF1.format(time);
     }
 
-    public static LocalDate parseDate(String date) throws ParseException {
+    public static LocalDate parseDate(String date) {
         //严格按照ISO yyyy-MM-dd验证
         return LocalDate.parse(date);
     }
