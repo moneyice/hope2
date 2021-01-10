@@ -67,8 +67,8 @@ public class StockInfoSpider {
             List<Stock> stockSymbols = stockRetreiver.getAllStockSymbols();
 
             logger.info("==============================需要更新 " + new Date());
-//            syncStockData(stockSymbols);
-//            syncIndexData();
+            syncStockData(stockSymbols);
+            syncIndexData();
             syncETFData();
             lastUpdateTime = new Date();
             startAnalyze();
