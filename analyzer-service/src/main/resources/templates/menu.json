@@ -1,1 +1,117 @@
-menu.json
+[  
+  {
+    "name": "DeMark算法(所有股票)",
+    "router": "ReportDetail",
+    "url": "/analysis/Demark/daily",
+	"html":"/demark-all.html"
+  },
+  {
+    "name": "Demark算法（优选股票）",
+    "router": "ReportDetail",
+    "url": "/demark?days2Now=300",
+	"html":"/demark.html"
+  },
+  
+  {
+    "name": "ETF基金跟踪",
+    "router": "ReportDetail",
+    "url": "/etf",
+	"html":"/etf.html"
+  },
+  
+  {
+    "name": "DeMark算法(比特币)",
+    "router": "BackTracking",
+    "url": "/demark-backtrack/bitcoin",
+	"html": "/demark-flag.html?code=bitcoin"
+  },
+  {
+    "name": "DeMark算法(石油)",
+    "router": "BackTracking",
+	"url": "/demark-backtrack/oil",
+    "html": "/demark-flag.html?code=oil"
+  },
+  {
+    "name": "DeMark算法(白银)",
+    "router": "BackTracking",
+	"url": "/demark-backtrack/silver",
+    "html": "/demark-flag.html?code=silver"
+  },
+  {
+    "name": "28策略比较",
+    "router": "BackTracking",
+    "html": "/28-policy-compare.html",
+    "url": "/28/compare?startDate=2005-02-04"
+  },
+  {
+    "name": "算法收益回溯",
+    "router": "BackTracking",
+	"url": "/backtracking/{code}?startDate=2005-02-04",
+    "html": "/backtracking.html"
+  },
+  {
+    "name": "涨幅统计",
+    "router": "BackTracking",
+    "html": "/increase-statistics.html"
+  },
+  
+  {
+    "name": "短期放量",
+    "router": "ReportDetail",
+	"url": "/analysis/SuddentHighVolume/daily",
+    "html": "/report.html?name=SuddentHighVolume&type=daily"
+  },
+  {
+    "name": "短期放量简化版",
+    "router": "ReportDetail",
+	"url": "/analysis/SuddentHighVolumeLite/daily",
+    "html": "/report.html?name=SuddentHighVolumeLite&type=daily"
+  },
+  {
+    "name": "短期涨",
+    "router": "ReportDetail",
+	"url": "/analysis/SuddentIncrease/daily",
+    "html": "/report.html?name=SuddentIncrease&type=daily"
+  },
+  {
+    "name": "短期缩量",
+    "router": "ReportDetail",
+	"url": "/analysis/SuddentLowVolume/daily",
+    "html": "/report.html?name=SuddentLowVolume&type=daily"
+  },
+  {
+    "name": "昨日重现",
+    "router": "ReportDetail",
+	"url": "/analysis/YesterdayOnceMore/daily",
+    "html": "/report.html?name=YesterdayOnceMore&type=daily"
+  },
+  {
+	"name": "新股", 
+	"router": "ReportDetail", 
+	"url": "/analysis/IPO/daily",
+	"html": "/report.html?name=IPO&type=daily"},
+  {
+    "name": "日线MACD上穿",
+    "router": "ReportDetail",
+	"url": "/analysis/MACD/daily",
+    "html": "/report.html?name=MACD&type=daily"
+  },
+  {
+    "name": "日线MACD上穿高级版",
+    "router": "ReportDetail",
+	"url": "/analysis/MACDAdvance/daily",
+    "html": "/report.html?name=MACDAdvance&type=daily"
+  },
+  {
+    "name": "周线MACD上穿",
+    "router": "ReportDetail",
+	"url": "/analysis/MACD/weekly",
+    "html": "/report.html?name=MACD&type=weekly"
+  },
+  {
+    "name": "月线MACD上穿",
+    "router": "ReportDetail",
+	"url": "/analysis/MACD/monthly",
+    "html": "/report.html?name=MACD&type=monthly"
+  }
+]
