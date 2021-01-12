@@ -1,17 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
-    <link rel="icon" href="/favicon.ico">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <title>买入策略回溯</title>
-    <script src="https://img.hcharts.cn/jquery/jquery-1.8.3.min.js"></script>
-    <script src="https://img.hcharts.cn/highcharts/highcharts.js"></script>
-    <script src="https://img.hcharts.cn/highcharts/modules/exporting.js"></script>
-    <script src="https://img.hcharts.cn/highcharts/modules/data.js"></script>
-    <script src="https://img.hcharts.cn/highcharts-plugins/highcharts-zh_CN.js"></script>
+    <title>Hope2</title>
+    <link rel="stylesheet" href="https://bulma.io/css/bulma-docs.min.css?v=202101062241">
+    <link rel="stylesheet" href="https://lib.baomitu.com/bulma/0.9.1/css/bulma.css">
+    <link rel="shortcut icon" href="/favicon.ico">
     <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://code.highcharts.com.cn/highstock/8.2.2/highstock.js"></script>
+    <script src="https://code.highcharts.com.cn/highstock/8.2.2/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com.cn/highstock/8.2.2/modules/data.js"></script>
+
     <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.5.3/js/bootstrap.min.js"></script>
     <script src="js/bootstrap-suggest.js"></script>
@@ -93,46 +94,84 @@
                 });
 
         });
-
-
-
-
     </script>
 </head>
-<body>
+<body class="layout-default">
+<nav id="navbar" class="bd-navbar navbar has-shadow is-spaced">
+    <div class="container">
+        <div class="navbar-brand">
+            <a class="navbar-item" href="https://hope2.qianyitian.com/">
+                <img src="logo.jpg" width="40" height="160">  <h4 class="title is-3">Hope2</h4>
+            </a>
+        </div>
 
-<div class="container">
-    <p></p>
-    <div class="row">
-        <div class="col-lg-6">
-            股票代码
-            <div class="input-group">
-                <input type="text" class="form-control" id="code">
-                <div class="input-group-btn">
-                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                        <span class="caret"></span>
-                    </button>
-                    <button onclick="post()" type="button" class="btn btn-dark"> 提交</button>
-                    <ul class="dropdown-menu dropdown-menu-right" role="menu">
-                    </ul>
+        <div id="navMenuIndex" class="navbar-menu">
+            <div class="navbar-end">
+                <div class="navbar-item">
+                    <div class="field is-grouped is-grouped-multiline">
+                        <p class="control">
+                            <a class="button is-info" style="height: 2.25em; padding: calc(.375em - 1px) .75em;"
+                               href="#">
+                                <strong>Sponsor</strong>
+                            </a>
+                        </p>
+
+                        <p class="control">
+                            <a class="button is-primary" style="height: 2.25em; padding: calc(.375em - 1px) .75em;"
+                               href="#">
+                                <strong>Download</strong>
+                            </a>
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+</nav>
 
+<section class="section">
+    <div class="container">
+        <div class="columns">
+            <div class="column is-3">
+                <div class="field">
+                    <label class="label">股票代码</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="code">
+                        <div class="input-group-btn">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                <span class="caret"></span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="field is-grouped">
+                    <div class="control">
+                        <button class="button is-link" onclick="post()">提交</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="section">
     <div id="chart-container" style="min-width:400px;height:400px"></div>
-    <div class="message">
-        初始资金100万。
-    </div>
-    <div class="message">
-        r1版本：如果MACD大于0，并且价格大于30天均线，买入或者持有。如果MACD<0 或者 价格小于30天均线，卖出或者空仓。
-    </div>
+</section>
 
-    <div class="message">
-        r2版本：第一个交易日买入，并一直持有。
+<section class="section">
+    <div class="container">
+        <div>
+            初始资金100万。
+        </div>
+        <div>
+            r1版本：如果MACD大于0，并且价格大于30天均线，买入或者持有。如果MACD<0 或者 价格小于30天均线，卖出或者空仓。
+        </div>
+        <div>
+            r2版本：第一个交易日买入，并一直持有。
+        </div>
     </div>
-
-
-</div>
+</section>
+<hr>
 </body>
 </html>

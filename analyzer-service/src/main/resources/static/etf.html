@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
-    <link rel="icon" href="/favicon.ico">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <title>ETF列表</title>
+    <title>Hope2</title>
+    <link rel="stylesheet" href="https://bulma.io/css/bulma-docs.min.css?v=202101062241">
+    <link rel="stylesheet" href="https://lib.baomitu.com/bulma/0.9.1/css/bulma.css">
+    <link rel="shortcut icon" href="/favicon.ico">
     <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="http://www.datatables.net/rss.xml">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css">
     <script type="text/javascript" language="javascript"
@@ -14,7 +16,7 @@
             src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
-            var link="/etf";
+            var link = "/etf";
             $.getJSON(link, function (data1) {
                 $('#stockTable').DataTable({
                     data: data1,
@@ -41,28 +43,58 @@
         });
     </script>
 </head>
-<body>
-<div class="content" style="max-width:800px;height:400px">
-    <h1 class="page_title" id="title">ETF列表</h1>
-    <div class="info">
-        <p>
-            解释：<label id="description">每个交易周末，在16个ETF中，选出本周涨幅前6的ETF，等权重买入或者持有。</label>
-        </p>
+<body class="layout-default">
+<nav id="navbar" class="bd-navbar navbar has-shadow is-spaced">
+    <div class="container">
+        <div class="navbar-brand">
+            <a class="navbar-item" href="https://hope2.qianyitian.com/">
+                <img src="logo.jpg" width="40" height="160">  <h4 class="title is-3">Hope2</h4>
+            </a>
+        </div>
+
+        <div id="navMenuIndex" class="navbar-menu">
+            <div class="navbar-end">
+                <div class="navbar-item">
+                    <div class="field is-grouped is-grouped-multiline">
+                        <p class="control">
+                            <a class="button is-info" style="height: 2.25em; padding: calc(.375em - 1px) .75em;"
+                               href="#">
+                                <strong>Sponsor</strong>
+                            </a>
+                        </p>
+
+                        <p class="control">
+                            <a class="button is-primary" style="height: 2.25em; padding: calc(.375em - 1px) .75em;"
+                               href="#">
+                                <strong>Download</strong>
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="info">
-        <p>
-            生成时间：<label id="genTime"></label>
-        </p>
+</nav>
+
+<section class="hero is-light is-info">
+    <div class="hero-body">
+        <div class="container">
+            <h1 class="title">
+                各行业ETF基金
+            </h1>
+            <h2 class="subtitle" id="description">
+                每个交易周末，在16个ETF中，选出本周涨幅前6的ETF，等权重买入或者持有。
+            </h2>
+            <p> 生成时间：<label id="genTime"></label></p>
+            <p><a id="jsonReport" href="/etf" target="_blank">数据版</a>
+            </p>
+        </div>
     </div>
-    <div class="info">
-        <p>
-            数据版：<a id="jsonReport" href="/etf" target="_blank">报表</a>
-        </p>
-    </div>
-    <p></p>
-    <p></p>
-    <p></p>
-    <div>
+</section>
+
+
+<section class="section">
+    <div class="container">
         <table id="stockTable" class="display compact" style="width:100%">
             <thead>
             <tr>
@@ -91,6 +123,7 @@
             </tfoot>
         </table>
     </div>
-</div>
+</section>
+<hr>
 </body>
 </html>

@@ -6,12 +6,40 @@
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="dcf88ab8-24f8-4e63-84a9-94a270993007" name="Default Changelist" comment="input suggest">
+    <list default="true" id="dcf88ab8-24f8-4e63-84a9-94a270993007" name="Default Changelist" comment="add 002352">
+      <change afterPath="$PROJECT_DIR$/analyzer-service/src/main/resources/static/logo.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/analyzer-service/src/main/resources/templates/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/analyzer-service/src/main/java/com/qianyitian/hope2/analyzer/controller/AnalysisController.java" beforeDir="false" afterPath="$PROJECT_DIR$/analyzer-service/src/main/java/com/qianyitian/hope2/analyzer/controller/AnalysisController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/analyzer-service/src/main/java/com/qianyitian/hope2/analyzer/controller/BacktrackingController.java" beforeDir="false" afterPath="$PROJECT_DIR$/analyzer-service/src/main/java/com/qianyitian/hope2/analyzer/controller/BacktrackingController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analyzer-service/src/main/java/com/qianyitian/hope2/analyzer/config/MyMvcConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/analyzer-service/src/main/java/com/qianyitian/hope2/analyzer/config/MyMvcConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analyzer-service/src/main/resources/static/28-policy-compare.html" beforeDir="false" afterPath="$PROJECT_DIR$/analyzer-service/src/main/resources/static/28-policy-compare.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analyzer-service/src/main/resources/static/backtracking.html" beforeDir="false" afterPath="$PROJECT_DIR$/analyzer-service/src/main/resources/static/backtracking.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analyzer-service/src/main/resources/static/demark-all.html" beforeDir="false" afterPath="$PROJECT_DIR$/analyzer-service/src/main/resources/static/demark-all.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analyzer-service/src/main/resources/static/demark-flag.html" beforeDir="false" afterPath="$PROJECT_DIR$/analyzer-service/src/main/resources/static/demark-flag.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analyzer-service/src/main/resources/static/demark.html" beforeDir="false" afterPath="$PROJECT_DIR$/analyzer-service/src/main/resources/static/demark.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analyzer-service/src/main/resources/static/etf.html" beforeDir="false" afterPath="$PROJECT_DIR$/analyzer-service/src/main/resources/static/etf.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analyzer-service/src/main/resources/static/report.html" beforeDir="false" afterPath="$PROJECT_DIR$/analyzer-service/src/main/resources/static/report.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analyzer-service/src/main/resources/templates/menu.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/analyzer-service/src/main/resources/templates/welcome.html" beforeDir="false" afterPath="$PROJECT_DIR$/analyzer-service/src/main/resources/templates/welcome.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,8 +52,8 @@
         <option value="Interface" />
         <option value="FxmlFile" />
         <option value="Enum" />
-        <option value="JUnit5 Test Class" />
         <option value="Class" />
+        <option value="JUnit5 Test Class" />
       </list>
     </option>
   </component>
@@ -74,42 +102,47 @@
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
     <property name="extract.method.default.visibility" value="protected" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/analyzer-service/src/main/resources/static" />
+    <property name="full.screen.before.presentation.mode" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/analyzer-service/src/main/resources/templates" />
     <property name="nodejs.jest.jest_package" value="" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="com.alibabacloud.intellij.config.AccountConfigurable" />
+    <property name="settings.editor.selected.configurable" value="database.data.views" />
   </component>
   <component name="ReactorSettings">
     <option name="notificationShown" value="true" />
   </component>
   <component name="RecentsManager">
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
     <key name="CreateTestDialog.RecentsKey">
+      <recent name="com.qianyitian.hope2.analyzer.util" />
+      <recent name="com.qianyitian.hope2.spider.job" />
       <recent name="com.qianyitian.hope2.stock.search" />
       <recent name="autocomplete" />
-      <recent name="com.qianyitian.hope2.spider.job" />
     </key>
     <key name="MoveMembersDialog.RECENTS_KEY">
       <recent name="com.qianyitian.hope2.stock.config.Constant" />
     </key>
-    <key name="CreateTestDialog.Recents.Supers">
-      <recent name="" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\bing.a.qian\IdeaProjects\hope2\analyzer-service\src\main\resources\static" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.qianyitian.hope2.analyzer.model" />
       <recent name="com.qianyitian.hope2.analyzer.controller" />
-      <recent name="com.qianyitian.hope2.stock.model" />
-      <recent name="com.qianyitian.hope2.analyzer.analyzer" />
-      <recent name="com.qianyitian.hope2.stock.dao" />
+      <recent name="com.qianyitian.hope2.spider.job" />
       <recent name="com.qianyitian.hope2.spider.model" />
+      <recent name="com.qianyitian.hope2.analyzer.analyzer" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\bing.a.qian\IdeaProjects\hope2\analyzer-service\src\main\resources\static" />
+      <recent name="C:\Users\bing.a.qian\IdeaProjects\hope2\analyzer-service\src\main\resources\templates" />
       <recent name="C:\Users\bing.a.qian\IdeaProjects\hope2\analyzer-service\src\main\resources\static\js" />
-      <recent name="C:\Users\bing.a.qian\IdeaProjects\hope2\sh" />
-      <recent name="C:\Users\bing.a.qian\IdeaProjects\hope2\stock-service\src\main\resources" />
-      <recent name="C:\Users\bing.a.qian\IdeaProjects\hope2\spider-service\src\main\resources" />
+      <recent name="C:\Users\bing.a.qian\IdeaProjects\hope2\log" />
+      <recent name="C:\Users\bing.a.qian\IdeaProjects\hope2\analyzer-service\src\main\resources\static" />
+      <recent name="C:\Users\bing.a.qian\IdeaProjects\hope2\target\data" />
     </key>
   </component>
   <component name="RestClientSettings">
@@ -139,32 +172,6 @@
     </option>
   </component>
   <component name="RunManager" selected="Spring Boot.StockApplication">
-    <configuration name="EffectiveWordMatcher (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.qianyitian.hope2.stock.search.EffectiveWordMatcher" />
-      <module name="stock-service" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.qianyitian.hope2.stock.search.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="PostStartupDataLoader" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.qianyitian.hope2.stock.config.PostStartupDataLoader" />
-      <module name="stock-service" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.qianyitian.hope2.stock.config.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="SpiderApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.qianyitian.hope2.spider.SpiderApplication" />
       <module name="spider-service" />
@@ -283,22 +290,6 @@
       <option name="uploadType" value="FILE" />
       <method v="2" />
     </configuration>
-    <configuration name="EffectiveWordMatcherTest.processOneWord" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="stock-service" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.qianyitian.hope2.stock.search.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.qianyitian.hope2.stock.search" />
-      <option name="MAIN_CLASS_NAME" value="com.qianyitian.hope2.stock.search.EffectiveWordMatcherTest" />
-      <option name="METHOD_NAME" value="processOneWord" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="SimpleWordMatcherTest.buildPrefixMatchers" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="analyzer-service" />
       <extension name="coverage">
@@ -310,6 +301,54 @@
       <option name="PACKAGE_NAME" value="autocomplete" />
       <option name="MAIN_CLASS_NAME" value="autocomplete.SimpleWordMatcherTest" />
       <option name="METHOD_NAME" value="buildPrefixMatchers" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SimpleWordMatcherTest.dynamicAddNew" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="analyzer-service" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="autocomplete.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="autocomplete" />
+      <option name="MAIN_CLASS_NAME" value="autocomplete.SimpleWordMatcherTest" />
+      <option name="METHOD_NAME" value="dynamicAddNew" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SohuWebStockRetreiverTest.getStockInfo" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="spider-service" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.qianyitian.hope2.spider.job.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.qianyitian.hope2.spider.job" />
+      <option name="MAIN_CLASS_NAME" value="com.qianyitian.hope2.spider.job.SohuWebStockRetreiverTest" />
+      <option name="METHOD_NAME" value="getStockInfo" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UtilsTest.double2Percentage" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="analyzer-service" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.qianyitian.hope2.analyzer.util.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.qianyitian.hope2.analyzer.util" />
+      <option name="MAIN_CLASS_NAME" value="com.qianyitian.hope2.analyzer.util.UtilsTest" />
+      <option name="METHOD_NAME" value="double2Percentage" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -361,13 +400,13 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.EffectiveWordMatcher (1)" />
-      <item itemvalue="Application.PostStartupDataLoader" />
       <item itemvalue="Application.SpiderApplication" />
       <item itemvalue="Deploy to Host.Deploy to Host" />
       <item itemvalue="ECS on Alibaba Cloud.ECS on Alibaba Cloud" />
       <item itemvalue="JUnit.SimpleWordMatcherTest.buildPrefixMatchers" />
-      <item itemvalue="JUnit.EffectiveWordMatcherTest.processOneWord" />
+      <item itemvalue="JUnit.SimpleWordMatcherTest.dynamicAddNew" />
+      <item itemvalue="JUnit.SohuWebStockRetreiverTest.getStockInfo" />
+      <item itemvalue="JUnit.UtilsTest.double2Percentage" />
       <item itemvalue="Remote.remote-analyzer" />
       <item itemvalue="Spring Boot.AnalyzerApplication" />
       <item itemvalue="Spring Boot.SpiderApplication" />
@@ -375,11 +414,11 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.UtilsTest.double2Percentage" />
+        <item itemvalue="JUnit.SohuWebStockRetreiverTest.getStockInfo" />
+        <item itemvalue="JUnit.SimpleWordMatcherTest.dynamicAddNew" />
         <item itemvalue="JUnit.SimpleWordMatcherTest.buildPrefixMatchers" />
         <item itemvalue="Application.SpiderApplication" />
-        <item itemvalue="JUnit.EffectiveWordMatcherTest.processOneWord" />
-        <item itemvalue="Application.EffectiveWordMatcher (1)" />
-        <item itemvalue="Application.PostStartupDataLoader" />
       </list>
     </recent_temporary>
   </component>
@@ -400,77 +439,10 @@
       <workItem from="1608101685763" duration="41082000" />
       <workItem from="1608519165557" duration="111272000" />
       <workItem from="1609338169484" duration="7132000" />
-      <workItem from="1609677753561" duration="6964000" />
-    </task>
-    <task id="LOCAL-00009" summary="demark url parameter">
-      <created>1608090143533</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1608090143533</updated>
-    </task>
-    <task id="LOCAL-00010" summary="demark url parameter">
-      <created>1608126151371</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1608126151371</updated>
-    </task>
-    <task id="LOCAL-00011" summary="demark url parameter">
-      <created>1608132253858</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1608132253858</updated>
-    </task>
-    <task id="LOCAL-00012" summary="调整data目录">
-      <created>1608175457613</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1608175457613</updated>
-    </task>
-    <task id="LOCAL-00013" summary="调整data目录">
-      <created>1608175620659</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1608175620659</updated>
-    </task>
-    <task id="LOCAL-00014" summary="调整data目录">
-      <created>1608175923666</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1608175923666</updated>
-    </task>
-    <task id="LOCAL-00015" summary="类型做成枚举">
-      <created>1608194603946</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1608194603946</updated>
-    </task>
-    <task id="LOCAL-00016" summary="类型做成枚举">
-      <created>1608213654176</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1608213654176</updated>
-    </task>
-    <task id="LOCAL-00017" summary="favorite symbols change format">
-      <created>1608262115771</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1608262115771</updated>
-    </task>
-    <task id="LOCAL-00018" summary="favorite symbols change format">
-      <created>1608262188531</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1608262188531</updated>
+      <workItem from="1609677753561" duration="36287000" />
+      <workItem from="1610176605438" duration="35082000" />
+      <workItem from="1610341208766" duration="565000" />
+      <workItem from="1610341830272" duration="24747000" />
     </task>
     <task id="LOCAL-00019" summary="favorite symbols change format">
       <created>1608283122095</created>
@@ -745,7 +717,77 @@
       <option name="project" value="LOCAL" />
       <updated>1609422626575</updated>
     </task>
-    <option name="localTasksCounter" value="58" />
+    <task id="LOCAL-00058" summary="input suggest">
+      <created>1609686156144</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1609686156145</updated>
+    </task>
+    <task id="LOCAL-00059" summary="add 002352">
+      <created>1609834671628</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1609834671628</updated>
+    </task>
+    <task id="LOCAL-00060" summary="add 002352">
+      <created>1609941195418</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1609941195418</updated>
+    </task>
+    <task id="LOCAL-00061" summary="add bitcoin oil silver">
+      <created>1610103071716</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1610103071716</updated>
+    </task>
+    <task id="LOCAL-00062" summary="计算多少天的">
+      <created>1610104494676</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1610104494676</updated>
+    </task>
+    <task id="LOCAL-00063" summary="etf">
+      <created>1610264838287</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1610264838288</updated>
+    </task>
+    <task id="LOCAL-00064" summary="etf">
+      <created>1610265188114</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1610265188114</updated>
+    </task>
+    <task id="LOCAL-00065" summary="etf">
+      <created>1610265539336</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1610265539336</updated>
+    </task>
+    <task id="LOCAL-00066" summary="home page">
+      <created>1610288813657</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1610288813657</updated>
+    </task>
+    <task id="LOCAL-00067" summary="menu">
+      <created>1610334856813</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1610334856813</updated>
+    </task>
+    <option name="localTasksCounter" value="68" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -761,12 +803,18 @@
       </list>
     </option>
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="first submit" />
-    <MESSAGE value="refactoring" />
-    <MESSAGE value="refactoring report format" />
-    <MESSAGE value="demark url parameter" />
-    <MESSAGE value="调整data目录" />
     <MESSAGE value="类型做成枚举" />
     <MESSAGE value="favorite symbols change format" />
     <MESSAGE value="NPE" />
@@ -781,14 +829,24 @@
     <MESSAGE value="fix js bug" />
     <MESSAGE value="refactoring methods" />
     <MESSAGE value="default 250 T" />
-    <MESSAGE value="input suggest" />
     <MESSAGE value="demark all" />
     <MESSAGE value="log path" />
     <MESSAGE value="add .ico" />
     <MESSAGE value="ico" />
-    <option name="LAST_COMMIT_MESSAGE" value="ico" />
+    <MESSAGE value="input suggest" />
+    <MESSAGE value="add 002352" />
+    <MESSAGE value="add bitcoin oil silver" />
+    <MESSAGE value="计算多少天的" />
+    <MESSAGE value="etf" />
+    <MESSAGE value="home page" />
+    <MESSAGE value="menu" />
+    <option name="LAST_COMMIT_MESSAGE" value="menu" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="362" y="71" width="812" height="728" key="#Intentions" timestamp="1610252529075">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="362" y="71" width="812" height="728" key="#Intentions/0.0.1536.824@0.0.1536.824" timestamp="1610252529075" />
     <state x="250" y="0" key="#Project_Structure" timestamp="1608174227600">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -797,10 +855,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="274" y="52" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1609170103481" />
-    <state x="575" y="119" key="#com.intellij.ide.util.MemberChooser" timestamp="1609120788986">
+    <state x="575" y="119" key="#com.intellij.ide.util.MemberChooser" timestamp="1610264525880">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="575" y="119" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1609120788986" />
+    <state x="575" y="119" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1610264525880" />
     <state x="499" y="203" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1608038679230">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -821,26 +879,26 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="332" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1536.824@0.0.1536.824" timestamp="1609121731331" />
-    <state x="500" y="160" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1608959435615">
+    <state x="500" y="160" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1610436878769">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="500" y="160" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824@0.0.1536.824" timestamp="1608959435615" />
-    <state x="542" y="65" width="713" height="593" key="#xdebugger.evaluate" timestamp="1608308954215">
+    <state x="500" y="160" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824@0.0.1536.824" timestamp="1610436878769" />
+    <state x="542" y="65" width="713" height="593" key="#xdebugger.evaluate" timestamp="1610081805873">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="542" y="65" width="713" height="593" key="#xdebugger.evaluate/0.0.1536.824@0.0.1536.824" timestamp="1608308954215" />
-    <state x="393" y="0" key="CommitChangelistDialog2" timestamp="1609422619002">
+    <state x="542" y="65" width="713" height="593" key="#xdebugger.evaluate/0.0.1536.824@0.0.1536.824" timestamp="1610081805873" />
+    <state x="393" y="0" key="CommitChangelistDialog2" timestamp="1610334849583">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="393" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1609422619002" />
-    <state x="94" y="94" width="1349" height="637" key="DiffContextDialog" timestamp="1609678462439">
+    <state x="393" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1610334849583" />
+    <state x="94" y="94" width="1349" height="637" key="DiffContextDialog" timestamp="1610444990501">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="94" y="94" width="1349" height="637" key="DiffContextDialog/0.0.1536.824@0.0.1536.824" timestamp="1609678462439" />
-    <state x="550" y="122" key="FileChooserDialogImpl" timestamp="1608176866119">
+    <state x="94" y="94" width="1349" height="637" key="DiffContextDialog/0.0.1536.824@0.0.1536.824" timestamp="1610444990501" />
+    <state x="550" y="122" key="FileChooserDialogImpl" timestamp="1610353172764">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="550" y="122" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1608176866119" />
+    <state x="550" y="122" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1610353172764" />
     <state x="593" y="333" key="Github.CreateGistDialog" timestamp="1608025979082">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -849,54 +907,102 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="641" y="311" width="496" height="203" key="Github.ShareDialog/0.0.1536.824@0.0.1536.824" timestamp="1608029042261" />
-    <state width="1493" height="241" key="GridCell.Tab.0.bottom" timestamp="1609685788820">
+    <state width="1493" height="140" key="GridCell.Tab.0.bottom" timestamp="1610450298671">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="241" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1609685788820" />
-    <state width="1493" height="241" key="GridCell.Tab.0.center" timestamp="1609685788820">
+    <state width="1493" height="140" key="GridCell.Tab.0.bottom.inPresentationMode" timestamp="1610163320959">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="241" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1609685788820" />
-    <state width="1493" height="241" key="GridCell.Tab.0.left" timestamp="1609685788820">
+    <state width="1493" height="140" key="GridCell.Tab.0.bottom.inPresentationMode/0.0.1536.824@0.0.1536.824" timestamp="1610163320959" />
+    <state width="1493" height="140" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1610450298671" />
+    <state width="1493" height="140" key="GridCell.Tab.0.center" timestamp="1610450298671">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="241" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1609685788820" />
-    <state width="1493" height="241" key="GridCell.Tab.0.right" timestamp="1609685788820">
+    <state width="1493" height="140" key="GridCell.Tab.0.center.inPresentationMode" timestamp="1610163320959">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="241" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1609685788820" />
-    <state width="1493" height="241" key="GridCell.Tab.1.bottom" timestamp="1609685788644">
+    <state width="1493" height="140" key="GridCell.Tab.0.center.inPresentationMode/0.0.1536.824@0.0.1536.824" timestamp="1610163320959" />
+    <state width="1493" height="140" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1610450298671" />
+    <state width="1493" height="140" key="GridCell.Tab.0.left" timestamp="1610450298671">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="241" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1609685788644" />
-    <state width="1493" height="241" key="GridCell.Tab.1.center" timestamp="1609685788644">
+    <state width="1493" height="140" key="GridCell.Tab.0.left.inPresentationMode" timestamp="1610163320958">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="241" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1609685788644" />
-    <state width="1493" height="241" key="GridCell.Tab.1.left" timestamp="1609685788643">
+    <state width="1493" height="140" key="GridCell.Tab.0.left.inPresentationMode/0.0.1536.824@0.0.1536.824" timestamp="1610163320958" />
+    <state width="1493" height="140" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1610450298671" />
+    <state width="1493" height="140" key="GridCell.Tab.0.right" timestamp="1610450298671">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="241" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1609685788643" />
-    <state width="1493" height="241" key="GridCell.Tab.1.right" timestamp="1609685788644">
+    <state width="1493" height="140" key="GridCell.Tab.0.right.inPresentationMode" timestamp="1610163320959">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="241" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1609685788644" />
-    <state width="1493" height="241" key="GridCell.Tab.2.bottom" timestamp="1609685788644">
+    <state width="1493" height="140" key="GridCell.Tab.0.right.inPresentationMode/0.0.1536.824@0.0.1536.824" timestamp="1610163320959" />
+    <state width="1493" height="140" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1610450298671" />
+    <state width="1493" height="140" key="GridCell.Tab.1.bottom" timestamp="1610450298520">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="241" key="GridCell.Tab.2.bottom/0.0.1536.824@0.0.1536.824" timestamp="1609685788644" />
-    <state width="1493" height="241" key="GridCell.Tab.2.center" timestamp="1609685788644">
+    <state width="1493" height="140" key="GridCell.Tab.1.bottom.inPresentationMode" timestamp="1610163320959">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="241" key="GridCell.Tab.2.center/0.0.1536.824@0.0.1536.824" timestamp="1609685788644" />
-    <state width="1493" height="241" key="GridCell.Tab.2.left" timestamp="1609685788644">
+    <state width="1493" height="140" key="GridCell.Tab.1.bottom.inPresentationMode/0.0.1536.824@0.0.1536.824" timestamp="1610163320959" />
+    <state width="1493" height="140" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1610450298520" />
+    <state width="1493" height="140" key="GridCell.Tab.1.center" timestamp="1610450298520">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="241" key="GridCell.Tab.2.left/0.0.1536.824@0.0.1536.824" timestamp="1609685788644" />
-    <state width="1493" height="241" key="GridCell.Tab.2.right" timestamp="1609685788644">
+    <state width="1493" height="140" key="GridCell.Tab.1.center.inPresentationMode" timestamp="1610163320959">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="241" key="GridCell.Tab.2.right/0.0.1536.824@0.0.1536.824" timestamp="1609685788644" />
+    <state width="1493" height="140" key="GridCell.Tab.1.center.inPresentationMode/0.0.1536.824@0.0.1536.824" timestamp="1610163320959" />
+    <state width="1493" height="140" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1610450298520" />
+    <state width="1493" height="140" key="GridCell.Tab.1.left" timestamp="1610450298520">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="140" key="GridCell.Tab.1.left.inPresentationMode" timestamp="1610163320959">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="140" key="GridCell.Tab.1.left.inPresentationMode/0.0.1536.824@0.0.1536.824" timestamp="1610163320959" />
+    <state width="1493" height="140" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1610450298520" />
+    <state width="1493" height="140" key="GridCell.Tab.1.right" timestamp="1610450298520">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="140" key="GridCell.Tab.1.right.inPresentationMode" timestamp="1610163320959">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="140" key="GridCell.Tab.1.right.inPresentationMode/0.0.1536.824@0.0.1536.824" timestamp="1610163320959" />
+    <state width="1493" height="140" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1610450298520" />
+    <state width="1493" height="140" key="GridCell.Tab.2.bottom" timestamp="1610450298520">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="140" key="GridCell.Tab.2.bottom.inPresentationMode" timestamp="1610163320959">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="140" key="GridCell.Tab.2.bottom.inPresentationMode/0.0.1536.824@0.0.1536.824" timestamp="1610163320959" />
+    <state width="1493" height="140" key="GridCell.Tab.2.bottom/0.0.1536.824@0.0.1536.824" timestamp="1610450298520" />
+    <state width="1493" height="140" key="GridCell.Tab.2.center" timestamp="1610450298520">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="140" key="GridCell.Tab.2.center.inPresentationMode" timestamp="1610163320959">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="140" key="GridCell.Tab.2.center.inPresentationMode/0.0.1536.824@0.0.1536.824" timestamp="1610163320959" />
+    <state width="1493" height="140" key="GridCell.Tab.2.center/0.0.1536.824@0.0.1536.824" timestamp="1610450298520" />
+    <state width="1493" height="140" key="GridCell.Tab.2.left" timestamp="1610450298520">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="140" key="GridCell.Tab.2.left.inPresentationMode" timestamp="1610163320959">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="140" key="GridCell.Tab.2.left.inPresentationMode/0.0.1536.824@0.0.1536.824" timestamp="1610163320959" />
+    <state width="1493" height="140" key="GridCell.Tab.2.left/0.0.1536.824@0.0.1536.824" timestamp="1610450298520" />
+    <state width="1493" height="140" key="GridCell.Tab.2.right" timestamp="1610450298520">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="140" key="GridCell.Tab.2.right.inPresentationMode" timestamp="1610163320959">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="140" key="GridCell.Tab.2.right.inPresentationMode/0.0.1536.824@0.0.1536.824" timestamp="1610163320959" />
+    <state width="1493" height="140" key="GridCell.Tab.2.right/0.0.1536.824@0.0.1536.824" timestamp="1610450298520" />
     <state x="300" y="68" key="Maven.ArtifactSearchDialog" timestamp="1607840965842">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -905,38 +1011,42 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="441" y="117" key="NewModule_or_Project.wizard/0.0.1536.824@0.0.1536.824" timestamp="1607772786061" />
-    <state x="485" y="115" key="RollbackChangesDialog" timestamp="1609150399737">
+    <state x="485" y="115" key="RollbackChangesDialog" timestamp="1610437022701">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="485" y="115" key="RollbackChangesDialog/0.0.1536.824@0.0.1536.824" timestamp="1609150399737" />
-    <state x="250" y="0" key="SettingsEditor" timestamp="1609683978891">
+    <state x="485" y="115" key="RollbackChangesDialog/0.0.1536.824@0.0.1536.824" timestamp="1610437022701" />
+    <state x="250" y="0" key="SettingsEditor" timestamp="1610353945686">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="250" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1609683978891" />
+    <state x="250" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1610353945686" />
     <state x="618" y="326" key="VCS.ChangelistChooser" timestamp="1608985395420">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="618" y="326" key="VCS.ChangelistChooser/0.0.1536.824@0.0.1536.824" timestamp="1608985395420" />
-    <state x="362" y="146" key="Vcs.Push.Dialog.v2" timestamp="1609422628174">
+    <state x="362" y="146" key="Vcs.Push.Dialog.v2" timestamp="1610335295315">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="362" y="146" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1609422628174" />
+    <state x="362" y="146" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1610335295315" />
     <state x="94" y="94" width="1349" height="637" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog" timestamp="1608609026513">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="94" y="94" width="1349" height="637" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog/0.0.1536.824@0.0.1536.824" timestamp="1608609026513" />
-    <state x="539" y="235" key="com.intellij.testIntegration.createTest.CreateTestDialog" timestamp="1608539789804">
+    <state x="94" y="94" width="1349" height="637" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1610444910523">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="539" y="235" key="com.intellij.testIntegration.createTest.CreateTestDialog/0.0.1536.824@0.0.1536.824" timestamp="1608539789804" />
+    <state x="94" y="94" width="1349" height="637" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1536.824@0.0.1536.824" timestamp="1610444910523" />
+    <state x="832" y="105" key="com.intellij.testIntegration.createTest.CreateTestDialog" timestamp="1610257428539">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="832" y="105" key="com.intellij.testIntegration.createTest.CreateTestDialog/0.0.1536.824@0.0.1536.824" timestamp="1610257428539" />
     <state x="806" y="324" key="extract.method.dialog" timestamp="1609151579838">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="806" y="324" key="extract.method.dialog/0.0.1536.824@0.0.1536.824" timestamp="1609151579838" />
-    <state x="459" y="10" width="1077" height="784" key="find.popup" timestamp="1609678419978">
+    <state x="-78" y="34" width="1468" height="784" key="find.popup" timestamp="1610285473803">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="459" y="10" width="1077" height="784" key="find.popup/0.0.1536.824@0.0.1536.824" timestamp="1609678419978" />
+    <state x="-78" y="34" width="1468" height="784" key="find.popup/0.0.1536.824@0.0.1536.824" timestamp="1610285473803" />
     <state x="572" y="319" key="git4idea.remote.GitConfigureRemotesDialog" timestamp="1608127078451">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -949,14 +1059,14 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="471" y="170" key="refactoring.ChangeSignatureDialog/0.0.1536.824@0.0.1536.824" timestamp="1608110119464" />
-    <state x="426" y="188" width="672" height="677" key="run.anything.popup" timestamp="1608194190945">
+    <state x="426" y="188" width="672" height="677" key="run.anything.popup" timestamp="1610103818975">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="426" y="188" width="672" height="677" key="run.anything.popup/0.0.1536.824@0.0.1536.824" timestamp="1608194190945" />
-    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1609681753297">
+    <state x="426" y="188" width="672" height="677" key="run.anything.popup/0.0.1536.824@0.0.1536.824" timestamp="1610103818975" />
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1610264418339">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1609681753297" />
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1610264418339" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -974,6 +1084,15 @@
       </breakpoints>
     </breakpoint-manager>
     <watches-manager>
+      <configuration name="JUnit">
+        <watch expression="objects" />
+        <watch expression="objects" language="JAVA" />
+        <watch expression="((HashMap.Node)((com.alibaba.fastjson.JSONObject)((com.alibaba.fastjson.JSONArray)objects).get(0)).entrySet().toArray()[1]).getValue()" custom="com.alibaba.fastjson.JSONArray,java.util.HashMap.Node,com.alibaba.fastjson.JSONObject" />
+        <watch expression="((com.alibaba.fastjson.JSONObject)((com.alibaba.fastjson.JSONArray)objects).get(0)).entrySet().toArray()[1]" custom="com.alibaba.fastjson.JSONArray,com.alibaba.fastjson.JSONObject" />
+        <watch expression="((HashMap.Node)((com.alibaba.fastjson.JSONObject)((com.alibaba.fastjson.JSONArray)objects).get(0)).entrySet().toArray()[1]).getValue()" custom="com.alibaba.fastjson.JSONArray,java.util.HashMap.Node,com.alibaba.fastjson.JSONObject" />
+        <watch expression="((com.alibaba.fastjson.JSONArray)((HashMap.Node)((com.alibaba.fastjson.JSONObject)((com.alibaba.fastjson.JSONArray)objects).get(0)).entrySet().toArray()[1]).getValue()).get(0)" custom="com.alibaba.fastjson.JSONArray,java.util.HashMap.Node,com.alibaba.fastjson.JSONObject" />
+        <watch expression="((com.alibaba.fastjson.JSONArray)((HashMap.Node)((com.alibaba.fastjson.JSONObject)((com.alibaba.fastjson.JSONArray)objects).get(0)).entrySet().toArray()[1]).getValue()).get(0)" custom="com.alibaba.fastjson.JSONArray,java.util.HashMap.Node,com.alibaba.fastjson.JSONObject" />
+      </configuration>
       <configuration name="Remote">
         <watch expression="msg" />
         <watch expression="result.resultList" />

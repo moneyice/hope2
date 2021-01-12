@@ -1,134 +1,187 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" href="/favicon.ico">
-    <title></title>
+    <title>Hope2</title>
+    <link rel="stylesheet" href="https://bulma.io/css/bulma-docs.min.css?v=202101062241">
+    <link rel="stylesheet" href="https://lib.baomitu.com/bulma/0.9.1/css/bulma.css">
+    <link rel="shortcut icon" href="/favicon.ico">
     <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://code.highcharts.com.cn/highstock/8.2.2/highstock.js"></script>
     <script src="https://code.highcharts.com.cn/highstock/8.2.2/modules/exporting.js"></script>
     <script src="https://code.highcharts.com.cn/highstock/8.2.2/modules/data.js"></script>
-</head>
-<body>
+    <script type="text/javascript">
+        var path = window.document.location.href;
+        var code = path.split('?')[1].split('=')[1];
+        var link = '/demark-backtrack/' + code;
+        renderCharts(link);
 
-<div class="message">
-    计算最近多少天:   <input id="days" type="text" name="days" value="300">
-</div>
-
-<button onclick="post()"> 提交 </button>
-
-<div id="container"></div>
-<script type="text/javascript">
-    var path = window.document.location.href;
-    var code = path.split('?')[1].split('=')[1];
-    var link='/demark-backtrack/' + code;
-    renderCharts(link);
-
-    function renderCharts(link){
-        Highcharts.getJSON(link, function (data) {
-            var kData = data.k;
-            var setupFlag = [];
-            var countdownFlag = [];
-            if(data.flag!=null){
-                for (var i = 0; i < data.flag.length; i++) {
-                    //准备setup 数据
-                    var setupObj = {};
-                    setupObj.x = data.flag[i].setup;
-                    setupObj.title = 'BS';
-                    setupObj.text = '(' + data.flag[i].setupNumber + 'T,Setup) ' + data.flag[i].setupDate;
-                    setupFlag.push(setupObj);
-                    //准备countdown 数据
-                    var countdownObj = {};
-                    countdownObj.x = data.flag[i].countdown;
-                    countdownObj.title = 'BC';
-                    countdownObj.text = '(' + data.flag[i].countdownNumber + 'T,Countdown) ' + data.flag[i].countdownDate;
-                    countdownFlag.push(countdownObj);
+        function renderCharts(link) {
+            Highcharts.getJSON(link, function (data) {
+                var kData = data.k;
+                var setupFlag = [];
+                var countdownFlag = [];
+                if (data.flag != null) {
+                    for (var i = 0; i < data.flag.length; i++) {
+                        //准备setup 数据
+                        var setupObj = {};
+                        setupObj.x = data.flag[i].setup;
+                        setupObj.title = 'BS';
+                        setupObj.text = '(' + data.flag[i].setupNumber + 'T,Setup) ' + data.flag[i].setupDate;
+                        setupFlag.push(setupObj);
+                        //准备countdown 数据
+                        var countdownObj = {};
+                        countdownObj.x = data.flag[i].countdown;
+                        countdownObj.title = 'BC';
+                        countdownObj.text = '(' + data.flag[i].countdownNumber + 'T,Countdown) ' + data.flag[i].countdownDate;
+                        countdownFlag.push(countdownObj);
+                    }
                 }
-            }
 
 
-            var sellSetupFlag = [];
-            var sellCountdownFlag = [];
-            if(data.flagSell!=null){
-                for (var i = 0; i < data.flagSell.length; i++) {
-                    //准备setup 数据
-                    var setupObj = {};
-                    setupObj.x = data.flagSell[i].setup;
-                    setupObj.title = 'SS';
-                    setupObj.text = '(' + data.flagSell[i].setupNumber + 'T,Setup) ' + data.flagSell[i].setupDate;
-                    sellSetupFlag.push(setupObj);
-                    //准备countdown 数据
-                    var countdownObj = {};
-                    countdownObj.x = data.flagSell[i].countdown;
-                    countdownObj.title = 'SC';
-                    countdownObj.text = '(' + data.flagSell[i].countdownNumber + 'T,Countdown) ' + data.flagSell[i].countdownDate;
-                    sellCountdownFlag.push(countdownObj);
+                var sellSetupFlag = [];
+                var sellCountdownFlag = [];
+                if (data.flagSell != null) {
+                    for (var i = 0; i < data.flagSell.length; i++) {
+                        //准备setup 数据
+                        var setupObj = {};
+                        setupObj.x = data.flagSell[i].setup;
+                        setupObj.title = 'SS';
+                        setupObj.text = '(' + data.flagSell[i].setupNumber + 'T,Setup) ' + data.flagSell[i].setupDate;
+                        sellSetupFlag.push(setupObj);
+                        //准备countdown 数据
+                        var countdownObj = {};
+                        countdownObj.x = data.flagSell[i].countdown;
+                        countdownObj.title = 'SC';
+                        countdownObj.text = '(' + data.flagSell[i].countdownNumber + 'T,Countdown) ' + data.flagSell[i].countdownDate;
+                        sellCountdownFlag.push(countdownObj);
+                    }
                 }
-            }
 
-            // Create the chart
-            Highcharts.stockChart('container', {
-                rangeSelector: {
-                    selected: 4
-                },
-                title: {
-                    text: data.name + ' ' + data.code
-                },
-                yAxis: {
+                // Create the chart
+                Highcharts.stockChart('container', {
+                    rangeSelector: {
+                        selected: 4
+                    },
                     title: {
-                        text: 'Price'
-                    }
-                },
+                        text: data.name + ' ' + data.code
+                    },
+                    yAxis: {
+                        title: {
+                            text: 'Price'
+                        }
+                    },
 
-                series: [{
-                    name: '收盘价',
-                    data: kData,
-                    id: 'dataseries',
-                    tooltip: {
-                        valueDecimals: 2
-                    }
-                }, {
-                    type: 'flags',
-                    data: setupFlag,
-                    onSeries: 'dataseries',
-                    shape: 'squarepin',
-                    width: 16,
-                    color: Highcharts.getOptions().colors[0], // same as onSeries
-                    fillColor: Highcharts.getOptions().colors[0],
-                }, {
-                    type: 'flags',
-                    data: countdownFlag,
-                    onSeries: 'dataseries',
-                    shape: 'circlepin',
-                    width: 16
-                },{
-                    type: 'flags',
-                    data: sellSetupFlag,
-                    onSeries: 'dataseries',
-                    shape: 'squarepin',
-                    width: 16,
-                    color: Highcharts.getOptions().colors[0], // same as onSeries
-                    fillColor: Highcharts.getOptions().colors[0],
-                }, {
-                    type: 'flags',
-                    data: sellCountdownFlag,
-                    onSeries: 'dataseries',
-                    shape: 'circlepin',
-                    width: 16
-                }]
+                    series: [{
+                        name: '收盘价',
+                        data: kData,
+                        id: 'dataseries',
+                        tooltip: {
+                            valueDecimals: 2
+                        }
+                    }, {
+                        type: 'flags',
+                        data: setupFlag,
+                        onSeries: 'dataseries',
+                        shape: 'squarepin',
+                        width: 16,
+                        color: Highcharts.getOptions().colors[0], // same as onSeries
+                        fillColor: Highcharts.getOptions().colors[0],
+                    }, {
+                        type: 'flags',
+                        data: countdownFlag,
+                        onSeries: 'dataseries',
+                        shape: 'circlepin',
+                        width: 16
+                    }, {
+                        type: 'flags',
+                        data: sellSetupFlag,
+                        onSeries: 'dataseries',
+                        shape: 'squarepin',
+                        width: 16,
+                        color: Highcharts.getOptions().colors[0], // same as onSeries
+                        fillColor: Highcharts.getOptions().colors[0],
+                    }, {
+                        type: 'flags',
+                        data: sellCountdownFlag,
+                        onSeries: 'dataseries',
+                        shape: 'circlepin',
+                        width: 16
+                    }]
+                });
             });
-        });
-    }
+        }
 
 
-    function post(){
-        var days=$("#days").val();
-        var linkNew=link+'?days2Now='+days;
-        renderCharts(linkNew);
-    }
-</script>
+        function post() {
+            var days = $("#days").val();
+            var linkNew = link + '?days2Now=' + days;
+            renderCharts(linkNew);
+        }
+    </script>
+</head>
 
 
+<body class="layout-default">
+<nav id="navbar" class="bd-navbar navbar has-shadow is-spaced">
+    <div class="container">
+        <div class="navbar-brand">
+            <a class="navbar-item" href="https://hope2.qianyitian.com/">
+                <img src="logo.jpg" width="40" height="160">  <h4 class="title is-3">Hope2</h4>
+            </a>
+        </div>
+
+        <div id="navMenuIndex" class="navbar-menu">
+            <div class="navbar-end">
+                <div class="navbar-item">
+                    <div class="field is-grouped is-grouped-multiline">
+                        <p class="control">
+                            <a class="button is-info" style="height: 2.25em; padding: calc(.375em - 1px) .75em;"
+                               href="#">
+                                <strong>Sponsor</strong>
+                            </a>
+                        </p>
+
+                        <p class="control">
+                            <a class="button is-primary" style="height: 2.25em; padding: calc(.375em - 1px) .75em;"
+                               href="#">
+                                <strong>Download</strong>
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<section class="section">
+    <div class="container">
+        <div class="columns">
+            <div class="column is-3">
+                <div class="field">
+                    <label class="label">计算最近多少天的数据</label>
+                    <div class="control">
+                        <input id="days" class="input" type="text" name="days" value="300">
+                    </div>
+                </div>
+                <div class="field is-grouped">
+                    <div class="control">
+                        <button class="button is-link" onclick="post()">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<hr>
+<section class="section">
+    <div class="container">
+        <div id="container"></div>
+    </div>
+</section>
+<hr>
 </body>
 </html>
