@@ -20,11 +20,11 @@ import java.io.InputStream;
 public class AliyunOSSStorageService implements IReportStorageService {
     private Logger logger = LoggerFactory.getLogger(getClass());
 
-    private static String endpoint = "oss-cn-zhangjiakou.aliyuncs.com";
-    private static String accessKeyId = "y3y3mL89zT4N0YUR";
-    private static String accessKeySecret = "Ub25yu6ymY0CJ0LQ7J0c09ZtuYoI1o";
-    private static String bucketName = "hhope";
-    private static String key = "samplekey";
+    private static String endpoint = "";
+    private static String accessKeyId = "";
+    private static String accessKeySecret = "";
+    private static String bucketName = "";
+    private static String key = "";
     private OSSClient ossClient;
     private InputStream inputStream;
 
