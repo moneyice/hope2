@@ -16,17 +16,123 @@
         var chart;
         var path = window.document.location.href;
         var code = path.split('?')[1].split('=')[1];
-        var link = '/demark-backtrack/' + code;
-        renderCharts(link);
+        var flagLink = '/demark-backtrack/' + code;
+        var dataLink = '/stock/chart/series/day/' + code;
+        renderChartWithData(dataLink);
+        renderChartWithFlags(flagLink);
+        var barData;
+        var lineData;
 
-        function renderCharts(link) {
-            console.log($("#bsCheckbox").is(':checked'));
-
-
-
-
+        function renderChartWithData(link) {
             Highcharts.getJSON(link, function (data) {
-                var kData = data.k;
+                var bars = data.bars;
+
+                var lines = [];
+                var dataLength = bars.length;
+                for (i=0; i < dataLength; i++) {
+                    lines.push([
+                        bars[i][0], // the date
+                        bars[i][4] // close
+                    ]);
+                }
+                barData=bars;
+                lineData=lines;
+                // Create the chart
+                chart = Highcharts.stockChart('container', {
+                    rangeSelector: {
+                        selected: 4
+                    },
+                    title: {
+                        text: data.name + ' ' + data.code
+                    },
+                    yAxis: {
+                        title: {
+                            text: 'Price'
+                        }
+                    },
+                    plotOptions: {
+                        //修改蜡烛颜色
+                        candlestick: {
+                            color: '#33AA11',
+                            upColor: '#DD2200',
+                            lineColor: '#33AA11',
+                            upLineColor: '#DD2200',
+                            maker: {
+                                states: {
+                                    hover: {
+                                        enabled: false,
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    series: [{
+                        type: 'candlestick',
+                        name: data.name,
+                        data: bars,
+                        id: 'dataseries',
+                        tooltip: {
+                            valueDecimals: 2
+                        }
+                    },
+                        {
+                        type: 'flags',
+                        data: null,
+                        onSeries: 'dataseries',
+                        shape: 'circlepin',
+                        width: 16,
+                        color: '#e97b25',
+                        fillColor: '#e97b25',
+                        style: { // text style
+                            color: 'white'
+                        },
+                        visible: $("#bsCheckbox").is(':checked')
+                    }, {
+                        type: 'flags',
+                        data: null,
+                        onSeries: 'dataseries',
+                        shape: 'circlepin',
+                        width: 16,
+                        color: '#ef270d',
+                        fillColor: '#ef270d',
+                        style: { // text style
+                            color: 'white'
+                        },
+                        visible: $("#bcCheckbox").is(':checked')
+                    }, {
+                        type: 'flags',
+                        data: null,
+                        onSeries: 'dataseries',
+                        shape: 'squarepin',
+                        width: 16,
+                        color: '#0def73',
+                        fillColor: '#0def73',
+                        style: { // text style
+                            color: 'white'
+                        },
+                        visible: $("#ssCheckbox").is(':checked')
+                    }, {
+                        type: 'flags',
+                        data: null,
+                        onSeries: 'dataseries',
+                        shape: 'squarepin',
+                        width: 16,
+                        color: '#0a8ff1',
+                        fillColor: '#0a8ff1',
+                        style: { // text style
+                            color: 'white'
+                        },
+                        visible: $("#scCheckbox").is(':checked')
+                    }]
+                });
+            });
+        }
+
+
+
+
+        function renderChartWithFlags(link) {
+            Highcharts.getJSON(link, function (data) {
                 var setupFlag = [];
                 var countdownFlag = [];
                 if (data.flag != null) {
@@ -45,8 +151,6 @@
                         countdownFlag.push(countdownObj);
                     }
                 }
-
-
                 var sellSetupFlag = [];
                 var sellCountdownFlag = [];
                 if (data.flagSell != null) {
@@ -65,97 +169,43 @@
                         sellCountdownFlag.push(countdownObj);
                     }
                 }
-
-                // Create the chart
-                chart = Highcharts.stockChart('container', {
-                    rangeSelector: {
-                        selected: 4
-                    },
-                    title: {
-                        text: data.name + ' ' + data.code
-                    },
-                    yAxis: {
-                        title: {
-                            text: 'Price'
-                        }
-                    },
-
-                    series: [{
-                        name: '收盘价',
-                        data: kData,
-                        id: 'dataseries',
-                        tooltip: {
-                            valueDecimals: 2
-                        }
-                    }, {
-                        type: 'flags',
-                        data: setupFlag,
-                        onSeries: 'dataseries',
-                        shape: 'circlepin',
-                        width: 16,
-                        color: '#ee9a07',
-                        fillColor: '#ee9a07',
-                        style: { // text style
-                            color: 'white'
-                        },
-                        visible: $("#bsCheckbox").is(':checked')
-                    }, {
-                        type: 'flags',
-                        data: countdownFlag,
-                        onSeries: 'dataseries',
-                        shape: 'circlepin',
-                        width: 16,
-                        color: '#ef270d',
-                        fillColor: '#ef270d',
-                        style: { // text style
-                            color: 'white'
-                        },
-                        visible: $("#bcCheckbox").is(':checked')
-                    }, {
-                        type: 'flags',
-                        data: sellSetupFlag,
-                        onSeries: 'dataseries',
-                        shape: 'squarepin',
-                        width: 16,
-                        color: '#0def73',
-                        fillColor: '#0def73',
-                        style: { // text style
-                            color: 'white'
-                        },
-                        visible: $("#ssCheckbox").is(':checked')
-                    }, {
-                        type: 'flags',
-                        data: sellCountdownFlag,
-                        onSeries: 'dataseries',
-                        shape: 'squarepin',
-                        width: 16,
-                        color: '#0a8ff1',
-                        fillColor: '#0a8ff1',
-                        style: { // text style
-                            color: 'white'
-                        },
-                        visible: $("#scCheckbox").is(':checked')
-                    }]
-                });
+                chart.series[1].setData(setupFlag);
+                chart.series[2].setData(countdownFlag);
+                chart.series[3].setData(sellSetupFlag);
+                chart.series[4].setData(sellCountdownFlag);
             });
         }
 
-        function checkboxOnclick(checkboxId,selected){
-            if(checkboxId=='bsCheckbox'){
+        function checkboxOnclick(checkboxId, selected) {
+            if (checkboxId == 'bsCheckbox') {
                 chart.series[1].setVisible(selected);
-            }else  if(checkboxId=='bcCheckbox'){
+            } else if (checkboxId == 'bcCheckbox') {
                 chart.series[2].setVisible(selected);
-            } if(checkboxId=='ssCheckbox'){
+            }else
+            if (checkboxId == 'ssCheckbox') {
                 chart.series[3].setVisible(selected);
-            } if(checkboxId=='scCheckbox'){
+            }else
+            if (checkboxId == 'scCheckbox') {
                 chart.series[4].setVisible(selected);
             }
         }
 
+        function radioOnclick(checkboxId, selected) {
+            if (checkboxId == 'candlestick'&&selected) {
+                chart.series[1].type='candlestick';
+                chart.series[1].setData(barData);
+            } else {
+                chart.series[1].type='line';
+                chart.series[1].setData(lineData);
+            }
+
+        }
+
         function post() {
             var days = $("#days").val();
-            var linkNew = link + '?days2Now=' + days;
-            renderCharts(linkNew);
+            var linkNew = flagLink + '?days2Now=' + days;
+            renderChartWithData(dataLink);
+            renderChartWithFlags(linkNew);
         }
     </script>
 </head>
@@ -217,7 +267,8 @@
                     <div class="field">
                         <div class="control">
                             <label class="checkbox">
-                                <input id="bsCheckbox" type="checkbox" onclick="checkboxOnclick('bsCheckbox',this.checked)">
+                                <input id="bsCheckbox" type="checkbox"
+                                       onclick="checkboxOnclick('bsCheckbox',this.checked)">
                                 Buy-Setup 九天揽月
                             </label>
                         </div>
@@ -227,7 +278,8 @@
                     <div class="field">
                         <div class="control">
                             <label class="checkbox">
-                                <input id="bcCheckbox" type="checkbox" checked=“checked” onclick="checkboxOnclick('bcCheckbox',this.checked)">
+                                <input id="bcCheckbox" type="checkbox" checked=“checked”
+                                       onclick="checkboxOnclick('bcCheckbox',this.checked)">
                                 Buy-Countdown 十三太保
                             </label>
                         </div>
@@ -238,7 +290,8 @@
                     <div class="field">
                         <div class="control">
                             <label class="checkbox">
-                                <input id="ssCheckbox" type="checkbox" onclick="checkboxOnclick('ssCheckbox',this.checked)">
+                                <input id="ssCheckbox" type="checkbox"
+                                       onclick="checkboxOnclick('ssCheckbox',this.checked)">
                                 Sell-Setup 九九归天
                             </label>
                         </div>
@@ -248,13 +301,33 @@
                     <div class="field">
                         <div class="control">
                             <label class="checkbox">
-                                <input id="scCheckbox" type="checkbox" onclick="checkboxOnclick('scCheckbox',this.checked)">
+                                <input id="scCheckbox" type="checkbox"
+                                       onclick="checkboxOnclick('scCheckbox',this.checked)">
                                 Sell-Countdown 十三惊魂
                             </label>
                         </div>
                     </div>
                 </div>
             </div>
+            <div class="column is-1">
+            </div>
+<!--            <div class="column is-2">-->
+<!--                <div class="field-body">-->
+<!--                    <div class="field">-->
+<!--                        <div class="control">-->
+<!--                            <label class="radio">-->
+<!--                                <input type="radio" name="answer" checked=“checked”-->
+<!--                                       onclick="radioOnclick('candlestick',this.checked)">-->
+<!--                                蜡烛图-->
+<!--                            </label>-->
+<!--                            <label class="radio">-->
+<!--                                <input type="radio" name="answer" onclick="radioOnclick('line',this.checked)">-->
+<!--                                分时线-->
+<!--                            </label>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
         </div>
     </div>
 </section>

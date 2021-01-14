@@ -80,18 +80,7 @@ public class DemarkController {
         Map<String, Object> map = new HashMap<>();
         map.put("code", stock.getCode());
         map.put("name", stock.getName());
-        {
-            //制作K线数据
-            List<KLineInfo> kLineInfos = stock.getkLineInfos();
-            List<Number[]> kData = new LinkedList<>();
-            for (KLineInfo kLineInfo : kLineInfos) {
-                long dateMilliSeconds = Constant.ONE_DAY_MILLISECONDS * kLineInfo.getDate().toEpochDay();
-                double close = kLineInfo.getClose();
-                Number[] row = new Number[]{dateMilliSeconds, close};
-                kData.add(row);
-            }
-            map.put("k", kData);
-        }
+
         {
             if(resultInfo!=null){
                 map.put("flag", resultInfo.getData().get("flag"));
