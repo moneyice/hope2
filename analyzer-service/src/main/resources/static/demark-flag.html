@@ -13,12 +13,18 @@
     <script src="https://code.highcharts.com.cn/highstock/8.2.2/modules/exporting.js"></script>
     <script src="https://code.highcharts.com.cn/highstock/8.2.2/modules/data.js"></script>
     <script type="text/javascript">
+        var chart;
         var path = window.document.location.href;
         var code = path.split('?')[1].split('=')[1];
         var link = '/demark-backtrack/' + code;
         renderCharts(link);
 
         function renderCharts(link) {
+            console.log($("#bsCheckbox").is(':checked'));
+
+
+
+
             Highcharts.getJSON(link, function (data) {
                 var kData = data.k;
                 var setupFlag = [];
@@ -61,7 +67,7 @@
                 }
 
                 // Create the chart
-                Highcharts.stockChart('container', {
+                chart = Highcharts.stockChart('container', {
                     rangeSelector: {
                         selected: 4
                     },
@@ -85,35 +91,66 @@
                         type: 'flags',
                         data: setupFlag,
                         onSeries: 'dataseries',
-                        shape: 'squarepin',
+                        shape: 'circlepin',
                         width: 16,
-                        color: Highcharts.getOptions().colors[0], // same as onSeries
-                        fillColor: Highcharts.getOptions().colors[0],
+                        color: '#ee9a07',
+                        fillColor: '#ee9a07',
+                        style: { // text style
+                            color: 'white'
+                        },
+                        visible: $("#bsCheckbox").is(':checked')
                     }, {
                         type: 'flags',
                         data: countdownFlag,
                         onSeries: 'dataseries',
                         shape: 'circlepin',
-                        width: 16
+                        width: 16,
+                        color: '#ef270d',
+                        fillColor: '#ef270d',
+                        style: { // text style
+                            color: 'white'
+                        },
+                        visible: $("#bcCheckbox").is(':checked')
                     }, {
                         type: 'flags',
                         data: sellSetupFlag,
                         onSeries: 'dataseries',
                         shape: 'squarepin',
                         width: 16,
-                        color: Highcharts.getOptions().colors[0], // same as onSeries
-                        fillColor: Highcharts.getOptions().colors[0],
+                        color: '#0def73',
+                        fillColor: '#0def73',
+                        style: { // text style
+                            color: 'white'
+                        },
+                        visible: $("#ssCheckbox").is(':checked')
                     }, {
                         type: 'flags',
                         data: sellCountdownFlag,
                         onSeries: 'dataseries',
-                        shape: 'circlepin',
-                        width: 16
+                        shape: 'squarepin',
+                        width: 16,
+                        color: '#0a8ff1',
+                        fillColor: '#0a8ff1',
+                        style: { // text style
+                            color: 'white'
+                        },
+                        visible: $("#scCheckbox").is(':checked')
                     }]
                 });
             });
         }
 
+        function checkboxOnclick(checkboxId,selected){
+            if(checkboxId=='bsCheckbox'){
+                chart.series[1].setVisible(selected);
+            }else  if(checkboxId=='bcCheckbox'){
+                chart.series[2].setVisible(selected);
+            } if(checkboxId=='ssCheckbox'){
+                chart.series[3].setVisible(selected);
+            } if(checkboxId=='scCheckbox'){
+                chart.series[4].setVisible(selected);
+            }
+        }
 
         function post() {
             var days = $("#days").val();
@@ -170,6 +207,51 @@
                 <div class="field is-grouped">
                     <div class="control">
                         <button class="button is-link" onclick="post()">Submit</button>
+                    </div>
+                </div>
+            </div>
+            <div class="column is-1">
+            </div>
+            <div class="column is-2">
+                <div class="field-body">
+                    <div class="field">
+                        <div class="control">
+                            <label class="checkbox">
+                                <input id="bsCheckbox" type="checkbox" onclick="checkboxOnclick('bsCheckbox',this.checked)">
+                                Buy-Setup
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="field-body">
+                    <div class="field">
+                        <div class="control">
+                            <label class="checkbox">
+                                <input id="bcCheckbox" type="checkbox" checked=“checked” onclick="checkboxOnclick('bcCheckbox',this.checked)">
+                                Buy-Countdown
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="field-body">
+                    <div class="field">
+                        <div class="control">
+                            <label class="checkbox">
+                                <input id="ssCheckbox" type="checkbox" onclick="checkboxOnclick('ssCheckbox',this.checked)">
+                                Sell-Setup
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="field-body">
+                    <div class="field">
+                        <div class="control">
+                            <label class="checkbox">
+                                <input id="scCheckbox" type="checkbox" onclick="checkboxOnclick('scCheckbox',this.checked)">
+                                Sell-Countdown
+                            </label>
+                        </div>
                     </div>
                 </div>
             </div>

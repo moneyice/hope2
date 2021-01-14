@@ -98,12 +98,12 @@ public class DemarkController {
             }
         }
 
-//        {
-//            UnDemarkAnalyzer unStockAnalyzer = (UnDemarkAnalyzer) stockAnalyzerFacotry.getStockAnalyzer(EStockAnalyzer.UnDemark);
-//            ResultInfo unResultInfo = hs.analyze(unStockAnalyzer, stock);
-//            map.put("flagSell", unResultInfo.getData().get("flag"));
-//
-//        }
+        {
+            UnDemarkAnalyzer unStockAnalyzer = (UnDemarkAnalyzer) stockAnalyzerFacotry.getStockAnalyzer(EStockAnalyzer.UnDemark);
+            ResultInfo unResultInfo = hs.analyze(unStockAnalyzer, stock);
+            map.put("flagSell", unResultInfo.getData().get("flag"));
+
+        }
 
 
         String content = JSON.toJSONString(map);
