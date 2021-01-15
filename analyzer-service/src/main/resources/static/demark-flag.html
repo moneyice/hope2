@@ -124,18 +124,20 @@
             Highcharts.getJSON(link, function (data) {
                 var bars = data.bars;
 
-                var lines = [];
-                var dataLength = bars.length;
-                for (i = 0; i < dataLength; i++) {
-                    lines.push([
-                        bars[i][0], // the date
-                        bars[i][4] // close
-                    ]);
-                }
-                barData = bars;
-                lineData = lines;
-                chart.title.text=data.name + ' ' + data.code;
-                chart.series[0].setName(data.name + ' ' + data.code);
+                // var lines = [];
+                // var dataLength = bars.length;
+                // for (i = 0; i < dataLength; i++) {
+                //     lines.push([
+                //         bars[i][0], // the date
+                //         bars[i][4] // close
+                //     ]);
+                // }
+                // lineData = lines;
+                var title = {
+                    text:data.name + ' ' + data.code
+                };
+                chart.setTitle(title);
+                chart.series[0].setName(data.name);
                 chart.series[0].setData(bars);
             });
         }
