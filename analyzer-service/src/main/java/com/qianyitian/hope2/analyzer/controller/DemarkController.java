@@ -89,6 +89,11 @@ public class DemarkController {
 
         {
             UnDemarkAnalyzer unStockAnalyzer = (UnDemarkAnalyzer) stockAnalyzerFacotry.getStockAnalyzer(EStockAnalyzer.UnDemark);
+            if (days2Now != null) {
+                unStockAnalyzer.setDaysToNow(days2Now);
+            } else {
+                unStockAnalyzer.setDaysToNow(300);
+            }
             ResultInfo unResultInfo = hs.analyze(unStockAnalyzer, stock);
             map.put("flagSell", unResultInfo.getData().get("flag"));
 
