@@ -21,19 +21,19 @@
   
   {
     "name": "DeMark算法(比特币)",
-    "router": "BackTracking",
+    "router": "ReportDetail",
     "url": "/demark-backtrack/bitcoin",
 	"html": "/demark-flag.html?code=bitcoin"
   },
   {
     "name": "DeMark算法(石油)",
-    "router": "BackTracking",
+    "router": "ReportDetail",
 	"url": "/demark-backtrack/oil",
     "html": "/demark-flag.html?code=oil"
   },
   {
     "name": "DeMark算法(白银)",
-    "router": "BackTracking",
+    "router": "ReportDetail",
 	"url": "/demark-backtrack/silver",
     "html": "/demark-flag.html?code=silver"
   },
