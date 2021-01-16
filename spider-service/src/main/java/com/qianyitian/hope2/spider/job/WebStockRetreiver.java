@@ -35,4 +35,10 @@ public abstract class WebStockRetreiver implements IStockRetreiver {
         SymbolList symbolList = restTemplate.getForObject(propertyConfig.getStockService() + "/stockList", SymbolList.class);
         return symbolList.getSymbols();
     }
+
+    @Override
+    public List<Stock> getUSStockSymbols() throws IOException {
+        SymbolList symbolList = restTemplate.getForObject(propertyConfig.getStockService() + "/USStockList", SymbolList.class);
+        return symbolList.getSymbols();
+    }
 }

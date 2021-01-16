@@ -60,11 +60,6 @@ public class StockDAO4Redis extends AbstractStockDAO {
     }
 
     @Override
-    public List<Stock> getFavoriteSymbols() {
-        throw new RuntimeException("not supported");
-    }
-
-    @Override
     public Date getStockUpdateTime(String code) {
         throw new RuntimeException("not supported");
     }

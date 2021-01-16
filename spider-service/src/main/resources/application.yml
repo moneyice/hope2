@@ -11,6 +11,8 @@ logging:
   level:
     root: INFO
 
+
+
 hope2:
   service:
     spider: http://127.0.0.1:8001
@@ -18,3 +20,6 @@ hope2:
     analyzer: http://127.0.0.1:8003
   data:
     path: ./target/data
+  gugudata:
+    api:
+      key: xxx

@@ -30,13 +30,16 @@ public class StockInfoSpider {
     @Resource(name = "neteaseWebStockRetreiver")
     private IStockRetreiver stockRetreiver;
 
+    @Resource(name = "guguDataWebStockRetreiver")
+    private IStockRetreiver guguDataWebStockRetreiver;
+
     @Resource(name = "sohuWebStockRetreiver")
     private IStockRetreiver etfStockRetreiver;
 
     private Date lastUpdateTime = null;
     // if it's needed to check the stock info is out of date
     // if true, check
-    // if false, no need to check, will refresh all the data forcedly.
+    // if false, no need to check, will refresh all the data.
     // it's useless for getAllStockSymbols
     private boolean checkOutOfDate = true;
 
@@ -72,6 +75,22 @@ public class StockInfoSpider {
             syncETFData();
             lastUpdateTime = new Date();
             startAnalyze();
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
+        }
+    }
+
+    public void runUS() {
+        try {
+            List<Stock> stockSymbols = stockRetreiver.getUSStockSymbols();
+            for (Stock stock : stockSymbols) {
+                try {
+                    Stock info = guguDataWebStockRetreiver.getStockInfo(stock);
+                    storeStock(info);
+                } catch (IOException e) {
+                    logger.error(e.getMessage(), e);
+                }
+            }
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
         }

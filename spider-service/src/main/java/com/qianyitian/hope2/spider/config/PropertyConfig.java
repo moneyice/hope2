@@ -5,7 +5,6 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class PropertyConfig {
-
     @Value(value = "${hope2.service.spider}")
     private String spiderService;
     @Value(value = "${hope2.service.stock}")
@@ -14,6 +13,16 @@ public class PropertyConfig {
     private String analyzerService;
     @Value(value = "${hope2.data.path}")
     private String dataPath;
+    @Value(value = "${hope2.gugudata.api.key}")
+    private String gugudataAPIKey;
+
+    public String getGugudataAPIKey() {
+        return gugudataAPIKey;
+    }
+
+    public void setGugudataAPIKey(String gugudataAPIKey) {
+        this.gugudataAPIKey = gugudataAPIKey;
+    }
 
     public String getDataPath() {
         return dataPath;

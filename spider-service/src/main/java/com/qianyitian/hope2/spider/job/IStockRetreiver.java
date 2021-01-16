@@ -9,6 +9,6 @@ import java.util.List;
 
 public interface IStockRetreiver {
     List<Stock> getAllStockSymbols() throws IOException;
-
+    List<Stock> getUSStockSymbols() throws IOException;
     Stock getStockInfo(Stock stock) throws IOException;
 }

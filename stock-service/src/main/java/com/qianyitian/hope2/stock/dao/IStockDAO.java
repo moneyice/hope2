@@ -28,8 +28,7 @@ public interface IStockDAO {
     Stock getStockMonthly(String code);
 
     List<Stock> getAllSymbols();
-
-    List<Stock> getFavoriteSymbols();
+    List<Stock> getPortfolioSymbols(String portfolio);
 
     Date getAllSymbolsUpdateTime();
 

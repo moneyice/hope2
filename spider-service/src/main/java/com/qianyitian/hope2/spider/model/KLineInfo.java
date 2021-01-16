@@ -12,6 +12,16 @@ public class KLineInfo implements Serializable {
     double turnoverRate;
     double changePercent;
 
+    public int getVolume() {
+        return volume;
+    }
+
+    public void setVolume(int volume) {
+        this.volume = volume;
+    }
+
+    int volume;
+
     public double getChangePercent() {
         return changePercent;
     }

@@ -23,6 +23,10 @@ import static com.qianyitian.hope2.stock.config.Constant.LITE_LEAST_DAY_NUMBER;
 public abstract class AbstractStockDAO implements IStockDAO {
     private Logger logger = LoggerFactory.getLogger(getClass());
 
+    @Override
+    public List<Stock> getPortfolioSymbols(String portfolio) {
+        return null;
+    }
 
     protected abstract void storeStockInfo(Stock stock, EStockKlineType type);
 

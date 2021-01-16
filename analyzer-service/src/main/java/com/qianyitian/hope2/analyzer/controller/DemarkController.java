@@ -53,9 +53,9 @@ public class DemarkController {
     public DemarkController() {
     }
 
-    @RequestMapping("/demark")
+    @RequestMapping("/demark/{portfolio}")
     @CrossOrigin
-    public String demark(@RequestParam(value = "days2Now", required = false) Integer days2Now) {
+    public String demark(@PathVariable String portfolio, @RequestParam(value = "days2Now", required = false) Integer days2Now) {
         String report = null;
         try {
             Callable<String> callable = () -> {
@@ -63,6 +63,7 @@ public class DemarkController {
                 if (days2Now != null) {
                     stockAnalyzer.setDaysToNow(days2Now);
                 }
+                favoriteStockService.setPortfolio(portfolio);
                 StockSelecter hs = new StockSelecter(favoriteStockService);
                 hs.addAnalyzer(stockAnalyzer);
                 hs.startAnalyze(Constant.TYPE_DAILY);
@@ -71,14 +72,13 @@ public class DemarkController {
                 return content;
             };
 
-            report = cache.get("demark-Hope150", callable);
+            report = cache.get("demark-" + portfolio, callable);
         } catch (ExecutionException e) {
             report = e.toString();
-            logger.error("demark-Hope150 error", e);
+            logger.error("demark-" + portfolio, e);
         }
         return report;
     }
-
 
     private Stock getStock(String code) {
         Stock stock = null;

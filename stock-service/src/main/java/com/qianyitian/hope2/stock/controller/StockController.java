@@ -140,13 +140,14 @@ public class StockController {
         return symbolList;
     }
 
-    @GetMapping(value = "/favoriteList")
-    public SymbolList favoriteList() {
-        List<Stock> list = stockDAO.getFavoriteSymbols();
+    @GetMapping(value = "/stockList/{portfolio}")
+    public SymbolList favoriteList(@PathVariable String portfolio) {
+        List<Stock> list = stockDAO.getPortfolioSymbols(portfolio);
         SymbolList symbolList = new SymbolList();
         symbolList.setSymbols(list);
         return symbolList;
     }
+
 
     @PostMapping(value = "/stockList")
     public void storeStockList(@RequestBody List<Stock> stockList) {

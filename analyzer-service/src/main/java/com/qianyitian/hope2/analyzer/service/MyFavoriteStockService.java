@@ -29,6 +29,7 @@ public class MyFavoriteStockService extends AbstractStockService {
     @Autowired
     private RestTemplate restTemplate;
 
+    String portfolio;
 
     CacheLoader<String, Stock> loader = new CacheLoader<String, Stock>() {
         @Override
@@ -53,9 +54,18 @@ public class MyFavoriteStockService extends AbstractStockService {
         return stock;
     }
 
+
+    public String getPortfolio() {
+        return portfolio;
+    }
+
+    public void setPortfolio(String portfolio) {
+        this.portfolio = portfolio;
+    }
+
     @Override
     public SymbolList getAllSymbols() {
-        SymbolList symbolList = restTemplate.getForObject(propertyConfig.getStockService() + "/favoriteList", SymbolList.class);
+        SymbolList symbolList = restTemplate.getForObject(propertyConfig.getStockService() + "/stockList/" + portfolio, SymbolList.class);
         return symbolList;
     }
 
@@ -73,4 +83,6 @@ public class MyFavoriteStockService extends AbstractStockService {
         map.put("loadExceptionRate", stats.loadExceptionRate());
         return JSON.toJSONString(map);
     }
+
+
 }

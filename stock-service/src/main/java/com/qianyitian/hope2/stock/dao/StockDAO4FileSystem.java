@@ -102,15 +102,22 @@ public class StockDAO4FileSystem extends AbstractStockDAO {
     }
 
     @Override
-    public List<Stock> getFavoriteSymbols() {
+    public List<Stock> getPortfolioSymbols(String portfolio) {
+        portfolio = portfolio.toUpperCase();
+
+
         File rootFolder = new File(getRootPath());
         if (!rootFolder.exists()) {
             rootFolder.mkdirs();
         }
-        File from = new File(getRootPath(), "favoriteSymbols");
+        //USSymbols
+        //H20Symbols
+        //H150Symbols
+        File from = new File(getRootPath(), portfolio + "Symbols");
         if (!from.exists()) {
             return null;
         }
+        final String portfolioString=portfolio;
         try {
             ImmutableList<String> strings = Files.asCharSource(from, Charset.forName("UTF-8")).readLines();
             List<Stock> stocks = strings.parallelStream().map(line -> {
@@ -118,7 +125,11 @@ public class StockDAO4FileSystem extends AbstractStockDAO {
                 Stock stock = new Stock();
                 stock.setCode(array[0]);
                 stock.setName((array[1]));
-                stock.setMarket(array[0].startsWith("6") ? "SH" : "SZ");
+                if("US".equalsIgnoreCase(portfolioString)){
+                    stock.setMarket("US");
+                }else{
+                    stock.setMarket(array[0].startsWith("6") ? "SH" : "SZ");
+                }
                 return stock;
             }).collect(Collectors.toList());
             return stocks;
@@ -127,6 +138,7 @@ public class StockDAO4FileSystem extends AbstractStockDAO {
         }
         return null;
     }
+
 
     @Override
     public Date getStockUpdateTime(String code) {

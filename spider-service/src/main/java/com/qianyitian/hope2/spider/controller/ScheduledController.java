@@ -20,8 +20,8 @@ public class ScheduledController {
     @Resource(name = "stockInfoSpider")
     private StockInfoSpider stockInfoSpider = null;
 
-    @Scheduled(initialDelay=1000*60,fixedDelay = 1000*60*60*5)
-//    每5个小时
+    @Scheduled(initialDelay = 1000 * 60, fixedDelay = 1000 * 60 * 60 * 6)
+//    每6个小时
     public void retrieveStockDailyData() {
         logger.info("scheduled to retrieve stock daily data");
         stockInfoSpider.run();
@@ -39,5 +39,11 @@ public class ScheduledController {
         stockInfoSpider.setCheckOutOfDate(false);
         stockInfoSpider.run();
         stockInfoSpider.setCheckOutOfDate(true);
+    }
+
+    @RequestMapping("/force_refresh_us")
+    @Async
+    public void forceRefreshUS() {
+        stockInfoSpider.runUS();
     }
 }
