@@ -1,6 +1,7 @@
 package com.qianyitian.hope2.analyzer.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.google.common.cache.CacheBuilder;
 import com.qianyitian.hope2.analyzer.analyzer.*;
 import com.qianyitian.hope2.analyzer.config.Constant;
 import com.qianyitian.hope2.analyzer.model.AnalyzeResult;

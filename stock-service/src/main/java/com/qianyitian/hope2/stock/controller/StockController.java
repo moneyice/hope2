@@ -1,6 +1,10 @@
 package com.qianyitian.hope2.stock.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.google.common.cache.CacheBuilder;
+import com.google.common.cache.CacheLoader;
+import com.google.common.cache.CacheStats;
+import com.google.common.cache.LoadingCache;
 import com.qianyitian.hope2.stock.dao.IStockDAO;
 import com.qianyitian.hope2.stock.model.*;
 import com.qianyitian.hope2.stock.statistics.RangePercentageStatistics;
@@ -16,9 +20,7 @@ import javax.annotation.Resource;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.*;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
@@ -66,10 +68,46 @@ public class StockController {
         return input;
     }
 
-    @GetMapping(value = "/data/kline/daily/{code}")
-    public Stock getStock(@PathVariable String code) {
+    @GetMapping(value = "/data1/kline/daily/{code}")
+    public Stock getStock1(@PathVariable String code) {
         Stock stock = stockDAO.getStock(code);
         return stock;
+    }
+
+    CacheLoader<String, Stock> loader = new CacheLoader<String, Stock>() {
+        @Override
+        public Stock load(String key) throws Exception {
+            Stock stock = stockDAO.getStock(key);
+            return stock;
+        }
+    };
+
+    LoadingCache<String, Stock> cache = CacheBuilder.newBuilder()
+            .maximumSize(1024).recordStats().expireAfterAccess(30, TimeUnit.MINUTES).expireAfterWrite(30, TimeUnit.MINUTES).refreshAfterWrite(20, TimeUnit.MINUTES)
+            .build(loader);
+
+    @GetMapping(value = "/data/kline/daily/{code}")
+    public Stock getStock(@PathVariable String code) {
+        Stock stock = null;
+        try {
+            stock = cache.get(code);
+        } catch (ExecutionException e) {
+            throw new RuntimeException("stock not exist " + code);
+        }
+        return stock;
+    }
+
+    @GetMapping(value = "/cacheStatus")
+    public String cacheStatus() {
+        CacheStats stats = cache.stats();
+        Map map = new HashMap();
+        map.put("hitCount", stats.hitCount());
+        map.put("missCount", stats.missCount());
+        map.put("loadSuccessCount", stats.loadSuccessCount());
+        map.put("loadExceptionCount", stats.loadExceptionCount());
+        map.put("totalLoadTime", stats.totalLoadTime());
+        map.put("evictionCount", stats.evictionCount());
+        return JSON.toJSONString(map);
     }
 
     @GetMapping(value = "/data/kline/dailylite/{code}")
