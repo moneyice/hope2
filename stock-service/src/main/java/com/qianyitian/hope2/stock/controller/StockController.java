@@ -1,6 +1,7 @@
 package com.qianyitian.hope2.stock.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.google.common.base.MoreObjects;
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.CacheStats;
@@ -97,7 +98,7 @@ public class StockController {
         return stock;
     }
 
-    @GetMapping(value = "/cacheStatus")
+    @GetMapping(value = "/cache/status")
     public String cacheStatus() {
         CacheStats stats = cache.stats();
         Map map = new HashMap();
@@ -105,8 +106,11 @@ public class StockController {
         map.put("missCount", stats.missCount());
         map.put("loadSuccessCount", stats.loadSuccessCount());
         map.put("loadExceptionCount", stats.loadExceptionCount());
-        map.put("totalLoadTime", stats.totalLoadTime());
+        map.put("hitCtotalLoadTimeount", stats.totalLoadTime());
         map.put("evictionCount", stats.evictionCount());
+        map.put("hitRate", stats.hitRate());
+        map.put("missRate", stats.missRate());
+        map.put("loadExceptionRate", stats.loadExceptionRate());
         return JSON.toJSONString(map);
     }
 

@@ -17,10 +17,8 @@
         var path = window.document.location.href;
         var code = path.split('?')[1].split('=')[1];
         var flagLink = '/demark-backtrack/' + code;
-        var dataLink = '/stock/chart/series/day/' + code;
         $(document).ready(function(){
             var chart = createChart();
-            var seriesData = getSeriesData(dataLink,chart);
             var flagsData = getFlagsData(flagLink,chart);
         });
         function post() {
@@ -120,29 +118,6 @@
             return chart;
         }
 
-        function getSeriesData(link) {
-            Highcharts.getJSON(link, function (data) {
-                var bars = data.bars;
-
-                // var lines = [];
-                // var dataLength = bars.length;
-                // for (i = 0; i < dataLength; i++) {
-                //     lines.push([
-                //         bars[i][0], // the date
-                //         bars[i][4] // close
-                //     ]);
-                // }
-                // lineData = lines;
-                var title = {
-                    text:data.name + ' ' + data.code
-                };
-                chart.setTitle(title);
-                chart.series[0].setName(data.name);
-                chart.series[0].setData(bars);
-            });
-        }
-
-
         function getFlagsData(link, chart) {
             Highcharts.getJSON(link, function (data) {
                 var setupFlag = [];
@@ -181,6 +156,28 @@
                         sellCountdownFlag.push(countdownObj);
                     }
                 }
+
+                //title
+                var title = {
+                    text:data.name + ' ' + data.code
+                };
+                chart.setTitle(title);
+
+                //bars
+                // var bars = data.bars;
+                // var lines = [];
+                // var dataLength = bars.length;
+                // for (i = 0; i < dataLength; i++) {
+                //     lines.push([
+                //         bars[i][0], // the date
+                //         bars[i][4] // close
+                //     ]);
+                // }
+                // lineData = lines;
+                chart.series[0].setName(data.name);
+                chart.series[0].setData(data.bars);
+
+                //flags
                 chart.series[1].setData(setupFlag);
                 chart.series[2].setData(countdownFlag);
                 chart.series[3].setData(sellSetupFlag);
