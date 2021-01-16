@@ -37,6 +37,8 @@ public class NeteaseWebStockRetreiver extends WebStockRetreiver {
     @Override
     public Stock getStockInfo(Stock stock) throws IOException {
         String symbol = null;
+
+        //TODO why to copy here?
         String stockJsonString = JSON.toJSONString(stock);
         stock = JSON.parseObject(stockJsonString, Stock.class);
 
