@@ -17,9 +17,11 @@
     <script type="text/javascript">
         $(document).ready(function () {
             var link = "/etf";
-            $.getJSON(link, function (data1) {
+            $.getJSON(link, function (data) {
+                $("#description").html(data.description);
+                $("#genTime").html(data.generateTime);
                 $('#stockTable').DataTable({
-                    data: data1,
+                    data: data.resultList,
                     columns: [
                         {
                             data: 'code',

@@ -17,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -27,16 +28,22 @@ public class ETFController {
     @Autowired
     private DefaultStockService stockService;
 
-    @Autowired
-    private MyFavoriteStockService favoriteStockService;
-
     public ETFController() {
+    }
+
+    private Map getMap() {
+        Map map = new HashMap();
+        map.put("description", "每个交易周末，在16个ETF中，选出本周涨幅前6的ETF，等权重买入或者持有。");
+        map.put("generateTime", LocalDateTime.now().toString());
+        return map;
     }
 
     @RequestMapping("/etf")
     @CrossOrigin
-    public List<ETFStatus> etf() {
+    public Map etf() {
+        Map map = getMap();
         List<ETFStatus> list = new LinkedList();
+        map.put("resultList", list);
 
         Arrays.stream(ETF.values()).parallel().forEach(etf -> {
             Stock stock = stockService.getStockWeekly(etf.getCode());
@@ -86,6 +93,8 @@ public class ETFController {
             }
         }
 
-        return list;
+        return map;
     }
+
+
 }
