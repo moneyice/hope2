@@ -16,6 +16,8 @@ import java.io.IOException;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 
 @Component("stockInfoSpider")
@@ -37,6 +39,8 @@ public class StockInfoSpider {
     private IStockRetreiver etfStockRetreiver;
 
     private Date lastUpdateTime = null;
+
+    private ExecutorService es = Executors.newFixedThreadPool(5);
     // if it's needed to check the stock info is out of date
     // if true, check
     // if false, no need to check, will refresh all the data.
@@ -66,13 +70,11 @@ public class StockInfoSpider {
                 return;
             }
 
-
-            List<Stock> stockSymbols = stockRetreiver.getAllStockSymbols();
-
             logger.info("==============================需要更新 " + new Date());
-            syncStockData(stockSymbols);
+            syncUSData();
             syncIndexData();
             syncETFData();
+            syncStockData();
             lastUpdateTime = new Date();
             startAnalyze();
         } catch (Exception e) {
@@ -80,16 +82,24 @@ public class StockInfoSpider {
         }
     }
 
+
     public void runUS() {
+        syncUSData();
+    }
+
+    private void syncUSData() {
         try {
             List<Stock> stockSymbols = stockRetreiver.getUSStockSymbols();
             for (Stock stock : stockSymbols) {
-                try {
-                    Stock info = guguDataWebStockRetreiver.getStockInfo(stock);
-                    storeStock(info);
-                } catch (IOException e) {
-                    logger.error(e.getMessage(), e);
-                }
+                Runnable runnable = () -> {
+                    try {
+                        final Stock info = guguDataWebStockRetreiver.getStockInfo(stock);
+                        storeStock(info);
+                    } catch (Exception e) {
+                        logger.error(e.getMessage(), e);
+                    }
+                };
+                runInPool(runnable);
             }
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
@@ -103,15 +113,28 @@ public class StockInfoSpider {
             stock.setCode(eIndex.getCode());
             stock.setName(eIndex.getName());
             stock.setMarket(eIndex.getMarket());
-
+            final Stock info;
             try {
-                Stock info = stockRetreiver.getStockInfo(stock);
-                storeIndex(info);
+                info = stockRetreiver.getStockInfo(stock);
+                info.setCode("i" + info.getCode());
+                runInPool(createStoreStockRunnable(info));
             } catch (IOException e) {
                 logger.error(e.getMessage(), e);
             }
         }
     }
+
+    private Runnable createStoreStockRunnable(final Stock info) {
+        Runnable runnable = () -> {
+            try {
+                storeStock(info);
+            } catch (Exception e) {
+                logger.error(e.getMessage(), e);
+            }
+        };
+        return runnable;
+    }
+
 
     private void syncETFData() {
         for (ETF etf : ETF.values()) {
@@ -119,26 +142,38 @@ public class StockInfoSpider {
             stock.setCode(etf.getCode());
             stock.setName(etf.getName());
             stock.setMarket(etf.getMarket());
-
+            final Stock info;
             try {
-                Stock info = etfStockRetreiver.getStockInfo(stock);
-                storeStock(info);
+                info = etfStockRetreiver.getStockInfo(stock);
+                runInPool(createStoreStockRunnable(info));
             } catch (IOException e) {
                 logger.error(e.getMessage(), e);
             }
+
         }
     }
 
-    private void syncStockData(List<Stock> stockSymbols) {
-        for (Stock stock : stockSymbols) {
-            String code = stock.getCode();
-            try {
-                Stock info = stockRetreiver.getStockInfo(stock);
-                storeStock(info);
-            } catch (IOException e) {
-                logger.error(e.getMessage(), e);
+
+    private void runInPool(Runnable runnable) {
+//        runnable.run();
+        es.execute(runnable);
+    }
+
+    private void syncStockData() throws IOException {
+        try {
+            List<Stock> stockSymbols = stockRetreiver.getAllStockSymbols();
+            for (Stock stock : stockSymbols) {
+                try {
+                    Stock info = stockRetreiver.getStockInfo(stock);
+                    runInPool(createStoreStockRunnable(info));
+                } catch (IOException e) {
+                    logger.error(e.getMessage(), e);
+                }
             }
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
         }
+
     }
 
     private void startAnalyze() {
@@ -161,22 +196,6 @@ public class StockInfoSpider {
 //    private void storeAllSymbols(List<Stock> stockSymbols) {
 //        restTemplate.postForObject(propertyConfig.getStockService() + "/stockList", stockSymbols, List.class);
 //    }
-
-    private boolean isAllSymbosOutOfDate(Date lastUpdateTime) {
-        if (!isCheckOutOfDate()) {
-            return true;
-        }
-
-        if (lastUpdateTime == null) {
-            return true;
-        }
-        Calendar lastDay = Calendar.getInstance();
-        lastDay.setTime(lastUpdateTime);
-        // 超过10天没有更新过 算过期
-        lastDay.add(Calendar.DAY_OF_YEAR, 10);
-        Calendar today = Calendar.getInstance();
-        return lastDay.before(today);
-    }
 
     protected boolean isStockOutOfDate(Date lastUpdateTime) {
         return isStockOutOfDate(new Date(), lastUpdateTime);
