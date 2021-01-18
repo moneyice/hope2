@@ -21,8 +21,8 @@ import static com.qianyitian.hope2.stock.config.Constant.LITE_LEAST_DAY_NUMBER;
 @Repository("stockDAO4Mysql")
 public class StockDAO4Mysql extends AbstractStockDAO {
 
-    @Autowired
-    private StockMapper stockMapper;
+//    @Autowired
+//    private StockMapper stockMapper;
 
     public StockDAO4Mysql() {
     }
@@ -34,48 +34,49 @@ public class StockDAO4Mysql extends AbstractStockDAO {
 
     @Override
     public void storeStockInfo(Stock stock, EStockKlineType type) {
-        String jsonStock = JSON.toJSONString(stock);
-
-        switch (type) {
-            case DAILY:
-                stockMapper.insertDaily(stock.getCode(), jsonStock);
-                break;
-            case DAILY_LITE:
-                stockMapper.insertDailyLite(stock.getCode(), jsonStock);
-                break;
-            case WEEKLY:
-                stockMapper.insertWeekly(stock.getCode(), jsonStock);
-                break;
-            case MONTHLY:
-                stockMapper.insertMonthly(stock.getCode(), jsonStock);
-                break;
-        }
+//        String jsonStock = JSON.toJSONString(stock);
+//
+//        switch (type) {
+//            case DAILY:
+//                stockMapper.insertDaily(stock.getCode(), jsonStock);
+//                break;
+//            case DAILY_LITE:
+//                stockMapper.insertDailyLite(stock.getCode(), jsonStock);
+//                break;
+//            case WEEKLY:
+//                stockMapper.insertWeekly(stock.getCode(), jsonStock);
+//                break;
+//            case MONTHLY:
+//                stockMapper.insertMonthly(stock.getCode(), jsonStock);
+//                break;
+//        }
     }
 
 
     @Override
     public Stock getStockInfo(String code, EStockKlineType type) {
-        String rs = null;
-        switch (type) {
-            case DAILY:
-                rs = stockMapper.getDaily(code);
-                break;
-            case DAILY_LITE:
-                rs = stockMapper.getDailyLite(code);
-                break;
-            case WEEKLY:
-                rs = stockMapper.getWeekly(code);
-                break;
-            case MONTHLY:
-                rs = stockMapper.getMonthly(code);
-                break;
-
-        }
-        if (rs == null) {
-            return null;
-        }
-        Stock stock = JSON.parseObject(rs, Stock.class);
-        return stock;
+////        String rs = null;
+////        switch (type) {
+////            case DAILY:
+////                rs = stockMapper.getDaily(code);
+////                break;
+////            case DAILY_LITE:
+////                rs = stockMapper.getDailyLite(code);
+////                break;
+////            case WEEKLY:
+////                rs = stockMapper.getWeekly(code);
+////                break;
+////            case MONTHLY:
+////                rs = stockMapper.getMonthly(code);
+////                break;
+////
+////        }
+////        if (rs == null) {
+////            return null;
+////        }
+//        Stock stock = JSON.parseObject(rs, Stock.class);
+//        return stock;
+        return null;
     }
 
 

@@ -13,28 +13,8 @@ spring:
 #        # 当前应用被sentinel监控的端口
 #        port: 8720
 
-  datasource: # 指定数据源
-    platform: h2                 # 指定数据源类型
-    type: com.zaxxer.hikari.HikariDataSource
-    #schema: classpath:schema.sql        # 指定h2数据库的建表脚本
-    #data: classpath:data.sql            # 指定h2数据库的insert脚本
-    driverClassName: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/xxx?zeroDateTimeBehavior=convertToNull&amp;useUnicode=true&amp;characterEncoding=UTF-8
-    username: root
-    password: pwd
-  redis:
-    database: 0
-    host: 127.0.0.1
-    port: 6379
-    timeout: 5000
-    jedis:
-      pool:
-        max-wait: 100000
-        max-idle: 10
-        max-active: 100
-
-mybatis:
-  type-aliases-package: com.qianyitian.hope2.stock.model
+#mybatis:
+#  type-aliases-package: com.qianyitian.hope2.stock.model
 
 logging:
   file: ./log/analyzer.log

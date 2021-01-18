@@ -1,19 +1,16 @@
 package com.qianyitian.hope2.stock.controller;
 
 import com.alibaba.fastjson.JSON;
-import com.google.common.base.MoreObjects;
-import com.google.common.cache.CacheBuilder;
-import com.google.common.cache.CacheLoader;
-import com.google.common.cache.CacheStats;
-import com.google.common.cache.LoadingCache;
+import com.github.benmanes.caffeine.cache.CacheLoader;
+import com.github.benmanes.caffeine.cache.Caffeine;
+import com.github.benmanes.caffeine.cache.LoadingCache;
+import com.github.benmanes.caffeine.cache.stats.CacheStats;
 import com.qianyitian.hope2.stock.dao.IStockDAO;
 import com.qianyitian.hope2.stock.model.*;
 import com.qianyitian.hope2.stock.statistics.RangePercentageStatistics;
 import com.qianyitian.hope2.stock.util.KUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,9 +28,6 @@ public class StockController {
     ExecutorService threadPool = Executors.newFixedThreadPool(4);
     @Resource(name = "stockDAO4FileSystem")
     private IStockDAO stockDAO;
-
-    @Autowired
-    private StringRedisTemplate stringRedisTemplate;
 
     public StockController() {
     }
@@ -83,16 +77,22 @@ public class StockController {
         }
     };
 
-    LoadingCache<String, Stock> cache = CacheBuilder.newBuilder()
-            .maximumSize(1024).recordStats().expireAfterAccess(30, TimeUnit.MINUTES).expireAfterWrite(30, TimeUnit.MINUTES).refreshAfterWrite(20, TimeUnit.MINUTES)
+
+    LoadingCache<String, Stock> cache = Caffeine.newBuilder()
+            // 数量上限
+            .maximumSize(1024).recordStats()
+            // 过期机制
+            .expireAfterWrite(1, TimeUnit.HOURS)
+            .refreshAfterWrite(50, TimeUnit.MINUTES)
             .build(loader);
+
 
     @GetMapping(value = "/data/kline/daily/{code}")
     public Stock getStock(@PathVariable String code) {
         Stock stock = null;
         try {
             stock = cache.get(code);
-        } catch (ExecutionException e) {
+        } catch (Exception e) {
             throw new RuntimeException("stock not exist " + code);
         }
         return stock;
@@ -105,12 +105,13 @@ public class StockController {
         map.put("hitCount", stats.hitCount());
         map.put("missCount", stats.missCount());
         map.put("loadSuccessCount", stats.loadSuccessCount());
-        map.put("loadExceptionCount", stats.loadExceptionCount());
-        map.put("hitCtotalLoadTimeount", stats.totalLoadTime());
+        map.put("loadFailureCount", stats.loadFailureCount());
+        map.put("totalLoadTime", stats.totalLoadTime());
         map.put("evictionCount", stats.evictionCount());
+        map.put("evictionWeight", stats.evictionWeight());
         map.put("hitRate", stats.hitRate());
         map.put("missRate", stats.missRate());
-        map.put("loadExceptionRate", stats.loadExceptionRate());
+        map.put("loadFailureRate", stats.loadFailureRate());
         return JSON.toJSONString(map);
     }
 
@@ -192,24 +193,9 @@ public class StockController {
     }
 
 
-    @GetMapping(value = "/getStatistics")
-    public List<StatisticsInfo> getStatistics() {
-        LocalDate from = LocalDate.parse("2004-01-05");
-
-        String statistics = stringRedisTemplate.opsForValue().get("statistics");
-        List<StatisticsInfo> list = JSON.parseArray(statistics, StatisticsInfo.class);
-
-        StatisticsInfo toFind = new StatisticsInfo(from);
-        int index = list.indexOf(toFind);
-
-        List<StatisticsInfo> result = new ArrayList<>(list.subList(index, list.size() - 1));
-        return result;
-    }
-
-
     @GetMapping(value = "/makeStatistics")
     @Async
-    public void makeStatistics() {
+    public String makeStatistics() {
         Map<LocalDate, StatisticsInfo> totalStockInfo = new HashMap<>();
         SymbolList stockList = getStockList();
         logger.info("total number is {}", stockList.getSymbols().size());
@@ -258,7 +244,7 @@ public class StockController {
             StatisticsInfo info = result.get(i);
             info.setTotalStockNumber(info.getTotalStockNumber() + result.get(i - 1).getTotalStockNumber());
         }
-        stringRedisTemplate.opsForValue().set("statistics", JSON.toJSONString(result));
+        return JSON.toJSONString(result);
 
     }
 
