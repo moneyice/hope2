@@ -45,23 +45,30 @@ public class GuguDataWebStockRetreiver extends WebStockRetreiver {
 //            Low: 216.54,
 //            Volume: 15873500
 //    }
-    String URL = "https://api.gugudata.com/stock/us?appkey={0}&symbol={1}&beginDate={2}&endDate={3}";
-
+    String US_URL = "https://api.gugudata.com/stock/us?appkey={0}&symbol={1}&beginDate={2}&endDate={3}";
+    String HK_URL = "https://api.gugudata.com/stock/hk?appkey={0}&symbol={1}&beginDate={2}&endDate={3}";
     @Override
     public Stock getStockInfo(Stock stock) throws IOException {
         stock.setkLineType(Stock.TYPE_DAILY);
-
         String symbol = stock.getCode();
-        String appkey = propertyConfig.getGugudataAPIKey();
+        String urlFormat=null;
+        String appkey =null;
+        if(stock.getMarket().equalsIgnoreCase("US")){
+            urlFormat=US_URL;
+            appkey=propertyConfig.getGugudataAPIKeyUS();
+        }else{
+            urlFormat=HK_URL;
+            appkey=propertyConfig.getGugudataAPIKeyHK();
+        }
 
         //这家的api很破，一次只能取一年的
-        String url = MessageFormat.format(URL, appkey, symbol, "20190101", "20191231");
+        String url = MessageFormat.format(urlFormat, appkey, symbol, "20190101", "20191231");
 
         List<KLineInfo> all = readData(stock, url);
-        url = MessageFormat.format(URL, appkey, symbol, "20200101", "20201231");
+        url = MessageFormat.format(urlFormat, appkey, symbol, "20200101", "20201231");
         List<KLineInfo> appendList = readData(stock, url);
         all.addAll(appendList);
-        url = MessageFormat.format(URL, appkey, symbol, "20210101", "20211231");
+        url = MessageFormat.format(urlFormat, appkey, symbol, "20210101", "20211231");
         appendList = readData(stock, url);
         all.addAll(appendList);
         stock.setkLineInfos(all);
@@ -100,6 +107,4 @@ public class GuguDataWebStockRetreiver extends WebStockRetreiver {
         }
         return kLineInfos;
     }
-
-
 }

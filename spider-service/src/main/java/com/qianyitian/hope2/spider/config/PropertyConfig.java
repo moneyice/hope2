@@ -13,15 +13,25 @@ public class PropertyConfig {
     private String analyzerService;
     @Value(value = "${hope2.data.path}")
     private String dataPath;
-    @Value(value = "${hope2.gugudata.api.key}")
-    private String gugudataAPIKey;
+    @Value(value = "${hope2.gugudata.api.key.us}")
+    private String gugudataAPIKeyUS;
+    @Value(value = "${hope2.gugudata.api.key.hk}")
+    private String gugudataAPIKeyHK;
 
-    public String getGugudataAPIKey() {
-        return gugudataAPIKey;
+    public String getGugudataAPIKeyUS() {
+        return gugudataAPIKeyUS;
     }
 
-    public void setGugudataAPIKey(String gugudataAPIKey) {
-        this.gugudataAPIKey = gugudataAPIKey;
+    public void setGugudataAPIKeyUS(String gugudataAPIKeyUS) {
+        this.gugudataAPIKeyUS = gugudataAPIKeyUS;
+    }
+
+    public String getGugudataAPIKeyHK() {
+        return gugudataAPIKeyHK;
+    }
+
+    public void setGugudataAPIKeyHK(String gugudataAPIKeyHK) {
+        this.gugudataAPIKeyHK = gugudataAPIKeyHK;
     }
 
     public String getDataPath() {

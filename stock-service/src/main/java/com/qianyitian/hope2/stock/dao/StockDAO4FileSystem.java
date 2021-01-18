@@ -111,13 +111,14 @@ public class StockDAO4FileSystem extends AbstractStockDAO {
             rootFolder.mkdirs();
         }
         //USSymbols
+        //HKSymbols
         //H20Symbols
         //H150Symbols
         File from = new File(getRootPath(), portfolio + "Symbols");
         if (!from.exists()) {
             return null;
         }
-        final String portfolioString=portfolio;
+        final String portfolioString = portfolio;
         try {
             ImmutableList<String> strings = Files.asCharSource(from, Charset.forName("UTF-8")).readLines();
             List<Stock> stocks = strings.parallelStream().map(line -> {
@@ -125,9 +126,9 @@ public class StockDAO4FileSystem extends AbstractStockDAO {
                 Stock stock = new Stock();
                 stock.setCode(array[0]);
                 stock.setName((array[1]));
-                if("US".equalsIgnoreCase(portfolioString)){
-                    stock.setMarket("US");
-                }else{
+                if ("US".equalsIgnoreCase(portfolioString) || "HK".equalsIgnoreCase(portfolioString)) {
+                    stock.setMarket(portfolioString);
+                } else {
                     stock.setMarket(array[0].startsWith("6") ? "SH" : "SZ");
                 }
                 return stock;

@@ -22,4 +22,6 @@ hope2:
     path: ./target/data
   gugudata:
     api:
-      key: xxx
+      key:
+        us: xxx
+        hk: yyy

@@ -72,6 +72,7 @@ public class StockInfoSpider {
 
             logger.info("==============================需要更新 " + new Date());
             syncUSData();
+            syncHKData();
             syncIndexData();
             syncETFData();
             syncStockData();
@@ -84,25 +85,37 @@ public class StockInfoSpider {
 
 
     public void runUS() {
-        syncUSData();
+        syncHKData();
     }
 
     private void syncUSData() {
         try {
             List<Stock> stockSymbols = stockRetreiver.getUSStockSymbols();
-            for (Stock stock : stockSymbols) {
-                Runnable runnable = () -> {
-                    try {
-                        final Stock info = guguDataWebStockRetreiver.getStockInfo(stock);
-                        storeStock(info);
-                    } catch (Exception e) {
-                        logger.error(e.getMessage(), e);
-                    }
-                };
-                runInPool(runnable);
-            }
+            loadAndSaveStock(stockSymbols);
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
+        }
+    }
+    private void syncHKData() {
+        try {
+            List<Stock> stockSymbols = stockRetreiver.getHKStockSymbols();
+            loadAndSaveStock(stockSymbols);
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
+        }
+    }
+
+    private void loadAndSaveStock(List<Stock> stockSymbols) {
+        for (Stock stock : stockSymbols) {
+            Runnable runnable = () -> {
+                try {
+                    final Stock info = guguDataWebStockRetreiver.getStockInfo(stock);
+                    storeStock(info);
+                } catch (Exception e) {
+                    logger.error(e.getMessage(), e);
+                }
+            };
+            runInPool(runnable);
         }
     }
 
