@@ -5,9 +5,7 @@ import com.qianyitian.hope2.analyzer.model.*;
 import com.qianyitian.hope2.analyzer.util.Utils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,12 +17,13 @@ public class StockSelecter {
     private Logger logger = LoggerFactory.getLogger(getClass());
     List<IStockAnalyzer> analyzers = new ArrayList<IStockAnalyzer>();
     List<ResultInfo> selectResultList = null;
-    ExecutorService es = Executors.newFixedThreadPool(15);
-
     IStockService stockService;
+    List<Stock> symbols;
 
-    public StockSelecter(IStockService stockService) {
+
+    public StockSelecter(List<Stock> symbols, IStockService stockService) {
         this.stockService = stockService;
+        this.symbols = symbols;
     }
 
     public AnalyzeResult getAnalyzeResult() {
@@ -46,25 +45,15 @@ public class StockSelecter {
     public void startAnalyze(String klineType) {
         logger.info("start analyzing " + klineType + " " + analyzers.get(0).getClass().getName());
         startAnalyzeInSequence(klineType);
-//        startAnalyzeInParallel(klineType);
-
         long now = System.currentTimeMillis();
         logger.info("ending analyzing " + klineType + " " + analyzers.get(0).getClass().getName());
     }
 
-    private void startAnalyzeInParallel(String klineType) {
-        selectResultList = new CopyOnWriteArrayList<ResultInfo>();
-        SymbolList allSymbols = getAllSymbols();
-        for (Stock stock : allSymbols.getSymbols()) {
-            Task task = new Task(stock.getCode(), klineType, selectResultList);
-            es.execute(task);
-        }
-    }
 
     public void startAnalyzeInSequence(String klineType) {
         selectResultList = new ArrayList<ResultInfo>();
-        SymbolList allSymbols = getAllSymbols();
-        for (Stock stock : allSymbols.getSymbols()) {
+
+        for (Stock stock : getSymbols()) {
             stock = stockService.getStock(stock.getCode(), klineType);
             if (stock != null && !outOfDate(stock)) {
                 ResultInfo resultInfo = analyze(stock);
@@ -126,33 +115,11 @@ public class StockSelecter {
         return resultInfo;
     }
 
-
-    private SymbolList getAllSymbols() {
-        SymbolList symbolList = stockService.getAllSymbols();
-        return symbolList;
+    public List<Stock> getSymbols() {
+        return symbols;
     }
 
-    class Task implements Runnable {
-        String code = null;
-        List<ResultInfo> list = null;
-        String klineType;
-
-        public Task(String code, String klineType, List<ResultInfo> selectResultList) {
-            this.code = code;
-            this.list = selectResultList;
-            this.klineType = klineType;
-        }
-
-        @Override
-        public void run() {
-            Stock stock = null;
-            stock = stockService.getStock(code, klineType);
-            if (stock != null) {
-                ResultInfo resultInfo = analyze(stock);
-                if (resultInfo != null) {
-                    selectResultList.add(resultInfo);
-                }
-            }
-        }
+    public void setSymbols(List<Stock> symbols) {
+        this.symbols = symbols;
     }
 }

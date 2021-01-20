@@ -22,7 +22,7 @@ public abstract class AbstractStockService implements IStockService{
     private RestTemplate restTemplate;
 
     @Override
-    public abstract SymbolList getAllSymbols();
+    public abstract SymbolList getSymbols(String portfolio);
 
     @Override
     public Stock getStock(String symbol, String klineType) {
