@@ -35,7 +35,7 @@ public class MyFavoriteStockService extends AbstractStockService {
     };
 
     AsyncLoadingCache<String, Stock> cache = Caffeine.newBuilder()
-            .maximumSize(256).recordStats()
+            .maximumSize(128).recordStats()
             .expireAfterAccess(60, TimeUnit.MINUTES)
             .expireAfterWrite(60, TimeUnit.MINUTES)
             .refreshAfterWrite(30, TimeUnit.MINUTES)
