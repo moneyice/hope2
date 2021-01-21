@@ -24,7 +24,7 @@ import java.util.stream.Collectors;
 //2、Sell-Countdown：每当某个收盘价高于先前第2个T的最高价时计数增加1，计数可以不连续，当计数增加到13个交易日意味着买盘动能已经耗尽，往往是上升趋势的反转点。
 //（注：这里的限定条件是累计13个T，不要求是“连续”的，期间可以中断）
 
-
+//目前不支持并发
 public class DemarkAnalyzer extends AbstractStockAnalyzer {
     public static int DEFAULT_DAYS2NOW = 200;
     //计算距今多少天的日K线
@@ -96,10 +96,7 @@ public class DemarkAnalyzer extends AbstractStockAnalyzer {
         ok = true;
 
         Map map = getFlags();
-
         resultInfo.setData(map);
-
-        resultInfo.setComments("http://hope2.qianyitian.com:8003/demark-flag.html?code=" + stock.getCode());
         return ok;
     }
 

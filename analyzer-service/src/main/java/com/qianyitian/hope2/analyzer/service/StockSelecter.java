@@ -7,8 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -20,11 +19,14 @@ public class StockSelecter {
     IStockService stockService;
     List<Stock> symbols;
 
+    private boolean filterEmptyResult = true;
+
 
     public StockSelecter(List<Stock> symbols, IStockService stockService) {
         this.stockService = stockService;
         this.symbols = symbols;
     }
+
 
     public AnalyzeResult getAnalyzeResult() {
         AnalyzeResult ar = new AnalyzeResult();
@@ -45,7 +47,6 @@ public class StockSelecter {
     public void startAnalyze(String klineType) {
         logger.info("start analyzing " + klineType + " " + analyzers.get(0).getClass().getName());
         startAnalyzeInSequence(klineType);
-        long now = System.currentTimeMillis();
         logger.info("ending analyzing " + klineType + " " + analyzers.get(0).getClass().getName());
     }
 
@@ -59,9 +60,23 @@ public class StockSelecter {
                 ResultInfo resultInfo = analyze(stock);
                 if (resultInfo != null) {
                     selectResultList.add(resultInfo);
+                } else if (!filterEmptyResult) {
+                    selectResultList.add(createEmptyResultInfo(stock));
                 }
             }
         }
+    }
+
+    private ResultInfo createEmptyResultInfo(Stock stock) {
+        ResultInfo resultInfo = new ResultInfo();
+        resultInfo.setCode(stock.getCode());
+        resultInfo.setName(stock.getName());
+        resultInfo.setUrl(Utils.convert163StockURL(stock.getCode()));
+        Map map = new HashMap<>();
+        List<DemarkFlag> list = new LinkedList();
+        map.put("flag", list);
+        resultInfo.setData(map);
+        return resultInfo;
     }
 
     private boolean outOfDate(Stock stock) {
@@ -76,8 +91,6 @@ public class StockSelecter {
 
     private ResultInfo analyze(Stock stock) {
         ResultInfo resultInfo = new ResultInfo();
-        resultInfo.setCode(stock.getCode());
-        resultInfo.setName(stock.getName());
         for (IStockAnalyzer analyzer : analyzers) {
             try {
                 if (!analyzer.analyze(resultInfo, stock)) {
@@ -87,8 +100,9 @@ public class StockSelecter {
             } catch (Exception e) {
                 logger.error("analyzer " + analyzer.getClass().getName() + " stock " + stock.getCode(), e);
             }
-
         }
+        resultInfo.setCode(stock.getCode());
+        resultInfo.setName(stock.getName());
         //get stock url
         //http://quotes.money.163.com/0601899.html
         resultInfo.setUrl(Utils.convert163StockURL(stock.getCode()));
@@ -113,6 +127,10 @@ public class StockSelecter {
         //http://quotes.money.163.com/0601899.html
         resultInfo.setUrl(Utils.convert163StockURL(stock.getCode()));
         return resultInfo;
+    }
+
+    public void setFilterEmptyResult(boolean filterEmptyResult) {
+        this.filterEmptyResult = filterEmptyResult;
     }
 
     public List<Stock> getSymbols() {

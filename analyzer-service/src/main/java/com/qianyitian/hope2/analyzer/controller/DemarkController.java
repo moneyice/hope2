@@ -72,12 +72,14 @@ public class DemarkController {
 
     //生成组合的报告
     protected String portfolioReport(String portfolio, Integer days2Now) {
-        DemarkAnalyzer stockAnalyzer = (DemarkAnalyzer) stockAnalyzerFacotry.getStockAnalyzer(EStockAnalyzer.Demark);
+//        DemarkAnalyzer stockAnalyzer = (DemarkAnalyzer) stockAnalyzerFacotry.getStockAnalyzer(EStockAnalyzer.Demark);
+        DemarkAnalyzer stockAnalyzer = new DemarkAnalyzer();
         if (days2Now != null) {
             stockAnalyzer.setDaysToNow(days2Now);
         }
         SymbolList symbols = favoriteStockService.getSymbols(portfolio);
         StockSelecter hs = new StockSelecter(symbols.getSymbols(), favoriteStockService);
+        hs.setFilterEmptyResult(false);
         hs.addAnalyzer(stockAnalyzer);
         hs.startAnalyze(Constant.TYPE_DAILY);
         AnalyzeResult result = hs.getAnalyzeResult();
@@ -110,7 +112,8 @@ public class DemarkController {
 
     //生成单个证券的报告
     protected String stockReport(String code, int days2NowNumber) {
-        DemarkAnalyzer stockAnalyzer = (DemarkAnalyzer) stockAnalyzerFacotry.getStockAnalyzer(EStockAnalyzer.Demark);
+//        DemarkAnalyzer stockAnalyzer = (DemarkAnalyzer) stockAnalyzerFacotry.getStockAnalyzer(EStockAnalyzer.Demark);
+        DemarkAnalyzer stockAnalyzer = new DemarkAnalyzer();
         stockAnalyzer.setDaysToNow(days2NowNumber);
 
         Stock stock = getStock(code);
@@ -136,7 +139,8 @@ public class DemarkController {
 
         //sell flags
         {
-            UnDemarkAnalyzer unStockAnalyzer = (UnDemarkAnalyzer) stockAnalyzerFacotry.getStockAnalyzer(EStockAnalyzer.UnDemark);
+//            UnDemarkAnalyzer unStockAnalyzer = (UnDemarkAnalyzer) stockAnalyzerFacotry.getStockAnalyzer(EStockAnalyzer.UnDemark);
+            UnDemarkAnalyzer unStockAnalyzer = new UnDemarkAnalyzer();
             unStockAnalyzer.setDaysToNow(days2NowNumber);
             ResultInfo unResultInfo = hs.analyze(unStockAnalyzer, stock);
             if (unResultInfo != null) {

@@ -16,11 +16,6 @@ public abstract class AbstractStockAnalyzer implements IStockAnalyzer {
     }
 
 
-    @Override
-    public void outPutResults() {
-        // getResultwriter().write(results);
-    }
-
     public double getCurrentPrice(Stock stock) {
         return stock.getkLineInfos().get(stock.getkLineInfos().size() - 1)
                 .getClose();

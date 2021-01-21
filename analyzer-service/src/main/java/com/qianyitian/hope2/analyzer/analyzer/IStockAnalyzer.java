@@ -9,8 +9,5 @@ public interface IStockAnalyzer {
 
     String getDescription();
 
-
-    void outPutResults();
-
     boolean analyze(ResultInfo resultInfo, Stock stock);
 }
