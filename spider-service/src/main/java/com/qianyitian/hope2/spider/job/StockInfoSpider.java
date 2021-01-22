@@ -66,11 +66,11 @@ public class StockInfoSpider {
     public void run() {
         try {
             if (!isStockOutOfDate(lastUpdateTime)) {
-                System.out.println("==============================不需要更新 " + new Date());
+                logger.info("不需要更新 " + new Date());
                 return;
             }
 
-            logger.info("==============================需要更新 " + new Date());
+            logger.info("需要更新 " + new Date());
             syncUSData();
             syncHKData();
             syncIndexData();
