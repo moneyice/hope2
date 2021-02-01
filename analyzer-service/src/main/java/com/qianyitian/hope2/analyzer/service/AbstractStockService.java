@@ -17,7 +17,6 @@ public abstract class AbstractStockService implements IStockService {
     @Autowired
     PropertyConfig propertyConfig;
 
-
     @Autowired
     private RestTemplate restTemplate;
 
