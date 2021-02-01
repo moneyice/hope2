@@ -13,6 +13,8 @@ public interface IStockDAO {
 
     void storeStock(Stock stock);
 
+    void storeFunds(String name, String fundsInfo);
+    String getFunds(String name);
     void storeStockLite(Stock stock);
 
     void storeStockWeekly(Stock stock);
@@ -28,6 +30,7 @@ public interface IStockDAO {
     Stock getStockMonthly(String code);
 
     List<Stock> getAllSymbols();
+
     List<Stock> getPortfolioSymbols(String portfolio);
 
     Date getAllSymbolsUpdateTime();

@@ -13,9 +13,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.client.ClientHttpRequestFactory;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
+import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.web.client.RestTemplate;
+
+import java.nio.charset.StandardCharsets;
 
 @SpringBootApplication
 @EnableScheduling
@@ -33,8 +36,13 @@ public class AnalyzerApplication {
      */
     @Bean
     public RestTemplate restTemplate() {
-        return new RestTemplate();
-//        return new RestTemplate(httpRequestFactory());
+        RestTemplate restTemplate = new RestTemplate();
+        restTemplate.getMessageConverters().forEach(httpMessageConverter -> {
+            if (httpMessageConverter instanceof StringHttpMessageConverter) {
+                ((StringHttpMessageConverter) httpMessageConverter).setDefaultCharset(StandardCharsets.UTF_8);
+            }
+        });
+        return restTemplate;
     }
 
     public ClientHttpRequestFactory httpRequestFactory() {
@@ -53,7 +61,7 @@ public class AnalyzerApplication {
                 socketFactoryRegistry);
         connectionManager.setMaxTotal(50);
         final RequestConfig config = RequestConfig.custom()
-                .setConnectTimeout(60000).build();
+                .setConnectTimeout(3000).build();
 
         final CloseableHttpClient defaultHttpClient = HttpClientBuilder
                 .create().setConnectionManager(connectionManager)

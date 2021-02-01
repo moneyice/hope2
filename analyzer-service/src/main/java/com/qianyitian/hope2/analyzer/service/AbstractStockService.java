@@ -2,6 +2,7 @@ package com.qianyitian.hope2.analyzer.service;
 
 import com.alibaba.fastjson.JSON;
 import com.qianyitian.hope2.analyzer.config.PropertyConfig;
+import com.qianyitian.hope2.analyzer.funds.model.Fund;
 import com.qianyitian.hope2.analyzer.model.Stock;
 import com.qianyitian.hope2.analyzer.model.SymbolList;
 import org.slf4j.Logger;
@@ -11,11 +12,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 @Service
-public abstract class AbstractStockService implements IStockService{
+public abstract class AbstractStockService implements IStockService {
     private Logger logger = LoggerFactory.getLogger(getClass());
     @Autowired
     PropertyConfig propertyConfig;
-
 
 
     @Autowired
@@ -72,6 +72,20 @@ public abstract class AbstractStockService implements IStockService{
         }
         return null;
     }
+
+    @Override
+    public String getFund(String code) {
+        try {
+            String fund = restTemplate.getForObject(propertyConfig.getStockService() + "/data/funds/" + code, String.class);
+            return fund;
+        } catch (Exception e) {
+            logger.error(code);
+            logger.error(e.getMessage(), e);
+        }
+        return null;
+    }
+
+
     public PropertyConfig getPropertyConfig() {
         return propertyConfig;
     }

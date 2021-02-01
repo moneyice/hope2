@@ -28,7 +28,16 @@ public abstract class AbstractStockDAO implements IStockDAO {
         return null;
     }
 
+    @Override
+    public void storeFunds(String name, String fundsInfo) {
+
+    }
+
     protected abstract void storeStockInfo(Stock stock, EStockKlineType type);
+    @Override
+    public String getFunds(String name) {
+        return null;
+    }
 
     @Override
     public void storeStock(Stock stock) {
@@ -80,4 +89,7 @@ public abstract class AbstractStockDAO implements IStockDAO {
         return getStockInfo(code, EStockKlineType.MONTHLY);
     }
 
+    public void storeFunds(String fundsInfo) {
+
+    }
 }

@@ -3,6 +3,11 @@ server:
 spring:
   application:
     name: stock-service
+  http:
+    encoding:
+      force: true
+      charset: utf-8
+      enabled: true
 #  cloud:
 #    nacos:
 #      discovery:

@@ -3,9 +3,13 @@ package com.qianyitian.hope2.spider;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.web.client.RestTemplate;
+
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 
 @SpringBootApplication
 @EnableScheduling
@@ -22,6 +26,12 @@ public class SpiderApplication {
      */
     @Bean
     public RestTemplate restTemplate() {
-        return new RestTemplate();
+        RestTemplate restTemplate = new RestTemplate();
+        restTemplate.getMessageConverters().forEach(httpMessageConverter -> {
+            if (httpMessageConverter instanceof StringHttpMessageConverter) {
+                ((StringHttpMessageConverter) httpMessageConverter).setDefaultCharset(StandardCharsets.UTF_8);
+            }
+        });
+        return restTemplate;
     }
 }

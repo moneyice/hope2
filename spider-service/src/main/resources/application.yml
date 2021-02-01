@@ -6,6 +6,12 @@ spring:
 #  boot:
 #    admin:
 #      url: http://localhost:8090
+  http:
+    encoding:
+      force: true
+      charset: utf-8
+      enabled: true
+
 logging:
   file: ./log/analyzer.log
   level:

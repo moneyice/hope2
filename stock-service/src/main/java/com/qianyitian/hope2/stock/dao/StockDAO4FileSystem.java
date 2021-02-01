@@ -51,6 +51,28 @@ public class StockDAO4FileSystem extends AbstractStockDAO {
         }
     }
 
+    @Override
+    public void storeFunds(String name, String fundsInfo) {
+        File parent = new File(getRootPath(), Constant.FUNDS);
+        File to = new File(parent, name + ".funds");
+        try {
+            Files.asCharSink(to, Charset.forName("UTF-8")).write(fundsInfo);
+        } catch (IOException e) {
+            logger.error("store funds error on " + name, e);
+        }
+    }
+
+    @Override
+    public String getFunds(String name) {
+        File parent = new File(getRootPath(), Constant.FUNDS);
+        File from = new File(parent, name + ".funds");
+        try {
+            return Files.asCharSource(from, Charset.forName("UTF-8")).readFirstLine();
+        } catch (IOException e) {
+            logger.error("store funds error on " + name, e);
+        }
+        return null;
+    }
 
     @Override
     protected void storeStockInfo(Stock stock, EStockKlineType type) {
