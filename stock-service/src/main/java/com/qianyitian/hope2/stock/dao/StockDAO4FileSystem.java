@@ -58,7 +58,7 @@ public class StockDAO4FileSystem extends AbstractStockDAO {
         try {
             Files.asCharSink(to, Charset.forName("UTF-8")).write(fundsInfo);
         } catch (IOException e) {
-            logger.error("store funds error on " + name, e);
+            logger.error("store fund error " + name, e);
         }
     }
 
@@ -69,7 +69,7 @@ public class StockDAO4FileSystem extends AbstractStockDAO {
         try {
             return Files.asCharSource(from, Charset.forName("UTF-8")).readFirstLine();
         } catch (IOException e) {
-            logger.error("store funds error on " + name, e);
+            logger.error("fund not found " + name, e);
         }
         return null;
     }
@@ -82,7 +82,7 @@ public class StockDAO4FileSystem extends AbstractStockDAO {
         try {
             Files.asCharSink(to, Charset.forName("UTF-8")).write(jsonStock);
         } catch (IOException e) {
-            logger.error("store stock error on " + stock.getCode(), e);
+            logger.error("store stock error " + stock.getCode(), e);
         }
     }
 
@@ -97,7 +97,7 @@ public class StockDAO4FileSystem extends AbstractStockDAO {
             Stock stock = JSON.parseObject(rs.toString(), Stock.class);
             return stock;
         } catch (IOException e) {
-            logger.error("get stock error on " + code, e);
+            logger.error("stock not found" + code, e);
         }
         return null;
     }
