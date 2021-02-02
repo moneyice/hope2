@@ -22,6 +22,7 @@
                 $("#genTime").html(data.generateTime);
                 $('#stockTable').DataTable({
                     data: data.numbers,
+                    order: [[ 2, "desc" ]],
                     columns: [
                         {
                             data: 'code'
