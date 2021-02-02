@@ -59,6 +59,11 @@ public class FundsController {
         return fundProfileMapDB.get(code);
     }
 
+    @GetMapping(value = "/data/fund/profile/size")
+    public int getFundProfileSize() {
+        return fundProfileMapDB.size();
+    }
+
     class FundsStoringTask implements Runnable {
         String funds;
         String code;
