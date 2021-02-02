@@ -54,6 +54,7 @@ public class FundsController {
     @Async
     @RequestMapping("/fund/refresh-profile")
     public void summary() throws IOException {
+        int i=0;
         List<Stock> fundsSymbols = danjuanFundsRetreiver.getFundsSymbols();
         for (Stock stock : fundsSymbols) {
             String content = getFundDetail(stock.getCode());
@@ -84,6 +85,8 @@ public class FundsController {
             //获取其他
             fillFundDetail(fundProfileInfo);
             storeFundProfile(fundProfileInfo.getCode(), JSON.toJSONString(fundProfileInfo));
+            i++;
+            System.out.println("fund profile " +i);
         }
     }
 
@@ -144,11 +147,11 @@ public class FundsController {
         }
     }
 
-    public String getFundDetail(String code) {
+    private String getFundDetail(String code) {
         return dataService.getFundDetail(code);
     }
 
-    public void storeFundProfile(String code, String content) {
+    private void storeFundProfile(String code, String content) {
         dataService.storeFundProfile(code, content);
     }
 

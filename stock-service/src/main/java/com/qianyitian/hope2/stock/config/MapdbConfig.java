@@ -11,7 +11,7 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentMap;
 
 @Configuration
-public class MapdbConfig implements WebMvcConfigurer {
+public class MapdbConfig {
 
     @Bean
     public DB mapdb() {
