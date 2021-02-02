@@ -71,11 +71,10 @@ public abstract class AbstractStockService implements IStockService {
         }
         return null;
     }
-
     @Override
-    public String getFund(String code) {
+    public String getFundProfile(String code) {
         try {
-            String fund = restTemplate.getForObject(propertyConfig.getStockService() + "/data/funds/" + code, String.class);
+            String fund = restTemplate.getForObject(propertyConfig.getStockService() + "/data/fund/profile/" + code, String.class);
             return fund;
         } catch (Exception e) {
             logger.error(code);
@@ -83,7 +82,17 @@ public abstract class AbstractStockService implements IStockService {
         }
         return null;
     }
-
+    @Override
+    public String getFundDetail(String code) {
+        try {
+            String fund = restTemplate.getForObject(propertyConfig.getStockService() + "/data/fund/detail/" + code, String.class);
+            return fund;
+        } catch (Exception e) {
+            logger.error(code);
+            logger.error(e.getMessage(), e);
+        }
+        return null;
+    }
 
     public PropertyConfig getPropertyConfig() {
         return propertyConfig;

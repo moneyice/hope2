@@ -13,5 +13,8 @@ public interface IStockService {
 
     public Stock getStockWeekly(String symbol);
 
-    public String getFund(String code);
+    public String getFundProfile(String code);
+
+    public String getFundDetail(String code);
+
 }

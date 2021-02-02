@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import java.io.File;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.*;
@@ -29,11 +30,13 @@ public class FundsController {
 
     @Resource(name = "fileSystemStorageService")
     private IReportStorageService reportService;
-
     @Autowired
     private MyFavoriteStockService favoriteStockService;
     @Autowired
     PropertyConfig propertyConfig;
+
+    @Autowired
+    public Map<String, String> reportMapDB;
 
     public FundsController() {
     }
@@ -49,7 +52,7 @@ public class FundsController {
 //        List<Stock> funds = getAllFundCode();
         for (Stock fund : funds) {
             try {
-                String content = favoriteStockService.getFund(fund.getCode());
+                String content = favoriteStockService.getFundDetail(fund.getCode());
                 if (content == null) {
                     continue;
                 }
@@ -91,13 +94,13 @@ public class FundsController {
 //        result.put("values", valueslist);
         result.put("generateTime", LocalDate.now().toString());
         String conent = JSON.toJSONString(result);
-        reportService.storeAnalysis("fundPosition-20201231", conent);
+        reportMapDB.put("fundPosition-20201231", conent);
     }
 
-    @RequestMapping("/funds")
+    @RequestMapping("/fundPositionReport")
     @CrossOrigin
     public String funds() {
-        String report = reportService.getAnalysis("fundPosition-20201231");
+        String report = reportMapDB.get("fundPosition-20201231");
         return report;
     }
 
@@ -122,23 +125,6 @@ public class FundsController {
         }
     }
 
-    public List<Stock> getAllFundCode() {
-        File parent = new File(getRootPath(), "funds");
-        List<Stock> list = new LinkedList<>();
-        for (File file : parent.listFiles()) {
-            Stock s = new Stock();
-            s.setCode(file.getName().substring(0, 6));
-            list.add(s);
-        }
-
-
-        return list;
-    }
-
-    private String getRootPath() {
-        return propertyConfig.getDataPath();
-    }
-
     public List<PositionStatus> sortMapByValues(Map<String, PositionStatus> aMap) {
         List<PositionStatus> collect = aMap.entrySet()
                 .stream()
@@ -161,6 +147,28 @@ public class FundsController {
                 })
                 .collect(Collectors.toList());
         return collect;
+    }
+
+
+    @RequestMapping("/fund/all/profile")
+    public String allFunds() throws IOException {
+        String content = reportMapDB.get("fundProfileReport");
+        if (content != null) {
+            return content;
+        }
+        List<FundProfileInfo> resultList = new ArrayList<>();
+        List<Stock> fundsSymbols = favoriteStockService.getSymbols("funds").getSymbols();
+        for (Stock stock : fundsSymbols) {
+            String info = favoriteStockService.getFundProfile(stock.getCode());
+            if (info == null) {
+                continue;
+            }
+            FundProfileInfo fundDetail = JSON.parseObject(info, FundProfileInfo.class);
+            resultList.add(fundDetail);
+        }
+        String result = JSON.toJSONString(resultList);
+        reportMapDB.put("fundProfileReport", result);
+        return result;
     }
 }
 
