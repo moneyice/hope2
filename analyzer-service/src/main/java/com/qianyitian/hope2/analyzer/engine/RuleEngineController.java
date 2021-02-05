@@ -31,7 +31,7 @@ import java.util.concurrent.ThreadPoolExecutor;
 @CrossOrigin
 public class RuleEngineController {
     private Logger logger = LoggerFactory.getLogger(getClass());
-    String rule_folder_path = System.getProperty("user.dir") + "\\rule\\";
+    String rule_folder_path = "rule";
     @Autowired
     private MyFavoriteStockService favoriteStockService;
 
