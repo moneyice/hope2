@@ -3,6 +3,14 @@ server:
 spring:
   application:
     name: analyzer-service    # 项目名称尽量用小写
+#  mvc:
+#    static-path-pattern: /static/**
+#    resources:
+#      chain:
+#        strategy:
+#          content:
+#            enabled: true
+#            paths: /**
 #  boot:
 #    admin:
 #      url: http://localhost:8090
