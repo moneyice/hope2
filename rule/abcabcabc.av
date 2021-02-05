@@ -1,6 +1,0 @@
-if (grl1Month() >= 0.05 && grl1Year() >= 0.5) {
-if (managers('朱少')) {
-return 1;
-}
-}
-return 0;
