@@ -1,0 +1,6 @@
+if (foundYear() >= 3 && grBase() >= 50) {
+if (managers('张坤')) {
+return 1;
+}
+}
+return 0;

@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hope2 - 基金选择器</title>
+    <script src="../blockly_uncompressed.js"></script>
+    <script src='./function-metadata.js'></script>
+    <script src="../generators/aviator.js"></script>
+    <script src="../generators/aviator/logic.js"></script>
+    <script src="../generators/aviator/math.js"></script>
+    <script src="../generators/aviator/text.js"></script>
+    <script src="../generators/aviator/variables.js"></script>
+    <script src="../generators/aviator/my.js"></script>
+    <script src="./jquery-3.4.1.js"></script>
+    <script src="./zh-hans.js"></script>
+    <script src="./PinYin.js"></script>
+    <script src="./canvas2image.js"></script>
+    <script src="./html2canvas.min.js"></script>
+
+    <script src="../msg/messages.js"></script>
+    <script src="../blocks/logic.js"></script>
+    <script src="../blocks/math.js"></script>
+    <script src="../blocks/text.js"></script>
+    <script src="../blocks/variables.js"></script>
+    <script src="../blocks/procedures.js"></script>
+    <script src="../blocks/my_blocks.js"></script>
+    <link rel="stylesheet" href="https://bulma.io/css/bulma-docs.min.css?v=202101062241">
+    <link rel="stylesheet" href="https://lib.baomitu.com/bulma/0.9.1/css/bulma.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="https://cdn.materialdesignicons.com/2.1.19/css/materialdesignicons.min.css">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="http://www.datatables.net/rss.xml">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css">
+    <script type="text/javascript" language="javascript"
+            src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" language="javascript"
+            src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+    <script>
+        'use strict';
+        var demoWorkspace = null;
+        var outputCode = '';
+        var fileName = '';
+        var URI = 'http://localhost:8003/';
+
+        function start() {
+            //页面初始化前加入分组结构
+            var funcData = getFuncData();
+            window.funcData = funcData;
+            for (let i = 0; i < funcData.length; i++) {
+                var newCategory = document.createElement('category')
+                newCategory.setAttribute('name', funcData[i].group)
+                newCategory.setAttribute('colour', '190')
+                newCategory.setAttribute('custom', funcData[i].group)
+                $('#toolbox')[0].append(newCategory)
+            }
+            demoWorkspace = Blockly.inject('blocklyDiv',
+                {
+                    grid:
+                        {
+                            spacing: 25,
+                            length: 3,
+                            colour: '#ccc',
+                            snap: true
+                        },
+                    media: '../media/',
+                    toolbox: document.getElementById('toolbox'),
+                    zoom: {controls: true, wheel: true}
+                });
+            var workspace = Blockly.getMainWorkspace();
+            //循环函数数据将函数渲染到页面上
+            for (let i = 0; i < funcData.length; i++) {
+                demoWorkspace.myCallback = function (workspace) {
+                    var myfolder = funcData[i].allData;
+                    var xmlList = [];
+                    for (let index = 0; index < myfolder.length; index++) {
+                        if (myfolder[index].paramNum == '0') {
+                            var blockText = '<block type="my_function" category="' + myfolder[index].code + '">' +
+                                '<field name="NAME">' + myfolder[index].name + '</field>' +
+                                '</block>';
+                            var block = Blockly.Xml.textToDom(blockText);
+                            xmlList.push(block);
+                        } else if (myfolder[index].paramNum == '1') {
+                            var blockText = '<block type="my_function_1">' +
+                                '<field name="NAME">' + myfolder[index].name + '</field>' +
+                                '</block>';
+                            var block = Blockly.Xml.textToDom(blockText);
+                            xmlList.push(block);
+                        }
+                    }
+                    return xmlList;
+                };
+                workspace.registerToolboxCategoryCallback(
+                    funcData[i].group, demoWorkspace.myCallback);
+            }
+            onClickToSearch(funcData);
+        }
+
+        var flag1 = false;
+        var flag2 = false;
+        var flag3 = false;
+
+        function onClickToSearch(funcData) {
+            var len = $("#blockly-0 div:eq(1)").find("div").find("[id]").length
+            for (var i = 0; i < len; i++) {
+                if (i < 3) {
+                    $("#blockly-" + (i + 1)).click(function () {
+                        if ($("foreignObject").length > 0) {
+                            $("foreignObject").remove()
+                            flag1 = false;
+                            flag2 = false;
+                        }
+                    })
+                } else {
+                    $("#blockly-" + (i + 1)).click(function (e) {
+                        if (!flag3) {
+
+                        } else {
+                            var newFuncData = funcData;
+                            newFunctionBySearch(newFuncData[pageIndex - 4].allData, newFuncData[pageIndex - 4].group, false)
+                            flag3 = false;
+                        }
+                        var eleId = e.currentTarget.id;
+                        window.pageIndex = Number(eleId.slice(8));
+
+                        if (!flag1) {
+                            var f = document.createElementNS('http://www.w3.org/2000/svg', 'foreignObject');
+                            f.setAttribute("width", "100%");
+                            f.setAttribute("height", "25")
+                            f.setAttribute("transform", "translate(8,-25)");
+                            var inp = document.createElement("input");
+                            inp.setAttribute("id", "searchInput")
+                            inp.setAttribute("type", "text")
+                            inp.setAttribute("style", "width: 60%;height:20px;border: 1px solid black;")
+                            var btn = document.createElement("button");
+                            btn.setAttribute("style", "width: 25%;height: 24px;padding: 0;");
+                            btn.setAttribute("class", "searchButton")
+                            btn.innerText = "搜索";
+                            f.append(inp);
+                            f.append(btn);
+                            var blocklyBlockCanvas = document.getElementsByClassName("blocklyBlockCanvas")[2];
+                            blocklyBlockCanvas.prepend(f);
+                            flag1 = true;
+                        } else {
+                            $("#searchInput").val("");
+                        }
+                        if (!flag2) {
+                            flag2 = true;
+                            //点击搜索
+                            $(".searchButton").click(function () {
+                                var newData = []
+                                var searchType = funcData[pageIndex - 4].group;
+                                var searchData = funcData[pageIndex - 4].allData
+                                var inputVal = $("#searchInput").val();
+                                for (var j = 0; j < searchData.length; j++) {
+                                    var searchStr = searchData[j].name;
+                                    if (searchStr.indexOf(inputVal) != "-1") {
+                                        newData.push(searchData[j])
+                                    }
+                                }
+                                if (newData.length == 0) {
+                                    window.alert("没有搜索到该" + searchType)
+                                } else {
+                                    newFunctionBySearch(newData, searchType, true)
+                                }
+                                if (newData.length == funcData[pageIndex - 4].allData.length) {
+
+                                } else {
+                                    flag3 = true;
+                                }
+                            })
+                        }
+
+                    })
+                }
+            }
+        }
+
+        function newFunctionBySearch(newData, searchType, isChange) {
+
+            var workspace = Blockly.getMainWorkspace();
+            demoWorkspace.myCallback = function (workspace) {
+                var xmlList = [];
+                for (let index = 0; index < newData.length; index++) {
+                    if (newData[index].paramNum == '0') {
+                        var blockText = '<block type="my_function">' +
+                            '<field name="NAME">' + newData[index].name + '</field>' +
+                            '</block>';
+                        var block = Blockly.Xml.textToDom(blockText);
+                        xmlList.push(block);
+                    } else if (newData[index].paramNum == '1') {
+                        var blockText = '<block type="my_function_1">' +
+                            '<field name="NAME">' + newData[index].name + '</field>' +
+                            '</block>';
+                        var block = Blockly.Xml.textToDom(blockText);
+                        xmlList.push(block);
+                    }
+                }
+                return xmlList;
+            };
+            workspace.registerToolboxCategoryCallback(
+                searchType, demoWorkspace.myCallback);
+
+            changePageFunc(isChange);
+        }
+
+        function changePageFunc(isChange) {
+            if (isChange) {
+                for (let l = 0; l < 2; l++) {
+                    $("#blockly-" + pageIndex).click();
+                }
+            }
+        }
+
+        function fetchFile(xmlUrl) {
+            try {
+                var xmlHttp = new XMLHttpRequest();
+                xmlHttp.open('GET', xmlUrl, false);
+                xmlHttp.setRequestHeader('Content-Type', 'text/xml');
+                xmlHttp.send('');
+            } catch (e) {
+                // Attempt to diagnose the problem.
+                var msg = 'Error: Unable to load XML data.\n';
+                if (window.location.protocol == 'file:') {
+                    msg += 'This may be due to a security restriction preventing\n' +
+                        'access when using the file:// protocol.\n' +
+                        'Use an http webserver, or a less paranoid browser.\n';
+                }
+                alert(msg + '\n' + e);
+                return null;
+            }
+            return xmlHttp.responseText;
+        }
+
+        function fromXml(filename, xmlText, opt_append) {
+            // var output = document.getElementById('importExport');
+            // output.value = xmlText;
+            // output.scrollTop = 0;
+            // output.scrollLeft = 0;
+            if (!opt_append) {
+                demoWorkspace.clear();
+            }
+            try {
+                var xmlDoc = Blockly.Xml.textToDom(xmlText);
+                if (opt_append) {
+                    Blockly.Xml.appendDomToWorkspace(xmlDoc, demoWorkspace);
+                } else {
+                    Blockly.Xml.domToWorkspace(xmlDoc, demoWorkspace);
+                }
+            } catch (e) {
+                var msg = 'Error parsing XML: ' + filename + '\n\n\t' + e;
+                if (e.stack) {
+                    msg += '\n\nSee console for stack trace details.'
+                }
+                console.error(e.stack ? e : msg);
+                alert(msg);
+                return;
+            }
+        }
+
+        function setOutput(text) {
+            var output = document.getElementById('importExport');
+            output.value = text;
+            output.focus();
+            // output.select();
+        }
+
+        function toXml() {
+            var xmlDom = Blockly.Xml.workspaceToDom(demoWorkspace,
+                /* opt_noId */ true);
+            var xmlText = Blockly.Xml.domToPrettyText(xmlDom);
+            console.log(xmlText);
+            xmlText = xmlText.replace(/ id="\d+"/g, '');
+
+            setOutput(xmlText);
+        }
+
+        function toAviator() {
+            var code = '';
+            code += Blockly.Aviator.workspaceToCode(demoWorkspace);
+            console.log(code);
+        }
+
+        function Save() {
+            var fileName = '';
+            fileName = document.getElementById('saveFileName').value;
+            SaveXML(fileName)
+            SaveScript(fileName);
+        }
+
+        function SaveXML(fileName) {
+            var xmlDom = Blockly.Xml.workspaceToDom(demoWorkspace,
+                /* opt_noId */ true);
+            var xmlText = Blockly.Xml.domToPrettyText(xmlDom);
+            // xmlText = xmlText.replace(/ id="\d+"/g, '');
+            // console.log(xmlText);
+            var url = URI + 'saveXML/' + fileName;
+            $.ajax({
+                url: url,
+                type: 'post',
+                data: {data: xmlText},
+                dataType: 'text',
+                success: function (data) {
+                    console.log('XML保存成功', data);
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            })
+        }
+
+        function SaveScript(fileName) {
+            var code = '';
+            code += Blockly.Aviator.workspaceToCode(demoWorkspace);
+            var url = URI + 'saveScript/' + fileName;
+            $.ajax({
+                url: url,
+                type: 'post',
+                data: {data: code},
+                dataType: 'text',
+                success: function (data) {
+
+                    console.log('CODE保存成功', data);
+
+                },
+                error: function (error) {
+                    console.log(error)
+                }
+            })
+
+        }
+
+        function LoadXml() {
+            var fileName = '';
+            fileName = document.getElementById('fileName').value;
+            if (fileName == '') {
+                window.alert('请输入要加载的文件名');
+                return
+            }
+            var url = URI + 'loadXML/' + fileName;
+            $.ajax({
+                url: url,
+                type: 'post',
+                dataType: 'text',
+                success: function (data) {
+                    fromXml('', data)
+                },
+                error: function (error) {
+                    console.log(error)
+                }
+
+            })
+        }
+
+        var table;
+
+        function formatNumber(result) {
+            for (let i = 0; i < result.length; i++) {
+                result[i].grToday = result[i].grToday.toFixed(1);
+                result[i].grl1Month = result[i].grl1Month.toFixed(1);
+                result[i].grl3Month = result[i].grl3Month.toFixed(1);
+                result[i].grl6Month = result[i].grl6Month.toFixed(1);
+                result[i].grl1Year = result[i].grl1Year.toFixed(1);
+                result[i].grl3Year = result[i].grl3Year.toFixed(1);
+                result[i].grl5Year = result[i].grl5Year.toFixed(1);
+                result[i].grThisYear = result[i].grThisYear.toFixed(1);
+                result[i].grBase = result[i].grBase.toFixed(1);
+                result[i].cagr = result[i].cagr.toFixed(1);
+                result[i].netValue = result[i].netValue.toFixed(2);
+            }
+        }
+
+        function Run() {
+            $("#progressbar").show();
+            var code = '';
+            code += Blockly.Aviator.workspaceToCode(demoWorkspace);
+            var url = URI + 'executeRule';
+            $.ajax({
+                url: url,
+                type: 'post',
+                data: {data: code},
+                dataType: 'json',
+                success: function (result) {
+                    console.log('执行成功');
+
+                    formatNumber(result);
+
+                    if (table != null) {
+                        table.clear();
+                        table.rows.add(result).draw();
+                    }else{
+                        table = $('#stockTable').DataTable({
+                            data: result,
+                            //让表格出横向滚动条 ，此时 表头和 表中数据将分为两个部分
+                            sScrollX: true,
+                            sScrollY: true,
+                            scrollY: "300px",
+                            scrollCollapse: "true",
+                            // 让表格的宽度不自适应 ，固定宽度。 如果不设置 表头和表中数据会分离
+                            //表中的数据自适应 ，表头的宽度固定
+                            bAutoWidth: true,
+                            columns: [
+                                {data: 'code'},
+                                {data: 'name'},
+                                {data: 'foundDate'},
+                                {data: 'currentDate'},
+                                {data: 'netValue'},
+                                {data: 'totalShare'},
+                                {data: 'type'},
+                                {data: 'managers'},
+                                {data: 'morningRate'},
+                                {
+                                    data: 'grToday',
+                                    render: function (data, type, row, meta) {
+                                        return data + '%';
+                                    }
+                                },
+                                {
+                                    data: 'grl1Month',
+                                    render: function (data, type, row, meta) {
+                                        return data + '%';
+                                    }
+                                },
+                                {
+                                    data: 'grl3Month',
+                                    render: function (data, type, row, meta) {
+                                        return data + '%';
+                                    }
+                                },
+                                {
+                                    data: 'grl6Month',
+                                    render: function (data, type, row, meta) {
+                                        return data + '%';
+                                    }
+                                },
+                                {
+                                    data: 'grl1Year',
+                                    render: function (data, type, row, meta) {
+                                        return data + '%';
+                                    }
+                                },
+                                {
+                                    data: 'grl3Year',
+                                    render: function (data, type, row, meta) {
+                                        return data + '%';
+                                    }
+                                },
+                                {
+                                    data: 'grl5Year',
+                                    render: function (data, type, row, meta) {
+                                        return data + '%';
+                                    }
+                                },
+                                {
+                                    data: 'grThisYear',
+                                    render: function (data, type, row, meta) {
+                                        return data + '%';
+                                    }
+                                },
+                                {
+                                    data: 'grBase',
+                                    render: function (data, type, row, meta) {
+                                        return data + '%';
+                                    }
+                                },
+                                {
+                                    data: 'cagr',
+                                    render: function (data, type, row, meta) {
+                                        return data + '%';
+                                    }
+                                }
+                            ]
+                        });
+                    }
+                    $("#progressbar").hide();
+                },
+                error: function (error) {
+                    console.log(error)
+                    $("#progressbar").hide();
+                }
+            });
+        }
+
+        function toImg() {
+            var diva = $('.blocklyBlockCanvas ')[0];
+            diva.setAttribute('transform', '');
+            var divb = $('.blocklyDraggable')[0];
+            divb.setAttribute('transform', '');
+            var web = $('.wangzhe')[0];
+            web.append(diva)
+
+            var test = $(".nihao").get(0); //将jQuery对象转换为dom对象
+            // 点击转成canvas
+            var opts = {
+                useCORS: true,//允许加载跨域的图片
+                tainttest: true, //检测每张图片都已经加载完成
+            };
+            html2canvas(test, opts).then(function (canvas) {
+                // canvas宽度
+                var canvasWidth = canvas.width;
+                // canvas高度
+                var canvasHeight = canvas.height;
+                console.log(canvasWidth, canvasHeight);
+                //渲染成img可展示到页面上。
+                var img = Canvas2Image.convertToImage(canvas, canvasWidth, canvasHeight);
+                console.log(img.src);
+
+            });
+
+
+        }
+    </script>
+
+    <style>
+        html,
+        body {
+            height: 100%;
+            overflow: hidden;
+        }
+
+        body {
+            background-color: #fff;
+            font-family: sans-serif;
+            margin: 0 5px;
+        }
+
+        h1 {
+            font-weight: normal;
+            font-size: 140%;
+        }
+
+        .tab li:hover {
+            background-color: #ccc;
+        }
+
+        #blocklyDiv {
+            /* float: right; */
+            height: 40%;
+            width: 100%;
+            align: center;
+            margin-top: 16px;
+        }
+
+        #importExport {
+            height: 100%;
+            width: 100%;
+        }
+
+        #loading {
+            color: red;
+        }
+    </style>
+</head>
+
+<body onload="start()">
+
+<nav id="navbar" class="bd-navbar navbar has-shadow is-spaced">
+    <div class="container">
+        <div class="navbar-brand">
+            <a class="navbar-item" href="https://hope2.qianyitian.com/">
+                <img style="height:36px;width:36px;" src="https://img.qianyitian.com/icon/logo.png">  <h4
+                    class="title is-3">Hope2</h4>
+            </a>
+        </div>
+    </div>
+</nav>
+
+
+<div id="blocklyDiv">
+    <div class="columns">
+        <div class = "column is-6">
+            <div class="field is-grouped">
+                <p class="control">
+                <p class="navbar-item">
+                    <span class="label">选择样例</span>
+                </p>
+                </p>
+
+                <p class="control select is-info is-rounded">
+                    <select id="fileName">
+                        <option value ="rule1">本月涨幅大的</option>
+                        <option value ="rule2">张坤的基金</option>
+                        <option value ="rule3">老牌五星基金</option>
+                        <option value ="rule4">复合年均收益前列的基金</option>
+                    </select>
+                </p>
+
+                <p class="control">
+                    <button class="button is-info is-light is-rounded" onclick="LoadXml()">
+                        加载
+                    </button>
+                </p>
+                <!--    <button onclick='toImg()' class="toCanvas">画图</button>-->
+
+                <p class="control">
+                    <button class="button  is-info is-light is-rounded" onclick='toAviator()'>打印脚本</button>
+                </p>
+                <p class="control">
+                    <button class="button  is-info is-light is-rounded" onclick="Run()">执行</button>
+                </p>
+
+                <p class="control">
+                    <input id = 'saveFileName' class="input is-info is-rounded" type="text">
+                </p>
+
+                <p class="control">
+                    <button class="button  is-info is-light is-rounded" onclick="Save()">保存</button>
+                </p>
+            </div>
+        </div>
+        <div class = "column is-3"></div>
+        <div class = "column is-2">
+            <p class="control">
+                <br>
+                <progress id="progressbar" class="progress is-success" max="100" style="display:none">60%</progress>
+            </p>
+
+        </div>
+        <div class = "column is-1">
+        </div>
+    </div>
+</div>
+
+<hr>
+<br>
+<br>
+<div>
+    <table id="stockTable" class="display compact" style="width:100%">
+        <thead>
+        <tr>
+            <th>基金代码</th>
+            <th>名称</th>
+            <th>成立时间</th>
+            <th>更新时间</th>
+            <th>净值</th>
+            <th>规模</th>
+            <th>类型</th>
+            <th>基金经理</th>
+            <th>晨星评级</th>
+            <th>当日</th>
+            <th>近1月</th>
+            <th>近3月</th>
+            <th>近6月</th>
+            <th>近1年</th>
+            <th>近3年</th>
+            <th>近5年</th>
+            <th>今年</th>
+            <th>成立以来</th>
+            <th>平均年化</th>
+        </tr>
+        </thead>
+    </table>
+</div>
+
+
+<xml xmlns="https://developers.google.com/blockly/xml" id="toolbox" style="display: none">
+    <category name="%{BKY_CATLOGIC}" colour="210">
+        <block type="controls_if"></block>
+        <block type="controls_ifelse"></block>
+        <block type="logic_compare"></block>
+        <block type="logic_operation"></block>
+        <block type="logic_negate"></block>
+        <block type="logic_boolean"></block>
+        <block type="logic_null"></block>
+        <block type="logic_ternary"></block>
+        <block type="my_return"></block>
+    </category>
+    <category name="%{BKY_CATMATH}" colour="230">
+        <block type="math_number"></block>
+        <block type="math_arithmetic"></block>
+    </category>
+    <category name="%{BKY_CATTEXT}" colour="160">
+        <block type="text"></block>
+        <block type="text_length"></block>
+        <block type="text_isEmpty"></block>
+    </category>
+    <!-- <category name="%{BKY_CATVARIABLES}" colour="330" custom="VARIABLE"></category>
+    </category> -->
+</xml>
+
+<div class="nihao " style='width: 100%; height: 500px; margin-top: 200px;'>
+    <svg width="1500px" height="500px" class="wangzhe">
+    </svg>
+</div>
+</body>
+</html>

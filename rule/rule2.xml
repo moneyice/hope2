@@ -1,0 +1,71 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <block type="controls_if" x="187" y="138">
+    <value name="IF0">
+      <block type="logic_operation">
+        <field name="OP">AND</field>
+        <value name="A">
+          <block type="logic_compare">
+            <field name="OP">GTE</field>
+            <value name="A">
+              <block type="my_function">
+                <field name="NAME">成立年数</field>
+              </block>
+            </value>
+            <value name="B">
+              <block type="math_number">
+                <field name="NUM">3</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <value name="B">
+          <block type="logic_compare">
+            <field name="OP">GTE</field>
+            <value name="A">
+              <block type="my_function">
+                <field name="NAME">成立以来涨幅</field>
+              </block>
+            </value>
+            <value name="B">
+              <block type="math_number">
+                <field name="NUM">50</field>
+              </block>
+            </value>
+          </block>
+        </value>
+      </block>
+    </value>
+    <statement name="DO0">
+      <block type="controls_if">
+        <value name="IF0">
+          <block type="my_function_1">
+            <field name="NAME">基金经理是</field>
+            <value name="FIRST">
+              <block type="text">
+                <field name="TEXT">张坤</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <statement name="DO0">
+          <block type="my_return">
+            <value name="VALUE">
+              <block type="math_number">
+                <field name="NUM">1</field>
+              </block>
+            </value>
+          </block>
+        </statement>
+      </block>
+    </statement>
+    <next>
+      <block type="my_return">
+        <value name="VALUE">
+          <block type="math_number">
+            <field name="NUM">0</field>
+          </block>
+        </value>
+      </block>
+    </next>
+  </block>
+</xml>

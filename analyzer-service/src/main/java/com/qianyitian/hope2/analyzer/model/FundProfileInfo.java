@@ -33,6 +33,16 @@ public class FundProfileInfo {
     float grThisYear;
     float grBase;
 
+    double cagr;
+
+    public double getCagr() {
+        return cagr;
+    }
+
+    public void setCagr(double cagr) {
+        this.cagr = cagr;
+    }
+
     public float getTotalShareNumber() {
         return totalShareNumber;
     }
@@ -199,5 +209,32 @@ public class FundProfileInfo {
 
     public void setGrBase(float grBase) {
         this.grBase = grBase;
+    }
+
+    @Override
+    public String toString() {
+        return "FundProfileInfo{" +
+                "code='" + code + '\'' +
+                ", name='" + name + '\'' +
+                ", foundDate=" + foundDate +
+                ", currentDate=" + currentDate +
+                ", netValue=" + netValue +
+                ", totalShareNumber=" + totalShareNumber +
+                ", totalShare='" + totalShare + '\'' +
+                ", type='" + type + '\'' +
+                ", morningRate='" + morningRate + '\'' +
+                ", managers='" + managers + '\'' +
+                ", grToday=" + grToday +
+                ", grl1Week=" + grl1Week +
+                ", grl1Month=" + grl1Month +
+                ", grl3Month=" + grl3Month +
+                ", grl6Month=" + grl6Month +
+                ", grl1Year=" + grl1Year +
+                ", grl2Year=" + grl2Year +
+                ", grl3Year=" + grl3Year +
+                ", grl5Year=" + grl5Year +
+                ", grThisYear=" + grThisYear +
+                ", grBase=" + grBase +
+                '}';
     }
 }

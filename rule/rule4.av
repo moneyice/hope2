@@ -1,0 +1,4 @@
+if (foundYear() >= 10 && cagr() >= 20) {
+return 1;
+}
+return 0;

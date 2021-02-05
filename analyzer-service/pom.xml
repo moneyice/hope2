@@ -170,6 +170,12 @@
             <artifactId>mapdb</artifactId>
             <version>3.0.8</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.googlecode.aviator</groupId>
+            <artifactId>aviator</artifactId>
+            <version>5.1.4</version>
+        </dependency>
     </dependencies>
 
 

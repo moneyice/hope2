@@ -1,0 +1,4 @@
+if (grl1Month() >= 20 && grl1Year() >= 100) {
+return 1;
+}
+return 0;

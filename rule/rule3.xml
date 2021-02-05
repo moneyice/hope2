@@ -1,0 +1,57 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <block type="controls_if" x="113" y="62">
+    <value name="IF0">
+      <block type="logic_operation">
+        <field name="OP">AND</field>
+        <value name="A">
+          <block type="logic_compare">
+            <field name="OP">GTE</field>
+            <value name="A">
+              <block type="my_function">
+                <field name="NAME">成立年数</field>
+              </block>
+            </value>
+            <value name="B">
+              <block type="math_number">
+                <field name="NUM">10</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <value name="B">
+          <block type="logic_compare">
+            <field name="OP">EQ</field>
+            <value name="A">
+              <block type="my_function">
+                <field name="NAME">晨星评级</field>
+              </block>
+            </value>
+            <value name="B">
+              <block type="text">
+                <field name="TEXT">五星基金</field>
+              </block>
+            </value>
+          </block>
+        </value>
+      </block>
+    </value>
+    <statement name="DO0">
+      <block type="my_return">
+        <value name="VALUE">
+          <block type="math_number">
+            <field name="NUM">1</field>
+          </block>
+        </value>
+      </block>
+    </statement>
+    <next>
+      <block type="my_return">
+        <value name="VALUE">
+          <block type="math_number">
+            <field name="NUM">0</field>
+          </block>
+        </value>
+      </block>
+    </next>
+  </block>
+</xml>
