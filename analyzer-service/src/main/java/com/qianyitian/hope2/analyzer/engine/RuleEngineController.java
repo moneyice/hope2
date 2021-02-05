@@ -91,7 +91,6 @@ public class RuleEngineController {
                 list.add(fundDetail);
             }
         }
-        System.out.println(list);
         return list;
     }
 
