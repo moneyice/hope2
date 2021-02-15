@@ -22,6 +22,7 @@ public class FundProfileInfo {
     String morningRate;
     String managers;
 
+    float stockPercent;
     float grToday;
     float grl1Week;
     float grl1Month;
@@ -33,6 +34,15 @@ public class FundProfileInfo {
     float grl5Year;
     float grThisYear;
     float grBase;
+
+
+    public float getStockPercent() {
+        return stockPercent;
+    }
+
+    public void setStockPercent(float stockPercent) {
+        this.stockPercent = stockPercent;
+    }
 
     public float getTotalShareNumber() {
         return totalShareNumber;

@@ -4,8 +4,7 @@ import com.googlecode.aviator.runtime.function.AbstractFunction;
 import com.googlecode.aviator.runtime.function.FunctionUtils;
 import com.googlecode.aviator.runtime.type.AviatorBoolean;
 import com.googlecode.aviator.runtime.type.AviatorObject;
-import com.googlecode.aviator.runtime.type.AviatorString;
-import com.qianyitian.hope2.analyzer.model.FundProfileInfo;
+import com.qianyitian.hope2.analyzer.funds.model.FundProfileInfo;
 
 import java.util.Map;
 

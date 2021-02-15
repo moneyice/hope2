@@ -28,6 +28,7 @@ var N_Function = [
             { code: 'grl3Year', customFlag: 'N', groupCode: '', name: '最近3年涨幅', defaultType: '3', orgId: 'AEA82BC80D3C441198C0DB4792C69D57', paramNum: 0 },
             { code: 'grl5Year', customFlag: 'N', groupCode: '', name: '最近5年涨幅', defaultType: '3', orgId: 'AEA82BC80D3C441198C0DB4792C69D57', paramNum: 0 },
             { code: 'grBase', customFlag: 'N', groupCode: '', name: '成立以来涨幅', defaultType: '3', orgId: 'AEA82BC80D3C441198C0DB4792C69D57', paramNum: 0 },
+            { code: 'stockPercent', customFlag: 'N', groupCode: '', name: '股票仓位', defaultType: '3', orgId: 'AEA82BC80D3C441198C0DB4792C69D57', paramNum: 0 },
             { code: 'morningRate', customFlag: 'N', groupCode: '', name: '晨星评级', defaultType: '3', orgId: 'AEA82BC80D3C441198C0DB4792C69D57', paramNum: 0 },
             { code: 'netValue', customFlag: 'N', groupCode: '', name: '净值', defaultType: '3', orgId: 'AEA82BC80D3C441198C0DB4792C69D57', paramNum: 0 },
             { code: 'totalShare', customFlag: 'N', groupCode: '', name: '规模', defaultType: '3', orgId: 'AEA82BC80D3C441198C0DB4792C69D57', paramNum: 0 },

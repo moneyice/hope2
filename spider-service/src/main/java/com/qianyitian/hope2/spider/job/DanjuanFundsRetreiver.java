@@ -27,6 +27,7 @@ public class DanjuanFundsRetreiver extends WebStockRetreiver {
 
     private Logger logger = LoggerFactory.getLogger(getClass());
 
+    //这里面包含财报信息，所以每个季度更新一次即可
     String FUND_URL = "https://danjuanfunds.com/djapi/fund/detail/{0}";
 
     @Override

@@ -74,6 +74,7 @@ public class FundsController {
             //获取基金规模
             if (fundDetail.getData().getFundPosition() != null) {
                 fundProfileInfo.setTotalShareNumber((float) fundDetail.getData().getFundPosition().getAssetVal());
+                fundProfileInfo.setStockPercent((float) fundDetail.getData().getFundPosition().getStockPercent());
             }
 //            //获取基金经理
 //            if (fundDetail.getData().getManagerList() != null) {
@@ -88,6 +89,7 @@ public class FundsController {
     }
 
     private void fillFundDetail(FundProfileInfo fundProfileInfo) throws IOException {
+        //这里面包含涨幅信息，所以要每天更新
         String urlString = "https://danjuanapp.com/djapi/fund/{0}";
         String url = MessageFormat.format(urlString, fundProfileInfo.getCode());
         String content = Resources.asCharSource(new URL(url), Charset.forName("UTF-8")).readFirstLine();

@@ -393,6 +393,12 @@
               {data: 'netValue'},
               {data: 'totalShare'},
               {data: 'type'},
+              {
+                  data: 'stockPercent',
+                  render: function (data, type, row, meta) {
+                    return data+'%';
+                  }
+              },
               {data: 'managers'},
               {data: 'morningRate'},
               {
@@ -538,6 +544,7 @@
         <th>净值</th>
         <th>规模</th>
         <th>类型</th>
+        <th>仓位</th>
         <th>基金经理</th>
         <th>晨星评级</th>
         <th>当日涨幅</th>

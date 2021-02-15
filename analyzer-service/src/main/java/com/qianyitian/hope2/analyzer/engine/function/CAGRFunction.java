@@ -4,7 +4,7 @@ import com.googlecode.aviator.runtime.function.AbstractFunction;
 import com.googlecode.aviator.runtime.type.AviatorBigInt;
 import com.googlecode.aviator.runtime.type.AviatorDouble;
 import com.googlecode.aviator.runtime.type.AviatorObject;
-import com.qianyitian.hope2.analyzer.model.FundProfileInfo;
+import com.qianyitian.hope2.analyzer.funds.model.FundProfileInfo;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;

@@ -1,7 +1,7 @@
 /**
   * Copyright 2021 jb51.net 
   */
-package com.qianyitian.hope2.analyzer.model;
+package com.qianyitian.hope2.analyzer.funds.model;
 
 import java.time.LocalDate;
 
@@ -21,6 +21,7 @@ public class FundProfileInfo {
     String morningRate;
     String managers;
 
+    float stockPercent;
     float grToday;
     float grl1Week;
     float grl1Month;
@@ -32,7 +33,6 @@ public class FundProfileInfo {
     float grl5Year;
     float grThisYear;
     float grBase;
-
     double cagr;
 
     public double getCagr() {
@@ -41,6 +41,14 @@ public class FundProfileInfo {
 
     public void setCagr(double cagr) {
         this.cagr = cagr;
+    }
+
+    public float getStockPercent() {
+        return stockPercent;
+    }
+
+    public void setStockPercent(float stockPercent) {
+        this.stockPercent = stockPercent;
     }
 
     public float getTotalShareNumber() {
@@ -209,32 +217,5 @@ public class FundProfileInfo {
 
     public void setGrBase(float grBase) {
         this.grBase = grBase;
-    }
-
-    @Override
-    public String toString() {
-        return "FundProfileInfo{" +
-                "code='" + code + '\'' +
-                ", name='" + name + '\'' +
-                ", foundDate=" + foundDate +
-                ", currentDate=" + currentDate +
-                ", netValue=" + netValue +
-                ", totalShareNumber=" + totalShareNumber +
-                ", totalShare='" + totalShare + '\'' +
-                ", type='" + type + '\'' +
-                ", morningRate='" + morningRate + '\'' +
-                ", managers='" + managers + '\'' +
-                ", grToday=" + grToday +
-                ", grl1Week=" + grl1Week +
-                ", grl1Month=" + grl1Month +
-                ", grl3Month=" + grl3Month +
-                ", grl6Month=" + grl6Month +
-                ", grl1Year=" + grl1Year +
-                ", grl2Year=" + grl2Year +
-                ", grl3Year=" + grl3Year +
-                ", grl5Year=" + grl5Year +
-                ", grThisYear=" + grThisYear +
-                ", grBase=" + grBase +
-                '}';
     }
 }
