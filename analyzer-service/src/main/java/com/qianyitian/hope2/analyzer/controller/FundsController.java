@@ -3,6 +3,7 @@ package com.qianyitian.hope2.analyzer.controller;
 import com.alibaba.fastjson.JSON;
 import com.qianyitian.hope2.analyzer.config.PropertyConfig;
 import com.qianyitian.hope2.analyzer.funds.model.Fund;
+import com.qianyitian.hope2.analyzer.funds.model.FundProfileInfo;
 import com.qianyitian.hope2.analyzer.funds.model.StockList;
 import com.qianyitian.hope2.analyzer.model.*;
 import com.qianyitian.hope2.analyzer.service.DefaultStockService;
