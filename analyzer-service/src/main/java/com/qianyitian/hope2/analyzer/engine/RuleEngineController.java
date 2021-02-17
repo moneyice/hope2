@@ -5,6 +5,7 @@ import com.google.common.io.Files;
 import com.googlecode.aviator.AviatorEvaluator;
 import com.googlecode.aviator.Expression;
 import com.googlecode.aviator.runtime.function.AbstractFunction;
+import com.qianyitian.hope2.analyzer.funds.model.FundProfileInfo;
 import com.qianyitian.hope2.analyzer.model.Stock;
 import com.qianyitian.hope2.analyzer.service.MyFavoriteStockService;
 import org.slf4j.Logger;
