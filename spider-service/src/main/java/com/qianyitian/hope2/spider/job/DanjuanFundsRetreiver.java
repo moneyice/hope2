@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.google.common.io.Resources;
 import com.qianyitian.hope2.spider.config.PropertyConfig;
+import com.qianyitian.hope2.spider.external.DanjuanClient;
 import com.qianyitian.hope2.spider.model.KLineInfo;
 import com.qianyitian.hope2.spider.model.Stock;
 import org.slf4j.Logger;
@@ -22,30 +23,15 @@ import java.util.List;
 
 @Component("danjuanFundsRetreiver")
 public class DanjuanFundsRetreiver extends WebStockRetreiver {
+
     @Autowired
-    PropertyConfig propertyConfig;
-
-    private Logger logger = LoggerFactory.getLogger(getClass());
-
-    //这里面包含财报信息，所以每个季度更新一次即可
-    String FUND_URL = "https://danjuanfunds.com/djapi/fund/detail/{0}";
+    private DanjuanClient danjuanClient;
 
     @Override
-    public String getFundsInfo(String symbol) throws IOException {
-        //这家的api很破，一次只能取一年的
-        String url = MessageFormat.format(FUND_URL, symbol);
-
-        return readData(url);
+    public String getFundsInfo(String code) throws IOException {
+        String content = danjuanClient.getFundDetail(code);
+        return content;
     }
 
-    protected String readData(String url) throws IOException {
-        try {
-            URL danjuanURL = new URL(url);
-            String content = Resources.asCharSource(danjuanURL, Charset.forName("UTF-8")).readFirstLine();
-            return content;
-        } catch (IOException e) {
-            logger.error("retrieve danjuan funds data error ", e);
-            throw e;
-        }
-    }
+
 }

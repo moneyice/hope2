@@ -44,7 +44,6 @@ public class FundsInfoSpider {
 
     public void run() {
         ConcurrentLinkedQueue<String> queue = new ConcurrentLinkedQueue();
-        //LinkedBlockingQueue<String> queue = new LinkedBlockingQueue();
         try {
             syncFundsData(queue);
         } catch (Exception e) {
@@ -88,7 +87,7 @@ public class FundsInfoSpider {
                         break;
                     }
                     try {
-//                        waitFor(100);
+                        waitFor(50);
                         String info = danjuanFundsRetreiver.getFundsInfo(code);
                         {
                             Fund fund = JSON.parseObject(info, Fund.class);

@@ -1,5 +1,6 @@
 package com.qianyitian.hope2.spider;
 
+import com.thebeastshop.forest.springboot.annotation.ForestScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -14,6 +15,7 @@ import java.nio.charset.StandardCharsets;
 @SpringBootApplication
 @EnableScheduling
 @EnableAsync
+@ForestScan(basePackages = "com.qianyitian.hope2.spider.external")
 public class SpiderApplication {
     public static void main(String[] args) {
         SpringApplication.run(SpiderApplication.class, args);
