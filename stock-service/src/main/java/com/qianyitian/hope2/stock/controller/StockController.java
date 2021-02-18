@@ -44,7 +44,7 @@ public class StockController {
 
     @PostMapping(value = "/stock")
     public void storeStock(@RequestBody Stock stock) {
-        logger.info("storing   ======================================= " + stock.getCode());
+        logger.info("storing stock ===================== " + stock.getCode());
         StockStoringTask task = new StockStoringTask(stock);
         threadPool.execute(task);
     }

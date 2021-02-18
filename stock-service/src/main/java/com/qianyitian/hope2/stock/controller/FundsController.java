@@ -39,6 +39,7 @@ public class FundsController {
 
     @PostMapping(value = "/fund/detail/{code}")
     public void storeFundDetail(@PathVariable String code, @RequestBody String funds) {
+        logger.info("storing fund detail ====== " + code);
         FundsStoringTask task = new FundsStoringTask(code, funds);
         threadPool.execute(task);
     }
@@ -51,6 +52,7 @@ public class FundsController {
 
     @PostMapping(value = "/fund/profile/{code}")
     public void storeFundProfile(@PathVariable String code, @RequestBody String funds) {
+        logger.info("storing fund profile ====== " + code);
         fundProfileMapDB.put(code, funds);
     }
 

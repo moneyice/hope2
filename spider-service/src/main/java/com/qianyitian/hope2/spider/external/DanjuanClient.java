@@ -1,6 +1,7 @@
 package com.qianyitian.hope2.spider.external;
 
 import com.dtflys.forest.annotation.DataVariable;
+import com.dtflys.forest.annotation.LogEnabled;
 import com.dtflys.forest.annotation.Request;
 
 public interface DanjuanClient {
@@ -24,6 +25,7 @@ public interface DanjuanClient {
                     "elastic-apm-traceparent: 00-8936c0d09ef99045716fac06ff3777a0-3df470af2db9906a-01"
             }
     )
+    @LogEnabled(false)
     String getFundDetail(@DataVariable("code") String code);
 
 }

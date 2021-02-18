@@ -82,15 +82,21 @@ public class PostStartupDataLoader implements ApplicationRunner {
             String line = lines.get(i);
             String[] array = line.split(",");
 
-            String market = "SH";
-            String symbol = array[0].trim();
-            String name = array[1].trim();
-            logger.info(market + "  " + symbol + "  " + name);
-            Stock stock = new Stock();
-            stock.setName(name);
-            stock.setCode(symbol);
-            stock.setMarket(market);
-            list.add(stock);
+            try{
+                String market = "SH";
+                String symbol = array[0].trim();
+                String name = array[1].trim();
+                logger.info(market + "  " + symbol + "  " + name);
+                Stock stock = new Stock();
+                stock.setName(name);
+                stock.setCode(symbol);
+                stock.setMarket(market);
+                list.add(stock);
+            }catch(Exception e){
+                e.printStackTrace();
+            }
+
+
         }
     }
     private void loadOil() throws IOException {
