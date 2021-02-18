@@ -86,6 +86,7 @@ public class StockInfoSpider {
 
     public void runUS() {
         syncHKData();
+        syncUSData();
     }
 
     private void syncUSData() {
