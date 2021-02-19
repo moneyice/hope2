@@ -105,7 +105,11 @@ public class FundsController {
     private String top200CsvFormat(List<PositionStatus> numberslist) {
         String newLine = System.getProperty("line.separator");
         StringBuilder sb=new StringBuilder();
-        for (PositionStatus positionStatus : numberslist) {
+
+        int index=Math.min(200,numberslist.size());
+
+        for(int i=0;i<index;i++){
+            PositionStatus positionStatus = numberslist.get(i);
             sb.append(positionStatus.getCode()).append(",").append(positionStatus.getName()).append(newLine);
         }
         return sb.toString();
@@ -113,10 +117,7 @@ public class FundsController {
 
     @RequestMapping("/top200FundPosition")
     public String top200FundPosition() {
-        String report = reportMapDB.get("fundPosition-20201231");
-        
-
-
+        String report = reportMapDB.get("top200-fundPosition-20201231");
         return report;
     }
 
@@ -127,6 +128,7 @@ public class FundsController {
         return report;
     }
 
+    //C类的和A 类的是同样的仓位
     private void removeDulplicatedFunds(List<Stock> funds) {
         Set<String> set = new HashSet<>();
         for (Stock fund : funds) {
