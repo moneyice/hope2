@@ -10,6 +10,7 @@ import com.qianyitian.hope2.analyzer.service.DefaultStockService;
 import com.qianyitian.hope2.analyzer.service.IReportStorageService;
 import com.qianyitian.hope2.analyzer.service.MyFavoriteStockService;
 import com.qianyitian.hope2.analyzer.util.Utils;
+import org.mapdb.Atomic;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -96,6 +97,27 @@ public class FundsController {
         result.put("generateTime", LocalDate.now().toString());
         String conent = JSON.toJSONString(result);
         reportMapDB.put("fundPosition-20201231", conent);
+        
+        String top200CsvFormat=top200CsvFormat(numberslist);
+        reportMapDB.put("top200-fundPosition-20201231", top200CsvFormat);
+    }
+
+    private String top200CsvFormat(List<PositionStatus> numberslist) {
+        String newLine = System.getProperty("line.separator");
+        StringBuilder sb=new StringBuilder();
+        for (PositionStatus positionStatus : numberslist) {
+            sb.append(positionStatus.getCode()).append(",").append(positionStatus.getName()).append(newLine);
+        }
+        return sb.toString();
+    }
+
+    @RequestMapping("/top200FundPosition")
+    public String top200FundPosition() {
+        String report = reportMapDB.get("fundPosition-20201231");
+        
+
+
+        return report;
     }
 
     @RequestMapping("/fundPositionReport")
