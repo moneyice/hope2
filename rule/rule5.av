@@ -1,0 +1,4 @@
+if (stockPercent() < 70 && foundYear() >= 8 && cagr() >= 17) {
+return 1;
+}
+return 0;
