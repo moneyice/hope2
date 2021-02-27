@@ -522,8 +522,9 @@
     <style>
         html,
         body {
-            height: 100%;
-            overflow: hidden;
+            /* height: 100%;
+            overflow: hidden; */
+            overflow:auto;
         }
 
         body {
@@ -542,11 +543,12 @@
         }
 
         #blocklyDiv {
-            /* float: right; */
             height: 40%;
             width: 100%;
-            align: center;
-            margin-top: 16px;
+        }
+        .header-container {
+            display: flex;
+            padding: 16px 0;
         }
 
         #importExport {
@@ -575,15 +577,12 @@
 
 
 <div id="blocklyDiv">
-    <div class="columns">
-        <div class = "column is-6">
+    <div >
+        <div class="header-container">
             <div class="field is-grouped">
-                <p class="control">
                 <p class="navbar-item">
                     <span class="label">选择样例</span>
                 </p>
-                </p>
-
                 <p class="control select is-info is-rounded">
                     <select id="fileName">
                         <option value ="rule1">本月涨幅大的</option>
@@ -617,7 +616,7 @@
                 </p>
             </div>
         </div>
-        <div class = "column is-3"></div>
+        <!-- <div class = "column is-3"></div>
         <div class = "column is-2">
             <p class="control">
                 <br>
@@ -625,7 +624,7 @@
             </p>
 
         </div>
-        <div class = "column is-1">
+        <div class = "column is-1"> -->
         </div>
     </div>
 </div>
@@ -688,9 +687,9 @@
     </category> -->
 </xml>
 
-<div class="nihao " style='width: 100%; height: 500px; margin-top: 200px;'>
+<!-- <div class="nihao " style='width: 100%; height: 500px; margin-top: 200px;'>
     <svg width="1500px" height="500px" class="wangzhe">
     </svg>
-</div>
+</div> -->
 </body>
 </html>
