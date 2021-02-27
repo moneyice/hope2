@@ -546,11 +546,23 @@
             height: 40%;
             width: 100%;
         }
+        .progress-bar {
+            width: 300px;
+            align-items: center;
+            display: flex;
+        }
         .header-container {
             display: flex;
-            padding: 16px 0;
+            justify-content: space-between;
+            padding: 16px 24px 16px 0;
         }
-
+        .content-header {
+            display: flex;
+            justify-content: flex-start;
+        }
+        .control {
+            margin: 0 8px;
+        }
         #importExport {
             height: 100%;
             width: 100%;
@@ -558,6 +570,9 @@
 
         #loading {
             color: red;
+        }
+        .drag-bar {
+
         }
     </style>
 </head>
@@ -579,7 +594,7 @@
 <div id="blocklyDiv">
     <div >
         <div class="header-container">
-            <div class="field is-grouped">
+            <div class="content-header">
                 <p class="navbar-item">
                     <span class="label">选择样例</span>
                 </p>
@@ -614,21 +629,19 @@
                 <p class="control">
                     <button class="button  is-info is-light is-rounded" onclick="Save()">保存</button>
                 </p>
+                
             </div>
-        </div>
-        <!-- <div class = "column is-3"></div>
-        <div class = "column is-2">
-            <p class="control">
-                <br>
-                <progress id="progressbar" class="progress is-success" max="100" style="display:none">60%</progress>
+            <p class="control progress-bar"> 
+                <!-- style="display:none" -->
+                <progress id="progressbar" class="progress is-success" max="100" >60%</progress>
             </p>
-
         </div>
-        <div class = "column is-1"> -->
-        </div>
+        
     </div>
 </div>
+<div class="drag-bar">
 
+</div>
 <hr>
 <br>
 <br>
