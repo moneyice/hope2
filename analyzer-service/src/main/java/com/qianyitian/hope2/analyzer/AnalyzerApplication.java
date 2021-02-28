@@ -1,5 +1,6 @@
 package com.qianyitian.hope2.analyzer;
 
+import com.thebeastshop.forest.springboot.annotation.ForestScan;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.config.Registry;
 import org.apache.http.config.RegistryBuilder;
@@ -23,8 +24,8 @@ import java.nio.charset.StandardCharsets;
 @SpringBootApplication
 @EnableScheduling
 @EnableAsync
+@ForestScan(basePackages = "com.qianyitian.hope2.analyzer.external")
 public class AnalyzerApplication {
-
     public static void main(String[] args) {
         SpringApplication.run(AnalyzerApplication.class, args);
     }

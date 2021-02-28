@@ -176,6 +176,12 @@
             <artifactId>aviator</artifactId>
             <version>5.1.4</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.dtflys.forest</groupId>
+            <artifactId>spring-boot-starter-forest</artifactId>
+            <version>1.5.0-RC3</version>
+        </dependency>
     </dependencies>
 
 

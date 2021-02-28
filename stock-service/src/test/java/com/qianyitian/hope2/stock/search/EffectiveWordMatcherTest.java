@@ -25,6 +25,5 @@ class EffectiveWordMatcherTest {
         keyword = "mdjt";
         wordMatcher.processOneWord(keyword, pairs, searchItem);
         System.out.println(pairs);
-
     }
 }
