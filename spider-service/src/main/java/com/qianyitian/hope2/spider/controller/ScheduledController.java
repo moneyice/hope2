@@ -20,8 +20,10 @@ public class ScheduledController {
     @Resource(name = "stockInfoSpider")
     private StockInfoSpider stockInfoSpider = null;
 
-    @Scheduled(initialDelay = 1000 * 60*10, fixedDelay = 1000 * 60 * 60 * 4)
-//    每6个小时
+//    @Scheduled(initialDelay = 1000 * 60*10, fixedDelay = 1000 * 60 * 60 * 4)
+////    每6个小时
+    @Scheduled(cron = "0 15 18 * * MON,TUE,WED,THU,FRI")
+    //每周1-5 18:15:00 执行
     public void retrieveStockDailyData() {
         logger.info("scheduled to retrieve stock daily data");
         stockInfoSpider.run();
