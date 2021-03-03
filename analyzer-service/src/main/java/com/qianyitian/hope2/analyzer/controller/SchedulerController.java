@@ -110,12 +110,12 @@ public class SchedulerController {
             if (selected.getCountdownDate() != null) {
                 //有BC点
                 if (notExpired(selected.getCountdownDate(), today)) {
-                    map.put(resultInfo.getName(), "BC");
+                    map.put(resultInfo.getName(), "BC " + selected.getCountdownDate());
                 }
             } else if (selected.getSetupDate() != null) {
                 //有BS点
                 if (notExpired(selected.getSetupDate(), today)) {
-                    map.put(resultInfo.getName(), "BS");
+                    map.put(resultInfo.getName(), "BS "+selected.getSetupDate());
                 }
             }
         }
@@ -134,7 +134,7 @@ public class SchedulerController {
     private boolean notExpired(String countdownDate, LocalDate today) {
         LocalDate markDate = LocalDate.parse(countdownDate);
         long days = ChronoUnit.DAYS.between(markDate, today);
-        return days <= 2;
+        return days <= 3;
     }
 
 
