@@ -13,8 +13,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import static com.qianyitian.hope2.analyzer.util.Utils.get2Double;
 
@@ -37,12 +39,17 @@ public class HongYunGaoZhaoController {
             Stock stockDetail = stockService.getStock(stock.getCode(), Constant.TYPE_DAILY_LITE);
             analyze(stockDetail, result);
         }
-        return JSON.toJSONString(result);
+
+        Map map = new HashMap();
+        map.put("items", result);
+        map.put("generateTime", LocalDate.now().toString());
+        return JSON.toJSONString(map);
     }
 
     int recentDays = 10;
+
     private void analyze(Stock stock, List collectList) {
-        if(stock.getName().contains("ST")||stock.getName().contains("st")){
+        if (stock.getName().contains("ST") || stock.getName().contains("st")||stock.getName().contains("退")) {
             return;
         }
         List<KLineInfo> kLineInfos = stock.getkLineInfos();
@@ -55,8 +62,8 @@ public class HongYunGaoZhaoController {
                 result.setCode(stock.getCode());
                 result.setName(stock.getName());
                 result.setDate(current.getDate());
-                result.setVolumeRise(get2Double(current.getTurnoverRate() / previous.getTurnoverRate()));
-                result.setPriceRise(get2Double(current.getClose() / previous.getClose() - 1));
+                result.setVolumeRise(get2Double(current.getTurnoverRate() * 100 / previous.getTurnoverRate()));
+                result.setPriceRise(get2Double((current.getClose() / previous.getClose() - 1) * 100));
                 collectList.add(result);
                 break;
             }
