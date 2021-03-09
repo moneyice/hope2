@@ -121,7 +121,7 @@ public class DemarkAnalyzer extends AbstractStockAnalyzer {
     protected Map getFlags() {
         Map map = new HashMap<>();
 
-        List<DemarkFlag> list = new LinkedList();
+        List<DemarkFlag> list = new ArrayList<>();
         for (int i = 0; i < selectList.size(); i++) {
             DemarkFlag demarkFlag = convert(selectList.get(i));
             list.add(demarkFlag);

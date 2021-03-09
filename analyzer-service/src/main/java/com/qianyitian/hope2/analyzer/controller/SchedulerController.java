@@ -85,6 +85,11 @@ public class SchedulerController {
     }
 
     private void notifyAll(String info, EnumPortfolio portfolio) {
+        if (true) {
+            return;
+        }
+
+
         if (!StringUtils.isEmpty(info)) {
             info = portfolio.getName() + "\n" + info;
             notifyClient.notifyAll(info);
@@ -105,17 +110,23 @@ public class SchedulerController {
             if (list == null || list.isEmpty()) {
                 continue;
             }
-            //取最新的一条
+            //取最新BS
             DemarkFlag selected = list.get(list.size() - 1);
-            if (selected.getCountdownDate() != null) {
-                //有BC点
-                if (notExpired(selected.getCountdownDate(), today)) {
-                    map.put(resultInfo.getName(), "BC " + selected.getCountdownDate());
-                }
-            } else if (selected.getSetupDate() != null) {
+            if (selected.getSetupDate() != null) {
                 //有BS点
                 if (notExpired(selected.getSetupDate(), today)) {
-                    map.put(resultInfo.getName(), "BS "+selected.getSetupDate());
+                    map.put(resultInfo.getName(), "BS " + selected.getSetupDate());
+                }
+            }
+            //取最新的BC
+            for (int j = list.size() - 1; j >= 0; j--) {
+                selected = list.get(j);
+                if (selected.getCountdownDate() != null) {
+                    //有BC点
+                    if (notExpired(selected.getCountdownDate(), today)) {
+                        map.put(resultInfo.getName(), "BC " + selected.getCountdownDate());
+                        break;
+                    }
                 }
             }
         }
