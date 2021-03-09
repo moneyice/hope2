@@ -85,11 +85,6 @@ public class SchedulerController {
     }
 
     private void notifyAll(String info, EnumPortfolio portfolio) {
-        if (true) {
-            return;
-        }
-
-
         if (!StringUtils.isEmpty(info)) {
             info = portfolio.getName() + "\n" + info;
             notifyClient.notifyAll(info);
