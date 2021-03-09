@@ -50,7 +50,6 @@ public class DemarkAnalyzer extends AbstractStockAnalyzer {
     @Override
     public boolean analyze(ResultInfo resultInfo, Stock stock) {
         boolean ok = false;
-        setupReady = false;
         selectList = new LinkedList<>();
         setStock(stock);
 
@@ -67,22 +66,41 @@ public class DemarkAnalyzer extends AbstractStockAnalyzer {
                     .getClose()) {
                 setupTimes++;
             } else {
-                if (setupReady) {
+                if (setupTimes >= buySetupDays) {
                     DemarkSelect sr = new DemarkSelect();
                     sr.setStock(stock);
                     // use now field to store the setup point info
                     sr.setSetupPoint(infos.get(i - 1));
                     sr.setSetupNumber(setupTimes);
                     selectList.add(sr);
-                    setupReady = false;
                 }
                 setupTimes = 0;
             }
-            if (setupTimes >= buySetupDays) {
-                setupReady = true;
-            }
-
         }
+
+
+
+//        for (int i = infos.size() - daysToNow - 1; i < infos.size(); i++) {
+//            if (infos.get(i).getClose() < infos.get(i - buySetupBeforeDay)
+//                    .getClose()) {
+//                setupTimes++;
+//            } else {
+//                if (setupReady) {
+//                    DemarkSelect sr = new DemarkSelect();
+//                    sr.setStock(stock);
+//                    // use now field to store the setup point info
+//                    sr.setSetupPoint(infos.get(i - 1));
+//                    sr.setSetupNumber(setupTimes);
+//                    selectList.add(sr);
+//                    setupReady = false;
+//                }
+//                setupTimes = 0;
+//            }
+//            if (setupTimes >= buySetupDays) {
+//                setupReady = true;
+//            }
+//
+//        }
 
         prepareCountDownData();
         //如果需要setup的结果的话，就不需要过滤countdown 不存在的情况了
@@ -153,18 +171,17 @@ public class DemarkAnalyzer extends AbstractStockAnalyzer {
         int number = 0;
         KLineInfo countDownPoint = null;
         for (int i = index + 1; i < infos.size(); i++) {
+            if (infos.get(i).getClose() < infos.get(i - 2).getLow()) {
+                number++;
+                countDownPoint = infos.get(i);
+            }
             if (number >= countDownNumber) {
                 demarkSelect.setCountDownNumber(number);
                 // use to field to store the count down point info
                 demarkSelect.setCountDownPoint(countDownPoint);
                 break;
             }
-            if (infos.get(i).getClose() < infos.get(i - 2).getLow()) {
-                number++;
-                countDownPoint = infos.get(i);
-            }
         }
-
     }
 
     @Override
