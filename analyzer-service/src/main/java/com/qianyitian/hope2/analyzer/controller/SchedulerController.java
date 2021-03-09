@@ -121,6 +121,7 @@ public class SchedulerController {
                     if (notExpired(selected.getCountdownDate(), today)) {
                         map.put(resultInfo.getName(), "BC " + selected.getCountdownDate());
                         break;
+
                     }
                 }
             }
