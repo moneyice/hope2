@@ -33,12 +33,8 @@ public class DemarkService {
     @Autowired
     StockAnalyzerFacotry stockAnalyzerFacotry;
 
-    private Cache<String, String> cache = Caffeine.newBuilder()
-            .maximumSize(128).recordStats()
-            .expireAfterAccess(60, TimeUnit.MINUTES)
-            .expireAfterWrite(60, TimeUnit.MINUTES)
-//            .refreshAfterWrite(30, TimeUnit.MINUTES)
-            .build();
+    @Autowired
+    private Cache<String, String> cache;
 
 
     public String getStockCacheStatus() {
@@ -58,9 +54,10 @@ public class DemarkService {
         }
         return report;
     }
+
     //生成组合的报告
     protected String portfolioReportJson(String portfolio, Integer days2Now) {
-        AnalyzeResult result = portfolioReport(portfolio,days2Now);
+        AnalyzeResult result = portfolioReport(portfolio, days2Now);
         String content = JSON.toJSONString(result);
         return content;
     }

@@ -2,6 +2,7 @@ package com.qianyitian.hope2.analyzer.controller;
 
 
 import com.alibaba.fastjson.JSON;
+import com.github.benmanes.caffeine.cache.Cache;
 import com.qianyitian.hope2.analyzer.config.Constant;
 import com.qianyitian.hope2.analyzer.model.KLineInfo;
 import com.qianyitian.hope2.analyzer.model.Stock;
@@ -13,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -26,24 +28,27 @@ public class HongYunGaoZhaoController {
     @Autowired
     DefaultStockService stockService;
 
+    @Autowired
+    private Cache<String, String> cache;
+
     public HongYunGaoZhaoController() {
     }
-
 
     @GetMapping("/report/hongyun")
     @CrossOrigin
     public String hongyun() {
-        SymbolList symbols = stockService.getSymbols(null);
-        List<HoneYunResult> result = new LinkedList<>();
-        for (Stock stock : symbols.getSymbols()) {
-            Stock stockDetail = stockService.getStock(stock.getCode(), Constant.TYPE_DAILY_LITE);
-            analyze(stockDetail, result);
-        }
-
-        Map map = new HashMap();
-        map.put("items", result);
-        map.put("generateTime", LocalDate.now().toString());
-        return JSON.toJSONString(map);
+       return cache.get("hongyun", key -> {
+           SymbolList symbols = stockService.getSymbols(null);
+           List<HoneYunResult> result = new LinkedList<>();
+           for (Stock stock : symbols.getSymbols()) {
+               Stock stockDetail = stockService.getStock(stock.getCode(), Constant.TYPE_DAILY_LITE);
+               analyze(stockDetail, result);
+           }
+           Map map = new HashMap();
+           map.put("items", result);
+           map.put("generateTime", LocalDateTime.now().toString());
+           return JSON.toJSONString(map);
+        });
     }
 
     int recentDays = 10;
