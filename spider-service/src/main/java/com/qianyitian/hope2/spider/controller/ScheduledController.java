@@ -22,8 +22,8 @@ public class ScheduledController {
 
 //    @Scheduled(initialDelay = 1000 * 60*10, fixedDelay = 1000 * 60 * 60 * 4)
 ////    每6个小时
-    @Scheduled(cron = "0 19 19 * * MON,TUE,WED,THU,FRI")
-    //每周1-5 19:19:00 执行
+    @Scheduled(cron = "0 30 18 * * MON,TUE,WED,THU,FRI")
+    //每周1-5 18:30:00 执行
     public void retrieveStockDailyData() {
         logger.info("scheduled to retrieve stock daily data");
         stockInfoSpider.run();

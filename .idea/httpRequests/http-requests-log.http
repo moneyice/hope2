@@ -1,3 +1,103 @@
+POST https://qyapi.weixin.qq.com/cgi-bin/message/send?access_token=ZvPBYOEZXwDTMqQNP2rgBhKkaN7783e0WossWgYXfH1mS6CdVK4GR6znnn46Vwuo7MnCGPLY4TtpR52YRXD_CJHTQuao546gLzjWIZAevCned7UJLhUXy-DjJuy7HzSJkuaaIVS1GEttMHfO7l1NlpYvGISwkmShhCoyAYMXc7V704jJIzT6dZxQWQnBtM4pIw-Gtv-Lh3ZkmRnmNaCKxg
+Content-Type: application/json
+
+{
+  "touser" : "@all",
+  "msgtype" : "text",
+  "agentid" : 1000004,
+  "text" : {
+    "content" : "你有新的BC\n 迈瑞医疗 2021-02-25 \n  格力电器 2021-02-22"
+  },
+  "safe":0,
+  "enable_id_trans": 0,
+  "enable_duplicate_check": 0,
+  "duplicate_check_interval": 1800
+}
+
+<> 2021-02-27T091441.200.json
+
+###
+
+POST https://qyapi.weixin.qq.com/cgi-bin/message/send?access_token=ZvPBYOEZXwDTMqQNP2rgBhKkaN7783e0WossWgYXfH1mS6CdVK4GR6znnn46Vwuo7MnCGPLY4TtpR52YRXD_CJHTQuao546gLzjWIZAevCned7UJLhUXy-DjJuy7HzSJkuaaIVS1GEttMHfO7l1NlpYvGISwkmShhCoyAYMXc7V704jJIzT6dZxQWQnBtM4pIw-Gtv-Lh3ZkmRnmNaCKxg
+Content-Type: application/json
+
+{
+  "touser" : "@all",
+  "toparty" : "PartyID1|PartyID2",
+  "msgtype" : "text",
+  "agentid" : 1000004,
+  "text" : {
+    "content" : "你的快递已到，请携带工卡前往邮件中心领取。\n出发前可查看<a href=\"http://work.weixin.qq.com\">邮件中心视频实况</a>，聪明避开排队。"
+  },
+  "safe":0,
+  "enable_id_trans": 0,
+  "enable_duplicate_check": 0,
+  "duplicate_check_interval": 1800
+}
+
+<> 2021-02-27T091122.200.json
+
+###
+
+POST https://qyapi.weixin.qq.com/cgi-bin/message/send?access_token=ZvPBYOEZXwDTMqQNP2rgBhKkaN7783e0WossWgYXfH1mS6CdVK4GR6znnn46Vwuo7MnCGPLY4TtpR52YRXD_CJHTQuao546gLzjWIZAevCned7UJLhUXy-DjJuy7HzSJkuaaIVS1GEttMHfO7l1NlpYvGISwkmShhCoyAYMXc7V704jJIzT6dZxQWQnBtM4pIw-Gtv-Lh3ZkmRnmNaCKxg
+Content-Type: application/json
+
+{
+  "touser" : "@all",
+  "toparty" : "PartyID1|PartyID2",
+  "totag" : "TagID1 | TagID2",
+  "msgtype" : "text",
+  "agentid" : 1,
+  "text" : {
+    "content" : "你的快递已到，请携带工卡前往邮件中心领取。\n出发前可查看<a href=\"http://work.weixin.qq.com\">邮件中心视频实况</a>，聪明避开排队。"
+  },
+  "safe":0,
+  "enable_id_trans": 0,
+  "enable_duplicate_check": 0,
+  "duplicate_check_interval": 1800
+}
+
+<> 2021-02-27T091029.200.json
+
+###
+
+GET https://qyapi.weixin.qq.com/cgi-bin/gettoken?corpid=ww243e7f75da3fb4b4&corpsecret=5rIT3btp4Ikkd42RvPUg4KaFNJImq-QDPX8HyQ5wIxo
+Accept: application/json
+
+<> 2021-02-27T090451.200.json
+
+###
+
+GET http://httpbin.org/anything?id=a89ea621-4212-4ec6-a465-d6db23753cac&ts=1614387752
+
+<> 2021-02-27T090233.200.json
+
+###
+
+# @no-redirect
+GET http://httpbin.org/status/301
+
+###
+
+GET http://{{host}}/get?show_env={{show_env}}
+Accept: application/json
+
+###
+
+GET https://httpbin.org/get?show_env=1
+Accept: application/json
+
+<> 2021-02-27T090230.200.json
+
+###
+
+GET https://httpbin.org/ip
+Accept: application/json
+
+<> 2021-02-27T090229.200.json
+
+###
+
 GET http://127.0.0.1:8003/demark
 Accept: */*
 Cache-Control: no-cache

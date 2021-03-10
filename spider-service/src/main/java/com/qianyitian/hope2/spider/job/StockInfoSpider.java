@@ -132,7 +132,7 @@ public class StockInfoSpider {
                 info = stockRetreiver.getStockInfo(stock);
                 info.setCode("i" + info.getCode());
                 runInPool(createStoreStockRunnable(info));
-            } catch (IOException e) {
+            } catch (Exception e) {
                 logger.error(e.getMessage(), e);
             }
         }
