@@ -7,10 +7,7 @@ import com.qianyitian.hope2.analyzer.analyzer.DemarkAnalyzer;
 import com.qianyitian.hope2.analyzer.analyzer.StockAnalyzerFacotry;
 import com.qianyitian.hope2.analyzer.analyzer.UnDemarkAnalyzer;
 import com.qianyitian.hope2.analyzer.config.Constant;
-import com.qianyitian.hope2.analyzer.model.AnalyzeResult;
-import com.qianyitian.hope2.analyzer.model.ResultInfo;
-import com.qianyitian.hope2.analyzer.model.Stock;
-import com.qianyitian.hope2.analyzer.model.SymbolList;
+import com.qianyitian.hope2.analyzer.model.*;
 import com.qianyitian.hope2.analyzer.service.MyFavoriteStockService;
 import com.qianyitian.hope2.analyzer.service.StockSelecter;
 import org.slf4j.Logger;
@@ -18,6 +15,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -136,9 +135,57 @@ public class DemarkService {
                 map.put("flagSell", unResultInfo.getData().get("flag"));
             }
         }
+        {
+            double ONE_BUY_CASH = 10000;
+            //calculate profit
+            Profit profit = new Profit();
+            List<DemarkFlag> flagList = (List<DemarkFlag>) resultInfo.getData().get("flag");
+
+            int barCount = bars.size();
+            int limit = Math.min(days2NowNumber, barCount);
+
+            //只需要从第一个flag日期附近开始进行就可以了
+            if (flagList.isEmpty()) {
+                //没有flag
+                profit.setCost(0);
+                profit.setAmount(0);
+                profit.setAverageCostPrice(0);
+            } else {
+                double totalPrice = 0;
+                for (int i = barCount - limit; i < barCount; i++) {
+                    Number[] oneBar = bars.get(i);
+                    totalPrice += oneBar[4].doubleValue();
+                    ProfitDaily profitDaily = new ProfitDaily();
+                    profitDaily.setDate(oneBar[0].longValue());
+                    profit.getDailyProfit().add(profitDaily);
+                    long dateLong = oneBar[0].longValue();
+                    if (buy(dateLong, flagList)) {
+                        profit.cost = profit.cost + ONE_BUY_CASH;
+                        profit.amount = profit.amount + (ONE_BUY_CASH / oneBar[4].doubleValue());
+                    }
+                    profitDaily.profit = profit.amount * oneBar[4].doubleValue() / profit.cost - 1;
+                }
+                //平均持股成本价
+                profit.setAverageCostPrice(profit.getCost() / profit.getAmount());
+                //考察期的平均股价
+                profit.setAveragePrice(totalPrice / limit);
+            }
+            map.put("profit", profit);
+        }
+
+
         String content = JSON.toJSONString(map);
         logger.error("get stockReport " + code + " from system");
         return content;
+    }
+
+    private boolean buy(long dateLong, List<DemarkFlag> flag) {
+        for (DemarkFlag demarkFlag : flag) {
+            if (demarkFlag.getSetup() == dateLong || demarkFlag.getCountdown() == dateLong) {
+                return true;
+            }
+        }
+        return false;
     }
 
     protected List<Number[]> convert2ChartFormat(Stock stock) {
@@ -148,5 +195,79 @@ public class DemarkService {
             return row;
         }).collect(Collectors.toList());
         return collect;
+    }
+}
+
+class Profit {
+    double amount;
+    double cost;
+    List<ProfitDaily> dailyProfit = new ArrayList<>();
+    //平均持股价格
+    double averageCostPrice;
+    //考察期平均价格
+    double averagePrice;
+
+    public double getAveragePrice() {
+        return averagePrice;
+    }
+
+    public void setAveragePrice(double averagePrice) {
+        this.averagePrice = averagePrice;
+    }
+
+    public double getAverageCostPrice() {
+        return averageCostPrice;
+    }
+
+    public void setAverageCostPrice(double averageCostPrice) {
+        this.averageCostPrice = averageCostPrice;
+    }
+
+
+    public List<ProfitDaily> getDailyProfit() {
+        return dailyProfit;
+    }
+
+    public void setDailyProfit(List<ProfitDaily> dailyProfit) {
+        this.dailyProfit = dailyProfit;
+    }
+
+    public double getAmount() {
+        return amount;
+    }
+
+    public void setAmount(double amount) {
+        this.amount = amount;
+    }
+
+
+    public double getCost() {
+        return cost;
+    }
+
+    public void setCost(double cost) {
+        this.cost = cost;
+    }
+}
+
+class ProfitDaily {
+    long date;
+    double profit;
+
+
+    public long getDate() {
+        return date;
+    }
+
+    public void setDate(long date) {
+        this.date = date;
+    }
+
+    public double getProfit() {
+        return profit;
+    }
+
+    public void setProfit(double profit) {
+        this.profit = profit;
     }
 }
