@@ -143,7 +143,7 @@ public class DemarkService {
 
             int barCount = bars.size();
             int limit = Math.min(days2NowNumber, barCount);
-
+            List<ProfitDaily> dailyProfit = new ArrayList<>();
             //只需要从第一个flag日期附近开始进行就可以了
             if (flagList.isEmpty()) {
                 //没有flag
@@ -157,19 +157,22 @@ public class DemarkService {
                     totalPrice += oneBar[4].doubleValue();
                     ProfitDaily profitDaily = new ProfitDaily();
                     profitDaily.setDate(oneBar[0].longValue());
-                    profit.getDailyProfit().add(profitDaily);
+                    dailyProfit.add(profitDaily);
                     long dateLong = oneBar[0].longValue();
                     if (buy(dateLong, flagList)) {
                         profit.cost = profit.cost + ONE_BUY_CASH;
                         profit.amount = profit.amount + (ONE_BUY_CASH / oneBar[4].doubleValue());
                     }
-                    profitDaily.profit = profit.amount * oneBar[4].doubleValue() / profit.cost - 1;
+                    if (profit.cost > 0) {
+                        profitDaily.profit = profit.amount * oneBar[4].doubleValue() / profit.cost - 1;
+                    }
                 }
                 //平均持股成本价
                 profit.setAverageCostPrice(profit.getCost() / profit.getAmount());
                 //考察期的平均股价
                 profit.setAveragePrice(totalPrice / limit);
             }
+            profit.setProfits(convert2ChartFormat(dailyProfit));
             map.put("profit", profit);
         }
 
@@ -188,6 +191,14 @@ public class DemarkService {
         return false;
     }
 
+    protected List<Number[]> convert2ChartFormat(List<ProfitDaily> dailyProfit) {
+        List<Number[]> collect = dailyProfit.stream().map(bar -> {
+            Number[] row = new Number[]{bar.getDate(), bar.getProfit() * 100};
+            return row;
+        }).collect(Collectors.toList());
+        return collect;
+    }
+
     protected List<Number[]> convert2ChartFormat(Stock stock) {
         List<Number[]> collect = stock.getkLineInfos().stream().map(bar -> {
             long dateMilliSeconds = Constant.ONE_DAY_MILLISECONDS * bar.getDate().toEpochDay();
@@ -201,11 +212,21 @@ public class DemarkService {
 class Profit {
     double amount;
     double cost;
-    List<ProfitDaily> dailyProfit = new ArrayList<>();
+
+    List<Number[]> profits = null;
+
     //平均持股价格
     double averageCostPrice;
     //考察期平均价格
     double averagePrice;
+
+    public List<Number[]> getProfits() {
+        return profits;
+    }
+
+    public void setProfits(List<Number[]> profits) {
+        this.profits = profits;
+    }
 
     public double getAveragePrice() {
         return averagePrice;
@@ -224,13 +245,7 @@ class Profit {
     }
 
 
-    public List<ProfitDaily> getDailyProfit() {
-        return dailyProfit;
-    }
 
-    public void setDailyProfit(List<ProfitDaily> dailyProfit) {
-        this.dailyProfit = dailyProfit;
-    }
 
     public double getAmount() {
         return amount;
@@ -252,8 +267,7 @@ class Profit {
 
 class ProfitDaily {
     long date;
-    double profit;
-
+    double profit = 0;
 
     public long getDate() {
         return date;

@@ -12,20 +12,83 @@
     <script src="https://code.highcharts.com.cn/highstock/8.2.2/highstock.js"></script>
     <script src="https://code.highcharts.com.cn/highstock/8.2.2/modules/exporting.js"></script>
     <script src="https://code.highcharts.com.cn/highstock/8.2.2/modules/data.js"></script>
+    <script src="https://code.highcharts.com.cn/highcharts-plugins/highcharts-zh_CN.js"></script>
     <script type="text/javascript">
         var chart;
+        var profitChart;
         var path = window.document.location.href;
         var code = path.split('?')[1].split('=')[1];
         var flagLink = '/demark-backtrack/' + code;
-        $(document).ready(function(){
-            var chart = createChart();
-            var flagsData = getFlagsData(flagLink,chart);
+        $(document).ready(function () {
+            createChart();
+            createProfitChart();
+            getFlagsData(flagLink, chart,profitChart);
         });
+
+        function createProfitChart() {
+            profitChart = Highcharts.stockChart('profit-container', {
+                rangeSelector: {
+                    selected: 4
+                },
+                title: {
+                    text: '定投收益率'
+                },
+                yAxis: {
+                    labels: {
+                        formatter: function () {
+                            return (this.value > 0 ? ' + ' : '') + this.value + '%';
+                        }
+                    },
+                    plotLines: [{
+                        value: 0,
+                        width: 2,
+                        color: 'silver'
+                    }]
+                },
+                // plotOptions: {
+                //     series: {
+                //         compare: 'percent'
+                //     }
+                // },
+                tooltip: {
+                    pointFormat: '<span style="color:{series.color}">收益率</span>: <b>{point.y}</b> %<br/>',
+                    valueDecimals: 2,
+                    split: false
+                },
+                series: [{
+                    type: 'area',
+                    name: "stock name",
+                    data: [],
+                    id: 'dataseries',
+                    tooltip: {
+                        valueDecimals: 2
+                    },
+                    fillColor : {
+                        linearGradient : {
+                            x1: 0,
+                            y1: 0,
+                            x2: 0,
+                            y2: 1
+                        },
+                        stops : [
+                            [0, Highcharts.getOptions().colors[0]],
+                            [1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
+                        ]
+                    },
+                    threshold: null
+                }]
+            });
+
+
+        }
+
+
         function post() {
             var days = $("#days").val();
             var linkNew = flagLink + '?days2Now=' + days;
-            var flagsData = getFlagsData(linkNew,chart);
+            getFlagsData(linkNew, chart,profitChart);
         }
+
         function createChart() {
             // Create the chart
             chart = Highcharts.stockChart('container', {
@@ -37,8 +100,27 @@
                 },
                 yAxis: {
                     title: {
-                        text: 'Price'
-                    }
+                        text: '价格'
+                    },
+                    plotLines: [{
+                        id:'costPrice',
+                        value: 0,
+                        color: 'green',
+                        dashStyle: 'shortdash',
+                        width: 2,
+                        label: {
+                            text: '定投持仓成本价格'
+                        }
+                    }, {
+                        id:'averagePrice',
+                        value: 0,
+                        color: 'red',
+                        dashStyle: 'shortdash',
+                        width: 2,
+                        label: {
+                            text: '观察期平均股价'
+                        }
+                    }]
                 },
                 plotOptions: {
                     //修改蜡烛颜色
@@ -118,7 +200,7 @@
             return chart;
         }
 
-        function getFlagsData(link, chart) {
+        function getFlagsData(link, chart, profitChart) {
             Highcharts.getJSON(link, function (data) {
                 var setupFlag = [];
                 var countdownFlag = [];
@@ -159,7 +241,7 @@
 
                 //title
                 var title = {
-                    text:data.name + ' ' + data.code
+                    text: data.name + ' ' + data.code
                 };
                 chart.setTitle(title);
 
@@ -182,6 +264,15 @@
                 chart.series[2].setData(countdownFlag);
                 chart.series[3].setData(sellSetupFlag);
                 chart.series[4].setData(sellCountdownFlag);
+                //成本价格线
+                chart.yAxis[0].options.plotLines[0].value=data.profit.averageCostPrice;
+                chart.yAxis[0].options.plotLines[0].label.text="定投持仓成本价格"+data.profit.averageCostPrice.toFixed(2)+"元";
+                chart.yAxis[0].options.plotLines[1].value=data.profit.averagePrice;
+                chart.yAxis[0].options.plotLines[1].label.text="观察期平均股价"+data.profit.averagePrice.toFixed(2)+"元";
+                chart.yAxis[0].update();
+
+                //profit
+                profitChart.series[0].setData(data.profit.profits);
             });
         }
 
@@ -218,7 +309,8 @@
     <div class="container">
         <div class="navbar-brand">
             <a class="navbar-item" href="https://hope2.qianyitian.com/">
-                <img style="height:36px;width:36px;" src="https://img.qianyitian.com/icon/logo.png" >  <h4 class="title is-3">Hope2</h4>
+                <img style="height:36px;width:36px;" src="https://img.qianyitian.com/icon/logo.png">  <h4
+                    class="title is-3">Hope2</h4>
             </a>
         </div>
     </div>
@@ -317,6 +409,13 @@
         <div id="container"></div>
     </div>
 </section>
+
+<section class="section">
+    <div class="container">
+        <div id="profit-container" style="min-width:400px;height:400px"></div>
+    </div>
+</section>
+
 <hr>
 </body>
 </html>
