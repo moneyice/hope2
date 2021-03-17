@@ -105,7 +105,7 @@
                     plotLines: [{
                         id:'costPrice',
                         value: 0,
-                        color: 'green',
+                        color: '#33AA11',
                         dashStyle: 'shortdash',
                         width: 2,
                         label: {
@@ -114,7 +114,7 @@
                     }, {
                         id:'averagePrice',
                         value: 0,
-                        color: 'red',
+                        color: '#DD2200',
                         dashStyle: 'shortdash',
                         width: 2,
                         label: {
@@ -122,25 +122,16 @@
                         }
                     }]
                 },
-                plotOptions: {
-                    //修改蜡烛颜色
-                    candlestick: {
-                        color: '#33AA11',
-                        upColor: '#DD2200',
-                        lineColor: '#33AA11',
-                        upLineColor: '#DD2200',
-                        maker: {
-                            states: {
-                                hover: {
-                                    enabled: false,
-                                }
-                            }
-                        }
-                    }
-                },
                 series: [{
                     type: 'candlestick',
                     name: "stock name",
+                    color: 'green',
+                    lineColor: 'green',
+                    upColor: 'red',
+                    upLineColor: 'red',
+                    navigatorOptions: {
+                        color: Highcharts.getOptions().colors[0]
+                    },
                     data: [],
                     id: 'dataseries',
                     tooltip: {
