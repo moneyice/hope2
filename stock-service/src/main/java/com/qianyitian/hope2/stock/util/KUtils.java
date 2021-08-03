@@ -37,10 +37,12 @@ public class KUtils {
             int currentWeekInYear = localDate.get(wf.weekOfWeekBasedYear());
             if (weekInYearIndex != currentWeekInYear) {
                 weeklyInfo = new KLineInfo();
+                weeklyInfo.setHigh(0);
+                weeklyInfo.setLow(999999);
                 weeklyInfos.add(weeklyInfo);
                 weekInYearIndex = currentWeekInYear;
             }
-            addDailyInfoToWeeklyInfo(weeklyInfo, dailyInfo);
+            addDailyInfoToWeeklyOrMonthly(weeklyInfo, dailyInfo);
 
         }
         Stock newStock = new Stock();
@@ -52,25 +54,24 @@ public class KUtils {
         return newStock;
     }
 
-    private static void addDailyInfoToWeeklyInfo(KLineInfo weeklyInfo, KLineInfo dailyInfo) {
-        if (weeklyInfo.getOpen() <= 0.0d) {
-            weeklyInfo.setOpen(dailyInfo.getOpen());
+    private static void addDailyInfoToWeeklyOrMonthly(KLineInfo weeklyOrMonthInfo, KLineInfo dailyInfo) {
+        if (weeklyOrMonthInfo.getOpen() <= 0.0d) {
+            weeklyOrMonthInfo.setOpen(dailyInfo.getOpen());
         }
 
-        if (dailyInfo.getHigh() > weeklyInfo.getHigh()) {
-            weeklyInfo.setHigh(dailyInfo.getHigh());
+        if (dailyInfo.getHigh() > weeklyOrMonthInfo.getHigh()) {
+            weeklyOrMonthInfo.setHigh(dailyInfo.getHigh());
         }
 
-        if (weeklyInfo.getLow() <= 0.0d) {
-            weeklyInfo.setLow(dailyInfo.getLow());
-        } else if (dailyInfo.getLow() < weeklyInfo.getLow()) {
-            weeklyInfo.setLow(dailyInfo.getLow());
+        if (dailyInfo.getLow() < weeklyOrMonthInfo.getLow()) {
+            weeklyOrMonthInfo.setLow(dailyInfo.getLow());
         }
+
+        weeklyOrMonthInfo.setClose(dailyInfo.getClose());
 
         //weeklyInfo.setVolume(weeklyInfo.getVolume() + dailyInfo.getVolume());
-        weeklyInfo.setTurnoverRate(weeklyInfo.getTurnoverRate() + dailyInfo.getTurnoverRate());
-        weeklyInfo.setClose(dailyInfo.getClose());
-        weeklyInfo.setDate(dailyInfo.getDate());
+        weeklyOrMonthInfo.setTurnoverRate(weeklyOrMonthInfo.getTurnoverRate() + dailyInfo.getTurnoverRate());
+        weeklyOrMonthInfo.setDate(dailyInfo.getDate());
     }
 
     public static Stock daily2Monthly(Stock stock) {
@@ -92,10 +93,19 @@ public class KUtils {
                     monthlyInfos.add(monthlyInfo);
                 }
                 monthlyInfo = new KLineInfo();
+                monthlyInfo.setHigh(0);
+                monthlyInfo.setLow(999999);
                 monthlyInfo.setOpen(dailyInfo.getOpen());
                 monthIndex = currentMonth;
             }
             monthlyInfo.setTurnoverRate(monthlyInfo.getTurnoverRate() + dailyInfo.getTurnoverRate());
+            if (dailyInfo.getHigh() > monthlyInfo.getHigh()) {
+                monthlyInfo.setHigh(dailyInfo.getHigh());
+            }
+
+            if (dailyInfo.getLow() < monthlyInfo.getLow()) {
+                monthlyInfo.setLow(dailyInfo.getLow());
+            }
         }
         if (!dailyInfoList.isEmpty()) {
             //for the last day
@@ -186,6 +196,6 @@ public class KUtils {
 
     public static double calcIncreaseRange(double base, double now) {
         double r = now / base - 1;
-        return  r;
+        return r;
     }
 }

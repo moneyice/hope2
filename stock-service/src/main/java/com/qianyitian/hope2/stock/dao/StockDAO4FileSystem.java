@@ -7,6 +7,7 @@ import com.qianyitian.hope2.stock.config.Constant;
 import com.qianyitian.hope2.stock.config.EStockKlineType;
 import com.qianyitian.hope2.stock.config.PropertyConfig;
 import com.qianyitian.hope2.stock.model.Stock;
+import com.qianyitian.hope2.stock.model.StockAdjFactor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -86,6 +87,33 @@ public class StockDAO4FileSystem extends AbstractStockDAO {
         }
     }
 
+    @Override
+    public void storeStockAdj(StockAdjFactor stockAdjFactor) {
+        String jsonStock = JSON.toJSONString(stockAdjFactor);
+        File parent = new File(getRootPath(), Constant.ADJFactor);
+        File to = new File(parent, stockAdjFactor.getCode() + "." + Constant.ADJFactor);
+        try {
+            Files.asCharSink(to, Charset.forName("UTF-8")).write(jsonStock);
+        } catch (IOException e) {
+            logger.error("store stock adj factor error " + stockAdjFactor.getCode(), e);
+        }
+    }
+
+    @Override
+    public StockAdjFactor getStockAdj(String code) {
+        File parent = new File(getRootPath(), Constant.ADJFactor);
+        File from = new File(parent, code + "." + Constant.ADJFactor);
+        String rs;
+        try {
+            rs = Files.asCharSource(from, Charset.forName("UTF-8")).readFirstLine();
+            StockAdjFactor stock = JSON.parseObject(rs.toString(), StockAdjFactor.class);
+            return stock;
+        } catch (IOException e) {
+            logger.error("stock not found" + code, e);
+        }
+        return null;
+    }
+
 
     @Override
     public Stock getStockInfo(String code, EStockKlineType type) {
@@ -143,7 +171,7 @@ public class StockDAO4FileSystem extends AbstractStockDAO {
         final String portfolioString = portfolio;
         try {
             ImmutableList<String> strings = Files.asCharSource(from, Charset.forName("UTF-8")).readLines();
-            List<Stock> stocks = strings.parallelStream().map(line -> {
+            List<Stock> stocks = strings.stream().map(line -> {
                 String[] array = line.split(",");
                 Stock stock = new Stock();
                 stock.setCode(array[0]);
@@ -160,24 +188,6 @@ public class StockDAO4FileSystem extends AbstractStockDAO {
             logger.error(e.toString(), e);
         }
         return null;
-    }
-
-
-    @Override
-    public Date getStockUpdateTime(String code) {
-        File file = new File(getRootPath(), code);
-        long time = file.lastModified();
-        Date lastDate = new Date(time);
-        return lastDate;
-    }
-
-
-    @Override
-    public Date getAllSymbolsUpdateTime() {
-        File file = new File(getRootPath(), "allSymbols");
-        long time = file.lastModified();
-        Date lastDate = new Date(time);
-        return lastDate;
     }
 
     @Override

@@ -6,6 +6,7 @@ import com.qianyitian.hope2.stock.config.EStockKlineType;
 import com.qianyitian.hope2.stock.mapper.StockMapper;
 import com.qianyitian.hope2.stock.model.KLineInfo;
 import com.qianyitian.hope2.stock.model.Stock;
+import com.qianyitian.hope2.stock.model.StockAdjFactor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -86,13 +87,13 @@ public class StockDAO4Mysql extends AbstractStockDAO {
     }
 
     @Override
-    public Date getStockUpdateTime(String code) {
-        throw new RuntimeException("not supported");
+    public void storeStockAdj(StockAdjFactor stockAdjFactor) {
+
     }
 
     @Override
-    public Date getAllSymbolsUpdateTime() {
-        throw new RuntimeException("not supported");
+    public StockAdjFactor getStockAdj(String code) {
+        return null;
     }
 
     @Override

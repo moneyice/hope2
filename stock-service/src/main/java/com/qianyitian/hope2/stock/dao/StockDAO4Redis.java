@@ -1,81 +1,116 @@
 package com.qianyitian.hope2.stock.dao;
 
 import com.alibaba.fastjson.JSON;
-import com.google.common.io.Files;
 import com.qianyitian.hope2.stock.config.Constant;
 import com.qianyitian.hope2.stock.config.EStockKlineType;
-import com.qianyitian.hope2.stock.model.KLineInfo;
 import com.qianyitian.hope2.stock.model.Stock;
+import com.qianyitian.hope2.stock.model.StockAdjFactor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Repository;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.charset.Charset;
-import java.util.Date;
+import javax.annotation.Resource;
 import java.util.List;
-
-import static com.qianyitian.hope2.stock.config.Constant.LITE_LEAST_DAY_NUMBER;
+import java.util.concurrent.TimeUnit;
 
 
 @Repository("stockDAO4Redis")
 //@RefreshScope
 public class StockDAO4Redis extends AbstractStockDAO {
 
-//    @Autowired
-//    private StringRedisTemplate stringRedisTemplate;
+    @Resource(name = "stockDAO4FileSystem")
+    StockDAO4FileSystem fileSystemDao;
+
+    @Autowired
+    private StringRedisTemplate redisTemplate;
 
     public StockDAO4Redis() {
     }
 
+
     @Override
-    public void storeAllSymbols(List<Stock> list) {
-//        String allSymbols = JSON.toJSONString(list);
-//        stringRedisTemplate.opsForValue().set("allSymbols", allSymbols);
+    public void storeFunds(String name, String fundsInfo) {
+        String key = Constant.FUNDS + name;
+        redisTemplate.opsForValue().set(key, fundsInfo);
+    }
+
+    @Override
+    public String getFunds(String name) {
+        String key = Constant.FUNDS + name;
+        return redisTemplate.opsForValue().get(key);
     }
 
     @Override
     protected void storeStockInfo(Stock stock, EStockKlineType type) {
-//        String key = stock.getCode() + type.getFolderName();
-//        String jsonStock = JSON.toJSONString(stock);
-//        stringRedisTemplate.opsForValue().set(key, jsonStock);
+        String jsonStock = JSON.toJSONString(stock);
+        String key = stock.getCode() + type.getFileSuffix();
+        redisTemplate.opsForValue().set(key, jsonStock);
     }
 
+    @Override
+    public Stock getStockInfo(String code, EStockKlineType type) {
+        String key = code + type.getFileSuffix();
+        String result = redisTemplate.opsForValue().get(key);
+        Stock stock = JSON.parseObject(result, Stock.class);
+        return stock;
+    }
 
     @Override
-    protected Stock getStockInfo(String code, EStockKlineType type) {
-//        String key = code + type.getFolderName();
-//        String rs = stringRedisTemplate.opsForValue().get(key);
-//        Stock stock = JSON.parseObject(rs, Stock.class);
-//        return stock;
-        return null;
+    public void storeStockAdj(StockAdjFactor stockAdjFactor) {
+        String key = stockAdjFactor.getCode() + "." + Constant.ADJFactor;
+        String jsonStock = JSON.toJSONString(stockAdjFactor);
+        redisTemplate.opsForValue().set(key, jsonStock);
+    }
+
+    @Override
+    public StockAdjFactor getStockAdj(String code) {
+        String key = code + "." + Constant.ADJFactor;
+        String result = redisTemplate.opsForValue().get(key);
+        StockAdjFactor stock = JSON.parseObject(result, StockAdjFactor.class);
+        return stock;
+    }
+
+    @Override
+    public void storeAllSymbols(List<Stock> list) {
+        String allSymbols = JSON.toJSONString(list);
+        redisTemplate.opsForValue().set("allSymbols", allSymbols);
     }
 
     @Override
     public List<Stock> getAllSymbols() {
-//        String rs = stringRedisTemplate.opsForValue().get("allSymbols");
-//        List<Stock> stocks = JSON.parseArray(rs, Stock.class);
-//        return stocks;
-        return null;
+        String allSymbols = redisTemplate.opsForValue().get("allSymbols");
+        if (allSymbols == null) {
+            List<Stock> portfolioSymbols = fileSystemDao.getAllSymbols();
+            String json = JSON.toJSONString(portfolioSymbols);
+            redisTemplate.opsForValue().set("allSymbols", json);
+        }
+        allSymbols = redisTemplate.opsForValue().get("allSymbols");
+        List<Stock> stocks = JSON.parseArray(allSymbols, Stock.class);
+        return stocks;
     }
 
     @Override
-    public Date getStockUpdateTime(String code) {
-        throw new RuntimeException("not supported");
-    }
-
-    @Override
-    public Date getAllSymbolsUpdateTime() {
-        throw new RuntimeException("not supported");
+    public List<Stock> getPortfolioSymbols(String portfolio) {
+        String result = redisTemplate.opsForValue().get(portfolio);
+        if (result == null) {
+            List<Stock> portfolioSymbols = fileSystemDao.getPortfolioSymbols(portfolio);
+            String json = JSON.toJSONString(portfolioSymbols);
+            redisTemplate.opsForValue().set(portfolio, json, 1, TimeUnit.MINUTES);
+        }
+        String allSymbols = redisTemplate.opsForValue().get(portfolio);
+        List<Stock> stocks = JSON.parseArray(allSymbols, Stock.class);
+        return stocks;
     }
 
     @Override
     public void storeStatistics(String filename, String content) {
-        throw new RuntimeException("not supported");
+        String key = Constant.STATISTICS + filename;
+        redisTemplate.opsForValue().set(key, content);
     }
 
     @Override
     public String getStatistics(String filename) {
-        throw new RuntimeException("not supported");
+        String key = Constant.STATISTICS + filename;
+        return redisTemplate.opsForValue().get(key);
     }
 }

@@ -16,7 +16,8 @@ spring:
 #  type-aliases-package: com.qianyitian.hope2.stock.model
 
 logging:
-  file: stock.log
+  file:
+    name: ./log/stock.log
   level:
     root: INFO
 hope2:

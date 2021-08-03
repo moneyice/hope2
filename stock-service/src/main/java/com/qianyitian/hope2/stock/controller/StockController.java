@@ -5,10 +5,12 @@ import com.github.benmanes.caffeine.cache.CacheLoader;
 import com.github.benmanes.caffeine.cache.Caffeine;
 import com.github.benmanes.caffeine.cache.LoadingCache;
 import com.github.benmanes.caffeine.cache.stats.CacheStats;
+import com.qianyitian.hope2.stock.config.EStockKlineType;
 import com.qianyitian.hope2.stock.dao.IStockDAO;
 import com.qianyitian.hope2.stock.model.*;
 import com.qianyitian.hope2.stock.statistics.RangePercentageStatistics;
 import com.qianyitian.hope2.stock.util.KUtils;
+import com.qianyitian.hope2.stock.util.Utils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.annotation.Async;
@@ -18,15 +20,17 @@ import javax.annotation.Resource;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.*;
-import java.util.concurrent.*;
-import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 @RestController
 public class StockController {
     private Logger logger = LoggerFactory.getLogger(getClass());
     ExecutorService threadPool = Executors.newFixedThreadPool(4);
-    @Resource(name = "stockDAO4FileSystem")
+    @Resource(name = "stockDAO4Redis")
     private IStockDAO stockDAO;
 
     public StockController() {
@@ -39,7 +43,6 @@ public class StockController {
         sb.append("task count " + pool.getTaskCount()).append(" queue size " + pool.getQueue().size()).append(" completed tasks " + pool.getCompletedTaskCount());
         sb.append(" active count " + pool.getActiveCount());
         return sb.toString();
-
     }
 
     @PostMapping(value = "/stock")
@@ -47,6 +50,18 @@ public class StockController {
         logger.info("storing stock ===================== " + stock.getCode());
         StockStoringTask task = new StockStoringTask(stock);
         threadPool.execute(task);
+    }
+
+    @PostMapping(value = "/adj")
+    public void storeStock(@RequestBody StockAdjFactor stockAdjFactor) {
+        logger.info("storing adj factor ===================== " + stockAdjFactor.getCode());
+        stockDAO.storeStockAdj(stockAdjFactor);
+    }
+
+    @GetMapping(value = "/data/adj/{code}")
+    public StockAdjFactor getAdj(@PathVariable String code) {
+        StockAdjFactor stock = stockDAO.getStockAdj(code);
+        return stock;
     }
 
     @PostMapping(value = "/data/kline/")
@@ -59,6 +74,20 @@ public class StockController {
             return stockDAO.getStockWeekly(input.getCode());
         } else if (input.getkLineType().equals("monthly")) {
             return stockDAO.getStockMonthly(input.getCode());
+        }
+        return input;
+    }
+
+    @PostMapping(value = "/data/klinesa/")
+    public Stock getStockSA(@RequestBody Stock input) {
+        if (input.getkLineType().equals("dailylite")) {
+            return stockDAO.getStockLiteSA(input.getCode());
+        } else if (input.getkLineType().equals("daily")) {
+            return stockDAO.getStockSA(input.getCode());
+        } else if (input.getkLineType().equals("weekly")) {
+            return stockDAO.getStockWeeklySA(input.getCode());
+        } else if (input.getkLineType().equals("monthly")) {
+            return stockDAO.getStockMonthlySA(input.getCode());
         }
         return input;
     }
@@ -89,12 +118,13 @@ public class StockController {
 
     @GetMapping(value = "/data/kline/daily/{code}")
     public Stock getStock(@PathVariable String code) {
-        Stock stock = null;
-        try {
-            stock = cache.get(code);
-        } catch (Exception e) {
-            throw new RuntimeException("stock not exist " + code);
-        }
+//        Stock stock = null;
+//        try {
+//            stock = cache.get(code);
+//        } catch (Exception e) {
+//            throw new RuntimeException("stock not exist " + code);
+//        }
+        Stock stock = stockDAO.getStock(code);
         return stock;
     }
 
@@ -118,6 +148,12 @@ public class StockController {
     @GetMapping(value = "/data/kline/dailylite/{code}")
     public Stock getStockDailyLite(@PathVariable String code) {
         Stock stock = stockDAO.getStockLite(code);
+        return stock;
+    }
+
+    @GetMapping(value = "/data/klinesa/daily/{code}")
+    public Stock getStockDailySA(@PathVariable String code) {
+        Stock stock = stockDAO.getStockSA(code);
         return stock;
     }
 
@@ -164,7 +200,31 @@ public class StockController {
 
         @Override
         public void run() {
-            stockDAO.storeStock(stock);
+            {
+                KUtils.appendMacdInfo(stock.getkLineInfos());
+                if (stock.getCode().startsWith("i")) {
+                    //this is index
+                    stockDAO.storeStock(stock);
+                } else {
+                    stockDAO.storeStock(stock);
+                    stockDAO.storeStockLite(stock);
+                }
+            }
+
+            {
+                String code = stock.getCode();
+                if (code.length() == 6 && (code.startsWith("3") || code.startsWith("0") || code.startsWith("6"))) {
+                    //先这么判断A股吧，以后再改
+                    StockAdjFactor stockAdj = stockDAO.getStockAdj(stock.getCode());
+                    if (stockAdj != null) {
+                        stock = mergeWithSimpleAdj(stock, stockAdj);
+                        stock.setkLineType(EStockKlineType.DAILY_SA.getName());
+                        KUtils.appendMacdInfo(stock.getkLineInfos());
+                    }
+                }
+                stockDAO.storeStockSA(stock);
+            }
+
             {
                 Stock stockWeekly = KUtils.daily2Weekly(stock);
                 KUtils.appendMacdInfo(stockWeekly.getkLineInfos());
@@ -177,21 +237,48 @@ public class StockController {
                 stockDAO.storeStockMonthly(stockMonthly);
                 stockMonthly = null;
             }
-
-            {
-                KUtils.appendMacdInfo(stock.getkLineInfos());
-                if (stock.getCode().startsWith("i")) {
-                    //this is index
-                    stockDAO.storeStock(stock);
-                } else {
-                    stockDAO.storeStock(stock);
-                    stockDAO.storeStockLite(stock);
-                }
-                stock = null;
-            }
+            stock = null;
         }
     }
 
+    Stock mergeWithSimpleAdj(Stock stock, StockAdjFactor stockAdj) {
+        List<AdjFactorInfo> adjList = stockAdj.getAdjList();
+        if (adjList.isEmpty()) {
+            return stock;
+        }
+        if (adjList.size() == 1) {
+            return stock;
+        }
+        double latestAdj = adjList.get(adjList.size() - 1).getAdjFactor();
+
+        //adj 是1 的不需要计算，所以直接从 adjList[1] 开始
+        int adjIndex = 0;
+
+        AdjFactorInfo currentAdjFactor = adjList.get(adjIndex);
+        double currentAdj = currentAdjFactor.getAdjFactor();
+        LocalDate fence = adjList.get(adjIndex + 1).getDate();
+        int adjSize = adjList.size();
+
+
+        for (KLineInfo kLineInfo : stock.getkLineInfos()) {
+            if (kLineInfo.getDate().isBefore(fence)) {
+            } else {
+                adjIndex++;
+                currentAdjFactor = adjList.get(adjIndex);
+                currentAdj = currentAdjFactor.getAdjFactor();
+                if (adjIndex < adjSize - 1) {
+                    fence = adjList.get(adjIndex + 1).getDate();
+                } else {
+                    fence = LocalDate.MAX;
+                }
+            }
+            kLineInfo.setOpen(Utils.formatDouble(kLineInfo.getOpen() * currentAdj / latestAdj));
+            kLineInfo.setHigh(Utils.formatDouble(kLineInfo.getHigh() * currentAdj / latestAdj));
+            kLineInfo.setLow(Utils.formatDouble(kLineInfo.getLow() * currentAdj / latestAdj));
+            kLineInfo.setClose(Utils.formatDouble(kLineInfo.getClose() * currentAdj / latestAdj));
+        }
+        return stock;
+    }
 
     @GetMapping(value = "/makeStatistics")
     @Async

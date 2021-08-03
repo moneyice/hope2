@@ -1,6 +1,11 @@
 package com.qianyitian.hope2.stock.util;
 
-import java.text.*;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.text.DateFormat;
+import java.text.NumberFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.concurrent.locks.ReentrantLock;
 import java.util.regex.Pattern;
@@ -74,9 +79,10 @@ public class Utils {
     }
 
     // 保留2位小数
-    public static double get2Double(double a) {
-        DecimalFormat df = new DecimalFormat("0.00");
-        return new Double(df.format(a).toString());
+    public static double formatDouble(double a) {
+        BigDecimal bg = new BigDecimal(a);
+        double f1 = bg.setScale(2, RoundingMode.HALF_UP).doubleValue();
+        return f1;
     }
 
     public static String double2Percentage(double input) {

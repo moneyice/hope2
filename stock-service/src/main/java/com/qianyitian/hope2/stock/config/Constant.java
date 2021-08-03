@@ -7,6 +7,7 @@ public class Constant {
     public static final String TYPE_MONTHLY = "monthly";
 
     public static final String STATISTICS = "statistics";
+    public static final String ADJFactor = "adjfactor";
     public static final String REPORT = "report";
     public static final String FUNDS = "funds";
 

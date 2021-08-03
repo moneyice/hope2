@@ -3,6 +3,26 @@ server:
 spring:
   application:
     name: stock-service
+  redis:
+    database: 0
+    # Redis服务器地址 写你的ip
+    host: 127.0.0.1
+    # Redis服务器连接端口
+    port: 6379
+    # Redis服务器连接密码（默认为空）
+    password:
+    # 连接池最大连接数（使用负值表示没有限制  类似于mysql的连接池
+    jedis:
+      pool:
+        max-active: 200
+        # 连接池最大阻塞等待时间（使用负值表示没有限制） 表示连接池的链接拿完了 现在去申请需要等待的时间
+        max-wait: -1
+        # 连接池中的最大空闲连接
+        max-idle: 10
+        # 连接池中的最小空闲连接
+        min-idle: 0
+    # 连接超时时间（毫秒） 去链接redis服务端
+    timeout: 3000
   http:
     encoding:
       force: true
@@ -22,9 +42,11 @@ spring:
 #  type-aliases-package: com.qianyitian.hope2.stock.model
 
 logging:
-  file: ./log/analyzer.log
+  file:
+    name: ./log/stock.log
   level:
     root: INFO
+
 hope2:
   service:
     spider: http://127.0.0.1:8001

@@ -43,6 +43,7 @@ public class PostStartupDataLoader implements ApplicationRunner {
         loadResources("silver.csv", "SILVER 白银", "silver");
         loadResources("bitcoin.csv", "Bitcoin 比特币", "bitcoin");
     }
+
     public void loadAllStockSymbols() throws IOException {
         File from = new File(getRootPath(), "allSymbols");
         if (from.exists()) {
@@ -82,7 +83,7 @@ public class PostStartupDataLoader implements ApplicationRunner {
             String line = lines.get(i);
             String[] array = line.split(",");
 
-            try{
+            try {
                 String market = "SH";
                 String symbol = array[0].trim();
                 String name = array[1].trim();
@@ -92,13 +93,14 @@ public class PostStartupDataLoader implements ApplicationRunner {
                 stock.setCode(symbol);
                 stock.setMarket(market);
                 list.add(stock);
-            }catch(Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
             }
 
 
         }
     }
+
     private void loadOil() throws IOException {
 
     }
@@ -146,8 +148,11 @@ public class PostStartupDataLoader implements ApplicationRunner {
                 folder.mkdirs();
             }
         });
-
-        File folder = new File(getRootPath(), Constant.STATISTICS);
+        File folder = new File(getRootPath(), Constant.ADJFactor);
+        if (!folder.exists()) {
+            folder.mkdirs();
+        }
+        folder = new File(getRootPath(), Constant.STATISTICS);
         if (!folder.exists()) {
             folder.mkdirs();
         }

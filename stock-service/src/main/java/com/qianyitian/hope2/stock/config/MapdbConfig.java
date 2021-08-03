@@ -36,34 +36,4 @@ public class MapdbConfig {
                 .createOrOpen();
         return map;
     }
-
-    @Bean
-    public Map<String, String> fundDetailMapDB(DB mapdb) {
-        ConcurrentMap<String, String> map = mapdb.hashMap("fundDetail")
-                .keySerializer(Serializer.STRING)
-                .valueSerializer(Serializer.STRING)
-                .createOrOpen();
-        return map;
-    }
-
-    @Bean
-    public ConcurrentMap<String, String> testMapdb() {
-        DB db = DBMaker.fileDB("testMapDB.file")
-                .checksumHeaderBypass()
-                .fileMmapEnableIfSupported()//1
-                .fileMmapPreclearDisable()//2
-                .cleanerHackEnable()//3
-                .closeOnJvmShutdown()//4
-//                .transactionEnable()//5
-                .concurrencyScale(128)//6
-                .make();
-        ConcurrentMap<String, String> map = db.hashMap("test")
-                .keySerializer(Serializer.STRING)
-                .valueSerializer(Serializer.STRING)
-                .createOrOpen();
-
-        return map;
-    }
-
-
 }

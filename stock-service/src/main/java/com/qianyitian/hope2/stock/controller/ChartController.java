@@ -24,7 +24,7 @@ import java.util.stream.Collectors;
 @RestController
 public class ChartController {
     private Logger logger = LoggerFactory.getLogger(getClass());
-    @Resource(name = "stockDAO4FileSystem")
+    @Resource(name = "stockDAO4Redis")
     private IStockDAO stockDAO;
 
     public ChartController() {
