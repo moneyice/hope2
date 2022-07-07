@@ -11,7 +11,9 @@ import com.qianyitian.hope2.analyzer.service.DefaultStockService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -37,32 +39,35 @@ public class HongYunGaoZhaoController {
     @GetMapping("/report/hongyun")
     @CrossOrigin
     public String hongyun() {
-       return cache.get("hongyun", key -> {
-           SymbolList symbols = stockService.getSymbols(null);
-           List<HoneYunResult> result = new LinkedList<>();
-           for (Stock stock : symbols.getSymbols()) {
-               Stock stockDetail = stockService.getStock(stock.getCode(), Constant.TYPE_DAILY_LITE);
-               analyze(stockDetail, result);
-           }
-           Map map = new HashMap();
-           map.put("items", result);
-           map.put("generateTime", LocalDateTime.now().toString());
-           return JSON.toJSONString(map);
+        return cache.get("hongyun", key -> {
+            SymbolList symbols = stockService.getSymbols(null);
+            List<HoneYunResult> result = new LinkedList<>();
+            for (Stock stock : symbols.getSymbols()) {
+                Stock stockDetail = stockService.getStock(stock.getCode(), Constant.TYPE_DAILY_LITE);
+                analyze(stockDetail, result);
+            }
+            Map map = new HashMap();
+            map.put("items", result);
+            map.put("generateTime", LocalDateTime.now().toString());
+            return JSON.toJSONString(map);
         });
     }
 
-    int recentDays = 10;
+    int recentDays = 8;
 
     private void analyze(Stock stock, List collectList) {
-        if (stock.getName().contains("ST") || stock.getName().contains("st")||stock.getName().contains("退")) {
+        if (stock.getName().contains("ST") || stock.getName().contains("st") || stock.getName().contains("退")) {
             return;
         }
         List<KLineInfo> kLineInfos = stock.getkLineInfos();
+        if (kLineInfos.size() <= recentDays) {
+            return;
+        }
         for (int i = kLineInfos.size() - recentDays; i < kLineInfos.size(); i++) {
             KLineInfo current = kLineInfos.get(i);
             KLineInfo previous = kLineInfos.get(i - 1);
 
-            if (current.getTurnoverRate() >= previous.getTurnoverRate() * 2 && current.getClose() / previous.getClose() - 1 > 0.05) {
+            if (current.getTurnoverRate()>=5.0 && current.getTurnoverRate() >= previous.getTurnoverRate() * 2 && current.getClose() / previous.getClose() - 1 >= 0.05) {
                 HoneYunResult result = new HoneYunResult();
                 result.setCode(stock.getCode());
                 result.setName(stock.getName());

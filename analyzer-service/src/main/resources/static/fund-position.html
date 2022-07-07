@@ -5,13 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Hope2</title>
-    <link rel="stylesheet" href="https://bulma.io/css/bulma-docs.min.css?v=202101062241">
+
     <link rel="stylesheet" href="https://lib.baomitu.com/bulma/0.9.1/css/bulma.css">
     <link rel="shortcut icon" href="/favicon.ico">
     <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="http://www.datatables.net/rss.xml">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css">
     <script type="text/javascript" language="javascript"
-            src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+            src="https://lib.baomitu.com/jquery/3.5.1/jquery.min.js"></script>
     <script type="text/javascript" language="javascript"
             src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript">
@@ -21,16 +21,24 @@
                 // $("#description").html(data.description);
                 $("#genTime").html(data.generateTime);
                 $('#stockTable').DataTable({
-                    data: data.numbers,
-                    order: [[ 2, "desc" ]],
+                    data: data.info,
+                    order: [[ 1, "desc" ]],
                     columns: [
                         {
-                            data: 'code'
+                            data: 'name',
+                            render: function (data, type, row, meta) {
+                                var code = row.code;
+                                return type === 'display' ?
+                                    `<a href="/demark-flag.html?code=${code}" target="_blank">`+data+`</a>`:
+                                    `xx`;
+                            }
                         },
-                        {data: 'name'},
                         {data: 'number'},
-                        {data: 'value'}
-
+                        {data: 'value'},
+                        {data: 'oldNumber'},
+                        {data: 'oldValue'},
+                        {data: 'numberChange'},
+                        {data: 'valueChange'}
                     ]
                 });
             });
@@ -41,7 +49,7 @@
 <nav id="navbar" class="bd-navbar navbar has-shadow is-spaced">
     <div class="container">
         <div class="navbar-brand">
-            <a class="navbar-item" href="https://hope2.qianyitian.com/">
+            <a class="navbar-item" href="https://qianyitian.com/">
                 <img style="height:36px;width:36px;" src="https://img.qianyitian.com/icon/logo.png" >  <h4 class="title is-3">Hope2</h4>
             </a>
         </div>
@@ -55,9 +63,10 @@
                 基金重仓股报告
             </h1>
             <h2 class="subtitle" id="description">
-                2020年第四季度报(2020-12-31)
+                2021年第4季度报
             </h2>
             <p> 生成时间：<label id="genTime"></label></p>
+            <p><a id="jsonReport" href="/fund-trend.html" target="_blank">持续加仓股票名单</a>
             </p>
         </div>
     </div>
@@ -69,22 +78,15 @@
         <table id="stockTable" class="display compact" style="width:100%">
             <thead>
             <tr>
-                <th>代码</th>
                 <th>名称</th>
                 <th>持有基金数量</th>
                 <th>持有资金总量</th>
-
+                <th>上季度数量</th>
+                <th>上季度资金量</th>
+                <th>数量变化</th>
+                <th>资金量变化</th>
             </tr>
             </thead>
-
-            <tfoot>
-            <tr>
-                <th>代码</th>
-                <th>名称</th>
-                <th>持有基金数量</th>
-                <th>持有资金总量</th>
-            </tr>
-            </tfoot>
         </table>
     </div>
 </section>

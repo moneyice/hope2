@@ -53,4 +53,7 @@ public class IPOAnalyzer extends AbstractStockAnalyzer {
     public String getDescription() {
         return descTemplate;
     }
+    public int getWeight() {
+        return 50;
+    }
 }

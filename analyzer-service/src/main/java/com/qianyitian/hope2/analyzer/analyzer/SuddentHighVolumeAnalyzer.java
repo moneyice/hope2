@@ -86,4 +86,8 @@ public class SuddentHighVolumeAnalyzer extends AbstractStockAnalyzer {
     public void setVolumeIncrease(String volumeIncrease) {
         this.volumeIncrease = Double.valueOf(volumeIncrease);
     }
+
+    public int getWeight() {
+        return 50;
+    }
 }

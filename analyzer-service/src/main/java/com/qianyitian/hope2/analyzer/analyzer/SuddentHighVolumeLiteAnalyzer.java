@@ -60,7 +60,9 @@ public class SuddentHighVolumeLiteAnalyzer extends SuddentHighVolumeAnalyzer {
 //		sb.append("现价: ").append(getCurrentPrice(stock)).append("\n\r");
         return (sb.toString());
     }
-
+    public int getWeight() {
+        return 50;
+    }
     @Override
     public String getDescription() {
         return descTemplate;

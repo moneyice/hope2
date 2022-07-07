@@ -110,6 +110,12 @@ Blockly.Aviator['logic_boolean'] = function (block) {
   var code = (block.getFieldValue('BOOL') == 'TRUE') ? 'true' : 'false';
   return [code, Blockly.Aviator.ORDER_ATOMIC];
 };
+//自定义 选中 or 不选
+Blockly.Aviator['logic_boolean_ischoose'] = function (block) {
+  // Boolean values true and false.
+  var code = block.getFieldValue('BOOL');
+  return [code, Blockly.Aviator.ORDER_ATOMIC];
+};
 
 Blockly.Aviator['logic_null'] = function (block) {
   // Null data type.

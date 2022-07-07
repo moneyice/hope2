@@ -38,18 +38,18 @@ public class SchedulerController {
 //        logger.info("test");
 //    }
 
-    @GetMapping(value = "/notify/h20")
+    @GetMapping(value = "/notify/mao")
     @Scheduled(cron = "0 0 20 * * MON,TUE,WED,THU,FRI")
     //每周1-5 20:00:00 执行
     public String portfolioH20Notify() {
-        return portfolioNotify(EnumPortfolio.H20);
+        return portfolioNotify(EnumPortfolio.MAO);
     }
 
-    @GetMapping(value = "/notify/h150")
+    @GetMapping(value = "/notify/ning")
     @Scheduled(cron = "0 1 20 * * MON,TUE,WED,THU,FRI")
     //每周1-5 20:01:00 执行
     public String portfolioH150Notify() {
-        return portfolioNotify(EnumPortfolio.H150);
+        return portfolioNotify(EnumPortfolio.NING);
     }
 
     @GetMapping(value = "/notify/f200")
@@ -59,19 +59,30 @@ public class SchedulerController {
         return portfolioNotify(EnumPortfolio.F200);
     }
 
+
+    @GetMapping(value = "/notify/etf")
+    @Scheduled(cron = "0 4 20 * * MON,TUE,WED,THU,FRI")
+    //每周1-5 20:05:00 执行
+    public String portfolioETFNotify() {
+        return portfolioNotify(EnumPortfolio.ETF);
+    }
+
+
     @GetMapping(value = "/notify/hk")
     @Scheduled(cron = "0 3 20 * * MON,TUE,WED,THU,FRI")
-    //每周1-5 20:03:00 执行
+    //每周1-5 20:06:00 执行
     public String portfolioHKNotify() {
         return portfolioNotify(EnumPortfolio.HK);
     }
 
     @GetMapping(value = "/notify/us")
     @Scheduled(cron = "0 4 20 * * MON,TUE,WED,THU,FRI")
-    //每周1-5 20:04:00 执行
+    //每周1-5 20:07:00 执行
     public String portfolioUSNotify() {
         return portfolioNotify(EnumPortfolio.US);
     }
+
+
 
 
     private String portfolioNotify(EnumPortfolio portfolio) {

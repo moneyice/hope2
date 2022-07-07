@@ -71,4 +71,7 @@ public class SuddentLowVolumeAnalyzer extends AbstractStockAnalyzer {
     public void setDaysToNow(int daysToNow) {
         this.daysToNow = daysToNow;
     }
+    public int getWeight() {
+        return 50;
+    }
 }

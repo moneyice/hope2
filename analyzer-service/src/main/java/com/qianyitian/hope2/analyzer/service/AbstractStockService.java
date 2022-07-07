@@ -2,7 +2,6 @@ package com.qianyitian.hope2.analyzer.service;
 
 import com.alibaba.fastjson.JSON;
 import com.qianyitian.hope2.analyzer.config.PropertyConfig;
-import com.qianyitian.hope2.analyzer.funds.model.Fund;
 import com.qianyitian.hope2.analyzer.model.Stock;
 import com.qianyitian.hope2.analyzer.model.SymbolList;
 import org.slf4j.Logger;
@@ -61,6 +60,18 @@ public abstract class AbstractStockService implements IStockService {
     }
 
     @Override
+    public Stock getStockDailySA(String symbol) {
+        try {
+            Stock stock = restTemplate.getForObject(propertyConfig.getStockService() + "/data/klinesa/daily/" + symbol, Stock.class);
+            return stock;
+        } catch (Exception e) {
+            logger.error(symbol);
+            logger.error(e.getMessage(), e);
+        }
+        return null;
+    }
+
+    @Override
     public Stock getStockWeekly(String symbol) {
         try {
             Stock stock = restTemplate.getForObject(propertyConfig.getStockService() + "/data/kline/weekly/" + symbol, Stock.class);
@@ -72,6 +83,18 @@ public abstract class AbstractStockService implements IStockService {
         return null;
     }
     @Override
+    public Stock getStockMonthly(String symbol) {
+        try {
+            Stock stock = restTemplate.getForObject(propertyConfig.getStockService() + "/data/kline/monthly/" + symbol, Stock.class);
+            return stock;
+        } catch (Exception e) {
+            logger.error(symbol);
+            logger.error(e.getMessage(), e);
+        }
+        return null;
+    }
+
+    @Override
     public String getFundProfile(String code) {
         try {
             String fund = restTemplate.getForObject(propertyConfig.getStockService() + "/data/fund/profile/" + code, String.class);
@@ -82,10 +105,23 @@ public abstract class AbstractStockService implements IStockService {
         }
         return null;
     }
+
     @Override
     public String getFundDetail(String code) {
         try {
             String fund = restTemplate.getForObject(propertyConfig.getStockService() + "/data/fund/detail/" + code, String.class);
+            return fund;
+        } catch (Exception e) {
+            logger.error(code);
+            logger.error(e.getMessage(), e);
+        }
+        return null;
+    }
+
+    @Override
+    public String getFundHistory(String code) {
+        try {
+            String fund = restTemplate.getForObject(propertyConfig.getStockService() + "/data/fund/history/" + code, String.class);
             return fund;
         } catch (Exception e) {
             logger.error(code);

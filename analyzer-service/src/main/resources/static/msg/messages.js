@@ -442,5 +442,9 @@ Blockly.Msg['CATCOLOUR']='颜色';
 Blockly.Msg['CATVARIABLES']='变量';
 Blockly.Msg['CATFUNCTIONS']='函数';
 Blockly.Msg['CATMY']='我的';
+Blockly.Msg['MATH_NUMBER_PERCENT'] = '%1 %';
+Blockly.Msg['LOGIC_BOOLEAN_CHOOSE'] = '选中';
+Blockly.Msg['LOGIC_BOOLEAN_NOTCHOOSE'] = '不选';
+Blockly.Msg['LOGIC_BOOLEAN_ISCHOOSE_TOOLTIP'] = '返回0或1';
 
 

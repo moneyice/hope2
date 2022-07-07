@@ -6,17 +6,13 @@ import com.qianyitian.hope2.analyzer.model.DemarkFlag;
 import com.qianyitian.hope2.analyzer.model.KLineInfo;
 import com.qianyitian.hope2.analyzer.model.ResultInfo;
 import com.qianyitian.hope2.analyzer.model.Stock;
-import org.apache.commons.lang3.StringUtils;
 
-import java.time.LocalDate;
 import java.util.*;
-import java.util.stream.Collectors;
 
 //1、Buy-Setup：买入结构的条件是连续9T或以上的收盘价低于先前第4个T的收盘价，视为一个完整的买入结构。
 //（注：这里的限定条件是“连续”9T或以上，期间不能中断）
 //2、Buy-Countdown：每当某个收盘价低于先前第2个T的最低价时计数增加1，计数可以不连续，当计数增加到13个交易日意味着卖盘动能已经耗尽，往往是下跌趋势的反转点。
 //（注：这里的限定条件是累计13个T，不要求是“连续”的，期间可以中断）
-
 
 
 //1、Sell-Setup：卖出结构的条件是连续9T或以上的收盘价高于先前第4个T的收盘价，视为一个完整的卖出结构。
@@ -26,7 +22,7 @@ import java.util.stream.Collectors;
 
 //目前不支持并发
 public class DemarkAnalyzer extends AbstractStockAnalyzer {
-    public static int DEFAULT_DAYS2NOW = 200;
+    public static int DEFAULT_DAYS2NOW = 66;
     //计算距今多少天的日K线
     int daysToNow = DEFAULT_DAYS2NOW;
     // 连续9T或以上
@@ -53,15 +49,16 @@ public class DemarkAnalyzer extends AbstractStockAnalyzer {
         selectList = new LinkedList<>();
         setStock(stock);
 
+        int realDays2Now = daysToNow;
         List<KLineInfo> infos = stock.getkLineInfos();
-        if (infos.size() <= daysToNow + buySetupBeforeDay) {
+        int size = infos.size();
+        if (size <= realDays2Now + buySetupBeforeDay) {
             // 元数据天数要求大于考察天数
-            return ok;
+            // 否则有多少天，算多少天
+            realDays2Now = size - buySetupBeforeDay - 1;
         }
-
         int setupTimes = 0;
-
-        for (int i = infos.size() - daysToNow - 1; i < infos.size(); i++) {
+        for (int i = size - realDays2Now - 1; i < size; i++) {
             if (infos.get(i).getClose() < infos.get(i - buySetupBeforeDay)
                     .getClose()) {
                 setupTimes++;
@@ -77,7 +74,6 @@ public class DemarkAnalyzer extends AbstractStockAnalyzer {
                 setupTimes = 0;
             }
         }
-
 
 
 //        for (int i = infos.size() - daysToNow - 1; i < infos.size(); i++) {
@@ -213,6 +209,10 @@ public class DemarkAnalyzer extends AbstractStockAnalyzer {
         }
         sb.deleteCharAt(sb.length() - 1);
         return sb.toString();
+    }
+
+    public int getWeight() {
+        return 50;
     }
 
     public class DemarkSelect {

@@ -1,6 +1,6 @@
 package com.qianyitian.hope2.analyzer;
 
-import com.thebeastshop.forest.springboot.annotation.ForestScan;
+import com.dtflys.forest.springboot.annotation.ForestScan;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.config.Registry;
 import org.apache.http.config.RegistryBuilder;

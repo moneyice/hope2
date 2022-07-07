@@ -6,6 +6,7 @@ import com.qianyitian.hope2.analyzer.model.Stock;
 
 public interface IStockAnalyzer {
 
+    int getWeight();
 
     String getDescription();
 

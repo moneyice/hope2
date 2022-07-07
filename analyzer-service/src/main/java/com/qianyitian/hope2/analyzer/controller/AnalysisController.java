@@ -24,16 +24,11 @@ import java.time.LocalDateTime;
 public class AnalysisController {
     private Logger logger = LoggerFactory.getLogger(getClass());
 
+
     @Autowired
     private DefaultStockService stockService;
 
-    @Autowired
-    private MyFavoriteStockService favoriteStockService;
-
-//    @Autowired
-//    private ReportDAO4Redis reportDAO4Redis;
-
-    @Resource(name = "fileSystemStorageService")
+    @Resource(name = "redisStorageService")
     private IReportStorageService reportService;
 
     @Autowired
@@ -56,6 +51,8 @@ public class AnalysisController {
         {
             analyze(EStockAnalyzer.MACD, Constant.TYPE_WEEKLY);
             analyze(EStockAnalyzer.MACD, Constant.TYPE_MONTHLY);
+            analyze(EStockAnalyzer.Demark, Constant.TYPE_WEEKLY);
+            analyze(EStockAnalyzer.Demark, Constant.TYPE_MONTHLY);
         }
         {
             analyze(EStockAnalyzer.MACDAdvance, Constant.TYPE_WEEKLY);
@@ -67,6 +64,8 @@ public class AnalysisController {
     @RequestMapping(value = "/startDemarkAnalyze", method = RequestMethod.GET)
     public void startDemarkAnalyze() {
         analyze(EStockAnalyzer.Demark, Constant.TYPE_DAILY_LITE, Constant.TYPE_DAILY);
+        analyze(EStockAnalyzer.Demark, Constant.TYPE_WEEKLY, Constant.TYPE_WEEKLY);
+        analyze(EStockAnalyzer.Demark, Constant.TYPE_MONTHLY, Constant.TYPE_MONTHLY);
     }
 
     private void analyze(EStockAnalyzer macd, String kLineType) {
@@ -88,37 +87,28 @@ public class AnalysisController {
         String content = JSON.toJSONString(result);
         reportService.storeAnalysis(filename, content);
         logger.info("Store report successful " + filename + " result size is " + result.getResultList().size());
-
-        String fullFilename = LocalDate.now().toString() + "-" + filename;
-        reportService.storeAnalysis(fullFilename, content);
-        logger.info("Store report successful " + fullFilename + " result size is " + result.getResultList().size());
-
-        //clear cache
-//        reportDAO4Redis.clearReport(filename);
     }
 
     @RequestMapping(value = "/analysis/{analyzerName}/daily", method = RequestMethod.GET)
+    @CrossOrigin
     public String analyze(@PathVariable String analyzerName) {
         String filename = analyzerName + "-daily";
         return lazyLoadReport(filename);
     }
 
     private String lazyLoadReport(String filename) {
-//        String report = reportDAO4Redis.getReport(filename);
-//        if (report == null) {
-//            report = reportService.get(filename);
-//            reportDAO4Redis.storeReport(filename, report);
-//        }
         return reportService.getAnalysis(filename);
     }
 
     @RequestMapping(value = "/analysis/{analyzerName}/weekly", method = RequestMethod.GET)
+    @CrossOrigin
     public String analyzeByWeekly(@PathVariable String analyzerName) {
         String filename = analyzerName + "-weekly";
         return lazyLoadReport(filename);
     }
 
     @RequestMapping(value = "/analysis/{analyzerName}/monthly", method = RequestMethod.GET)
+    @CrossOrigin
     public String analyzeByMonthly(@PathVariable String analyzerName) {
         String filename = analyzerName + "-monthly";
         return lazyLoadReport(filename);

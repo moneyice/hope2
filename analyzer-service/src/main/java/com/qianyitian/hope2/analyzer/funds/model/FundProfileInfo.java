@@ -14,7 +14,7 @@ public class FundProfileInfo {
     String name;
     LocalDate foundDate;
     LocalDate currentDate;
-    double netValue;
+    float netValue;
     float totalShareNumber;
     String totalShare;
     String type;
@@ -33,13 +33,13 @@ public class FundProfileInfo {
     float grl5Year;
     float grThisYear;
     float grBase;
-    double cagr;
+    float cagr;
 
-    public double getCagr() {
+    public float getCagr() {
         return cagr;
     }
 
-    public void setCagr(double cagr) {
+    public void setCagr(float cagr) {
         this.cagr = cagr;
     }
 
@@ -99,11 +99,11 @@ public class FundProfileInfo {
         this.currentDate = currentDate;
     }
 
-    public double getNetValue() {
+    public float getNetValue() {
         return netValue;
     }
 
-    public void setNetValue(double netValue) {
+    public void setNetValue(float netValue) {
         this.netValue = netValue;
     }
 

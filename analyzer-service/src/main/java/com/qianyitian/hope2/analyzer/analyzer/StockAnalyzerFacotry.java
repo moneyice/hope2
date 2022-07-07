@@ -28,16 +28,16 @@ public class StockAnalyzerFacotry {
             }
         });
 
-        Map<EStockAnalyzer, IStockAnalyzer> allAnalyzers = Arrays.stream(EStockAnalyzer.values()).collect(Collectors.toMap(numStockAnalyzer -> numStockAnalyzer, numStockAnalyzer -> {
-            try {
-                IStockAnalyzer stockAnalyzer = (IStockAnalyzer) Class.forName(numStockAnalyzer.getFullQualifiedClassName()).newInstance();
-                return stockAnalyzer;
-            } catch (Exception e) {
-                logger.error("createStockAnalyzer error", e);
-                throw new RuntimeException(e);
-            }
-        }));
-        map.putAll(allAnalyzers);
+//        Map<EStockAnalyzer, IStockAnalyzer> allAnalyzers = Arrays.stream(EStockAnalyzer.values()).collect(Collectors.toMap(numStockAnalyzer -> numStockAnalyzer, numStockAnalyzer -> {
+//            try {
+//                IStockAnalyzer stockAnalyzer = (IStockAnalyzer) Class.forName(numStockAnalyzer.getFullQualifiedClassName()).newInstance();
+//                return stockAnalyzer;
+//            } catch (Exception e) {
+//                logger.error("createStockAnalyzer error", e);
+//                throw new RuntimeException(e);
+//            }
+//        }));
+//        map.putAll(allAnalyzers);
     }
 
 

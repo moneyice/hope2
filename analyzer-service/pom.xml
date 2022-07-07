@@ -33,6 +33,10 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+        </dependency>
         <!-- Spring Boot End -->
 
         <!-- Spring Cloud Begin -->
@@ -60,12 +64,31 @@
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
-            <version>1.2.15</version>
+            <version>1.2.48</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>2.9.10</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.9.10</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+            <version>2.9.10</version>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.datatype</groupId>
             <artifactId>jackson-datatype-jsr310</artifactId>
-            <version>2.8.4</version>
+            <version>2.9.10</version>
         </dependency>
         <dependency>
             <groupId>com.google.guava</groupId>
@@ -102,10 +125,10 @@
 <!--            <groupId>org.springframework.boot</groupId>-->
 <!--            <artifactId>spring-boot-starter-data-rest</artifactId>-->
 <!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.boot</groupId>-->
-<!--            <artifactId>spring-boot-starter-data-redis</artifactId>-->
-<!--        </dependency>-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
 
         <dependency>
             <groupId>com.alibaba</groupId>
@@ -179,8 +202,20 @@
 
         <dependency>
             <groupId>com.dtflys.forest</groupId>
-            <artifactId>spring-boot-starter-forest</artifactId>
-            <version>1.5.0-RC3</version>
+            <artifactId>forest-spring-boot-starter</artifactId>
+            <version>1.5.17</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt</artifactId>
+            <version>0.9.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.j2html</groupId>
+            <artifactId>j2html</artifactId>
+            <version>1.4.0</version>
         </dependency>
     </dependencies>
 

@@ -6,6 +6,7 @@ import com.qianyitian.hope2.analyzer.util.Utils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.*;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -53,9 +54,8 @@ public class StockSelecter {
 
     public void startAnalyzeInSequence(String klineType) {
         selectResultList = new ArrayList<ResultInfo>();
-
         for (Stock stock : getSymbols()) {
-            stock = stockService.getStock(stock.getCode(), klineType);
+            stock = getStock(stock.getCode(), klineType);
             if (stock != null && !outOfDate(stock)) {
                 ResultInfo resultInfo = analyze(stock);
                 if (resultInfo != null) {
@@ -65,6 +65,10 @@ public class StockSelecter {
                 }
             }
         }
+    }
+
+    public Stock getStock(String symbol, String klineType) {
+        return stockService.getStock(symbol, klineType);
     }
 
     private ResultInfo createEmptyResultInfo(Stock stock) {
@@ -84,9 +88,10 @@ public class StockSelecter {
         if (list.isEmpty()) {
             return true;
         }
-        return false;
-//        KLineInfo lastOne = stock.getkLineInfos().get(list.size() - 1);
-//        return lastOne.getDate().plusDays(5).isBefore(LocalDate.now());
+
+        KLineInfo lastOne = list.get(list.size() - 1);
+        //过期1年的就不要了
+        return lastOne.getDate().plusDays(250).isBefore(LocalDate.now());
     }
 
     private ResultInfo analyze(Stock stock) {

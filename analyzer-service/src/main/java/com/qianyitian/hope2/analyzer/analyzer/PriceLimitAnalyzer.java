@@ -36,7 +36,9 @@ public class PriceLimitAnalyzer extends AbstractStockAnalyzer {
     private String format(Stock stock, KLineInfo check, double times) {
         return "";
     }
-
+    public int getWeight() {
+        return 50;
+    }
 
     @Override
     public String getDescription() {

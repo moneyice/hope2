@@ -63,6 +63,8 @@ public class MACDAdvanceAnalyzer extends AbstractStockAnalyzer {
     public void setDaysToNow(int daysToNow) {
         this.daysToNow = daysToNow;
     }
-
+    public int getWeight() {
+        return 50;
+    }
 
 }

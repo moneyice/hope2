@@ -28,6 +28,9 @@ public class RuleEngineController {
     @Autowired
     private MyFavoriteStockService favoriteStockService;
 
+    @Autowired
+    public Map<String, String> reportMapDB;
+
     public RuleEngineController() {
         List<AbstractFunction> functions = FunctionUtil.findAllFunctions();
         for (AbstractFunction abstractFunction : functions) {
@@ -68,20 +71,17 @@ public class RuleEngineController {
         List<FundProfileInfo> list = new LinkedList<>();
         Expression compile = AviatorEvaluator.getInstance().compile(data, false);
         Map<String, Object> env = AviatorEvaluator.newEnv();
-        List<Stock> fundsSymbols = favoriteStockService.getSymbols("funds").getSymbols();
-        for (Stock stock : fundsSymbols) {
-            String info = favoriteStockService.getFundProfile(stock.getCode());
-            if (info == null) {
-                continue;
-            }
-            FundProfileInfo fundDetail = JSON.parseObject(info, FundProfileInfo.class);
-            if (fundDetail.getFoundDate() == null) {
-                continue;
-            }
-            env.put("fund", fundDetail);
+
+        String content = reportMapDB.get("fundProfile");
+        List<FundProfileInfo> fundProfileInfos = JSON.parseArray(content, FundProfileInfo.class);
+
+
+
+        for (FundProfileInfo fund : fundProfileInfos) {
+            env.put("fund", fund);
             Long execute = (Long) compile.execute(env);
             if (execute == 1) {
-                list.add(fundDetail);
+                list.add(fund);
             }
         }
         return list;

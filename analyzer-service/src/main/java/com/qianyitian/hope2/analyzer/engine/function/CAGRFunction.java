@@ -5,6 +5,7 @@ import com.googlecode.aviator.runtime.type.AviatorBigInt;
 import com.googlecode.aviator.runtime.type.AviatorDouble;
 import com.googlecode.aviator.runtime.type.AviatorObject;
 import com.qianyitian.hope2.analyzer.funds.model.FundProfileInfo;
+import org.apache.tomcat.jni.Local;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
@@ -18,14 +19,17 @@ public class CAGRFunction extends AbstractFunction {
             return AviatorBigInt.valueOf(-1);
         }
         try {
-            double years = averageYears(fundDetail.getFoundDate(), LocalDate.now());
-            double cagr = CAGR(100, 100 + fundDetail.getGrBase(), years);
-            fundDetail.setCagr(cagr* 100);
             return AviatorDouble.valueOf(fundDetail.getCagr());
         } catch (Exception e) {
             e.printStackTrace();
         }
         return AviatorBigInt.valueOf(-1);
+    }
+
+    protected double getCAGR(LocalDate startDate,LocalDate endDate, double startPrice, double endPrice){
+        double years = averageYears(startDate, endDate);
+        double cagr = CAGR(startPrice, endPrice, years);
+        return cagr;
     }
 
     protected double CAGR(double initialValue, double currentValue, double averageYears) {

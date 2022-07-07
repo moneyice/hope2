@@ -20,4 +20,8 @@ public abstract class AbstractStockAnalyzer implements IStockAnalyzer {
         return stock.getkLineInfos().get(stock.getkLineInfos().size() - 1)
                 .getClose();
     }
+
+    public int getWeight() {
+        return 0;
+    }
 }

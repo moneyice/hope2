@@ -30,7 +30,7 @@ public class MyFavoriteStockService extends AbstractStockService {
 
     CacheLoader<String, Stock> loader = symbol -> {
         Stock stock = MyFavoriteStockService.super.getStockDaily(symbol);
-        logger.error("get stock  from system "+ symbol);
+        logger.error("get stock  from system " + symbol);
         return stock;
     };
 
@@ -53,7 +53,16 @@ public class MyFavoriteStockService extends AbstractStockService {
         return stock;
     }
 
-
+    @Override
+    public Stock getStockDailySA(String symbol) {
+        Stock stock = null;
+        try {
+            stock = super.getStockDailySA(symbol);
+        } catch (Exception e) {
+            logger.error("stock not exist " + symbol, e);
+        }
+        return stock;
+    }
 
 
     @Override

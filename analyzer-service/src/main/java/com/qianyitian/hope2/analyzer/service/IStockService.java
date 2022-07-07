@@ -11,10 +11,15 @@ public interface IStockService {
 
     public Stock getStockDaily(String symbol);
 
+    Stock getStockDailySA(String symbol);
+
     public Stock getStockWeekly(String symbol);
+    public Stock getStockMonthly(String symbol);
 
     public String getFundProfile(String code);
 
     public String getFundDetail(String code);
+
+    public String getFundHistory(String code);
 
 }

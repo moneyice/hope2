@@ -96,7 +96,7 @@ public class UnDemarkAnalyzer extends AbstractStockAnalyzer {
 
         resultInfo.setData(map);
 
-        resultInfo.setComments("http://hope2.qianyitian.com:8003/demark-flag.html?code=" + stock.getCode());
+        resultInfo.setComments("http://qianyitian.com/demark-flag.html?code=" + stock.getCode());
         return ok;
     }
 

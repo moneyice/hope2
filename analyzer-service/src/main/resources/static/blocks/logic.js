@@ -51,6 +51,25 @@ Blockly.defineBlocksWithJsonArray([  // BEGIN JSON EXTRACT
     "tooltip": "%{BKY_LOGIC_BOOLEAN_TOOLTIP}",
     "helpUrl": "%{BKY_LOGIC_BOOLEAN_HELPURL}"
   },
+  // Block for boolean data type: true and false =======================================选中or未选中.
+  {
+    "type": "logic_boolean_ischoose",
+    "message0": "%1",
+    "args0": [
+      {
+        "type": "field_dropdown",
+        "name": "BOOL",
+        "options": [
+          ["%{BKY_LOGIC_BOOLEAN_CHOOSE}", "1"],
+          ["%{BKY_LOGIC_BOOLEAN_NOTCHOOSE}", "0"]
+        ]
+      }
+    ],
+    "output": "Number",
+    "style": "logic_blocks",
+    "tooltip": "%{BKY_LOGIC_BOOLEAN_ISCHOOSE_TOOLTIP}",
+    "helpUrl": "%{BKY_LOGIC_BOOLEAN_HELPURL}"
+  },
   // Block for if/elseif/else condition.
   {
     "type": "controls_if",

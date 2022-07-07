@@ -5,13 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Hope2</title>
-    <link rel="stylesheet" href="https://bulma.io/css/bulma-docs.min.css?v=202101062241">
+
     <link rel="stylesheet" href="https://lib.baomitu.com/bulma/0.9.1/css/bulma.css">
     <link rel="shortcut icon" href="/favicon.ico">
     <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="http://www.datatables.net/rss.xml">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css">
     <script type="text/javascript" language="javascript"
-            src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+            src="https://lib.baomitu.com/jquery/3.5.1/jquery.min.js"></script>
     <script type="text/javascript" language="javascript"
             src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript">
@@ -22,6 +22,7 @@
                 $("#genTime").html(data.generateTime);
                 $('#stockTable').DataTable({
                     data: data.resultList,
+                    order: [[3, "asc"]],
                     columns: [
                         {
                             data: 'code',
@@ -49,7 +50,7 @@
 <nav id="navbar" class="bd-navbar navbar has-shadow is-spaced">
     <div class="container">
         <div class="navbar-brand">
-            <a class="navbar-item" href="https://hope2.qianyitian.com/">
+            <a class="navbar-item" href="https://qianyitian.com/">
                 <img style="height:36px;width:36px;" src="https://img.qianyitian.com/icon/logo.png" >  <h4 class="title is-3">Hope2</h4>
             </a>
         </div>
@@ -63,10 +64,10 @@
                 各行业ETF基金
             </h1>
             <h2 class="subtitle" id="description">
-                每个交易周末，在16个ETF中，选出本周涨幅前6的ETF，等权重买入或者持有。
+                每个交易周末，在N个ETF中，选出本周涨幅前6的ETF，等权重买入或者持有。
             </h2>
             <p> 生成时间：<label id="genTime"></label></p>
-            <p><a id="jsonReport" href="/etf" target="_blank">数据版</a>
+            <p><a id="jsonReport" href="/etf-compare.html" target="_blank">可视化图表版</a>
             </p>
         </div>
     </div>

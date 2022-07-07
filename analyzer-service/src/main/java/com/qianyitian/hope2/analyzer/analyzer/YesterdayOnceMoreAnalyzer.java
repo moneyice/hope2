@@ -122,4 +122,8 @@ public class YesterdayOnceMoreAnalyzer extends AbstractStockAnalyzer {
     public void setCloseRangeDown(double closeRangeDown) {
         this.closeRangeDown = closeRangeDown;
     }
+
+    public int getWeight() {
+        return 50;
+    }
 }

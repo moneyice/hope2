@@ -48,6 +48,21 @@ Blockly.defineBlocksWithJsonArray([  // BEGIN JSON EXTRACT
     "tooltip": "%{BKY_MATH_NUMBER_TOOLTIP}",
     "extensions": ["parent_tooltip_when_inline"]
   },
+  // Block for numeric value ++++++++++++++++++++++++++++++++++++   +%.
+  {
+    "type": "math_number_percent",
+    "message0": "%{BKY_MATH_NUMBER_PERCENT}",
+    "args0": [{
+      "type": "field_number",
+      "name": "NUM",
+      "value": 0
+    }],
+    "output": "Number",
+    "helpUrl": "%{BKY_MATH_NUMBER_HELPURL}",
+    "style": "math_blocks",
+    "tooltip": "%{BKY_MATH_NUMBER_TOOLTIP}",
+    "extensions": ["parent_tooltip_when_inline"]
+  },
 
   // Block for basic arithmetic operator.
   {
@@ -432,8 +447,8 @@ Blockly.Constants.Math.TOOLTIPS_BY_OP = {
 };
 
 Blockly.Extensions.register('math_op_tooltip',
-    Blockly.Extensions.buildTooltipForDropdown(
-        'OP', Blockly.Constants.Math.TOOLTIPS_BY_OP));
+  Blockly.Extensions.buildTooltipForDropdown(
+    'OP', Blockly.Constants.Math.TOOLTIPS_BY_OP));
 
 
 /**

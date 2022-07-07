@@ -5,13 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Hope2</title>
-    <link rel="stylesheet" href="https://bulma.io/css/bulma-docs.min.css?v=202101062241">
+
     <link rel="stylesheet" href="https://lib.baomitu.com/bulma/0.9.1/css/bulma.css">
     <link rel="shortcut icon" href="/favicon.ico">
     <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="http://www.datatables.net/rss.xml">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css">
     <script type="text/javascript" language="javascript"
-            src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+            src="https://lib.baomitu.com/jquery/3.5.1/jquery.min.js"></script>
     <script type="text/javascript" language="javascript"
             src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript">
@@ -21,14 +21,27 @@
 
             // var link = "/demark-us?days2Now=200";
             var link = "/demark/"+portfolio+"?days2Now=200";
+            loadPortfolioProfile(portfolio);
             loadData(link);
         }
 
 
         $(document).ready(function () {
-            var link = "/demark/h20?days2Now=200";
+            var link = "/demark/mao?days2Now=200";
+            loadPortfolioProfile("mao");
             loadData(link);
         });
+
+        function loadPortfolioProfile(portfolio){
+            // portfolio/profile/ning
+            var link = "/portfolio/profile/"+portfolio;
+
+            $.get(link,function(data){
+                $("#intro").html(data);
+            });
+        }
+
+
         var table;
 
         function loadData(link){
@@ -93,7 +106,7 @@
                                 var code = row.code;
                                 return type === 'display' ?
                                     `<a href="/demark-flag.html?code=${code}" target="_blank">图形版</a>` + '&nbsp;&nbsp;&nbsp;&nbsp;    ' +
-                                    `<a href="/demark-backtrack/${code}" target="_blank">数据版</a>` :
+                                    `<a href="/demark-flag-advance.html?code=${code}" target="_blank">高级版</a>` :
                                     data;
                             }
                         }
@@ -107,7 +120,7 @@
 <nav id="navbar" class="bd-navbar navbar has-shadow is-spaced">
     <div class="container">
         <div class="navbar-brand">
-            <a class="navbar-item" href="https://hope2.qianyitian.com/">
+            <a class="navbar-item" href="https://qianyitian.com/">
                 <img style="height:36px;width:36px;" src="https://img.qianyitian.com/icon/logo.png" >  <h4 class="title is-3">Hope2</h4>
             </a>
         </div>
@@ -121,9 +134,10 @@
                 DeMark指标
             </h1>
             <h2 class="subtitle" id="description">
-                description
+
             </h2>
             <p> 生成时间：<label id="genTime"></label></p>
+            <p> 组合解释：<label id="intro"></label></p>
         </div>
     </div>
 </section>
@@ -132,21 +146,21 @@
         <div class="tabs is-centered is-boxed is-medium">
             <ul>
                 <li id="h20-tab" class="is-active">
-                    <a onclick="switchTab('h20')">
+                    <a onclick="switchTab('mao')">
                         <span class="icon is-small"><i class="fas fa-image" aria-hidden="true"></i></span>
-                        <span>Hope 20</span>
+                        <span>茅指数</span>
                     </a>
                 </li>
                 <li id="h150-tab">
-                    <a  onclick="switchTab('h150')">
+                    <a  onclick="switchTab('ning')">
                         <span class="icon is-small"><i class="fas fa-music" aria-hidden="true"></i></span>
-                        <span>希望150</span>
+                        <span>宁组合</span>
                     </a>
                 </li>
                 <li id="f200-tab">
                     <a  onclick="switchTab('f200')">
                         <span class="icon is-small"><i class="fas fa-music" aria-hidden="true"></i></span>
-                        <span>基金重仓</span>
+                        <span>金仓200</span>
                     </a>
                 </li>
                 <li id="hk-tab" >
@@ -174,7 +188,9 @@
                     </a>
                 </li>
             </ul>
+
         </div>
+
     </div>
 
 <section class="section">

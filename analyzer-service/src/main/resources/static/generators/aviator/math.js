@@ -22,7 +22,14 @@ Blockly.Aviator['math_number'] = function (block) {
     Blockly.Aviator.ORDER_UNARY_NEGATION;
   return [code, order];
 };
-
+//自定义 百分比数字块
+Blockly.Aviator['math_number_percent'] = function (block) {
+  // Numeric value.
+  var code = Number(block.getFieldValue('NUM'));
+  var order = code >= 0 ? Blockly.Aviator.ORDER_ATOMIC :
+    Blockly.Aviator.ORDER_UNARY_NEGATION;
+  return [code, order];
+};
 Blockly.Aviator['math_arithmetic'] = function (block) { 
   // Basic arithmetic operators, and power.
   var OPERATORS = {

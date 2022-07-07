@@ -6,9 +6,10 @@ package com.qianyitian.hope2.analyzer.model;
 public enum EnumPortfolio {
     HK("港股", "hk"),
     US("美股", "us"),
-    H20("希望20", "h20"),
-    H150("希望150", "h150"),
-    F200("基金重仓", "f200");
+    MAO("茅指数", "mao"),
+    NING("宁组合", "ning"),
+    F200("金仓200", "f200"),
+    ETF("ETF基金", "etf");
 
     String code;
     String name;

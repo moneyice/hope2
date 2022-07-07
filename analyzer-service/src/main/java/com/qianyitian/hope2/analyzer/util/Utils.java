@@ -1,7 +1,10 @@
 package com.qianyitian.hope2.analyzer.util;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.text.*;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.Date;
 import java.util.concurrent.locks.ReentrantLock;
 import java.util.regex.Pattern;
@@ -19,28 +22,14 @@ public class Utils {
         }
     };
 
-    public static Date format(String strDate) throws ParseException {
-
-        // lock.lock();
-        // try {
-        // return SF.parse(strDate);
-        // } finally {
-        // lock.unlock();
-        // }
-
-        // synchronized (SF) {
-        // return SF.parse(strDate);
-        // }
-
-        return threadLocal.get().parse(strDate);
-    }
-
     public static String format(Date time) {
         return SF1.format(time);
     }
 
-    public static Date parseDate(String date) throws ParseException {
-        return SF1.parse(date);
+
+    public static LocalDate parseDate(String date) {
+        //严格按照ISO yyyy-MM-dd验证
+        return LocalDate.parse(date);
     }
 
     public static double handleDouble(String x) {
@@ -76,14 +65,23 @@ public class Utils {
     // 保留2位小数
     public static double get2Double(double a) {
         BigDecimal b = new BigDecimal(a);
-        return b.setScale(2, BigDecimal.ROUND_DOWN).doubleValue();
+        return b.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+    }
+
+    // 保留2位小数
+    public static float get2Float(double a) {
+        BigDecimal b = new BigDecimal(a);
+        return b.setScale(2, BigDecimal.ROUND_HALF_UP).floatValue();
     }
 
     public static String double2Percentage(double input) {
         NumberFormat num = NumberFormat.getPercentInstance();
-        num.setMaximumIntegerDigits(3);
+        num.setMaximumIntegerDigits(6);
         num.setMaximumFractionDigits(2);
         String result = num.format(input);
+        if(result==null){
+            return "";
+        }
         return result;
     }
 
@@ -92,9 +90,19 @@ public class Utils {
         return double2Percentage(result);
     }
 
-    public static double calcRange(double base, double increase) {
-        double result = increase / base - 1;
+    public static double calcRange(double base, double value) {
+        double result = value / base - 1;
         return result;
+    }
+
+    public static double calcRange(BigDecimal base, BigDecimal increase) {
+        double result = increase.divide(base, 2, RoundingMode.HALF_UP).subtract(BigDecimal.ONE).doubleValue();
+        return result;
+    }
+
+    public static double calcRange(int base, int increase) {
+        double result = ((double) increase) / base - 1;
+        return get2Double(result);
     }
 
 
@@ -112,5 +120,32 @@ public class Utils {
         return MessageFormat.format(STOCK_URL_TEMPLATE_10JQKA, code);
     }
 
+    public static BigDecimal convertYiYuan(BigDecimal number) {
+        return number.divide(BigDecimal.valueOf(100000000)).setScale(2, BigDecimal.ROUND_HALF_UP);
+    }
 
+    public static double getCAGR(LocalDate startDate, LocalDate endDate, double startPrice, double endPrice) {
+        double years = averageYears(startDate, endDate);
+        double cagr = CAGR(startPrice, endPrice, years);
+        return cagr;
+    }
+
+    protected static double CAGR(double initialValue, double currentValue, double averageYears) {
+        double cagr = Math.pow((currentValue / initialValue), (1 / averageYears)) - 1;
+        return cagr * 100;
+    }
+
+    protected static double averageYears(LocalDate from, LocalDate to) {
+        long betweenDays = ChronoUnit.DAYS.between(from, to);
+        double averageYears = betweenDays / 365.2;
+        return averageYears;
+    }
+
+
+    public static int compare(double a, double b) {
+        if (a == b) {
+            return 0;
+        }
+        return a - b > 0.0D ? 1 : -1;
+    }
 }
