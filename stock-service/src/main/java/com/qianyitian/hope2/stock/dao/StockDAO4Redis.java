@@ -18,6 +18,7 @@ import java.util.concurrent.TimeUnit;
 //@RefreshScope
 public class StockDAO4Redis extends AbstractStockDAO {
 
+    public static final int PersistentPeriod = 60;
     @Resource(name = "stockDAO4FileSystem")
     StockDAO4FileSystem fileSystemDao;
 
@@ -95,7 +96,7 @@ public class StockDAO4Redis extends AbstractStockDAO {
         if (result == null) {
             List<Stock> portfolioSymbols = fileSystemDao.getPortfolioSymbols(portfolio);
             String json = JSON.toJSONString(portfolioSymbols);
-            redisTemplate.opsForValue().set(portfolio, json, 1, TimeUnit.MINUTES);
+            redisTemplate.opsForValue().set(portfolio, json, PersistentPeriod, TimeUnit.MINUTES);
         }
         String allSymbols = redisTemplate.opsForValue().get(portfolio);
         List<Stock> stocks = JSON.parseArray(allSymbols, Stock.class);
