@@ -17,6 +17,26 @@ public class PropertyConfig {
     private String gugudataAPIKeyUS;
     @Value(value = "${hope2.gugudata.api.key.hk}")
     private String gugudataAPIKeyHK;
+    @Value(value = "${hope2.xiaoxiong.api.token}")
+    private String xiaoxiongToken;
+    @Value(value = "${hope2.tushare.api.token}")
+    private String toshareToken;
+
+    public String getToshareToken() {
+        return toshareToken;
+    }
+
+    public void setToshareToken(String toshareToken) {
+        this.toshareToken = toshareToken;
+    }
+
+    public String getXiaoxiongToken() {
+        return xiaoxiongToken;
+    }
+
+    public void setXiaoxiongToken(String xiaoxiongToken) {
+        this.xiaoxiongToken = xiaoxiongToken;
+    }
 
     public String getGugudataAPIKeyUS() {
         return gugudataAPIKeyUS;

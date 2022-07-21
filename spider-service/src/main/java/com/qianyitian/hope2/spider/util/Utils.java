@@ -45,13 +45,19 @@ public class Utils {
     }
 
     public static double handleDouble(String x) {
-        Double y;
-        if (Pattern.matches("N/A", x)) {
-            y = 0.00;
-        } else {
-            y = Double.parseDouble(x);
+        try {
+            return Double.parseDouble(x);
+        } catch (Exception e) {
+            return 0.00;
         }
-        return y;
+    }
+
+    public static float handleFloat(String x) {
+        try {
+            return Float.parseFloat(x);
+        } catch (Exception e) {
+            return 0.00F;
+        }
     }
 
     public static int handleInt(String x) {
@@ -88,5 +94,34 @@ public class Utils {
         return result;
     }
 
+    public static String double2Currency(double input) {
+        NumberFormat num = NumberFormat.getCurrencyInstance();
+        num.setMaximumIntegerDigits(5);
+        num.setMaximumFractionDigits(2);
+        String result = num.format(input);
+        return result;
+    }
 
+    public static void sleep(long n) {
+        try {
+            Thread.sleep(n);
+        } catch (Exception e) {
+
+        }
+    }
+
+    public static boolean stringEquals(String s1, String s2) {
+        if (s1 == null && s2 == null) {
+            return true;
+        }
+        if (s1 != null) {
+            return s1.equals(s2);
+        } else {
+            return s2.equals(s1);
+        }
+    }
+    public static double calcRange(double base, double value) {
+        double result = value / base - 1;
+        return result;
+    }
 }

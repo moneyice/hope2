@@ -1,5 +1,6 @@
 package com.qianyitian.hope2.spider.job;
 
+import com.qianyitian.hope2.spider.fetcher.SohuWebStockRetreiver;
 import com.qianyitian.hope2.spider.model.ETF;
 import com.qianyitian.hope2.spider.model.Stock;
 import org.junit.jupiter.api.Test;
@@ -7,8 +8,6 @@ import org.junit.jupiter.api.Test;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.concurrent.ConcurrentLinkedQueue;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class SohuWebStockRetreiverTest {
 
@@ -20,7 +19,7 @@ class SohuWebStockRetreiverTest {
             Stock stock = new Stock();
             stock.setCode(etf.getCode());
             try {
-                stock = retreiver.getStockInfo(stock);
+                stock = retreiver.fetchStockInfo(stock);
                 System.out.println(stock);
             } catch (IOException e) {
                 e.printStackTrace();

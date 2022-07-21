@@ -22,7 +22,6 @@ public class DataService {
             String fund = restTemplate.getForObject(propertyConfig.getStockService() + "/data/fund/profile/" + code, String.class);
             return fund;
         } catch (Exception e) {
-            logger.error(code);
             logger.error(e.getMessage(), e);
         }
         return null;
@@ -39,6 +38,7 @@ public class DataService {
         return null;
     }
 
+    //基金每日價格
     public void storeFundDetail(String code, String content) {
         try {
             restTemplate.postForObject(propertyConfig.getStockService() + "/fund/detail/" + code, content, String.class);
@@ -49,9 +49,19 @@ public class DataService {
 
     }
 
+    //財報信息和總體信息
     public void storeFundProfile(String code, String content) {
         try {
             restTemplate.postForObject(propertyConfig.getStockService() + "/fund/profile/" + code, content, String.class);
+        } catch (Exception e) {
+            logger.error(code);
+            logger.error(e.getMessage(), e);
+        }
+    }
+
+    public void storeFundHistory(String code, String content) {
+        try {
+            restTemplate.postForObject(propertyConfig.getStockService() + "/fund/history/" + code, content, String.class);
         } catch (Exception e) {
             logger.error(code);
             logger.error(e.getMessage(), e);
